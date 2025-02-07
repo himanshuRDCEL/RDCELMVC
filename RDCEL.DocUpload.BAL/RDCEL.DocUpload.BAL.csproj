@@ -1,0 +1,175 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{605C4FB6-64B9-40D7-AB3C-3FD8772648B7}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>RDCEL.DocUpload.BAL</RootNamespace>
+    <AssemblyName>RDCEL.DocUpload.BAL</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Mailjet.Client, Version=3.0.0.0, Culture=neutral, PublicKeyToken=c297171c8bcce79f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Mailjet.Api.3.0.0\lib\netstandard1.1\Mailjet.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="RestSharp, Version=106.11.7.0, Culture=neutral, PublicKeyToken=598062e77f915f75, processorArchitecture=MSIL">
+      <HintPath>..\packages\RestSharp.106.11.7\lib\net452\RestSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.IO.Compression.FileSystem" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Runtime.InteropServices.RuntimeInformation, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.InteropServices.RuntimeInformation.4.3.0\lib\net45\System.Runtime.InteropServices.RuntimeInformation.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.7\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.7\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="247AroundApiCall\247AroundInformationCall.cs" />
+    <Compile Include="247AroundSyncCall\SubmitRequestSyncCall.cs" />
+    <Compile Include="ABBRegistration\ABBOrderManager.cs" />
+    <Compile Include="BlowHornApiCall\BlowHornCall.cs" />
+    <Compile Include="BlowHornSyncCall\BlowHornCreateShipmentCall.cs" />
+    <Compile Include="Common\AES256encoding.cs" />
+    <Compile Include="Common\NotificationManager.cs" />
+    <Compile Include="Common\WhatsappNotificationManager.cs" />
+    <Compile Include="CouponManager\CouponManager.cs" />
+    <Compile Include="ERP\ERPManager.cs" />
+    <Compile Include="ExchangePriceMaster\PriceMasterManager.cs" />
+    <Compile Include="FeedBackManager\ManageFeedBack.cs" />
+    <Compile Include="LodhaGroupManager\PushBackOrder.cs" />
+    <Compile Include="MahindraApicall\MahindraInformationCall.cs" />
+    <Compile Include="MahindraSyncCall\CreateOrderMahindra.cs" />
+    <Compile Include="Manager\BusinessPartnerManager.cs" />
+    <Compile Include="Manager\ExchangeABBStatusHistoryManager.cs" />
+    <Compile Include="Manager\OrderTransactionManager.cs" />
+    <Compile Include="OcrImageReaderCall\OcrServiceCall.cs" />
+    <Compile Include="OCR_Invoice_Validator\OCR_Invoice_Validator.cs" />
+    <Compile Include="OldProductDetailsManager\OldProductDetailsManager.cs" />
+    <Compile Include="ProcessAPI\AroundSyncManager.cs" />
+    <Compile Include="ProcessAPI\BlowHornSyncManager.cs" />
+    <Compile Include="ProcessAPI\MahindraLogisticsSyncManager.cs" />
+    <Compile Include="QRCode\QRCodeManager.cs" />
+    <Compile Include="ABBRegistration\ABBRegManager.cs" />
+    <Compile Include="BizlogApiCall\TicketInformationCall.cs" />
+    <Compile Include="Common\MailManager.cs" />
+    <Compile Include="ServiceCall\247AroundServiceCall.cs" />
+    <Compile Include="ServiceCall\BillCloudServiceCall.cs" />
+    <Compile Include="ServiceCall\BizlogServiceCall.cs" />
+    <Compile Include="ServiceCall\BlowHornServiceCall.cs" />
+    <Compile Include="ServiceCall\LodhaServiceCall.cs" />
+    <Compile Include="ServiceCall\MahindraServiceCall.cs" />
+    <Compile Include="ServiceCall\OCR_Services.cs" />
+    <Compile Include="ServiceCall\PluralServicecall.cs" />
+    <Compile Include="ServiceCall\SOAPServiceCall.cs" />
+    <Compile Include="ServiceCall\ZohoBooksServiceCalls.cs" />
+    <Compile Include="SponsorsApiCall\ABBOrderMaanger.cs" />
+    <Compile Include="SponsorsApiCall\CustomerManager.cs" />
+    <Compile Include="SponsorsApiCall\EVCZohoRegistraionManager.cs" />
+    <Compile Include="SponsorsApiCall\MasterManager.cs" />
+    <Compile Include="SponsorsApiCall\ProductManager.cs" />
+    <Compile Include="SponsorsApiCall\ExchangeOrderManager.cs" />
+    <Compile Include="ProcessAPI\TicketSyncManager.cs" />
+    <Compile Include="ProcessAPI\SponsrOrderSyncManager.cs" />
+    <Compile Include="SweetenerManager\ManageSweetener.cs" />
+    <Compile Include="SyncCall\BizlogCancelTicketSyncCall.cs" />
+    <Compile Include="SyncCall\BizlogCreateTicketSyncCall.cs" />
+    <Compile Include="SyncCall\BizlogTicketStatusSyncCall.cs" />
+    <Compile Include="UTCZohoSync\PinCodeMasterInfoCall.cs" />
+    <Compile Include="UTCZohoSync\PriceMasterInfoCall.cs" />
+    <Compile Include="UTCZohoSync\SponsorInfoCall.cs" />
+    <Compile Include="UTCZohoSync\EVCApprovedInfoCall.cs" />
+    <Compile Include="Utility\UtilityManager.cs" />
+    <Compile Include="zaakpay\ChecksumCalculator.cs" />
+    <Compile Include="ZohoBooksSync\CustomerInfoCall.cs" />
+    <Compile Include="ZohoCreatorCall\CommonManager.cs" />
+    <Compile Include="ZohoCreatorCall\MasterManager.cs" />
+    <Compile Include="ZohoCreatorCall\PriceMasterManager.cs" />
+    <Compile Include="ZohoCreatorCall\EVCManager.cs" />
+    <Compile Include="ZohoCreatorCall\SponserManager.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServiceCall\ZohoServiceCalls.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GraspCorn.Common\GraspCorn.Common.csproj">
+      <Project>{cfa052f5-2880-487c-a837-9c8726ef87df}</Project>
+      <Name>GraspCorn.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RDCEL.DocUpload.DAL\RDCEL.DocUpload.DAL.csproj">
+      <Project>{CE3F7A61-1A9E-41B8-8B7B-68E1C6F51A62}</Project>
+      <Name>RDCEL.DocUpload.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RDCEL.DocUPload.DataContract\RDCEL.DocUPload.DataContract.csproj">
+      <Project>{b8f80219-ce5f-4800-8f88-1a00fe3c2371}</Project>
+      <Name>RDCEL.DocUPload.DataContract</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

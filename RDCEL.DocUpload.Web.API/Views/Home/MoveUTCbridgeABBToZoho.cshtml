@@ -1,0 +1,33 @@
+﻿
+@{
+    ViewBag.Title = "Move ABB From UTCbridge To Zoho";
+}
+
+<div class="row">
+    <div class="col-6 m-auto" style="margin: 5px;">
+        <div class="logowrapper py-3">
+
+            <img class="logo" style="" src="~/Content/DB_Files/SponsorLogo/Digi2L_Logo_Final.png" alt="https://i.pinimg.com/originals/3f/95/48/3f9548beef7804b53a111ced870da0c6.pngs">
+        </div>
+    </div>
+   
+</div>
+@Html.Partial("_MessagePartial")
+@using (Html.BeginForm("MoveUTCbridgeABBToZoho", "Home", FormMethod.Post))
+{
+    <h3 class="section-title">Move ABB Orders from UTC bridge To Zoho</h3>
+    <div class="row">
+        <div class="form-group">
+            <label for="">Select Month <span style="color:red;">*</span></label>
+            @Html.DropDownList("month", ViewBag.monthList as SelectList, "--Select Month--", new { @class = "custom-select", @required = "required", @id = "ddlmonth" })
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="form-group col-6">
+            <input type="submit" value="Submit" class="btn btn-primary" />
+        </div>
+    </div>
+}
+

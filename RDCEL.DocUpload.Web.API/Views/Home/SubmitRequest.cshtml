@@ -1,0 +1,14 @@
+﻿
+@{
+    ViewBag.Title = "SubmitRequest";
+}
+
+<div class="jumbotron">
+    @using (Html.BeginForm("SubmitRequest", "Home", FormMethod.Post))
+    {
+        <label>RegdNo:</label>
+        @Html.TextBox("RegdNo")
+        <input type="submit" value="Submit" />
+    }
+</div>
+

@@ -1,0 +1,309 @@
+﻿@model RDCEL.DocUpload.DataContract.ABBRegistration.PaymentInitiateModel
+@{
+    ViewBag.Title = "CreateOrder";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Place Order</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+          integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
+          rel="stylesheet">
+
+    <link href="~/Content/ABBPayment_Style.css" rel="stylesheet" />
+
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+</head>
+
+<body>
+    <div id="wrapper">
+
+        <div class="topnav">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 py-3 text-center">
+                        <div class="logowrapper">
+                            <img src="https://digi2l.in/wp-content/uploads/2022/09/logo.svg" alt="">
+
+                        </div>
+                        <p>The only platform to sell used appliances in best price.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @using (Html.BeginForm("CreateOrderForPluralGateway", "Abb", FormMethod.Post,new { @id = "ABBform", autocomplete = "off" }))
+        {
+    <div class="main">
+
+        @Html.HiddenFor(m => m.orderRegdNo, new { id = "hdnRegdNo" })
+        @Html.HiddenFor(m => m.Custname, new { id = "hdnName" })
+        @Html.HiddenFor(m => m.Custaddress, new { id = "hdnaddress" })
+        @Html.HiddenFor(m => m.Custemail, new { id = "hdnemail" })
+        @Html.HiddenFor(m => m.CustcontactNumber, new { id = "hdncontactnumber" })
+        @Html.HiddenFor(m => m.planamount, new { id = "hdnamount" })
+        @Html.HiddenFor(m => m.newproductCategory, new { id = "hdnproductcategory" })
+        @Html.HiddenFor(m => m.newProductType, new { id = "hdnproducttype" })
+        @Html.HiddenFor(m => m.custfirstname, new { id = "hdnfirstname" })
+        @Html.HiddenFor(m => m.custlastname, new { id = "hdnlastname" })
+        @Html.HiddenFor(m => m.Custaddress1, new { id = "hdnaddress1" })
+        @Html.HiddenFor(m => m.Custaddress2, new { id = "hdnaddress2" })
+        @Html.HiddenFor(m => m.custcity, new { id = "hdncustcity" })
+        @Html.HiddenFor(m => m.custstate, new { id = "hdncuststate" })
+        @Html.HiddenFor(m => m.custpin_code, new { id = "hdncustpin_code" })
+        @Html.HiddenFor(m => m.Base64StringValue, new { id = "hdnBase64StringValue" })
+        @Html.HiddenFor(m => m.ModuleType, new { id = "hdnModuleType" })
+        @Html.HiddenFor(m => m.ModuleTypeEnum, new { id = "hdnModuleTypeEnum" })
+        @Html.AntiForgeryToken()
+        <div class="container">
+            <div class="card">
+                <div class="row">
+                    <div class="col-12 text-center">
+
+                        <h3 class="heading text-center">Review Payment </h3>
+                    </div>
+
+                    <div class="col-md-4 mt-4 detailbox">
+                        <p>
+                            <i class="fa-solid fa-user primary-color"></i> Name
+                            <span><label id="customername"></label></span>
+                        </p>
+                    </div>
+
+                    <div class="col-md-4 mt-4 detailbox">
+                        <p>
+                            <i class="fa-solid fa-envelope primary-color"></i> Email
+                            <span><label id="custEmail"></label></span>
+                        </p>
+                    </div>
+
+                    <div class="col-md-4 mt-4 detailbox">
+                        <p>
+                            <i class="fa-solid fa-phone primary-color"></i> Phone Number
+                            <span><label id="phoneNumber"></label></span>
+                        </p>
+                    </div>
+
+                    <div class="col-md-4 mt-4 detailbox">
+                        <p>
+                            <i class="fa-solid fa-location-dot primary-color"></i> Address
+                            <span><label id="address"></label></span>
+                        </p>
+                    </div>
+
+                    <div class="col-md-4 mt-4 detailbox">
+                        <p>
+                            <i class="fa-solid fa-cart-shopping primary-color"></i> ABB Plan For
+                            <span>ABB plan for: <label id="productcategory"></label>, <label id="prdctType"></label></span>
+                        </p>
+                    </div>
+
+                    <div class="col-md-4 mt-4 detailbox">
+                        <p>
+                            <i class="fa-solid fa-indian-rupee-sign primary-color"></i> Amount
+                            <span><label id="amount"></label></span>
+                        </p>
+                    </div>
+
+                    @if (Model.ModuleType == Model.ModuleTypeEnum)
+                    {
+                        <div class="form-group col-md-4 mt-4 detailbox">
+                            <label for="">Invoice Number<span style="color:red;">*</span></label>
+                            @Html.EditorFor(model => model.InvoiceNo, new { htmlAttributes = new { @id = "txtInvoiceNo", @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.InvoiceNo, "", new { @class = "text-danger" })
+                            <label id="lblInvoiceNo" style="color:red;"></label>
+                        </div>
+
+                        <div class="form-group col-md-4 mt-4 detailbox">
+                            <label for="">Invoice Image <span style="color:red;">*</span></label>
+                            <div class="custom-file">
+                                <input type="file" class="" data-max-size="5000" name="InvoiceImage" id="validatedCustomFile" accept="image/*">
+                            </div>
+                            @Html.ValidationMessageFor(model => model.InvoiceImage, "", new { @class = "text-danger" })
+                            <label>* You can only upload jpg,jpeg,png,gif files.</label><br />
+                            <label id="lbInvoicelFileName"></label>
+                            <label id="lblInvoiceImage" style="color:red;"></label>
+
+                        </div>
+                        <div class="form-group col-md-4 mt-4 detailbox">
+                            <img id="showImg" src="" />
+                        </div>
+                        <div class="col-12 my-4 text-center">
+                            <input type="button" id="btnFormSubmit" value="Proceed" class="btn btn-primary" />
+
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="col-12 my-4 text-center">
+                            <input type="submit" id="btnFormSubmit" value="Proceed" class="btn btn-primary" />
+
+                        </div>
+                    }
+                </div>
+            </div>
+
+        </div>
+    </div>
+        }
+
+        <div class="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <p>
+                            <a href="https://digi2l.in" target="_blank">
+                                <label style="color:white">Powered by</label>
+
+                                <img src="https://digi2l.in/wp-content/uploads/2022/09/logo-Digi2L.png">
+                            </a>
+                        </p>
+                    </div>
+                    <div class="col-md-6 text-md-right footer-pattern">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+</script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+</script>
+<script src="~/Scripts/jquery.resizeImg.js"></script>
+<script src="~/Scripts/mobileBUGFix.mini.js"></script>
+<script>
+    $(document).ready(function () {
+        var username = $("#hdnName").val();
+        var email = $("#hdnemail").val();
+        var address = $("#hdnaddress").val();
+        var phoneno = $("#hdncontactnumber").val();
+        var productcategory = $("#hdnproductcategory").val();
+        var producttype = $("#hdnproducttype").val();
+        var amount = $("#hdnamount").val();
+
+        $("#customername").text(username);
+        $("#custEmail").text(email);
+        $("#phoneNumber").text(phoneno);
+        $("#address").text(address);
+        $("#productcategory").text(productcategory);
+        $("#prdctType").text(producttype);
+        $("#amount").text(amount);
+    });
+      function validateForm() {
+
+        var flag = true;
+            if ($("#hdnBase64StringValue").val() == '' || $("#hdnBase64StringValue").val() == null) {
+                $("#validatedCustomFile").css("border", "2px solid red");
+                $("#validatedCustomFile").focus();
+                $("#divSubmitAlert").show();
+                $("#lblInvoiceImage").append("Please Upload Invoice Image.");
+                flag = false;
+            }
+            else {
+
+                $("#validatedCustomFile").css("border", ""); $("#lblInvoiceImage").text("");
+
+        }
+        if ($("#txtInvoiceNo").val() == '' || $("#txtInvoiceNo").val() == null) {
+            $("#txtInvoiceNo").css("border", "2px solid red");
+            $("#txtInvoiceNo").focus();
+            $("#divSubmitAlert").show();
+            //$("#lblNetProductPrice").css("display", "block");
+            $("#lblInvoiceNo").append("Please enter Invoice Number.");
+            flag = false;
+        }
+        else {
+            $("#txtInvoiceNo").css("border", ""); $("#lblInvoiceNo").text("");
+        }
+        return flag;
+    }
+
+    $('#btnFormSubmit').click(function () {
+
+        if (validateForm()) {
+            $("#btnFormSubmit").prop('disabled', true);
+                 $("#ABBform").submit();
+                    }
+         })
+
+    $('#validatedCustomFile').bind('change', function () {
+        $("#lbInvoicelFileName").text("");
+        $("#lbInvoicelFileName").append(this.files[0].name);
+        $("#hdnImageName").val(this.files[0].name);
+    });
+
+    $("#validatedCustomFile").resizeImg(function () {
+        var value = parseInt("350");
+        var Weight = parseInt("2");
+        let type, quality;
+        {
+            type = "image/jpeg";
+            quality = 0.8;
+        }
+        return {
+            use_reader: false,
+            mode: Weight,
+            val: value,
+            type: type,
+            quality: quality,
+            callback: function (result) {
+                //Call method to validate the image contetnt using ORC API
+                    $("#showImg").attr('src', result);
+                    $("#hdnBase64StringValue").val(result.substr(result.indexOf(',') + 1)).css("height", 100);
+                    $("#validatedCustomFile").val(null);
+                 //IsImageValid(result);
+            }
+        };
+    });
+    //method to check Invoice Data
+    function IsImageValid(imageData) {
+
+        var postImageString = imageData.replace('data:image/png;base64,', '');
+        postImageString = imageData.replace('data:image/jpeg;base64,', '');
+        var ImageName = $("#hdnImageName").val();
+            $.ajax({
+                url: "@Url.Action("ValidateImage", "ABB")",
+                type: "POST",
+                dataType: 'json',
+                contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+                data: {
+                    imageData: postImageString, ImageName: ImageName
+                },
+                success: function (response) {
+                    if (response == false || response == "False" || response == "false") {
+                        alert('Invoice image is not valid');
+                        $("#hdnBase64StringValue").val(null);
+                        $("#validatedCustomFile").val(null);
+                        $("#showImg").attr('src', "");
+                    }
+                },
+                failure: function (response) {
+                    ShowAlert([response.responseText], window.AlertType.error);
+                },
+                error: function (response) {
+                    ShowAlert([response.responseText], window.AlertType.error);
+                }
+            });
+    }
+</script>

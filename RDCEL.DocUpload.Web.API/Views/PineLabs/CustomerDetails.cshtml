@@ -1,0 +1,301 @@
+﻿@model RDCEL.DocUpload.DataContract.SponsorModel.ExchangeOrderDataContract
+@{
+    ViewBag.Title = "CustomerDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/Content/jquery-ui-1.13.1.custom/jquery-ui.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<script src="~/Content/jquery-ui-1.13.1.custom/jquery-ui.js"></script>
+<style>
+
+
+    img {
+        width: 100%;
+    }
+
+    .logoimg img {
+        max-width: 180px;
+        margin-bottom: 20px;
+    }
+</style>
+@using (Html.BeginForm("CustomerDetails", "PineLabs", FormMethod.Post, new { enctype = "multipart/form-data", @id = "Course-form", @class = "form-horizontal", autocomplete = "off" }))
+{
+    <div class="row">
+
+        @Html.HiddenFor(m => m.Id, new { id = "hdnExchangeId" })
+        @Html.HiddenFor(m => m.PhoneNumber, new { id = "hdnPhoneNumber" })
+        @Html.HiddenFor(m => m.RegdNo, new { id = "hdnregdNo" })
+        @Html.HiddenFor(m => m.BusinessPartnerId, new { id = "hdnBusinessPartner" })
+        @Html.HiddenFor(m => m.BusinessUnitId, new { id = "hdnBusinessUnit" })
+        @Html.HiddenFor(m => m.City1, new { id = "hdnCity" })
+        @Html.HiddenFor(m => m.State1, new { id = "hdnState" })
+
+
+
+        <div class="col-md-8 mx-auto my-2 text-center">
+
+            @if (Model.BULogoName != null)
+            {
+                <img src="@Model.BULogoName">
+            }
+            else
+            {
+                <img src="~/Content/DB_Files/SponsorLogo/11.png" />
+            }
+
+        </div>
+
+      
+    </div>
+    <h3 class="section-title">Pickup Details</h3>
+
+    <div class="form-group">
+        <div class="row">
+            <div class="col-6">
+                <label>First Name <span style="color:red;">*</span></label>
+                @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control", @id = "txtFirstName" } })
+                @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+                <label id="lblFirstName" style="color:red;"></label>
+            </div>
+            <div class="col-6">
+                <label>Last Name <span style="color:red;">*</span></label>
+                @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control", @id = "txtLastName" } })
+                @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+                <label id="lblLastName" style="color:red;"></label>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="">Mobile Number <span style="color:red;">*</span></label>
+        @Html.EditorFor(model => model.PhoneNo, new { htmlAttributes = new { @class = "form-control", @id = "txtMobile", @type = "number", disabled = "disabled", @readonly = "readonly" } })
+        @Html.ValidationMessageFor(model => model.PhoneNo, "", new { @class = "text-danger" })
+        <label id="lblMobile" style="color:red;"></label>
+    </div>
+
+    <div class="form-group">
+        <label for="">E-mail <span style="color:red;">*</span></label>
+        <div class="input-group">
+            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @id = "txtEmail" } })
+            <span class="right mailbox"><i class="fas fa-envelope"></i></span>
+        </div>
+        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+        <label id="lblEmail" style="color:red;"></label>
+    </div>
+    <div class="form-group">
+        <label for="">Pincode <span style="color:red;">*</span></label>
+        @Html.TextBoxFor(model => model.ZipCode, new { @class = "custom-select", @onchange = "GetState(this.value);", @id = "txtPincode" })
+        @Html.ValidationMessageFor(model => model.ZipCode, "", new { @class = "text-danger" })
+    </div>
+    <div class="form-group">
+        <label for="">State<span style="color:red;">*</span></label>
+        @Html.EditorFor(model => model.State, new { htmlAttributes = new { @class = "form-control", @id = "ddlState", disabled = "disabled", @readonly = "readonly" } })
+      
+    </div>
+
+    <div class="form-group">
+        <label for="">City<span style="color:red;">*</span></label>
+        @Html.EditorFor(model => model.CityName, new { htmlAttributes = new { @class = "form-control", @id = "ddlCity", disabled = "disabled", @readonly = "readonly" } })
+      
+    </div>
+    <div class="form-group">
+        <label for="">Address 1 <span style="color:red;">*</span></label>
+        @Html.EditorFor(model => model.Address1, new { htmlAttributes = new { @class = "form-control required", @id = "txtAddress1" } })
+        @Html.ValidationMessageFor(model => model.Address1, "", new { @class = "text-danger" })
+        <label id="lblAddress1" style="color:red;"></label>
+    </div>
+    <div class="form-group">
+        <label for="">Address 2</label>
+        @Html.EditorFor(model => model.Address2, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.Address2, "", new { @class = "text-danger" })
+    </div>
+    <h3 class="section-title">Customer Acceptance Required</h3>
+    <div class="form-group">
+        @Html.CheckBoxFor(model => model.OtherCommunications, new { @id = "chkAge18", @class = "clsChecks" })
+        <span for="">I am above the age of 18 years.</span>
+    </div>
+    <div class="form-group">
+        @Html.CheckBoxFor(model => model.OtherCommunications, new { @id = "chkTC", @class = "clsChecks" })
+        <sapn for="">Old Product will be ready for pickup.</sapn>
+    </div>
+    <div class="form-group text-center text-md-right" id="divSubmit" style="display:none">
+        <input type="Button" value="Submit" class="btn btn-primary" id="btnSubmit">
+    </div>
+}
+<div class="form-group otpwrapper" id="divShowOTP" style="display:none">
+    <div class="otpbox text-center">
+        <p>OTP has been sent to <strong id="txtmobileOTP"></strong></p>
+        @using (Html.BeginForm())
+        {
+            <input type="number" id="digit-1" name="digit-1" data-next="digit-2" placeholder="please enter OTP" maxlength="4" />
+            <input type="button" id="btnOTPVerification" value="Verify OTP" class="btn btn-secondary" style="margin-top:2px;">
+            <input type="button" id="btnOTPResend" value="Re-Send OTP" class="btn btn-secondary" style="margin-top:2px;">
+        }
+    </div>
+</div>
+
+<script>
+
+
+     $(document).ready(function () {
+         $('#txtPincode').attr('autocomplete', 'one-time-code');
+        $('#btnSubmit').click(function () {
+            SendOTP();
+        })
+
+        $('#btnOTPResend').click(function () {
+            SendOTP();
+            $($("#btnOTPVerification")).prop('disabled', false);
+        })
+
+    $("#btnOTPVerification").click(function () {
+        var mobnumber = $('#hdnPhoneNumber').val();
+        var OTP = $('#digit-1').val();
+         $.ajax({
+                url: "@Url.Action("VerifyOTP", "Exchange")",
+                type: "POST",
+                dataType: 'json',
+                contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+             data: {
+                 mobnumber: mobnumber,
+                 OTP: OTP
+             },
+                success: function (response) {
+                    //
+                    if (response == true || response == "True" || response == "true") {
+                        $($("#btnOTPVerification")).prop('disabled', true);
+                        $("#Course-form").submit();
+                        //alert("disable");
+                    }
+                    else {
+                        //Show message that OTP is not correct
+                        //$("#OTPVerificationMsg").append("OTP is not correct");
+                        document.getElementById("digit-1").value = "";
+                        alert("OTP is not correct. Please enter correct OTP");
+
+                    }
+                    //$("#divShowOTP").show();
+
+
+                },
+                failure: function (response) {
+                },
+                error: function (response) {
+                }
+            });
+
+    });
+    });
+
+    function SendOTP() {
+         if (validateLeadForm()) {
+             var mobnumber = $('#hdnPhoneNumber').val();
+             var buid = $('#hdnBusinessUnit').val();
+           // alert("hi");
+            $.ajax({
+                url: "@Url.Action("SendOTP", "Exchange")",
+                type: "POST",
+                dataType: 'json',
+                contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+                data: {
+                    mobnumber: mobnumber, buid: buid
+                },
+                success: function (response) {
+                    if (response == true || response == "True" || response == "true") {
+                        $("#txtmobileOTP").text(mobnumber);
+                        alert("OTP has been sent to mobile number: " + mobnumber);
+                        $("#divShowOTP").show();
+                    }
+                    else {
+                        alert("Unable to send OTP. Please check your Mobile Number");
+                    }
+                },
+                failure: function (response) {
+                },
+                error: function (response) {
+                }
+            });
+        }
+    }
+    function validateLeadForm() {
+        if ($("form").valid()) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+       $("#txtPincode").autocomplete({
+         source: function (request, response)
+         {
+            //var customer = new array();
+            $.ajax({
+                async: false,
+                cache: false,
+                type: "POST",
+                url:
+                    "@(Url.Action("GetPincodeforPineLabs", "PineLabs"))" + "?pintext=" + $("#txtPincode").val() + "&buid=" + $("#hdnBusinessUnit").val(),
+                data: { "pintext": request.pintext, buid: request.buid },
+                success: function (data) {
+                    response($.map(data, function (item) {
+                        return { label: item.Text, value: item.Text };
+                        }))
+                    }
+            });
+
+            //response(data);
+         },
+       });
+
+
+    function GetState(_pinCode) {
+        var pinCode = parseInt( _pinCode);
+        var buid = $("#hdnBusinessUnit").val();
+         if (pinCode) {
+            $.ajax({
+                type: "GET",
+                url: "@Url.Action("GetState", "PineLabs")" + "?pincode=" + pinCode,
+                //data: { stateName: stateName, buid: buid},
+                success: function (data) {
+                    if (data) {
+                        //console.log(data);
+                        $("#ddlState").empty();
+                        $("#ddlState").val(data.StateName);
+                        $("#ddlCity").val(data.CityName);
+                        $("#hdnState").val(data.StateName);
+                        $("#hdnCity").val(data.CityName);
+
+                    } else {
+                        $("#ddlState").empty();
+                        $("#ddlCity").empty();
+                    }
+                    //GetPincode(_stateName);
+                }
+            });
+        } else {
+             $("#ddlState").empty();
+             $("#ddlCity").empty();
+        }
+     }
+
+    $('.clsChecks').change(function () {
+
+        if ($(this).is(':checked')) {
+            if (($("#chkTC").is(':checked')) && $('#chkAge18').is(':checked')) {
+                $('#divSubmit').show();
+
+            }
+            else {
+                $('#divSubmit').hide();
+            }
+
+        } else {
+            $('#divSubmit').hide();
+        }
+    });
+</script>
+
+

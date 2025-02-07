@@ -1,0 +1,369 @@
+﻿@model RDCEL.DocUpload.DataContract.SponsorModel.MyGateQCViewModel
+
+@{ ViewBag.Title = "Select QC Time";
+    Layout = "~/Views/Shared/_Layout.cshtml"; }
+<style>
+    /* .wavewrapper path {
+        fill: #F26159 !important;
+    }
+
+    .mainformarea {
+        border-top: 4px solid #f26159;
+    }
+
+    #wrapper h3 {
+        border-bottom: none;
+        border-top: none;
+        padding: 15px 0;
+        background: linear-gradient(to right, #f3537a 0%,#f96857 100%);
+        font-size: 18px;
+        font-weight: 600;
+        background: linear-gradient(90deg, #f75878 0%, #f7635b 38.39%, #fbb03b 100%);
+    }
+
+    input#btnSubmit {
+        border: 4px solid #FF3D51 !important;
+        padding: 8px 30px;
+        border-radius: 50px;
+        margin-top: 16px;
+        background: none !important;
+        color: #FF3D51 !important;
+        font-weight: 600;
+    }
+
+    #wrapper .form-control, #wrapper .custom-select {
+        background: #F6F8FC;
+        height: auto;
+        padding: 10px;
+        border: none;
+        border-bottom: 3px solid #f7635b !important;
+    }
+
+    #wrapper .footer {
+        background: #FF3D51 !important;
+        border-top: 4px solid #ff6878 !important;
+        box-shadow: none !important;
+    }
+
+    #wrapper .mainformarea {
+        box-shadow: 0 3px 6px rgb(0 0 0 / 16%);
+        padding-bottom: 10px;
+    }
+
+    .footer label {
+        margin: 0 !important;
+    }
+
+
+
+    #wrapper .input-group span.mailbox {
+        background: linear-gradient(90deg, #f75878 0%, #f7635b 38.39%, #fbb03b 100%);
+        padding-top: 10px;
+    }
+
+    #wrapper .btn-primary {
+        background: linear-gradient(90deg, #f75878 0%, #f7635b 38.39%, #fbb03b 100%);
+        border: 0;
+    }
+
+    #wrapper .btn-primary {
+        background: linear-gradient(to right, #f3537a 0%,#f96857 100%);
+        border: 4px solid #FF3D51 !important;
+        padding: 6px 24px;
+        border-radius: 50px;
+        margin-top: 16px;
+        background: none !important;
+        color: #FF3D51 !important;
+        font-weight: 600;
+    }
+
+    #wrapper .btn-dark {
+        border: 4px solid #002554 !important;
+        padding: 6px 24px;
+        border-radius: 50px;
+        margin-top: 16px;
+        background: none !important;
+        color: #002554 !important;
+        font-weight: 600;
+    }
+
+    #wrapper .form-control[type="radio"] {
+        width: 100%;
+        height: 25px;
+    }
+
+    #wrapper .btn-dark {
+        background-color: #53565a;
+        border: none;
+    }
+
+    .logotext {
+        font-size: 20px;
+        font-weight: bold;
+        color: #e3553f;
+        padding: 0;
+    }
+
+    .logotexttagline {
+        display: block;
+        color: #a54a1d;
+        font-size: 17px;
+        margin-top: 8px;
+    }
+
+    img {
+        width: 100%;
+    }
+
+    .logoimg img {
+        max-width: 180px;
+        margin-bottom: 20px;
+    }*/
+</style>
+<link href="~/Content/jquery-ui-1.13.1.custom/jquery-ui.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<script src="~/Content/jquery-ui-1.13.1.custom/jquery-ui.js"></script>
+
+@using (Html.BeginForm("SelectQCTime", "IsDtoC", FormMethod.Post, new { enctype = "multipart/form-data", @id = "Course-form", @class = "form-horizontal", autocomplete = "off" }))
+{
+    <div class="row">
+        @Html.HiddenFor(m => m.QualityCheck, new { id = "hdnQuality" })
+        @Html.HiddenFor(m => m.ProductAge, new { id = "hdnProductAge" })
+        @Html.HiddenFor(m => m.ProductCategoryId, new { id = "hdnProductCategory" })
+        @Html.HiddenFor(m => m.BrandId, new { id = "hdnBrandID" })
+        @Html.HiddenFor(m => m.ProductTypeId, new { id = "hdnProductType" })
+        @Html.HiddenFor(m => m.ExchangePriceString, new { id = "hdnExchangePriceDetails" })
+        @Html.HiddenFor(m => m.FormatName, new { id = "hdnFormatName" })
+        @Html.HiddenFor(m => m.BUId, new { id = "hdBUId" })
+        @Html.HiddenFor(m => m.UnInstallationAmount, new { id = "hdnAmount" })
+        @Html.HiddenFor(m => m.IsUnInstallationRequired, new { id = "hdnRequired" })
+        @Html.HiddenFor(m => m.BusinessPartnerId, new { id = "hdnBusinessPartnerId" })
+        @Html.HiddenFor(m => m.priceMasterNameID, new { id = "hdnpriceMasterNameId" })
+        @Html.HiddenFor(m => m.BasePrice, new { id = "hdnBasePrice" })
+        @Html.HiddenFor(m => m.SweetenerBu, new { id = "hdnSweetenerBu" })
+        @Html.HiddenFor(m => m.SweetenerBP, new { id = "hdnSweetenerBP" })
+        @Html.HiddenFor(m => m.SweetenerDigi2L, new { id = "hdnSweetenerDigi2L" })
+        @Html.HiddenFor(m => m.SweetenerTotal, new { id = "hdnSweetenerTotal" })
+
+
+        <div class="col-12 p-4 pt-0 text-center">
+            @*<div class="logoimg">
+                <img src="~/Content/DB_Files/SponsorLogo/Digi2L_Logo_Final.png" />
+            </div>*@
+            @*<h4 class="logotext">
+                India's First Digital Platform To Sell Used Appliances! <span class="logotexttagline">CUSTOMER READY! PRICE READY! PAYMENT READY!</span>
+            </h4>*@
+        </div>
+
+        @*<div class="col-12 p-4 pt-0 text-center">
+            <div class="logoimg">
+                <img src="~/Content/DB_Files/SponsorLogo/11.png" />
+            </div>
+        </div>*@
+
+
+    </div>
+
+    <div class="row justify-content-center align-items-center">
+        <div class="col-md-6 mx-auto">
+            <h3 class="section-title">Product Details</h3>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card box">
+                        <div class="row">
+                            <h3 class="section-title">
+                                When Can We Come for Quality Check of your
+                                Product?
+                            </h3>
+
+                            <div class="col-12">
+                                <div class="inputbox">
+                                    <label for=""> Date of your availability  <span style="color:red;">*</span></label>
+                                    @Html.EditorFor(model => model.QCDate, new { htmlAttributes = new { @class = "form-control", @id = "daterangewrapper" } })
+                                    @Html.ValidationMessageFor(model => model.QCDate, "", new { @class = "text-danger" })
+                                    <label id="lblInvoiceDate" style="color:red;"></label>
+                                </div>
+                            </div>
+
+
+                            <div class="col-12">
+                                <div class="inputbox">
+                                    <label for="">Available Time Slots<span style="color:red;">*</span></label>
+                                    @Html.DropDownListFor(model => model.StartTime, Model.StartTimeList, "--Select Time Slot--", new { @class = "form-control", @id = "ddlTimeSlot" })
+                                    @Html.ValidationMessageFor(model => model.StartTime, "", new { @class = "text-danger" })
+                                    <label id="lblStoreCode" style="color:red;"></label>
+                                </div>
+                            </div>
+
+
+                            <!--<div class="form-group custom-checkbox pl-4">
+                            <div class="row">
+
+                                <h6>Do you need Un_Installation?</h6>
+                                <div class="col-12 p-1">
+                                    <label>
+                                        <input type="radio" id="html" name="UninstallationCheck" value="Yes">
+                                        Yes
+                                    </label> <br>
+                                    <label>
+                                        <input type="radio" id="followUp" name="UninstallationCheck" value="No">
+                                        No
+                                    </label>
+
+                                </div>-->
+                            @*<div class="conditionboxwrap" id="divChoose" style="display:none">
+                                    <div class="col-12">
+                                        <select id='selectType'>
+                                            <option value="Table Mounted">Table Mounted</option>
+                                            <option value="Wall Mounted">Wall Mounted</option>
+                                        </select>
+                                    </div>
+                                </div>*@
+                            <!--</div>
+                            </div>
+
+                            <div class="form-group" style="display:none" id="tvPosition">
+                                <label for="">Select Mount Position Of  Your TV<span style="color:red;">*</span></label>
+                                @Html.DropDownListFor(model => model.Type, Model.TypeOfTV, "--Select TV Position --", new { @class = "form-control", @id = "ddlType" })
+                                @Html.ValidationMessageFor(model => model.Type, "", new { @class = "text-danger" })
+                                <label id="lblStoreCode" style="color:red;"></label>
+                            </div>
+
+                            <div id="divProductPrice" style="display:none">
+                                <h3 class="section-title">Un-Installation Price</h3>
+                                <div class="form-group">
+                                    <h5>Uninstall your appliance for only Price: ₹<lable id="productPrice"></lable></h5>
+                                    <b><label style="color:green">Un-Installation Price is Chargable To Customer.</label></b>
+                                </div>
+                            </div>-->
+
+
+                            <div class="col-12">
+                                <div class="row">
+                                  
+                                    <div class="col-12" id="divValidate">
+                                        @*<div class="col-12">
+                                            <div class="form-group text-center" id="divValidate">*@
+                                        <div class="w-100 text-center">
+                                            <input type="submit" value="Accept Price" class="btn btn-primary" id="btnValidate">
+                                            <a href="@Model.url" class="btn btn-secondary" id="btnValidate">Cancel </a>
+                                        </div>
+                                        
+                                       
+                                        @*</div>
+                                            </div>*@
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<script>
+
+    $(document).ready(function () {
+
+
+
+
+        @*var category = null;
+
+        $("input[name='UninstallationCheck']").change(function () {
+            category = this.value;
+            $("#hdnRequired").val(category);
+
+            if ($("#html").is(':checked')) {
+                if ($("#hdnProductCategory").val() == '3' && $("#hdnProductType").val()!='38') {
+                    $('#tvPosition').show();
+                }
+                else {
+                    $('#tvPosition').hide();
+                    var productCatId = $("#hdnProductCategory").val();
+                    var productType = $("#hdnProductType").val();
+                     var IsUnInstallationrequired = $('input[name="UninstallationCheck"]:checked').val();
+                     $("#divProductPrice").hide();
+                       $("#productPrice").text("");
+
+                     if (productCatId != null && productType != null && IsUnInstallationrequired != null)    {
+                   $.ajax({
+                     type: "GET",
+                    url: "@Url.Action("GetUnInstallationPriceAll", "IsDtoC")",
+                    data: { productCatId: productCatId, productType: productType, IsUnInstallationrequired: IsUnInstallationrequired },
+                      success: function (data) {
+                    if (data) {
+                        $("#divProductPrice").show();
+                        $("#productPrice").text(data);
+                        $('html, body').animate({
+                            scrollTop: $("#divProductPrice").offset().top
+                        }, 2000);
+                        $("#hdnAmount").val(data);
+                    } else {
+                        $("#divProductPrice").hide();
+                        $("#productPrice").text("");
+                        $("#hdnAmount").val(null);
+                    }
+                }
+              });
+        }
+                }
+            }
+            else {
+                $('#tvPosition').hide();
+                $("#divProductPrice").hide();
+                $("#productPrice").text("");
+                $("#hdnAmount").val(null);
+            }
+        });*@
+    });
+
+    @*$("#ddlType").change(function () {
+        var productCatId = $("#hdnProductCategory").val();
+        var productType = $("#hdnProductType").val();
+        var IsUnInstallationrequired = $('input[name="UninstallationCheck"]:checked').val();
+        $("#divProductPrice").hide();
+        $("#productPrice").text("");
+        var Type = $("#ddlType").val();
+        if (productCatId != null && productType != null && IsUnInstallationrequired != null)    {
+            $.ajax({
+                type: "GET",
+                url: "@Url.Action("GetUnInstallationPriceTV", "IsDtoC")",
+                data: { productCatId: productCatId, productType: productType, IsUnInstallationrequired: IsUnInstallationrequired, Type: Type },
+                success: function (data) {
+                    if (data) {
+                        $("#divProductPrice").show();
+                        $("#productPrice").text(data);
+                        $('html, body').animate({
+                            scrollTop: $("#divProductPrice").offset().top
+                        }, 2000);
+                        $("#hdnAmount").val(data);
+                    } else {
+                        $("#divProductPrice").hide();
+                        $("#productPrice").text("");
+                        $("#hdnAmount").val(null);
+                    }
+                }
+            });
+        }
+    });*@
+
+
+
+    $("#daterangewrapper").datepicker({
+
+        dateformat:"dd/mm/yyyy",
+        minDate: '1',
+        maxDate: '+31D'
+
+    });
+
+
+
+</script>

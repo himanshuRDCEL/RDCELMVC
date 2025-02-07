@@ -1,0 +1,561 @@
+﻿@using System;
+@model RDCEL.DocUpload.DataContract.ABBRegistration.ABBRegistrationUpdateDataContract
+
+@{
+    ViewBag.Title = "ABB Registration";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+<style>
+    #showImg {
+        width: 50%;
+        height: auto;
+        display: block;
+        margin: 10px auto;
+    }
+
+    .custom-file {
+        height: 50% !important;
+    }
+</style>
+
+@using (Html.BeginForm("UpdateCustomerDetails", "ABB", FormMethod.Post, new { enctype = "multipart/form-data", @id = "ABB-form", @class = "form-horizontal", autocomplete = "off" }))
+{
+<div class="row">
+    @Html.HiddenFor(m => m.InvoiceImage)
+    @Html.HiddenFor(m => m.ABBPlanName)
+    @Html.HiddenFor(m => m.Base64StringValue, new { id = "hdnBase64StringValue" })
+    @Html.HiddenFor(m => m.abbfees, new { id = "hdnPlanPrice" })
+    @Html.HiddenFor(m => m.paynow, new { id = "hdnPayNow" })
+    @Html.HiddenFor(m => m.IsdefferedABB, new { id = "hdnIsdefferedAbb" })
+    @Html.HiddenFor(m => m.RegdNo)
+    @Html.HiddenFor(m => m.ProductcategoryId)
+    @Html.HiddenFor(m => m.ProductTypeID)
+    @Html.HiddenFor(m => m.BUNAme)
+    @Html.HiddenFor(m => m.InvoiceImageName, new { id = "hdninvoicename" })
+    @Html.HiddenFor(m => m.BusinessUnitId, new { id= "hdnBusinessUnitId" })
+</div>
+
+    <div class="row justify-content-center align-items-center">
+        <div class="col-md-6 mx-auto">
+            <h3 class="section-title">Customer Details</h3>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card box">
+                        <div class="row">
+
+                            <div class="col-md-12">
+                                <div class="row">
+
+                                    <div class="col-md-6">
+                                        <div class="inputbox">
+                                            <label>First Name <span style="color:red;">*</span></label>
+                                            @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @maxlength = "50", @class = "form-control", @id = "txtFirstName" } })
+                                            @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+                                            <label id="lblFirstName" style="color:red;"></label>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="inputbox">
+                                            <label>Last Name <span style="color:red;">*</span></label>
+                                            @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @maxlength = "50", @class = "form-control", @id = "txtLastName" } })
+                                            @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+                                            <label id="lblLastName" style="color:red;"></label>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+                            <div class="col-12">
+                                <div class="inputbox">
+                                    <label for="">Mobile Number <span style="color:red;">*</span></label>
+                                    @Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @maxlength = "10", @class = "form-control", @id = "txtMobile", @type = "number", @readonly = "readonly" } })
+                                    @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
+                                    <label id="lblMobile" style="color:red;"></label>
+                                    <label style="color:green;padding-left:4px" id="WhatsappNumber">Number should be active on whatsapp.<span style="color:red;">*</span></label>
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <div class="inputbox">
+                                    <label for="">E-mail<span style="color:red;">*</span> </label>
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+
+                                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @maxlength = "70", @class = "form-control required", @id = "txtEmail" } })
+                                    </div>
+                                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                                    <label id="lblEmail" style="color:red;"></label>
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <div class="inputbox">
+                                    <label for="">Pin Code <span style="color:red;">*</span></label>
+                                    @Html.EditorFor(model => model.PinCode, new { htmlAttributes = new { @class = "form-control", @type = "number", @maxlength = "6", @onchange = "GetState(this.value);", @id = "txtZipcode" } })
+                                    @Html.ValidationMessageFor(model => model.PinCode, "", new { @class = "text-danger" })
+                                    <label id="lblZipcode" style="color:red;"></label>
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <div class="inputbox">
+                                    <label for="">State</label>
+                                    @Html.EditorFor(model => model.State, new { htmlAttributes = new { @maxlength = "50", @class = "form-control", @id = "txtState", @required = "required" } })
+                                    @Html.ValidationMessageFor(model => model.State, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <div class="inputbox">
+                                    <label for="">City</label>
+                                    @Html.EditorFor(model => model.City, new { htmlAttributes = new { @maxlength = "50", @class = "form-control", @id = "txtCity", @required = "required" } })
+                                    @Html.ValidationMessageFor(model => model.City, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <div class="inputbox">
+                                    <label for="">Address Line 1 <span style="color:red;">*</span></label>
+                                    @Html.EditorFor(model => model.Address1, new { htmlAttributes = new { @maxlength = "200", @class = "form-control required", @id = "txtAddress1" } })
+                                    @Html.ValidationMessageFor(model => model.Address1, "", new { @class = "text-danger" })
+                                    <label id="lblAddress1" style="color:red;"></label>
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <div class="inputbox">
+                                    <label for="">Address Line 2</label>
+                                    @Html.EditorFor(model => model.Address2, new { htmlAttributes = new { @maxlength = "200", @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Address2, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <h3 class="section-title">Product Details</h3>
+
+                            <div class="col-12">
+                                <div class="inputbox">
+                                    <label for="">Product Category</label>
+                                    @Html.EditorFor(model => model.Productcategory, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <div class="inputbox">
+                                    <label for="">Product Type</label>
+                                    @Html.EditorFor(model => model.ProductType, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <div class="inputbox">
+                                    <label for="">Product Brand</label>
+                                    @Html.EditorFor(model => model.Brand, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+
+                                </div>
+                            </div>
+
+
+                            <div class="col-12">
+                                <div class="inputbox">
+                                    <label for="">Product Serial Number<span style="color:red;">*</span></label>
+                                    @Html.EditorFor(model => model.ProductSerialNumber, new { htmlAttributes = new { @maxlength = "50", @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.ProductSerialNumber, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <div class="inputbox">
+                                    <label for="">Invoice Date <span style="color:red;">*</span></label>
+                                    @Html.EditorFor(model => model.InvoiceDate, new { htmlAttributes = new { @class = "form-control", @type = "date", @id = "txtInvoiceDate" } })
+                                    @Html.ValidationMessageFor(model => model.InvoiceDate, "", new { @class = "text-danger" })
+                                    <label id="lblInvoiceDate" style="color:red;"></label>
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <div class="inputbox">
+                                    <label for="">Invoice Number<span style="color:red;">*</span></label>
+                                    @Html.EditorFor(model => model.InvoiceNo, new { htmlAttributes = new { @maxlength = "50", @id = "txtInvoiceNo", @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.InvoiceNo, "", new { @class = "text-danger" })
+                                    <label id="lblInvoiceNo" style="color:red;"></label>
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <div class="inputbox">
+                                    <label for="">Invoice Image <span style="color:red;">*</span></label>
+                                    <input type="file" class="" data-max-size="5000" name="InvoiceImage" id="validatedCustomFile" accept="image/*">
+                                    @Html.ValidationMessageFor(model => model.InvoiceImage, "", new { @class = "text-danger", @id = "invoiceimage" })
+                                    <label>* You can only upload jpg, jpeg, png, gif files.</label><br />
+                                    <label id="lbInvoicelFileName"></label>
+                                    <label id="lblInvoiceImage" style="color:red;"></label>
+
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <img id="showImg" src="" />
+                            </div>
+
+                            <div class="col-12">
+                                <div class="inputbox">
+                                    <label for="">Upload Date</label>
+                                    @Html.EditorFor(model => model.UploadDateTime, new { htmlAttributes = new { @class = "form-control", @type = "date", @Value = DateTime.Now.ToString("yyyy'-'MM'-'dd"), @readonly = "readonly" } })
+                                    @Html.ValidationMessageFor(model => model.UploadDateTime, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <h3 class="section-title">Plan Details</h3>
+
+                            <div class="col-12">
+                                <div class="inputbox">
+                                    <label for="">Plan Name</label>
+                                    @Html.EditorFor(model => model.ABBPlanName, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <div class="inputbox">
+                                    <label for="">Plan price</label>
+                                    @Html.EditorFor(model => model.abbfees, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <div class="inputbox">
+                                    <label for="">No claim period</label>
+                                    @Html.EditorFor(model => model.NoClaimPeriod, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <div class="inputbox">
+                                    <label for="">Plan duration</label>
+                                    @Html.EditorFor(model => model.PlanDuration, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <p class="text-muted f-12">
+
+                                   
+
+                                    <div class="inputbox termsbox">
+                                        @Html.CheckBoxFor(model => model.FollowupCommunication, new { @id = "chkBoschTC" })
+
+                                        <span for="">I agree to receive other communications from Digi2L.</span>
+                                    </div>
+
+                                    <div class="inputbox termsbox">
+                                        @Html.CheckBoxFor(model => model.OtherCommunications, new { @id = "chkAge18" })
+                                        <label for="">I state that I have read and understood the <a href="https://digi2l.in/privacy-policy/" target="_blank"> privacy policy</a> and <a href="https://digi2l.in/terms-conditions/" target="_blank">terms and conditions</a> of Digi2L.</label>
+                                    </div>
+
+                                </p>
+                            </div>
+
+                           
+
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="form-group text-center" id="divSubmit" style="display:none">
+                                        <input type="button" id="btnFormSubmit" value="Submit" class="btn btn-secondary" />
+                                    </div>
+                                    <div class="form-group text-center" id="divPayNow" style="display:none">
+                                        <input type="button" id="btnforpayment" value="Pay Now" class="btn btn-secondary" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+}
+<div class="form-group otpwrapper" id="divShowOTP" style="display:none">
+    <div class="otpbox text-center">
+        <p>OTP has been sent to <strong id="txtmobile1"></strong></p>
+        @using (Html.BeginForm())
+        {
+
+            <input type="number" id="digit-1" name="digit-1" data-next="digit-2" placeholder="please enter OTP" maxlength="4" />
+
+            <input type="button" id="btnOTPVerification" value="Verify OTP" class="btn btn-primary" style="margin-top:2px;">
+        }
+    </div>
+</div>
+
+<script src="~/Scripts/jquery.resizeImg.js"></script>
+<script src="~/Scripts/mobileBUGFix.mini.js"></script>
+<script>
+    $(document).ready(function () {
+        txtInvoiceDate.max = new Date().toISOString().slice(0, -14);
+        $('#txtZipcode').attr('autocomplete', 'one-time-code');
+    });
+     $('#btnFormSubmit').click(function () {
+         if (validateForm()) {
+
+                var customerMobileNumber = $('#txtMobile').val();
+                var invoiceNumber = $('#txtInvoiceNo').val();
+                var modelNumber = 1;
+                var PurchaseDate = $('#txtInvoiceDate').val();
+                 $.ajax({
+                url: "@Url.Action("ValidateABBOrder", "ABB")",
+                type: "POST",
+                dataType: 'json',
+                contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+                    data: {
+                                customerMobileNumber: customerMobileNumber, invoiceNumber: invoiceNumber, modelNumber: modelNumber, PurchaseDate: PurchaseDate
+                           },
+                success: function (response) {
+                    if (response == true || response == "True" || response == "true") {
+                        $($("#btnFormSubmit")).prop('disabled', true);
+                        $("#loader").show();
+                        $("#ABB-form").submit();
+                    }
+                    else {
+                        alert("Duplicate Order: With Respect to customer, ABB plan aready regitered for Model: " + $("#ddlModelNo option:selected").text() + ".");
+                    }
+                },
+                failure: function (response) {
+                },
+                error: function (response) {
+                }
+            });
+
+            }
+     })
+
+     $('#btnforpayment').click(function () {
+
+             if (validateForm()) {
+
+                var customerMobileNumber = $('#txtMobile').val();
+                var invoiceNumber = $('#txtInvoiceNo').val();
+                var modelNumber = 1;
+                var PurchaseDate = $('#txtInvoiceDate').val();
+                    $.ajax({
+                        url: "@Url.Action("ValidateABBOrder", "ABB")",
+                        type: "POST",
+                        dataType: 'json',
+                        contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+                        data: {
+                            customerMobileNumber: customerMobileNumber, invoiceNumber: invoiceNumber, modelNumber: modelNumber, PurchaseDate: PurchaseDate
+                        },
+                        success: function (response) {
+                            if (response == true || response == "True" || response == "true") {
+                                $($("#btnforpayment")).prop('disabled', true);
+                                var paynow = true;
+                                $("#hdnPayNow").val(paynow);
+                                $("#loader").show();
+                                $("#ABB-form").submit();
+                            }
+                            else {
+                                alert("Duplicate Order: With Respect to customer, ABB plan aready regitered for Model: " + $("#ddlModelNo option:selected").text() + ".");
+                            }
+                        },
+                        failure: function (response) {
+                        },
+                        error: function (response) {
+                        }
+                    });
+            }
+
+    });
+    function validateForm() {
+
+        if ($("form").valid()) {
+            var Base64String = $("#hdnBase64StringValue").val();
+
+            if (Base64String == null || Base64String == "") {
+                alert("Unable to process request Please select Invoice Image");
+                return false;
+            }
+            else {
+                return true;
+            }
+
+        }
+        else {
+            return false;
+        }
+    }
+
+      $('#validatedCustomFile').bind('change', function () {
+          $("#lbInvoicelFileName").text("");
+          $("#lblInvoiceImage").text("");
+          $("#lbInvoicelFileName").append(this.files[0].name);
+        $("#hdnImageName").val(this.files[0].name);
+          $("#hdninvoicename").val(this.files[0].name);
+    });
+
+    $("#validatedCustomFile").resizeImg(function () {
+        var value = parseInt("350");
+        var Weight = parseInt("2");
+        let type, quality;
+        {
+            type = "image/jpeg";
+            quality = 0.8;
+        }
+        return {
+            use_reader: false,
+            mode: Weight,
+            val: value,
+            type: type,
+            quality: quality,
+            callback: function (result) {
+                //Call method to validate the image contetnt using ORC API
+                    $("#showImg").attr('src', result);
+                    $("#hdnBase64StringValue").val(result.substr(result.indexOf(',') + 1)).css("height", 100);
+                    $("#validatedCustomFile").val(null);
+                 //IsImageValid(result);
+            }
+        };
+    });
+    //method to check Invoice Data
+    function IsImageValid(imageData) {
+
+        var postImageString = imageData.replace('data:image/png;base64,', '');
+        postImageString = imageData.replace('data:image/jpeg;base64,', '');
+        var ImageName = $("#hdnImageName").val();
+            $.ajax({
+                url: "@Url.Action("ValidateImage", "ABB")",
+                type: "POST",
+                dataType: 'json',
+                contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+                data: {
+                    imageData: postImageString, ImageName: ImageName
+                },
+                success: function (response) {
+                    if (response == false || response == "False" || response == "false") {
+                        alert('Invoice image is not valid');
+                        $("#hdnBase64StringValue").val(null);
+                        $("#validatedCustomFile").val(null);
+                        $("#showImg").attr('src', "");
+                    }
+                },
+                failure: function (response) {
+                    ShowAlert([response.responseText], window.AlertType.error);
+                },
+                error: function (response) {
+                    ShowAlert([response.responseText], window.AlertType.error);
+                }
+            });
+    }
+
+    $("#txtZipcode").autocomplete({
+        source: function (request, response)
+        {
+            //var customer = new array();
+            $.ajax({
+                async: false,
+                cache: false,
+                type: "POST",
+                url:
+                    "@(Url.Action("GetPincodeForABB", "ABB"))" + "?pintext=" + $("#txtZipcode").val() + "&buid=" + $("#hdnBusinessUnitId").val(),
+                data: { "pintext": request.pintext, buid: request.buid },
+               
+                success: function (data) {
+                    if (data.length > 0) {
+                        response($.map(data.slice (0,10), function (item) {
+                            return { label: item.Text, value: item.Text };
+                        }))
+                    }
+                      else {
+                        $("#txtZipcode").val("");
+                     }
+                }
+            });
+
+            //response(data);
+        },
+    });
+
+    //method to get state and city name for customer information
+     function GetState(_pinCode) {
+         var pinCode = _pinCode;
+         if (pinCode) {
+            $.ajax({
+                type: "GET",
+                url: "@Url.Action("GetStatecityabb", "ABB")" + "?pincode=" + pinCode,
+                //data: { stateName: stateName, buid: buid},
+                success: function (data) {
+                    if (data) {
+                        //console.log(data);
+                        $("#txtState").empty();
+                        $("#txtState").val(data.StateName);
+                        $("#txtCity").val(data.CityName);
+                        $("#hdncity").val(data.CityName);
+                        $("#hdnstate").val(data.StateName);
+
+                    } else {
+                        $("#ddlState").empty();
+                    }
+                    //GetPincode(_stateName);
+                }
+            });
+        } else {
+             $("#txtState").empty();
+        }
+     }
+
+
+    //get value in model true/false
+    ////show hide button on chk
+    $(document).ready(function () {
+
+        $('#divSubmit').hide();
+
+
+    });
+
+  
+    $('#chkBoschTC').change(function () {
+        if ($(this).is(':checked')) {
+            $('#chkBoschTC').val(true);
+            if (($('#chkBoschTC').is(':checked')) && $('#chkAge18').is(':checked')) {
+                var IsdefferedABB = $("#hdnIsdefferedAbb").val();
+                if (IsdefferedABB == "true" || IsdefferedABB == "True" || IsdefferedABB == true) {
+                    $('#divSubmit').show();
+                }
+                else {
+                    $('#divPayNow').show();
+                }
+
+            }
+
+            $('#chkAge18').change(function () {
+                if (($('#chkBoschTC').is(':checked')) && $('#chkAge18').is(':checked')) {
+                    var IsdefferedABB = $("#hdnIsdefferedAbb").val();
+                    if (IsdefferedABB == "true" || IsdefferedABB == "True" || IsdefferedABB == true) {
+                        $('#divSubmit').show();
+                    }
+                    else {
+                        $('#divPayNow').show();
+                    }
+
+                } else {
+                    $('#divSubmit').hide();
+                    $('#divPayNow').hide();
+                }
+            }
+            );
+        } else {
+            $('#chkBoschTC').val(false);
+            $('#divSubmit').hide();
+            $('#divPayNow').hide();
+        }
+    });
+</script>

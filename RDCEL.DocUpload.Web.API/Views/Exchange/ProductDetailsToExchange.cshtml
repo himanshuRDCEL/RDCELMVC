@@ -1,0 +1,1115 @@
+﻿@model RDCEL.DocUpload.DataContract.ExchangeOrderDetails.ProductDetailsToExchange
+@{ ViewBag.Title = "ProductDetailsToExchange";
+    Layout = "~/Views/Shared/_Layout.cshtml"; }
+
+
+@using (Html.BeginForm("ProductDetailsToExchange", "Exchange", FormMethod.Post, new { @class = "form-horizontal", autocomplete = "off", @id = "product-form" }))
+{
+    @Html.HiddenFor(m => m.BusinessUnitId, new { id = "hdnBusinessUnitId" })
+    @Html.HiddenFor(m => m.BusinessPartnerId, new { id = "hdnBusinessPartnerId" })
+    @Html.HiddenFor(m => m.ExchangePrice, new { id = "hdnExchangePriceString" })
+    @Html.HiddenFor(m => m.IsSweetnerModelBased, new { id = "hdnIssweetnerModelBased" })
+    @Html.HiddenFor(m => m.FormatName, new { id = "hdnFormatName" })
+    @Html.HiddenFor(m => m.IsOrc, new { id = "hdnOrc" })
+    @Html.HiddenFor(m => m.IsD2C, new { id = "hdnD2C" })
+    @Html.HiddenFor(m => m.ProductAge, new { id = "hdnProductAge" })
+    @Html.HiddenFor(m => m.BULogoName, new { id = "hdnBULogoName" })
+    @Html.HiddenFor(m => m.IsVoucher, new { id = "hdnIsVoucher" })
+    @Html.HiddenFor(m => m.VoucherType, new { id = "VoucherType" })
+    @Html.HiddenFor(m => m.IsDeffered, new { id = "IsDeffered" })
+    @Html.HiddenFor(m => m.IsQualityRequiredOnUI, new { id = "hdnIsQualityRequiredOnUI" })
+    @Html.HiddenFor(m => m.BusinessUnitForHidingQualityCheck, new { id = "hdnBusinessUnitForHidingQualityCheck" })
+    @Html.HiddenFor(m => m.ProductConditionCount, new { id = "hdnProductConditionCount" })
+    @Html.HiddenFor(m => m.priceCode, new { id = "hdnpricecode" })
+    @Html.HiddenFor(m => m.priceMasterNameID, new { id = "hdnPriceMasterNameId" })
+    @Html.HiddenFor(m => m.NewBrandId, new { id = "hdnNewBrandId" })
+    @Html.HiddenFor(m => m.SweetenerBu, new { id = "hdnSweetenerBu" })
+    @Html.HiddenFor(m => m.SweetenerBP, new { id = "hdnSweetenerBP" })
+    @Html.HiddenFor(m => m.SweetenerDigi2L, new { id = "hdnSweetenerDigi2L" })
+    @Html.HiddenFor(m => m.SweetenerTotal, new { id = "hdnSweetenerTotal" })
+    @Html.HiddenFor(m => m.QualityCheck, new { id = "hdnQualityCheck" })
+    @Html.HiddenFor(m => m.IsModelNumberRequired, new { id = "hdnIsModelNumberRequired" })
+    @Html.HiddenFor(m => m.BasePrice, new { id = "hdnBasePrice" })
+    @Html.HiddenFor(m => m.IsValidationBasedSweetner, new { id = "hdnIsValidationBasedSweetner" })
+    @Html.HiddenFor(m => m.IsCouponAplied, new { id = "hdnIsCouponAplied" })
+    @Html.HiddenFor(m => m.CouponId, new { id = "hdnCouponId" })
+    @Html.HiddenFor(m => m.UsedCouponCode, new { id = "hdnUsedCouponCode" })
+    @Html.HiddenFor(m => m.CouponValue, new { id = "hdnCouponValue" })
+    @Html.HiddenFor(m => m.IsCouponsAvailable, new { id = "hdnIsCouponsAvailable" })
+    <div class="row justify-content-center align-items-center">
+        <div class="col-md-6 mx-auto">
+            <h3 class="section-title">Product Details to Exchange</h3>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card box">
+                        @*<h3 class="section-title">Product Details to Exchange</h3>*@
+
+                        <div class="col-12">
+                            <div class="inputbox">
+                                <label for="">Product Group <span style="color:red;">*</span></label>
+                                @Html.DropDownListFor(model => model.OldProductCatId, ViewBag.ProductCategoryList as SelectList, "--Select Product Group--", new { @class = "form-control form-select", @onchange = "GetProType(this.value);", @id = "ddlProdGroup" })
+                                @Html.ValidationMessageFor(model => model.OldProductCatId, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <div class="inputbox">
+                                <label for="">Product Type <span style="color:red;">*</span></label>
+                                @Html.DropDownListFor(model => model.OldTypeId, Model.OldProductTypeList, new { @class = "form-control form-select", @id = "ddlProdType" })
+                                @Html.ValidationMessageFor(model => model.OldTypeId, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="col-12" style="display:none" id="divBrandOld">
+                            <div class="inputbox">
+                                <label for="">Brand</label>
+                                @Html.DropDownListFor(model => model.BrandId, Model.BrandList, "--Select Brand--", new { @class = "form-control form-select", @id = "ddlBrand" })
+                                @Html.ValidationMessageFor(model => model.BrandId, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="row" id="divCondition" style="display:none">
+                            <label for="">Quality Status<span style="color:red;">*</span></label>
+                            @if (Model.QualityCheckList != null && Model.QualityCheckList.Count > 0)
+                            {
+                                for (int i = 0; i < Model.QualityCheckList.Count; i++)
+                                {
+                                    <div class="col-md-6">
+                                        <div class="inputbox conditionbox">
+                                            <label>
+                                                <i class="fas fa-check-circle"></i>
+                                                <input type="radio" class="form-check-input radioButtonBox" id="tbnRadio" name="QualityCheck" value="@Model.QualityCheckList[i].Value" ) />
+                                                @Model.QualityCheckList[i].Text
+
+                                                @*@Html.RadioButtonFor(m => m.QualityCheck, Model.QualityCheckList[i].Value, new { @class = "form-control rdoQualityIndex" })*@
+                                            </label>
+                                        </div>
+                                        <label class="conditionDescription" style="color:green" id="lblQualityIndex_@i">
+                                        </label>
+                                    </div>
+                                }
+                            }
+                        </div>
+                        @if (Model.IsSweetnerBasedonModal == true && Model.IsNewProductDetailsRequired == true)
+                        {
+                            <div class="row" id="divNewProductDetailsForDealerandHome">
+                                <h3 class="section-title">New Product Details</h3>
+
+                                <div class="col-12">
+                                    <div class="inputbox">
+                                        <label for="">Product Group <span style="color:red;">*</span></label>
+                                        @Html.DropDownListFor(model => model.NewProductCategoryId, ViewBag.NewProductCategoryList as SelectList, "--Select Product Group--", new { @class = "form-control form-select", @onchange = "GetProTypeNew(this.value);", @id = "ddlProdGroupNew" })
+                                        @Html.ValidationMessageFor(model => model.NewProductCategoryId, "", new { @class = "text-danger" })
+                                        <label id="lblProdGroup" style="color:red;"></label>
+                                    </div>
+                                </div>
+
+                                <div class="col-12">
+                                    <div class="inputbox">
+                                        <label for="">Product Type <span style="color:red;">*</span></label>
+                                        @Html.DropDownListFor(model => model.NewProductTypeId, Model.NewProductTypeList, new { @class = "form-control form-select", @id = "ddlProdTypeNew" })
+                                        @Html.ValidationMessageFor(model => model.NewProductTypeId, "", new { @class = "text-danger" })
+                                        <label id="lblProdType" style="color:red;"></label>
+                                    </div>
+                                </div>
+
+                                @if (Model.IsNewBrandRequired == true && Model.IsSweetnerModelBased == true)
+                                {
+                                    if (Model.IsBuMultiBrand == true)
+                                    {
+                                        <div class="col-12">
+                                            <div class="inputbox">
+                                                <label for="">New Brand <span style="color:red;">*</span></label>
+                                                @Html.DropDownListFor(model => model.NewBrandId, Model.NewBrandList, "--Select Brand--", new { @class = "form-control form-select", @id = "ddlBrandNew" })
+                                                @Html.ValidationMessageFor(model => model.NewBrandId, "", new { @class = "text-danger" })
+                                                <label id="lblProdType" style="color:red;"></label>
+                                            </div>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="col-12">
+                                            <div class="inputbox">
+                                                <label for="">Brand</label>
+                                                @Html.EditorFor(model => model.BusinesUnitName, new { htmlAttributes = new { @id = "txtBrand", @class = "form-control", @readonly = "readonly" } })
+                                                @Html.HiddenFor(m => m.NewBrandId)
+                                            </div>
+                                        </div>
+                                    }
+                                }
+
+                                @if (Model.IsSweetnerModelBased == true && Model.IsD2C == false && Model.IsModelNumberRequired == true)
+                                {
+                                    <div class="col-12" id="divNewModelDetails">
+                                        <h3 class="section-title">Model Details</h3>
+                                        <div class="inputbox">
+                                            <label for="">Model Number <span style="color:red;">*</span></label>
+                                            @Html.DropDownListFor(model => model.ModelNumberId, Model.ProductModelList, new { @class = "form-control form-select", @id = "ddlModelNo", @required = "required" })
+                                            @Html.ValidationMessageFor(model => model.ModelNumberId, "", new { @class = "text-danger" })
+                                            <label id="lblModelNo" style="color:red;"></label>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                            if (Model.IsD2C == false && Model.BusinessUnitId == 5)
+                            {
+                                <div id="divNewModelDetails" style="display: none">
+                                    <div class="form-group">
+                                        <label for="">Model Number <span style="color:red;">*</span></label>
+                                        @Html.DropDownListFor(model => model.ProductModelIdNew, Model.ProductModelList, new { @class = "form-control form-select", @id = "ddlModelNo" })
+                                        @Html.ValidationMessageFor(model => model.ProductModelIdNew, "", new { @class = "text-danger" })
+                                        <label id="lblModelNo" style="color:red;"></label>
+                                    </div>
+                                </div>
+                            }
+
+                        }
+
+                    <div class="col-12" id="divProductPrice" style="display:none">
+                        <div class="inputbox pricebox">
+                            <h3 class="mainprice">Product Price: <span>₹ <lable id="productPrice"></lable> </span></h3>
+                                @if (Model.IsCouponsAvailable == true)
+                                {
+                                    <h3 class="mainprice">Product Price With Coupon: <span>₹ <lable id="productPricewithCoupon"></lable> </span></h3>
+                                }
+                                @if (Model.IsValidationBasedSweetner == true)
+                                {
+                                    <h6 class="SweetnerPriceBoxWrap">
+                                        Sweetner value: <strong class="text-success">+ ₹<span id="sweetnerPrice"></span></strong>&nbsp;
+                                        <span class="text-muted font-italic" style="font-size: 12px;">(Will be credit after QC)</span>
+                                    </h6>
+                                }
+                                <p class="text-muted m-0">Subject to quality check of the product. * T&C Applied</p>
+                            </div>
+                            @if (Model.IsCouponsAvailable == true)
+                            {
+                                <div class="inputbox pricebox">
+                                    <label for="couponCode"><h3 class="mainprice">Have a coupon code?</h3></label>
+                                    <input style=" border-color: blue; border-radius: 20px; " type="text" class="form-control text-center center-input" id="couponCode" name="couponCode" placeholder="Enter your coupon code">
+                                    <label id="CouponErrorMessage" style="color:red;"></label>
+                                    <div> <button type="button" id="redeemButton" class="btn btn-primary" style=" background: var(--bs-btn-bg);">Apply the Coupon</button></div>
+                                </div>
+                            }
+                        </div>
+                        @if (Model.IsValidationBasedSweetner == true)
+                        {
+                            <div id="divSweetnerPrice" style="display:none;text-align:center;">
+                                <div class="row">
+                                    <div class="col-12 text-center getExtraValueBtn">
+                                        <a href="javascript:void(0)" class="btn btn-primary">Get Extra Value</a>
+                                        <p class="mt-2">*Unlock additional value based on your condition selection!</p>
+                                    </div>
+                                </div>
+                                <div class="row sweetnerPriceQuestions" style="text-align:left;margin-left:6px;margin-right:6px;">
+                                    <div class="col-12">
+                                        @if (Model.buBasedSweetnerValidationsList != null && Model.buBasedSweetnerValidationsList.Count > 0)
+                                        {
+                                            int i = 1;
+                                            foreach (var item in Model.buBasedSweetnerValidationsList)
+                                            {
+                                                <div class="form-group m-0 my-2">
+                                                    <input type="checkbox" class="sweetnerQuestions" value="@item.IsRequired.ToString()" id="Question_@i">
+                                                    <label for="Question_@i">
+                                                        @item.Question
+                                                        @if (item.IsRequired)
+                                                        {<span style="color:red">*</span>}
+                                                    </label>
+                                                    <br />
+                                                    @if (item.IsRequired)
+                                                    {
+                                                        <span class="text-muted font-italic" style="font-size: 12px;display:none;">
+                                                            (This field is required for Get Extra Value)
+                                                        </span>
+                                                    }
+                                                </div>
+                                                i++;
+                                            }
+                                        }
+                                    </div>
+                                </div>
+                                <br />
+                            </div>
+                        }
+                        <div class="col-12" id="ShowUninstallation">
+                            <div class="inputbox">
+                                <p class="text-muted f-12">
+                                    1. Product should be available with all the components.
+                                    <br>
+                                    2. In case of cancellation, the exchange amount is not payable.
+                                    <br>
+                                    3. Please ensure the product is kept uninstalled and ready for pickup.
+                                    <br>
+                                    4. This exchange offer is for individuals not businesses.
+                                    <br>
+                                    5. This contract is between Digi2L and Customer. Brand has no role in this.
+                                    <br>
+                                    6.The exchange offer is applicable only on products, which are not broken.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="form-group text-center" id="divValidate">
+                                    <input type="button" value="Accept Price" class="btn btn-primary" id="btnValidate">
+                                    <a href="@Model.url" class="btn btn-dark" id="btnCancel">Cancel </a>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+}
+<script src="~/Scripts/DataTables/jquery-1.12.1.dataTables.min.js"></script>
+<script src="~/Scripts/DataTables/dataTables.buttons.min.js"></script>
+<script src="~/Scripts/JsZip.min.js"></script>
+<script src="~/Scripts/DataTables/buttons.html5.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#ShowUninstallation").hide();
+        // Add for BU Validation Questions
+        if ("@Model.IsValidationBasedSweetner" == "True") {
+            $('.sweetnerPriceQuestions').hide();
+            $('.getExtraValueBtn .btn').click(function () {
+                $(this).css({ 'pointer-events': 'none', 'cursor': 'not-allowed', 'opacity': '0.7' });
+                $('.sweetnerPriceQuestions').show();
+            });
+            $('.SweetnerPriceBoxWrap').hide();
+            $('.sweetnerPriceQuestions input[type="checkbox"]').on('change', function () {
+                var anyChecked = $('.sweetnerPriceQuestions input[type="checkbox"]:checked').length > 0;
+                if (anyChecked) {
+                    CheckRequiredForSweetner();
+                } else {
+                    $('.SweetnerPriceBoxWrap').hide();
+                }
+            });
+        }
+        @*var checkedItem = @Model.QualityCheck;
+        if (checkedItem > 0) {
+            checkedItem.prop('checked', true);
+            $(.conditionbox).addClass('active');
+        }*@
+    });
+    $('#btnValidate').click(function () {
+         validateLeadForm();
+    })
+    function validateLeadForm() {
+        if ($("form").valid()) {
+            var exchangePrice = $("#hdnExchangePriceString").val();
+            if (exchangePrice == null || exchangePrice == "" || exchangePrice == "0") {
+                alert("Unable to process request for this order price not available");
+                return false;
+            }
+            else {
+                $("#product-form").submit();
+            }
+
+        }
+        else {
+            return false;
+        }
+                }
+     var conditionValueToSelect = @Model.QualityCheck; // Replace with the actual value you want to select
+    $('input[name="QualityCheck"]').each(function () {
+        if ($(this).val() == conditionValueToSelect) {
+            $(this).prop('checked', true);
+            $(this).closest('.conditionbox').addClass('active');
+        }
+    });
+
+    //get product conditon label details
+//}
+
+
+        //get conditons for quality check
+    function GetProductConditonLabels(productCatId) {
+    var buid = $("#hdnBusinessUnitId").val();
+    var bpid = $("#hdnBusinessPartnerId").val();
+
+    if (productCatId) {
+        $.ajax({
+            type: "GET",
+            url: "@Url.Action("GetProductConditonLabels", "Exchange")",
+            data: { productCatId: productCatId, buid: buid, bpid: bpid },
+            success: function (response) {
+                if (response && response.length > 0) {
+
+                    $("#hdnProductConditionCount").val(response.length);
+
+                    populateConditionDiv(response);
+                    GetProdqualityIndexDetailbyCategotyId(productCatId);
+
+
+                } else {
+                    handleNoData();
+                }
+
+            },
+            error: function (xhr, status, error) {
+                handleAjaxError(xhr, status, error);
+            }
+        });
+        }
+        ShowProductPrice();
+}
+
+    function populateConditionDiv(data) {
+    /*debugger;*/
+    var conditionDiv = $("#divCondition");
+    conditionDiv.empty(); // Clear previous content
+    conditionDiv.append('<label for="">Quality Status<span style="color:red;">*</span></label>');
+
+    for (var i = 0; i < data.length; i++) {
+        var qualityCheckItem = data[i];
+        var radioButton = '<input type="radio" class="form-check-input radioButtonBox" id="tbnRadio_' + i + '" name="QualityCheck" value="' + data[i].Value + '" />';
+        var label = '<label><i class="fas fa-check-circle"></i>' + radioButton + data[i].Text + '</label>';
+        var conditionDescription = '<label class="conditionDescription" style="color:green" id="lblQualityIndex_' + i + '"></label>';
+
+        var colDiv = $('<div class="col-md-6"><div class="inputbox conditionbox"></div></div>');
+        colDiv.find('.conditionbox').append(label);
+        colDiv.find('.conditionbox').parent().append(conditionDescription);
+
+        conditionDiv.append(colDiv);
+        }
+
+        //$('.conditionbox').eq(0).addClass('active');
+        $('.conditionbox').eq(0).addClass('active').find('input[name="QualityCheck"]').prop('checked', true);
+
+        conditionDiv.show(); // Show the div after populating
+
+
+}
+
+    function handleNoData() {
+    $("#divCondition").empty().append('<p>No data available.</p>').show();
+}
+
+    function handleAjaxError(xhr, status, error) {
+    console.error("AJAX Error:", error);
+    // You can handle the error in a way suitable for your application, such as showing an error message to the user.
+}
+
+    @*function GetProductConditonLabels(_productCatId) {
+    debugger;
+    var productCatId = _productCatId;
+    var buid = $("#hdnBusinessUnitId").val();
+    var bpid = $("#hdnBusinessPartnerId").val();
+
+    if (productCatId) {
+        $.ajax({
+            type: "GET",
+            url: "@Url.Action("GetProductConditonLabels", "Exchange")",
+            data: { productCatId: productCatId, buid: buid, bpid: bpid },
+            success: function (data) {
+                debugger;
+                $("#divCondition").empty(); // Clear previous content
+                $("#divCondition").append('<label for="">Quality Status<span style="color:red;">*</span></label>');
+
+                for (var i = 0; i < data.length; i++) {
+                    var qualityCheckItem = data[i];
+                    var radioButton = '<input type="radio" class="form-check-input radioButtonBox" id="tbnRadio" name="QualityCheck" value="' + qualityCheckItem.value + '" />';
+                    var label = '<label><i class="fas fa-check-circle"></i>' + radioButton + qualityCheckItem.text + '</label>';
+                    var conditionDescription = '<label class="conditionDescription" style="color:green" id="lblQualityIndex_' + i + '"></label>';
+
+                    var colDiv = '<div class="col-md-6"><div class="inputbox conditionbox">' + label + '</div>' + conditionDescription + '</div>';
+
+                    $("#divCondition").append(colDiv);
+                }
+
+                // Show the div if it was hidden
+                $("#divCondition").show();
+            },
+            error: function (xhr, status, error) {
+                // Handle error
+                console.error(error);
+            }
+        });
+    }
+}*@
+
+    function GetProType(_productCatId) {
+        var proCatId = _productCatId;
+        var priceMasterNameID = $("#hdnPriceMasterNameId").val() ;
+        if (proCatId) {
+            $("#ddlProdType").empty();
+            $.ajax({
+                type: "GET",
+                url: "@Url.Action("GetProdTypeByPriceMasterNameIdAndCatid", "Exchange")",
+                data: { proCatId: proCatId, priceMasterNameID: priceMasterNameID },
+                success: function (data) {
+                    if (data) {
+                        //console.log(data);
+                        $("#ddlProdType").empty();
+                        $('#ddlBrand').empty();
+
+                        $("#ddlProdType").append('<option value="">--Select Product Type--</option>');
+
+                        $.each(data, function (key, value) {
+                            //console.log(value.Value);
+                           // alert("get data");
+                            $("#ddlProdType").append('<option value="' + value.Value + '">' + value.Text + '</option>');
+
+                        });
+                        if (proCatId > 0) {
+                           // GetBrandByProductGroup(productCatId);
+                            GetProductConditonLabels(proCatId);
+
+                            GetNewProductCategory(proCatId);
+                            //GetProdqualityIndexDetailbyCategotyId(proCatId);
+                        }
+
+                    } else {
+                        $("#ddlProdType").empty();
+                        $('#ddlBrand').empty();
+                        $("#divProductPrice").hide();
+                        $("#productPrice").text("");
+                        HideSweetnerDiv();
+
+                    }
+                }
+            });
+            } else {
+                 $("#ddlProdType").empty();
+                 $('#ddlBrand').empty();
+                 $("#divProductPrice").hide();
+                 $("#productPrice").text("");
+                 HideSweetnerDiv();
+        }
+        var prodCatNew = $("#ddlProdGroupNew").val();
+        GetProTypeNew(prodCatNew)
+        ShowProductPrice();
+
+    }
+
+    function GetBrandByProductGroup(_productCatId) {
+        var productCatId = $("#ddlProdGroup").val();
+        var productType = _productCatId;
+        var priceMasterNameId = $("#hdnPriceMasterNameId").val();
+        var buid = $("#hdnBusinessUnitId").val();
+          if (productCatId) {
+            $.ajax({
+                type: "GET",
+                url: "@Url.Action("GetBrandForOldByPriceMasterNameId", "Exchange")",
+                data: { productCatId: productCatId, buid: buid, typeId: productType, priceMasterNameId: priceMasterNameId },
+                success: function (data) {
+                    if (data) {
+                        //console.log(data);
+                        $("#ddlBrand").empty();
+                        $("#ddlBrand").append('<option value="">--Select Brand--</option>');
+                        $.each(data, function (key, value) {
+                            //console.log(value.Value);
+                           // alert("get data");
+                            $("#ddlBrand").append('<option value="' + value.Value + '">' + value.Text + '</option>');
+                        });
+                        if (productCatId > 0) {
+                            GetProductCategoryDetails(productCatId);
+                        }
+                    } else {
+                        $("#ddlBrand").empty();
+                    }
+                }
+            });
+            } else {
+              $("#ddlBrand").empty();
+            }
+    }
+
+    function GetProdqualityIndexDetailbyCategotyId(_productCatId) {
+
+        var ConditionCount = parseInt($("#hdnProductConditionCount").val());
+        var productCatId = parseInt(_productCatId);
+        /*debugger;*/
+        if (ConditionCount==4) {
+
+            $.ajax({
+                type: "GET",
+                url: "@Url.Action("GetProdqualityIndexDetailbyCategotyId", "Exchange")",
+                data: { productCatId: productCatId },
+                success: function (data) {
+                    if (data) {
+                       // console.log(data);
+                        $("#lblQualityIndex_3").text(data.ExcellentDesc);
+                        $("#lblQualityIndex_2").text(data.GoodDesc);
+                        $("#lblQualityIndex_1").text(data.AverageDesc);
+                        $("#lblQualityIndex_0").text(data.NonWorkingDesc);
+                        ShowProductPrice();
+
+                    } else {
+                        //$("#ddlProdType").empty();
+                    }
+                }
+            });
+        }
+        else if (ConditionCount==2) {
+             $.ajax({
+                 type: "GET",
+                 url: "@Url.Action("GetProdqualityIndexDetailbyCategotyId", "Exchange")",
+                 data: { productCatId: productCatId },
+                 success: function (data) {
+                     if (data) {
+                         //console.log(data);
+                         $("#lblQualityIndex_1").text(data.ExcellentDesc);
+                         $("#lblQualityIndex_0").text(data.NonWorkingDesc);
+                         ShowProductPrice();
+
+                     } else {
+                         //$("#ddlProdType").empty();
+                     }
+                 }
+             });
+        }
+         else if (ConditionCount==3) {
+             $.ajax({
+                 type: "GET",
+                 url: "@Url.Action("GetProdqualityIndexDetailbyCategotyId", "Exchange")",
+                 data: { productCatId: productCatId },
+                 success: function (data) {
+                     if (data) {
+                        // console.log(data);
+                         $("#lblQualityIndex_2").text(data.ExcellentDesc);
+                         $("#lblQualityIndex_1").text(data.AverageDesc);
+                         $("#lblQualityIndex_0").text(data.NonWorkingDesc);
+                         ShowProductPrice();
+
+                     } else {
+                         //$("#ddlProdType").empty();
+                     }
+                 }
+             });
+        }
+         else if (ConditionCount==1) {
+      $.ajax({
+          type: "GET",
+          url: "@Url.Action("GetProdqualityIndexDetailbyCategotyId", "Exchange")",
+          data: { productCatId: productCatId },
+          success: function (data) {
+              if (data) {
+
+                  //console.log(data);
+                  $("#lblQualityIndex_0").text(data.ExcellentDesc);
+                  /*$("#lblQualityIndex_0").text(data.NonWorkingDesc);*/
+                  ShowProductPrice();
+
+              } else {
+                  //$("#ddlProdType").empty();
+              }
+          }
+      });
+ }
+    }
+
+    $("#ddlProdType").change(function () {
+        $('#ddlBrand').val("");
+        var typeId = $("#ddlProdType").val();
+        GetBrandByProductGroup(typeId);
+        var oldCat = parseInt($("#ddlProdGroup").val());
+        var oldType = parseInt($("#ddlProdType").val());
+        var NewCat = parseInt($("#ddlProdGroupNew").val());
+        var buid = parseInt($("#hdnBusinessUnitId").val());
+        var buidenum = parseInt($("#hdnBusinessUnitForHidingQualityCheck").val());
+        if (oldCat > 0 && oldType > 0 && NewCat > 0 && buid == buidenum) {
+            $("#hdnExchangePriceString").empty();
+            $("#productPrice").text("0");
+            GetProTypeNew(NewCat);
+        }
+        else {
+            $("#ShowUninstallation").show();
+            ShowProductPrice();
+        }
+        $("#divProductPrice").hide();
+        HideSweetnerDiv();
+
+    });
+
+    $("#ddlBrand").change(function () {
+        /*debugger;*/
+        ShowProductPrice();
+    });
+
+    $('input[type=radio][name=QualityCheck]').change(function () {
+        ShowProductPrice();
+    });
+
+    $("#ddlProdGroupNew").change(function () {
+        var ProducttypeNew = 0;
+
+        $("#ddlProdTypeNew").val(ProducttypeNew);
+        ShowProductPrice();
+    });
+
+    $("#ddlProdTypeNew").change(function () {
+
+        var modelvalue = 0;
+        //var ProductTypeDesc = $("#ddlProdTypeNew option:selected").text();
+        $("#ddlModelNo").val(modelvalue);
+        var buiId = parseInt($("#hdnBusinessUnitId").val());
+        //Add By VK for BU Validation Based Sweetner Implementation
+        @*if (ProductTypeDesc != null && ProductTypeDesc != "") {
+            GetProductCategoryOld(ProductTypeDesc);
+        }*@
+        ShowProductPrice();
+
+        GetModelsFromProductTypeNew();
+        if (buiId == 5) {
+            GetModelsFromProductTypeNew();
+        }
+    });
+
+    $("#ddlModelNo").change(function () {
+        ShowProductPrice();
+    });
+
+    $(document).on('click', '.conditionbox', function () {
+
+       // console.log('Testing');
+        var radio = $(this).find('input[name="QualityCheck"]');
+        if (radio.length > 0) {
+            radio.prop('checked', true);
+            $(this).addClass('active');
+            ShowProductPrice();
+        }
+        $('.conditionbox').not(this).removeClass('active');
+    });
+
+    function ShowProductPrice() {
+
+        var productCatId = $("#ddlProdGroup").val();
+        var productSubCatId =$("#ddlProdType").val();
+        var brandId = $("#ddlBrand").val();
+        var buiId = parseInt($("#hdnBusinessUnitId").val());
+        var formatType = $("#hdnFormatName").val();
+        var conditionId = $("#hdnQualityCheck").val();
+        var isRequired = $("#hdnIsQualityRequiredOnUI").val();
+        if (isRequired ==="True") {
+            conditionId = $('input[name="QualityCheck"]:checked').val();
+            $("#hdnQualityCheck").val(conditionId);
+        }
+
+
+        var newcatid = $("#ddlProdGroupNew").val();
+        var newsubcatid =  $("#ddlProdTypeNew").val();
+        var modelno = $("#ddlModelNo").val();
+        var IsSweetnerModelBased = $("#hdnIssweetnerModelBased").val();
+        var IsModelNumberRequired = $("#hdnIsModelNumberRequired").val();
+        var IsValidationBasedSweetner = "@Model.IsValidationBasedSweetner";
+        var newBrandId = $("#ddlBrandNew").val();
+
+        if (newBrandId > 0) {
+            newBrandId = $("#ddlBrandNew").val();
+        }
+        else {
+            newBrandId = $("#hdnNewBrandId ").val();
+        }
+        var priceNameId = $("#hdnPriceMasterNameId").val();
+        var bpid = $("#hdnBusinessPartnerId").val();
+        $("#divProductPrice").hide();
+        $("#productPrice").text("0");
+        $("#hdnExchangePriceString").val('');
+
+        HideSweetnerDiv();
+        var flag = false;
+        // alert("hi");
+        if (productCatId > 0 && productSubCatId > 0 && conditionId > 0 && brandId > 0 && buiId > 0) {
+
+            if (IsSweetnerModelBased == false || IsSweetnerModelBased == "false" || IsSweetnerModelBased == "False") {
+                flag = true;
+            }
+            else if (newcatid > 0 && newsubcatid > 0 && (IsSweetnerModelBased == true || IsSweetnerModelBased == "true" || IsSweetnerModelBased == "True") && (IsModelNumberRequired == false || IsModelNumberRequired == "false" || IsModelNumberRequired == "False")) {
+                flag = true;
+            }
+            else if (newcatid > 0 && newsubcatid > 0 && modelno > 0 && (IsSweetnerModelBased == true || IsSweetnerModelBased == "True" || IsSweetnerModelBased == "true") && (IsModelNumberRequired == true || IsModelNumberRequired == "true" || IsModelNumberRequired == "True")) {
+                flag = true;
+            }
+            if (flag) {
+                $.ajax({
+
+                type: "GET",
+                url: "@Url.Action("GetPriceOnBasisofNewPriceMaster", "Exchange")",
+                    data: { productCatId: productCatId, productSubCatId: productSubCatId, brandId: brandId, conditionId: conditionId, buid: buiId, newcatid: newcatid, newsubcatid: newsubcatid, modelno: modelno, IsSweetnerModelBased: IsSweetnerModelBased, formatType: formatType, IsValidationBasedSweetner: IsValidationBasedSweetner, newBrandId: newBrandId, priceNameId: priceNameId, bpid: bpid },
+                    success: function (data) {
+                        if (data) {
+                            if (data.ExchangePrice != null) {
+                                $("#productPrice").text(data.ExchangePrice);
+                                $("#productPrice").val(data.ExchangePrice);
+                                $("#productPricewithCoupon").val(data.ExchangePrice);
+                                $("#productPricewithCoupon").text(data.ExchangePrice);
+                                $("#hdnExchangePriceString").val(data.ExchangePrice);
+                            }
+                            else {
+                                $("#productPrice").text("0");
+                                $("#productPrice").val("0");
+                                $("#hdnExchangePriceString").val("0");
+                            }
+                            $("#hdnBasePrice").val(data.BaseValue);
+                            $("#sweetnerPrice").text(data.SweetenerTotal);
+                            $("#hdnSweetenerBu").val(data.SweetenerBu);
+                            $("#hdnSweetenerBP").val(data.SweetenerBP);
+                            $("#hdnSweetenerDigi2L").val(data.SweetenerDigi2L);
+                            $("#hdnSweetenerTotal").val(data.SweetenerTotal);
+                            //$('html, body').animate({
+                            //    scrollTop: $("#divProductPrice").offset().top
+                            //}, 2000);
+                            $("#divProductPrice")[0].scrollIntoView();
+                            $("#divProductPrice").show();
+                            $("#productPricewithCoupon").val($("#productPrice").val());
+                             ShowSweetnerDiv();
+                        } else {
+
+                            $("#divProductPrice").hide();
+                             $("#productPrice").text("0");
+                             $("#hdnExchangePriceString").val('');
+                             HideSweetnerDiv();
+                         }
+                }
+            });
+            }
+        }
+        //
+    }
+    // jQuery to handle button click
+    $(document).ready(function () {
+        $('#redeemButton').click(function () {
+            ShowProductPriceWithCouponValues();
+        });
+    });
+    function ShowProductPriceWithCouponValues() {
+        var buiId = parseInt($("#hdnBusinessUnitId").val());
+
+        var bpid = $("#hdnBusinessPartnerId").val();
+        var CouponCode = $("#couponCode").val();
+        var productPrice = parseInt($("#productPrice").val());
+        $("#productPricewithCoupon").val(productPrice);
+        if (CouponCode != '' && bpid > 0 && buiId > 0 && productPrice > 0) {
+
+            $.ajax({
+
+                type: "GET",
+                url: "@Url.Action("GetCouponValueWithVerification", "Exchange")",
+                data: { BusinessUnitid: buiId, BusinessPartnerid: bpid, CouponCode: CouponCode },
+                success: function (data) {
+                    if (data) {
+                        if (data.Status == 3) {
+                            $("#productPricewithCoupon").text(productPrice + data.CouponValue);
+                            $("#productPricewithCoupon").val(productPrice + data.CouponValue);
+                            $("#hdnExchangePriceString").val(productPrice + data.CouponValue);
+                            $("#hdnCouponValue").val(data.CouponValue);
+                            $("#hdnUsedCouponCode").val(data.Coupon);
+                            $("#hdnCouponId").val(data.CouponId);
+                            $("#hdnIsCouponAplied").val(true);
+                            $("#CouponErrorMessage").css("color", "green");
+                            $("#CouponErrorMessage").text("Coupon applied successfully and coupon value is : ₹ " + data.CouponValue + ".");
+                        }
+                        else if (data.Status == 2) {
+                            $("#hdnCouponValue").val(0);
+                            $("#hdnCouponId").val("");
+                            $("#hdnUsedCouponCode").val("");
+                            $("#hdnIsCouponAplied").val(false);
+                            $("#CouponErrorMessage").css("color", "red");
+                            $("#productPricewithCoupon").text(productPrice);
+                            $("#productPricewithCoupon").val(productPrice);
+                            $("#hdnExchangePriceString").val(productPrice);
+                            $("#CouponErrorMessage").text("Coupon already used please enter another.");
+                        } else if (data.Status == 1) {
+                            $("#hdnCouponValue").val(0);
+                            $("#hdnCouponId").val("");
+                            $("#hdnUsedCouponCode").val("");
+                            $("#hdnIsCouponAplied").val(false);
+                            $("#CouponErrorMessage").css("color", "red");
+                            $("#productPricewithCoupon").text(productPrice);
+                            $("#productPricewithCoupon").val(productPrice);
+                            $("#hdnExchangePriceString").val(productPrice);
+                            $("#CouponErrorMessage").text("Coupon expired please enter another.");
+                        } else if (data.Status == 0) {
+                            $("#hdnCouponValue").val(0);
+                            $("#hdnCouponId").val("");
+                            $("#hdnUsedCouponCode").val("");
+                            $("#hdnIsCouponAplied").val(false);
+                            $("#CouponErrorMessage").css("color", "red");
+                            $("#productPricewithCoupon").text(productPrice);
+                            $("#productPricewithCoupon").val(productPrice);
+                            $("#hdnExchangePriceString").val(productPrice);
+                            $("#CouponErrorMessage").text("Coupon invalid please enter another.");
+                        }
+                    } else {
+                        $("#hdnCouponValue").val(0);
+                        $("#hdnCouponId").val("");
+                        $("#hdnUsedCouponCode").val("");
+                        $("#hdnIsCouponAplied").val(false);
+                        $("#CouponErrorMessage").css("color", "red");
+                        $("#productPricewithCoupon").text(productPrice);
+                        $("#productPricewithCoupon").val(productPrice);
+                        $("#hdnExchangePriceString").val(productPrice);
+                        $("#CouponErrorMessage").text("Coupon invalid please enter another.");
+                    }
+                }
+            });
+
+        } else {
+            $("#CouponErrorMessage").text(" Please enter coupon code, input box is blank.");
+        }
+
+    }
+
+    //get prod type by prod group id
+    function GetModelNew(_prodTypeId) {
+        //alert(_prodTypeId);
+        var ProdTypeId = _prodTypeId;
+        var newcatid = $("#ddlProdGroupNew").val();
+        var buid = $("#hdnBusinessUnitId").val();
+            //
+        if (ProdTypeId) {
+            $.ajax({
+                type: "GET",
+                url: "@Url.Action("GetModelNumberByProdTypeId", "Exchange")",
+                data: { ProdTypeId: ProdTypeId, buid: buid, newcatid: newcatid},
+                success: function (data) {
+                    if (data) {
+                        //console.log(data);
+                        $("#ddlModelNo").empty();
+                        $("#ddlModelNo").append('<option value="">--Select Model Number--</option>');
+                        $.each(data, function (key, value) {
+                            //console.log(value.Value);
+                           // alert("get data");
+                            $("#ddlModelNo").append('<option value="' + value.Value + '">' + value.Text + '</option>');
+                        });
+                    } else {
+                        $("#ddlModelNo").empty();
+                    }
+                }
+            });
+            } else {
+                $("#ddlModelNo").empty();
+            }
+    }
+
+    function GetProTypeNew(_productCatId) {
+
+
+        var productCatId = _productCatId;
+        var buid = parseInt($("#hdnBusinessUnitId").val())
+        var ProductTypeOld = $("#ddlProdType").val();
+        var ProductCatOld = $("#ddlProdGroup").val();
+        if (productCatId) {
+            $.ajax({
+                type: "GET",
+                url: "@Url.Action("GetProdTypeByProdGroupId", "ABB")",
+                data: { stateID: productCatId, buid: buid, ProductCatOld: ProductCatOld, ProductTypeOld: ProductTypeOld },
+                success: function (data) {
+                    if (data) {
+                        //console.log(data);
+                        $("#ddlProdTypeNew").empty();
+                        $("#ddlProdTypeNew").append('<option value="">--Select Product Type--</option>');
+                        $.each(data, function (key, value) {
+                            //console.log(value.Value);
+                           // alert("get data");
+                            $("#ddlProdTypeNew").append('<option value="' + value.Value + '">' + value.Text + '</option>');
+                        });
+                    } else {
+                        $("#ddlProdTypeNew").empty();
+                    }
+                }
+            });
+            } else {
+                $("#ddlProdTypeNew").empty();
+        }
+    }
+
+    function GetNewProductCategory(_productCatIdOld) {
+        var productCatId = _productCatIdOld;
+         var buid = parseInt ($("#hdnBusinessUnitId").val());
+        if (productCatId){
+            $.ajax({
+                type: "GET",
+                url: "@Url.Action("GetProductCategoryForNew", "Exchange")",
+                data: { oldCatId: productCatId, buid: buid},
+                success: function (data) {
+                    if (data) {
+                        //console.log(data);
+                        if (data != null && data.length > 0) {
+                            $("#ddlProdGroupNew").empty();
+                            $("#ddlProdGroupNew").append('<option value="">--Select Product Cat--</option>');
+                            $.each(data, function (key, value) {
+                                $("#ddlProdGroupNew").append('<option value="' + value.Value + '">' + value.Text + '</option>');
+                            });
+                        }
+                    } else {
+                        $("#ddlProdGroupNew").empty();
+                    }
+                }
+            });
+            } else {
+            $("#ddlProdGroupNew").empty();
+        }
+    }
+
+    function GetProductCategoryDetails(_productCatId) {
+        var productCatId = _productCatId;
+            var buid = $("#hdnBusinessUnitId").val();
+            var businessUnit = $("#hdnBusinessUnitForHidingQualityCheck").val();
+        var qualityRequired = $("#hdnIsQualityRequiredOnUI").val();
+          if (productCatId) {
+            $.ajax({
+                type: "GET",
+                url: "@Url.Action("GetCProductDetails", "Exchange")",
+                data: { buid: buid, productCategory: productCatId, qualityRequired: qualityRequired},
+                success: function (data) {
+                    if (data) {
+                        //console.log(data);
+                        if (data.flag == "false" || data.flag == "False" || data.flag == false) {
+                            $("#divCondition").show();
+                            $("#purchaseYear").show();
+                            $("#divBrandOld").show();
+
+                        }
+                        else {
+                            if (qualityRequired == "false" || qualityRequired == "False" || qualityRequired == false) {
+                                $("#purchaseYear").show();
+                                $("#divBrandOld").show();
+                            }
+                            else {
+                                $("#divCondition").hide();
+                                $("#purchaseYear").hide();
+                                $("#divBrandOld").hide();
+                                var brandid = parseInt(data.brandIdOld);
+                                $("#hdnBrandId").val(brandid);
+                                $("#ddlBrand").val(data.brandIdOld);
+                            }
+
+                        }
+                    } else {
+                        $("#divCondition").show();
+                        $("#purchaseYear").show();
+                        $("#divBrandOld").show();
+                    }
+                }
+            });
+            } else {
+              $("#divCondition").show();
+              $("#purchaseYear").show();
+              $("#divBrandOld").show();
+          }
+    }
+
+    //Add By VK for set Sweetner Price
+    function GetSweetnerPrice() {
+        var newcatid = $("#ddlProdGroupNew").val();
+        var newsubcatid = $("#ddlProdTypeNew").val();
+        var buiId = parseInt($("#hdnBusinessUnitId").val());
+        var modelno = $("#ddlModelNo").val();
+        var formatType = $("#hdnFormatName").val();
+        if (newcatid > 0 && newsubcatid > 0 && buiId > 0) {
+            $.ajax({
+                type: "GET",
+                url: "@Url.Action("GetSweetnerPrice", "Exchange")",
+                data: { newcatid: newcatid, newsubcatid: newsubcatid, buid: buiId, modelno: modelno, formatType: formatType },
+                success: function (data) {
+                    if (data) {
+
+                        $("#sweetnerPrice").text(data);
+
+                    } else {
+                        $("#sweetnerPrice").text("");
+                        $("#divSweetnerPrice").hide();
+                    }
+                }
+            });
+        }
+        else {
+            $("#divSweetnerPrice").hide();
+        }
+    }
+    // Added by VK for Display Sweetner Price
+    function ShowSweetnerDiv() {
+        if ("@Model.IsValidationBasedSweetner" == "True") {
+            //GetSweetnerPrice();
+            $("#divSweetnerPrice").show();
+        }
+    }
+
+    function HideSweetnerDiv() {
+        if ("@Model.IsValidationBasedSweetner" == "True") {
+            $("#sweetnerPrice").text("0");
+            $("#divSweetnerPrice").hide();
+        }
+    }
+
+    function CheckRequiredForSweetner() {
+                    var flag = true;
+                    $('.sweetnerQuestions').each(function () {
+
+                        var $this = $(this);
+                        var value = $this.val();
+                        if (value == "True") {
+
+                            if ($this.is(":checked")) {
+
+                            }
+                            else {
+                                flag = false;
+                            }
+                        }
+                    });
+                    if (flag == true) {
+                        $('.SweetnerPriceBoxWrap').show();
+                    }
+                    else {
+                        $('.SweetnerPriceBoxWrap').hide();
+                    }
+                }
+
+
+
+    function GetModelsFromProductTypeNew() {
+        //Display Model number for new Prod
+        var ProdTypeId = $("#ddlProdTypeNew").val();
+        var newcatid = $("#ddlProdGroupNew").val();
+        var buid = $("#hdnBusinessUnitId").val();
+        var bpid = $("#hdnBusinessPartnerId").val();
+        var newBrandId = $("#ddlBrandNew").val();
+
+        if(newBrandId >0) {
+            newBrandId = $("#ddlBrandNew").val();
+        }
+        else {
+            newBrandId = $("#hdnNewBrandId ").val();
+        }
+
+        if (ProdTypeId) {
+
+            $.ajax({
+                type: "GET",
+                url: "@Url.Action("GetModelsforNewProduct", "Exchange")",
+                data: { ProdTypeId: ProdTypeId, buid: buid, newcatid: newcatid, bpid: bpid, newBrandId: newBrandId },
+                success: function (data) {
+                    if (data) {
+
+                        if (data != null && data.length > 0) {
+                            //console.log(data);
+                            $("#ddlModelNo").empty();
+                            $("#ddlModelNo").append('<option value="">--Select Model Number--</option>');
+                            $.each(data, function (key, value) {
+                                //console.log(value.Value);
+                                // alert("get data");
+                                $("#ddlModelNo").append('<option value="' + value.Value + '">' + value.Text + '</option>');
+                            });
+                        }
+                        else {
+                            $("#ddlModelNo").append('<option value="">No Model Available</option>');
+                        }
+                        $("#divNewModelDetails").show();
+                    } else {
+                        $("#ddlModelNo").empty();
+                    }
+                }
+            });
+            } else {
+                $("#ddlModelNo").empty();
+            }
+    }
+
+</script>
+

@@ -1,0 +1,242 @@
+﻿
+@{
+    ViewBag.Title = "Exchange POD";
+    string msg = null; string error = null;
+    if (TempData["Msg"] != null && !string.IsNullOrEmpty(TempData["Msg"].ToString())) { msg = TempData["Msg"].ToString(); }
+    if (TempData["Error"] != null && !string.IsNullOrEmpty(TempData["Error"].ToString())) { error = TempData["Error"].ToString(); }
+}
+<style>
+    #showImg {
+        width: 50%;
+        height: auto;
+        display: block;
+        margin: 10px auto;
+    }
+
+    .custom-file {
+        height: 50% !important;
+    }
+</style>
+<div class="row">
+    <div class="col-6 m-auto" style="margin: 5px;">
+        <div class="logowrapper py-3">
+            <img class="logo" style="" src="~/Content/DB_Files/SponsorLogo/Digi2L_Logo_Final.png" alt="https://i.pinimg.com/originals/3f/95/48/3f9548beef7804b53a111ced870da0c6.pngs">
+        </div>
+    </div>
+</div>
+@Html.Partial("_MessagePartial")
+@using (Html.BeginForm("ExchangePOD", "Home", FormMethod.Post, new { enctype = "multipart/form-data", @id = "myForm" }))
+{
+    <h3 class="section-title">Exchange PoD</h3>
+    <div class="row">
+        <div class="form-group col-12">
+            @if (msg != null && !string.IsNullOrEmpty(msg))
+            {<span class="text-center" style="color:green; text-align:center;"><center>@msg</center></span>}
+            else if (error != null && !string.IsNullOrEmpty(error))
+            {<span class="text-center" style="color: red; text-align: center;"><center>@error</center></span>}
+        </div>
+        <div class="form-group col-6">
+            <label for="">Enter Registration Number <span style="color:red;">*</span></label>
+            @Html.TextBox("regNumber", "", new { @class = "form-control", @id = "txtregNumber", @required = "requried" })
+        </div>
+        <div class="form-group col-6">
+            @Html.Hidden("Base64StringValue", "", new { id = "hdnBase64StringValue" })
+            <label for=""> Upload PoD <span style="color:red;">*</span></label>
+            @Html.TextBox("podFile", "", new { type = "file", @class = "form-control", @id = "validatedCustomFile", @required = "requried", @accept = "image/*" })
+        <label style="color:green">* You can only upload jpg, jpeg, png, gif files.</label>
+        </div>
+        
+        <div class="form-group">
+            <label id="lblPODFileName"></label>
+            <label id="lblPODImage" style="color:red;"></label>
+            <img id="showImg" src="" />
+        </div>
+
+
+        <div class="form-group col-12">
+            <label for=""> PoD URL </label>
+            @Html.TextBox("podUrl", "", new { @class = "form-control", @id = "txtPodUrl", @required = "requried", @readonly = "readonly"})
+        <label style="color:green">* Uploaded PoD URL.</label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-12">
+            <input type="submit" id="btnFormSubmit" value="Submit" style="float:right; margin-right:10px;" class="btn btn-primary" />
+        </div>
+    </div>
+}
+
+<script>
+    $("#txtregNumber").autocomplete({
+         source: function (request, response)
+         {
+            //var customer = new array();
+            $.ajax({
+                async: false,
+                cache: false,
+                type: "POST",
+                url:
+                    "@(Url.Action("GetRegdNumByInput", "Home"))" + "?regdNum=" + $("#txtregNumber").val(),
+                data: {"pintext": request.pintext},
+                success: function (data) {
+                    response($.map(data, function (item) {
+                        return { label: item.Text, value: item.Text };
+                        }))
+                    }
+            });
+
+            //response(data);
+         },
+       });
+</script>
+
+<script src="~/Scripts/jquery.resizeImg.js"></script>
+<script src="~/Scripts/mobileBUGFix.mini.js"></script>
+<script>
+    $('#validatedCustomFile').bind('change', function () {
+       
+        $("#lblPODFileName").text("");
+        $("#lblPODFileName").append(this.files[0].name);
+        $("#hdnBase64StringValue").val("");
+        $("#showImg").attr('src', "");
+        $("#txtPodUrl").val("");
+    });
+   
+    $("#validatedCustomFile").resizeImg(function () {
+        var value = parseInt("350");
+        var Weight = parseInt("2");
+        let type, quality;
+        {
+            type = "image/jpeg";
+            quality = 0.8;
+        }
+        return {
+            use_reader: false,
+            mode: Weight,
+            val: value,
+            type: type,
+            quality: quality,
+            callback: function (result) {
+             
+                $("#showImg").attr('src', result);
+                $("#hdnBase64StringValue").val(result.substr(result.indexOf(',') + 1)).css("height", 100);
+                @*$("#validatedCustomFile").val(null);*@
+ 
+                var file = $('#hdnBase64StringValue').val();
+
+                $.ajax({
+                url: "@Url.Action("ShowImagePath", "Home")",
+                type: "POST",
+                data: {
+                    Base64StringValue: file
+                },
+                success: function (data) {
+                    if (data != null) {
+                        $("#txtPodUrl").val(data);
+                        $("#validatedCustomFile").css("border", ""); $("#lblPODImage").text("");
+                    }
+                    else {
+                        $("#txtPodUrl").val("");
+                    }
+                },
+                failure: function (response) {
+                },
+                error: function (response) {
+                }
+                });
+            }
+        };
+    });
+@*
+    $("#validatedCustomFile").change(function () {
+
+        var file = $('#hdnBase64StringValue').val();
+        $.ajax({
+                url: "@Url.Action("ShowImagePath", "Home")",
+                type: "POST",
+                data: {
+                    Base64StringValue: file
+                },
+                success: function (data) {
+                    if (data != null) {
+                        $("#txtPodUrl").val(data);
+                    }
+                    else {
+                        $("#txtPodUrl").val("");
+                    }
+                },
+                failure: function (response) {
+                },
+                error: function (response) {
+                }
+            });
+    });
+*@
+   
+    function validatePODForm() {
+     
+        var flag = true;
+        var imgBase = $("#hdnBase64StringValue").val();
+        if ($("#hdnBase64StringValue").val() == '' || $("#hdnBase64StringValue").val() == null) {
+            $("#validatedCustomFile").css("border", "2px solid red");
+            $("#validatedCustomFile").focus();
+            $("#showImg").attr('src', "");
+            $("#lblPODImage").text("Please Upload Correct PoD Image.");
+            flag = false;
+        }
+        else {
+            $("#validatedCustomFile").css("border", ""); $("#lblPODImage").text("");
+        }
+
+        if ($("#txtregNumber").val() == '' || $("#txtregNumber").val() == null) {
+ 
+        }
+        return flag;
+    }
+
+    //Not used
+    $(function () {
+        $('#btnFormSubmit1').click(function (event) {
+       
+            event.preventDefault(); // Prevent the form from submitting via the browser
+            //var form = $(this);
+           // string regNumber, string Base64StringValue, string podUrl
+            var regdNum = $("#txtregNumber").val();
+            var imgBase = $("#hdnBase64StringValue").val();
+            var podUrl = $("#txtPodUrl").val();
+
+            if (validatePODForm()) {
+                this.submit();
+             @*   $.ajax({
+                    type: 'POST',
+                    url: "@Url.Action("ExchangePOD", "Home")",
+                    data: { regNumber: regdNum, Base64StringValue: imgBase, podUrl: podUrl },
+                    success: function (data) {
+                    
+                        if (data != null) {
+                            alert(data);
+                        }
+                        else {
+                            alert(data);
+                        }
+                    },
+                    failure: function (response) {
+                    },
+                    error: function (response) {
+                    }
+                })*@
+            }
+        });
+    });
+
+
+    $(function () {
+        $('#btnFormSubmit').on('click', function (e) {
+        
+            e.preventDefault();
+            if (validatePODForm()) {
+                document.getElementById("myForm").submit();
+            }
+        });
+    });
+</script>

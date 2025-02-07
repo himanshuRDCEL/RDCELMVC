@@ -1,0 +1,701 @@
+
+@model RDCEL.DocUpload.DataContract.SponsorModel.ExchangeDashBoardViewModel
+
+@{
+    ViewBag.Title = "Dashboard";
+}
+<link href="~/Content/jquery-ui-1.13.1.custom/jquery-ui.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+      integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+      crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+    body {
+        background: transparent linear-gradient(292deg, #ab01fc0d 0%, #3325b014 100%) 0% 0% no-repeat padding-box;
+        font-family: 'Open Sans', sans-serif;
+        line-height: normal;
+    }
+
+    img {
+        width: 100%;
+    }
+
+    a:hover {
+        text-decoration: none;
+    }
+
+    .btn-primary {
+        background: transparent linear-gradient(109deg, #AB01FC 0%, #3325B0 100%) 0% 0% no-repeat padding-box;
+        border: 0;
+        padding: 10px 15px;
+    }
+
+    .btn:focus {
+        box-shadow: none;
+    }
+
+    #wrapper {
+        min-height: 100vh;
+    }
+
+        #wrapper .nav-link {
+            display: inline-block;
+            padding: 0;
+        }
+
+        #wrapper table.dataTable thead .sorting {
+            vertical-align: middle;
+        }
+
+    .topnav {
+        background: #fff;
+    }
+
+        .topnav .logoutbtn a {
+            color: rgb(70, 70, 70);
+        }
+
+        .topnav .btnnav a, .topnav button.btnnav {
+            display: inline-block;
+            border-radius: 50%;
+            height: 40px;
+            width: 40px;
+            background: transparent linear-gradient(109deg, #AB01FC 0%, #3325B0 100%) 0% 0% no-repeat padding-box;
+            color: #fff;
+            border: none;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+            .topnav .btnnav a i {
+                margin-top: 12px;
+            }
+
+    .logowrapper h6 {
+        font-size: 16px;
+        padding-left: 18px;
+        color: rgb(125, 125, 125);
+        font-weight: 600;
+    }
+
+    .topnavdropdown {
+        padding: 0;
+        border: 0;
+        box-shadow: 0 4px 4px rgba(0,0,0,0.3);
+    }
+
+        .topnavdropdown .dropdown-item {
+            padding: 10px 20px;
+            border-bottom: 1px dashed #ccc;
+        }
+
+    .logoutbtn p {
+        margin: 0;
+        font-weight: 600;
+    }
+
+    .logoutbtn i {
+        margin-left: 6px;
+        color: rgb(102, 102, 102);
+    }
+
+    .topnavdropdown .dropdown-item:last-child {
+        border: 0;
+    }
+
+    .section {
+        padding: 40px 0;
+        border-bottom: 1px dashed #ccc;
+    }
+
+
+    .boxwrap {
+        padding: 0 0 16px 0;
+        margin: 10px 0;
+        width: 100%;
+        background-color: #fff;
+        border-radius: 5px;
+        box-shadow: 0px 0px 20px rgb(62 62 62 / 17%);
+        position: relative;
+        overflow: hidden;
+    }
+
+        .boxwrap:before {
+            background: url(img/boxbg-01.png) right no-repeat;
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: -1px;
+        }
+
+    .highlightbox {
+        background: #0D004C;
+        color: #fff;
+    }
+
+    .boxwrap .valuewrap {
+        margin-bottom: 0;
+        font-size: 26px;
+        font-weight: bold;
+        position: relative;
+        z-index: 99;
+        color: #0D004C;
+        padding: 0 24px;
+    }
+
+    .highlightbox .valuewrap {
+        color: #fff;
+    }
+
+    .boxwrap h5 {
+        font-size: 15px;
+        position: relative;
+        z-index: 99;
+        background: transparent linear-gradient(109deg, #AB01FC 0%, #3325B0 100%) 0% 0% no-repeat padding-box;
+        padding: 13px 20px;
+        color: #fff;
+        position: relative;
+    }
+
+        .boxwrap h5 a {
+            text-align: right;
+            float: right;
+            color: #fff;
+            font-size: 13px;
+            font-weight: 400;
+        }
+
+            .boxwrap h5 a:hover {
+                opacity: 0.7;
+            }
+
+
+    .highlightbox h5:after {
+        background-color: #fff;
+    }
+
+    .mgtablewrapper {
+    }
+
+        .mgtablewrapper .boxwrap {
+            padding: 25px;
+        }
+
+        .mgtablewrapper table {
+            margin: 0 auto;
+        }
+
+    thead {
+        background: transparent linear-gradient(109deg, #AB01FC 0%, #3325B0 100%) 0% 0% no-repeat padding-box;
+        color: #fff;
+    }
+
+
+    #wrapper .dataTables_wrapper .dataTables_paginate .paginate_button.current {
+        background: #f16234;
+        color: #fff !important;
+        border: none;
+    }
+
+    #wrapper .dataTables_wrapper .dataTables_paginate .paginate_button {
+        background: #fab39c;
+        border: none;
+        color: #fff !important;
+    }
+
+    #wrapper .dataTables_scrollHeadInner {
+        margin: 0;
+        width: 100% !important;
+    }
+
+    .exportbtnwrapper {
+        display: inline-block;
+        float: right;
+        margin-left: 10px;
+    }
+
+    #exportbtn {
+        padding: 9px 10px;
+        font-size: 15px;
+    }
+
+    #wrapper table.table.reportingtbl.dataTable.no-footer {
+        width: 100% !important;
+    }
+
+    .logowrapper img {
+        max-width: 420px;
+    }
+
+    #wrapper .dataTables_wrapper .dataTables_length select {
+        background: #f36a5c;
+        color: #fff;
+        padding: 6px 8px;
+        border: 0;
+    }
+
+    .dataTables_wrapper .dataTables_filter input {
+        border: none;
+        background: #ddf8ff;
+        color: #000;
+        padding: 10px 20px;
+    }
+
+    #wrapper .dataTables_wrapper .dataTables_info {
+        margin: 10px 0;
+    }
+
+    #wrapper .dataTables_wrapper .dataTables_paginate {
+        margin: 10px 0;
+    }
+
+    .rightslidedtitle {
+        margin-left: -52px;
+    }
+
+
+
+    @@media only screen and (max-width: 768px) {
+        .topbtns {
+            justify-content: center !important;
+            margin: 20px auto;
+            border-top: 1px dashed #ccc;
+            padding-top: 15px;
+        }
+
+        .order-xs-first {
+            order: -1;
+        }
+
+        .topbtns:last-child {
+            border: none;
+            padding: 0;
+            margin-top: 0px;
+        }
+
+        .logowrapper {
+            text-align: center;
+        }
+
+        #wrapper .dataTables_wrapper .dataTables_scroll div.dataTables_scrollBody > table > thead > tr > th, .dataTables_wrapper .dataTables_scroll div.dataTables_scrollBody > table > thead > tr > td, .dataTables_wrapper .dataTables_scroll div.dataTables_scrollBody > table > tbody > tr > th, .dataTables_wrapper .dataTables_scroll div.dataTables_scrollBody > table > tbody > tr > td {
+            display: block;
+            text-align: right;
+        }
+
+        #wrapper table td::before {
+            content: attr(data-label);
+            float: left;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        #wrapper table.dataTable tbody tr {
+            margin: 20px 0;
+            display: block;
+            border: 1px solid #eee;
+            padding: 10px;
+        }
+
+            #wrapper table.dataTable tbody tr td:first-child {
+                border: 0;
+            }
+
+        #wrapper table thead {
+            display: none;
+        }
+
+        .exportbtnwrapper {
+            float: none;
+            display: block;
+            margin: 10px auto;
+            text-align: center;
+        }
+    }
+
+    .topnav .col-6 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .mainlogobox img {
+        padding: 0;
+    }
+
+    #wrapper .logowrapper .logo {
+        width: 50% !important;
+        min-width: 80px;
+        max-width: 220px;
+    }
+
+    .topnav .container .row {
+        gap: 10px 0;
+    }
+
+    .logowrapper.mainlogobox {
+        box-shadow: none !important;
+        padding: 20px !important;
+    }
+
+    #wrapper .logowrapper {
+        padding: 20px !important;
+        height: 100%;
+        border-radius: 6px;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid #dedede;
+        margin: 10px 0;
+        box-shadow: 0 3px 0px rgb(0 0 0 / 19%), 0 6px 12px rgb(0 0 0 / 23%);
+        width: 100%;
+    }
+
+    .topnav .col-6:last-child {
+        margin: 0 auto !important;
+    }
+
+    #wrapper h3 {
+        font-size: 26px;
+        font-weight: bold;
+        position: relative;
+        z-index: 99;
+        padding: 0 24px;
+        background: no-repeat;
+        text-align: left;
+        margin: 0;
+        border-radius: 0;
+        background: none !important;
+    }
+
+    .highlightbox .valuewrap {
+        color: #fff !important;
+    }
+
+    .boxwrap .valuewrap {
+        color: #0D0056 !important;
+    }
+
+    .ui-widget.ui-widget-content {
+        z-index: 9999 !important;
+    }
+
+    #wrapper h3 {
+        border: none !important;
+    }
+
+    #wrapper .dashwrapper {
+        display: block !important;
+        flex: none !important;
+        max-width: 100% !important;
+    }
+
+    .wavewrapper {
+        height: 180px;
+        margin-top: -34px;
+    }
+
+    @@media only screen and (max-width: 1920px) {
+        .wavewrapper {
+            margin-top: -1px;
+            height: 226px;
+        }
+    }
+
+    @@media only screen and (max-width: 1336px) {
+        .wavewrapper {
+            height: 180px;
+            margin-top: -34px;
+        }
+    }
+
+    @@media only screen and (max-width: 1100px) {
+        .wavewrapper {
+            margin-top: -1px;
+            height: 120px;
+        }
+    }
+
+    @@media only screen and (max-width: 767px) {
+        .wavewrapper {
+            height: 86px;
+        }
+    }
+
+    @@media only screen and (max-width: 440px) {
+        .wavewrapper {
+            height: 54px;
+        }
+    }
+</style>
+
+@using RDCEL.DocUpload.DAL
+
+<div id="wrapper">
+    @Html.HiddenFor(m => m.BuName, new { id = "hdnCompanyName" })
+
+    <div class="topnav">
+        <div class="container">
+            <div class="row py-2">
+                @if (Model.BusinessPartenerList != null && Model.BusinessPartenerList.Count > 0)
+                {
+                    foreach (tblBusinessUnit bu in Model.BusinessPartenerList)
+                    {
+                        <div class="col-md-3 col-6 order-xs-first text-center">
+                            <div class="logowrapper">
+                                @if (bu.LogoName != null)
+                                {
+                                    <a class="nav-link" href="@Url.Action("Dashboard","Exchange", new { buid = @bu.BusinessUnitId})">
+                                        <img class="logo" title="@bu.Name"
+                                             src="@ViewBag.ImagePath@bu.LogoName">
+                                    </a> }
+                                else
+                                {
+                                    <img class="logo" src="https://i.pinimg.com/originals/3f/95/48/3f9548beef7804b53a111ced870da0c6.png">
+                                }
+                            </div>
+                        </div>
+                    }
+
+                }
+
+            </div>
+            <div class="row mb-4 mt-0">
+                <div class="col-12 order-xs-first text-center">
+                    <div class="logowrapper sponserlogobox">
+                        <a href="@Url.Action("StatusDashboard", "Exchange")">
+                            <img class="logo" src="https://www.pngitem.com/pimgs/m/77-773512_sponsor-icon-png-transparent-png.png" alt="" />
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+    <div class="container">
+        <div class="col-12 m-auto" style="margin: 5px;">
+            <div class="logowrapper py-3 mainlogobox">
+                @if (Model.BULogoName != null)
+                {
+                    <img class="logo"
+                         src="@Model.BULogoName"> }
+                else
+                {
+                    <img class="logo" src="https://i.pinimg.com/originals/3f/95/48/3f9548beef7804b53a111ced870da0c6.png">
+                }
+
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-sm-6 mx-auto">
+                    <label for=""> Start Date <span style="color:red;">*</span></label>
+                    @Html.EditorFor(model => model.StartDate, new { htmlAttributes = new { @class = "form-control", @id = "daterangewrapper" } })
+                    @Html.ValidationMessageFor(model => model.StartDate, "", new { @class = "text-danger" })
+                    <label id="lblStartDate" style="color:red;"></label>
+                </div>
+                <div class="col-md-6 col-sm-6 ">
+                    <label for=""> End Date <span style="color:red;">*</span></label>
+                    @Html.EditorFor(model => model.EndDate, new { htmlAttributes = new { @class = "form-control", @id = "daterangewrapper1" } })
+                    @Html.ValidationMessageFor(model => model.EndDate, "", new { @class = "text-danger" })
+                    <label id="lblStartDate" style="color:red;"></label>
+                </div>
+                @Html.HiddenFor(model => model.Status, new { @id = "ddlStatus" })
+                @*<div class="col-md-4 col-sm-12">
+                        <label for="">Status <span style="color:red;">*</span></label>
+                        @Html.DropDownListFor(model => model.Status, ViewBag.Status as SelectList, "--Select Status--", new { @class = "custom-select", @id = "ddlStatus" })
+                        @Html.ValidationMessageFor(model => model.Status)
+                    </div>*@
+            </div>
+
+            <div class="row mt-3">
+                <div class="col-12 text-center" id="divSubmit">
+                    <input type="Button" value="Submit" class="btn btn-primary" id="btnSubmit">
+                </div>
+
+                <div class="col-12 text-center" id="divReset">
+                    <input type="Button" value="Reset" class="btn btn-primary" id="btnReset" onclick="location.href='/Exchange/Dashboard?buid=1';">
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="row">
+                <div class="col-12 mx-auto">
+                    <div class="boxwrap highlightbox highlightboxtop">
+                        <h5>Total Digi2L Orders</h5>
+                        <h3 class="valuewrap" id="ttlOrderCount" style="color: white!important;">@ViewBag.totalOrdercount</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="section">
+            <div class="row">
+                <div class="col-12 mx-auto">
+                    <div class="boxwrap highlightbox">
+                        <h5>Total @ViewBag.BuName Orders</h5>
+                        <h3 class="valuewrap" id="ttlBUOrderCount" style="color: white!important;">@ViewBag.buTotalorderCount</h3>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="boxwrap">
+                        <h5>Total @ViewBag.BuName Deffered Order</h5>
+                        <h3 class="valuewrap" id="ttlDefferedOrderCount">@ViewBag.defferedOrderCount</h3>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="boxwrap">
+                        <h5>Total @ViewBag.BuName DtoC Orders</h5>
+                        <h3 class="valuewrap" id="ttlDTCOrdderCount">@ViewBag.dToCOrderCount</h3>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="boxwrap">
+                        <h5>Total @ViewBag.BuName ORC Orders</h5>
+                        <h3 class="valuewrap" id="ttlORCOrderCount">@ViewBag.oRCOrtderCount</h3>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="boxwrap">
+                        <h5>Total @ViewBag.BuName Voucher Redeemed</h5>
+                        <h3 class="valuewrap" id="ttlVoucherRedeemed">@ViewBag.totalVoucherRedeemed</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="section">
+            <div class="row">
+                <div class="col-12 mx-auto">
+                    <div class="boxwrap highlightbox highlightboxtop">
+                        <h5>Today's Total Digi2L Orders</h5>
+                        <h3 class="valuewrap" style="color: white!important;">@ViewBag.todayTotalOrderCount</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="section">
+            <div class="row">
+                <div class="col-12 mx-auto">
+                    <div class="boxwrap highlightbox">
+                        <h5>Today's Total @ViewBag.BuName Orders</h5>
+                        <h3 class="valuewrap" style="color: white!important;">@ViewBag.todaybuTotalorderCount</h3>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="boxwrap">
+                        <h5>Today's Total @ViewBag.BuName Deffered Order</h5>
+                        <h3 class="valuewrap">@ViewBag.todaydefferedOrderCount</h3>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="boxwrap">
+                        <h5>Today's Total @ViewBag.BuName DtoC Orders</h5>
+                        <h3 class="valuewrap">@ViewBag.todaydToCOrderCount</h3>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="boxwrap">
+                        <h5>Today's Total @ViewBag.BuName ORC Orders</h5>
+                        <h3 class="valuewrap">@ViewBag.todayoRCOrtderCount</h3>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="boxwrap">
+                        <h5>Today's Total @ViewBag.BuName Voucher Redeemed</h5>
+                        <h3 class="valuewrap">@ViewBag.todaytotalVoucherRedeemed</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+@*<script src="~/Scripts/popper.min.js"></script>*@
+@*<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>*@
+<script src="~/Content/jquery-ui-1.13.1.custom/jquery-ui.js"></script>
+
+<script>
+    $(document).ready(function () {
+
+        $('#btnReset').hide();
+        });
+
+    $('#daterangewrapper').datepicker({ dateFormat: 'yy/mm/dd' });
+    $('#daterangewrapper').datepicker('setDate', new Date());
+    $('#daterangewrapper1').datepicker({ dateFormat: 'yy/mm/dd' });
+    $('#daterangewrapper1').datepicker('setDate', new Date());
+
+    $('#btnSubmit').click(function () {
+        ShowDetailsWithDateRange();
+    })
+
+
+        function ShowDetailsWithDateRange() {
+            
+            var date1 = $("#daterangewrapper").val();
+            var date2 = $("#daterangewrapper1").val();
+            var companyName = $("#hdnCompanyName").val();
+            var statusCode = $("#ddlStatus").val();
+            if (companyName != null ) {
+            $.ajax({
+                type: "GET",
+                url: "@Url.Action("GetOrderCountByDate", "Exchange")",
+                data: { date1: date1, date2: date2, companyName: companyName, statusCode: statusCode},
+                success: function (data) {
+                    if (data) {
+                        var splitted = data.split(",");
+                        $("#ttlOrderCount").html(splitted[0]);
+                        $("#ttlBUOrderCount").html(splitted[1]);
+                        $("#ttlDefferedOrderCount").html(splitted[2]);
+                        $("#ttlDTCOrdderCount").html(splitted[3]);
+                        $("#ttlORCOrderCount").html(splitted[4]);
+                        $("#ttlVoucherRedeemed").html(splitted[5]);
+                        $('#btnSubmit').hide();
+                        $('#btnReset').show();
+                    }
+                    else {
+                        alert("Kindly Select correct date range");
+                        }
+                    }
+                });
+            }
+            else {
+                alert("Kindly Select correct date range");
+            }
+    }
+
+
+</script>
+
+
+<script type="text/JavaScript">
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
+</script>
+
+

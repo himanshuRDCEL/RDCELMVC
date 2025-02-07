@@ -1,0 +1,72 @@
+﻿@model RDCEL.DocUpload.DataContract.ABBRegistration.RedirectModel
+
+@{
+    ViewBag.Title = "Select Plan";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+
+
+@using (Html.BeginForm("SelectBP", "ABB", FormMethod.Post, new { enctype = "multipart/form-data", @id = "Select-form", @class = "form-horizontal", autocomplete = "off" }))
+{
+    @Html.HiddenFor(m => m.BUId, new { id = "hdnBUId" })
+    @Html.HiddenFor(m => m.BusinessPartnerId, new { id = "hdnBusinessPartnerId" })
+    @Html.HiddenFor(m => m.BusinessUnitId, new { id = "hdnbusinessunitid" })
+    @Html.HiddenFor(m => m.IsABB, new { id = "hdnABB" })
+    @Html.HiddenFor(m => m.IsExchange, new { id = "hdnExchange" })
+    <div class="col-6 m-auto" style="margin: 5px;">
+        <div class="logowrapper py-3">
+            @if (Model.BULogoName != null)
+            {
+                <img class="logo"
+                     src="@Model.BULogoName">
+            }
+            else
+            {
+                <img class="logo"
+                     src="~/Content/DB_Files/SponsorLogo/Digi2L_Logo_Final.png">
+            }
+        </div>
+    </div>
+
+    <h3 class="section-title">Select Plan</h3>
+
+    <div class="row">
+
+        <div class="col-md-10 mx-auto d-flex my-4">
+
+            <input type="button" id="btnABB" value="ABB" class="btn btn-secondary btn-gradient w-100 m-3 py-3" />
+            <input type="button" id="btnExchange" value="Exchange" class="btn btn-secondary btn-gradient w-100 m-3 py-3" />
+
+        </div>
+
+    </div>
+
+}
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+<script>
+    $("#btnABB").click(function () {
+        var IsABB = true;
+        $("#hdnABB").val(IsABB);
+        if (IsABB == "True" || IsABB == "true" || IsABB == true) {
+            $("#Select-form").submit();
+        }
+
+    });
+    $("#btnExchange").click(function () {
+
+        var IsExchange = true;
+        $("#hdnExchange").val(IsExchange);
+
+        if (IsExchange == "True" || IsExchange == "true" || IsExchange == true) {
+
+            $("#Select-form").submit();
+        }
+
+    });
+
+</script>

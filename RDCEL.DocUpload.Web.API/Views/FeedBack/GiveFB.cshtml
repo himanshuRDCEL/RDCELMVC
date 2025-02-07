@@ -1,0 +1,281 @@
+﻿@model RDCEL.DocUpload.DataContract.FeedBack.FeedBackView
+@{
+    ViewBag.Title = "GiveFB";
+}
+
+
+
+@using (Html.BeginForm("GiveFB", "FeedBack", FormMethod.Post, new { @class = "form-horizontal", @id = "form", autocomplete = "off" }))
+{
+    @Html.HiddenFor(m => m.CustId, new { id = "hdnCustId" })
+    @Html.HiddenFor(m => m.ExchangeOrderId, new { id = "hdnExchangeOrderId" })
+    @Html.HiddenFor(m => m.ratingId, new { id = "hdnrating" })
+    @Html.HiddenFor(m => m.AnsId, new { id = "hdnAnserId" })
+    @Html.HiddenFor(m => m.QesId, new { id = "hdnQuestionId" })
+    <div class="col-6 m-auto" style="margin: 5px;">
+        <div class="logowrapper py-3">
+            <img class="logo"
+                 src="~/Content/DB_Files/SponsorLogo/Digi2L_Logo_Final.png">
+        </div>
+    </div>
+    <div class="py-2 mainnavwrapper">
+        <h4 class="text-light text-center">Feedback Form</h4>
+
+    </div>
+
+    <div id="feedbackpage">
+        <p>Your product inspection has been completed by our Expert.</p>
+        <p>
+            We hope you are happy with the inspection service by our Expert. Please take a moment to
+            give feedback as it
+            will help us enhance your exchange experience.
+        </p>
+
+        <div class="ratingbox text-center">
+            <label><input type="radio" name="rating" id="rating1" class="rating13" value="1">1</label>
+            <label><input type="radio" name="rating" id="rating2" class="rating13" value="2">2</label>
+            <label><input type="radio" name="rating" id="rating3" class="rating13" value="3">3</label>
+            <label><input type="radio" name="rating" id="rating4" class="rating45" value="4">4</label>
+            <label><input type="radio" name="rating" id="rating5" class="rating45" value="5">5</label>
+        </div>
+
+        <div id="feedbackwrapper1">
+            <div class="form-group">
+                <h5>  @Html.DisplayFor(model => model.Question, new { @id = "Question", @class = "feedBackQuestion" })</h5>
+            </div>
+            <div class="form-group">
+                <div class="customradio">
+                    <input type="radio" name="positivefeedback" id="positivefeedback1" class="radiobtn"
+                           value="1">
+                    <label for="positivefeedback1">Inspection Process</label>
+                    <input type="radio" name="positivefeedback" id="positivefeedback2" class="radiobtn"
+                           value="2">
+                    <label for="positivefeedback2">Price</label>
+                    <input type="radio" name="positivefeedback" id="positivefeedback3" class="radiobtn"
+                           value="3">
+                    <label for="positivefeedback3">Speed</label>
+                    <input type="radio" name="positivefeedback" id="positivefeedback4" class="radiobtn"
+                           value="4">
+                    <label for="positivefeedback4">Executive behavior</label>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.TextAreaFor(model => model.Comment, new { @id = "Comment", @class = "feedBackQuestion" })
+                @Html.ValidationMessageFor(model => model.Comment, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="col text-right"><input type="submit" id="submitbtn" value="Submit"></div>
+        </div>
+
+        <div id="feedbackwrapper2">
+
+            <div class="form-group">
+                <h5>  @Html.DisplayFor(model => model.Question2, new { @id = "Question2", @class = "feedBackQuestion" })</h5>
+            </div>
+            <div class="form-group">
+                <div class="customradio">
+                    <input type="radio" name="negativefeedback" id="negativefeedback1" class="radiobtn"
+                           value="6">
+                    <label for="negativefeedback1">Inspection Process</label>
+                    @*<input type="radio" name="negativefeedback" id="negativefeedback2" class="radiobtn"
+                           value="5">
+                    <label for="negativefeedback2">Delay in inspection</label>*@
+                    <input type="radio" name="negativefeedback" id="negativefeedback3" class="radiobtn"
+                           value="8">
+                    <label for="negativefeedback3">Speed</label>
+                    <input type="radio" name="negativefeedback" id="negativefeedback4" class="radiobtn"
+                           value="7">
+                    <label for="negativefeedback4">Price</label>
+                    <input type="radio" name="negativefeedback" id="negativefeedback5" class="radiobtn"
+                           value="9">
+                    <label for="negativefeedback5">Executive behavior</label>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.TextAreaFor(model => model.Comment, new { @id = "Comment", @class = "feedBackQuestion" })
+                @Html.ValidationMessageFor(model => model.Comment, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="col text-right"><input type="submit" id="submitbtn" value="Submit" class="btn btn-primary"></div>
+        </div>
+
+    </div>
+
+}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+</script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+</script>
+
+<script>
+    ////$(".rating13").change(function () {
+    ////    
+    ////    var QuestionId = parseInt("2");
+    ////    var Rating = $(".rating13").val();
+    ////    var Answer = $(".radiobtn").val();
+    ////    var answer = parseInt(Answer);
+    ////    $("#feedbackwrapper2").show();
+    ////    $("#hdnQuestionId").val(QuestionId);
+    ////    $("#hdnrating").val(Rating);
+    ////    $("#hdnAnserId").val(answer);
+    ////    $("#feedbackwrapper1").hide();
+    ////});
+
+    //$(".rating45").change(function () {
+    //    var QuestionId = parseInt("1");
+    //    var Rating = $(".rating45").val();
+    //    $("#feedbackwrapper1").show();
+    //    $("#hdnrating").val(Rating);
+    //    $("#hdnQuestionId").val(QuestionId);
+    //    $("#feedbackwrapper2").hide();
+    //});
+
+    $('.rating13').change(function () {
+
+        if ($(this).is(':checked')) {
+            if (($("#rating1").is(':checked'))) {
+                var Rating = $("#rating1").val();
+                $("#hdnrating").val(Rating);
+                $("#feedbackwrapper2").show();
+                $("#feedbackwrapper1").hide();
+
+
+            }
+            else if (($("#rating2").is(':checked'))) {
+                var Rating = $("#rating2").val();
+                $("#hdnrating").val(Rating);
+                $("#feedbackwrapper2").show();
+                $("#feedbackwrapper1").hide();
+            }
+            else if (($("#rating3").is(':checked'))) {
+                var Rating = $("#rating3").val();
+                $("#hdnrating").val(Rating);
+                $("#feedbackwrapper2").show();
+                $("#feedbackwrapper1").hide();
+            }
+        } else {
+
+        }
+    });
+
+    $('.rating45').change(function () {
+
+        if ($(this).is(':checked')) {
+            if (($("#rating4").is(':checked'))) {
+                var Rating = $("#rating4").val();
+                $("#hdnrating").val(Rating);
+                $("#feedbackwrapper1").show();
+                $("#feedbackwrapper2").hide();
+
+
+            }
+            else if (($("#rating5").is(':checked'))) {
+                var Rating = $("#rating5").val();
+                $("#hdnrating").val(Rating);
+                $("#feedbackwrapper1").show();
+                $("#feedbackwrapper2").hide();
+            }
+
+        } else {
+
+        }
+    });
+
+
+    $('.radiobtn').change(function () {
+
+        if ($(this).is(':checked')) {
+            if (($("#negativefeedback1").is(':checked'))) {
+                var QuestionId = parseInt("2");
+                var Answer = $("#negativefeedback1").val();
+                var answer = parseInt(Answer);
+                $("#hdnQuestionId").val(QuestionId);
+                $("#hdnAnserId").val(answer);
+            } else if (($("#negativefeedback2").is(':checked'))) {
+                var QuestionId = parseInt("2");
+                var Answer = $("#negativefeedback2").val();
+                var answer = parseInt(Answer);
+
+                $("#hdnQuestionId").val(QuestionId);
+                $("#hdnAnserId").val(answer);
+            }
+            else if (($("#negativefeedback3").is(':checked'))) {
+                var QuestionId = parseInt("2");
+                var Answer = $("#negativefeedback3").val();
+                var answer = parseInt(Answer);
+
+                $("#hdnQuestionId").val(QuestionId);
+                $("#hdnAnserId").val(answer);
+            }
+            else if (($("#negativefeedback4").is(':checked'))) {
+                var QuestionId = parseInt("2");
+                var Answer = $("#negativefeedback4").val();
+                var answer = parseInt(Answer);
+
+                $("#hdnQuestionId").val(QuestionId);
+                $("#hdnAnserId").val(answer);
+            }
+            else if (($("#negativefeedback5").is(':checked'))) {
+                var QuestionId = parseInt("2");
+                var Answer = $("#negativefeedback5").val();
+                var answer = parseInt(Answer);
+
+                $("#hdnQuestionId").val(QuestionId);
+                $("#hdnAnserId").val(answer);
+            }
+            else if (($("#positivefeedback1").is(':checked'))) {
+                var QuestionId = parseInt("1");
+                var Answer = $("#positivefeedback1").val();
+                var answer = parseInt(Answer);
+
+                $("#hdnQuestionId").val(QuestionId);
+                $("#hdnAnserId").val(answer);
+            }
+            else if (($("#positivefeedback2").is(':checked'))) {
+                var QuestionId = parseInt("1");
+                var Answer = $("#positivefeedback2").val();
+                var answer = parseInt(Answer);
+
+                $("#hdnQuestionId").val(QuestionId);
+                $("#hdnAnserId").val(answer);
+            }
+            else if (($("#positivefeedback3").is(':checked'))) {
+                var QuestionId = parseInt("1");
+                var Answer = $("#positivefeedback3").val();
+                var answer = parseInt(Answer);
+
+                $("#hdnQuestionId").val(QuestionId);
+                $("#hdnAnserId").val(answer);
+            }
+            else if (($("#positivefeedback4").is(':checked'))) {
+                var QuestionId = parseInt("1");
+                var Answer = $("#positivefeedback4").val();
+                var answer = parseInt(Answer);
+
+                $("#hdnQuestionId").val(QuestionId);
+                $("#hdnAnserId").val(answer);
+            }
+            else {
+                alert('message' + 'please select reason');
+            }
+
+
+        } else {
+
+        }
+    });
+
+
+    $('#form').on('submit', function () {
+
+        if ($("#hdnAnserId").val() == 0) {
+            alert('Please select reason');
+            return false;
+        }
+        return true;
+    });
+</script>

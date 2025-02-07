@@ -1,0 +1,471 @@
+﻿
+@model RDCEL.DocUpload.DataContract.SponsorModel.ExchangeOrderDataContract
+
+@{ ViewBag.Title = "MyGateDashBoard";
+    Layout = null; }
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+      integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+      crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+    body {
+        background: transparent linear-gradient(292deg, #ab01fc0d 0%, #3325b014 100%) 0% 0% no-repeat padding-box;
+        font-family: 'Open Sans', sans-serif;
+        line-height: normal;
+    }
+
+    img {
+        width: 100%;
+    }
+
+    a:hover {
+        text-decoration: none;
+    }
+
+    .btn-primary {
+        background: transparent linear-gradient(109deg, #AB01FC 0%, #3325B0 100%) 0% 0% no-repeat padding-box;
+        border: 0;
+        padding: 10px 15px;
+    }
+
+    .btn:focus {
+        box-shadow: none;
+    }
+
+    #wrapper {
+        min-height: 100vh;
+    }
+
+        #wrapper .nav-link {
+            display: inline-block;
+            padding: 0;
+        }
+
+        #wrapper table.dataTable thead .sorting {
+            vertical-align: middle;
+        }
+
+    .topnav {
+        background: #fff;
+    }
+
+        .topnav .logoutbtn a {
+            color: rgb(70, 70, 70);
+        }
+
+        .topnav .btnnav a, .topnav button.btnnav {
+            display: inline-block;
+            border-radius: 50%;
+            height: 40px;
+            width: 40px;
+            background: transparent linear-gradient(109deg, #AB01FC 0%, #3325B0 100%) 0% 0% no-repeat padding-box;
+            color: #fff;
+            border: none;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+            .topnav .btnnav a i {
+                margin-top: 12px;
+            }
+
+    .logowrapper h6 {
+        font-size: 16px;
+        padding-left: 18px;
+        color: rgb(125, 125, 125);
+        font-weight: 600;
+    }
+
+    .topnavdropdown {
+        padding: 0;
+        border: 0;
+        box-shadow: 0 4px 4px rgba(0,0,0,0.3);
+    }
+
+        .topnavdropdown .dropdown-item {
+            padding: 10px 20px;
+            border-bottom: 1px dashed #ccc;
+        }
+
+    .logoutbtn p {
+        margin: 0;
+        font-weight: 600;
+    }
+
+    .logoutbtn i {
+        margin-left: 6px;
+        color: rgb(102, 102, 102);
+    }
+
+    .topnavdropdown .dropdown-item:last-child {
+        border: 0;
+    }
+
+    .section {
+        padding: 40px 0;
+        border-bottom: 1px dashed #ccc;
+    }
+
+
+    .boxwrap {
+        padding: 0 0 16px 0;
+        margin: 10px 0;
+        width: 100%;
+        background-color: #fff;
+        border-radius: 5px;
+        box-shadow: 0px 0px 20px rgb(62 62 62 / 17%);
+        position: relative;
+        overflow: hidden;
+    }
+
+        .boxwrap:before {
+            background: url(img/boxbg-01.png) right no-repeat;
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: -1px;
+        }
+
+    .highlightbox {
+        background: #0D004C;
+        color: #fff;
+    }
+
+    .boxwrap .valuewrap {
+        margin-bottom: 0;
+        font-size: 26px;
+        font-weight: bold;
+        position: relative;
+        z-index: 99;
+        color: #0D004C;
+        padding: 0 24px;
+    }
+
+    .highlightbox .valuewrap {
+        color: #fff;
+    }
+
+    .boxwrap h5 {
+        font-size: 15px;
+        position: relative;
+        z-index: 99;
+        background: transparent linear-gradient(109deg, #AB01FC 0%, #3325B0 100%) 0% 0% no-repeat padding-box;
+        padding: 13px 20px;
+        color: #fff;
+        position: relative;
+    }
+
+        .boxwrap h5 a {
+            text-align: right;
+            float: right;
+            color: #fff;
+            font-size: 13px;
+            font-weight: 400;
+        }
+
+            .boxwrap h5 a:hover {
+                opacity: 0.7;
+            }
+
+
+    .highlightbox h5:after {
+        background-color: #fff;
+    }
+
+    .mgtablewrapper {
+    }
+
+        .mgtablewrapper .boxwrap {
+            padding: 25px;
+        }
+
+        .mgtablewrapper table {
+            margin: 0 auto;
+        }
+
+    thead {
+        background: transparent linear-gradient(109deg, #AB01FC 0%, #3325B0 100%) 0% 0% no-repeat padding-box;
+        color: #fff;
+    }
+
+
+    #wrapper .dataTables_wrapper .dataTables_paginate .paginate_button.current {
+        background: #f16234;
+        color: #fff !important;
+        border: none;
+    }
+
+    #wrapper .dataTables_wrapper .dataTables_paginate .paginate_button {
+        background: #fab39c;
+        border: none;
+        color: #fff !important;
+    }
+
+    #wrapper .dataTables_scrollHeadInner {
+        margin: 0;
+        width: 100% !important;
+    }
+
+    .exportbtnwrapper {
+        display: inline-block;
+        float: right;
+        margin-left: 10px;
+    }
+
+    #exportbtn {
+        padding: 9px 10px;
+        font-size: 15px;
+    }
+
+    #wrapper table.table.reportingtbl.dataTable.no-footer {
+        width: 100% !important;
+    }
+
+    .logowrapper img {
+        max-width: 420px;
+    }
+
+    #wrapper .dataTables_wrapper .dataTables_length select {
+        background: #f36a5c;
+        color: #fff;
+        padding: 6px 8px;
+        border: 0;
+    }
+
+    .dataTables_wrapper .dataTables_filter input {
+        border: none;
+        background: #ddf8ff;
+        color: #000;
+        padding: 10px 20px;
+    }
+
+    #wrapper .dataTables_wrapper .dataTables_info {
+        margin: 10px 0;
+    }
+
+    #wrapper .dataTables_wrapper .dataTables_paginate {
+        margin: 10px 0;
+    }
+
+    .rightslidedtitle {
+        margin-left: -52px;
+    }
+
+
+
+    @@media only screen and (max-width: 768px) {
+        .topbtns {
+            justify-content: center !important;
+            margin: 20px auto;
+            border-top: 1px dashed #ccc;
+            padding-top: 15px;
+        }
+
+        .order-xs-first {
+            order: -1;
+        }
+
+        .topbtns:last-child {
+            border: none;
+            padding: 0;
+            margin-top: 0px;
+        }
+
+        .logowrapper {
+            text-align: center;
+        }
+
+        #wrapper .dataTables_wrapper .dataTables_scroll div.dataTables_scrollBody > table > thead > tr > th, .dataTables_wrapper .dataTables_scroll div.dataTables_scrollBody > table > thead > tr > td, .dataTables_wrapper .dataTables_scroll div.dataTables_scrollBody > table > tbody > tr > th, .dataTables_wrapper .dataTables_scroll div.dataTables_scrollBody > table > tbody > tr > td {
+            display: block;
+            text-align: right;
+        }
+
+        #wrapper table td::before {
+            content: attr(data-label);
+            float: left;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        #wrapper table.dataTable tbody tr {
+            margin: 20px 0;
+            display: block;
+            border: 1px solid #eee;
+            padding: 10px;
+        }
+
+            #wrapper table.dataTable tbody tr td:first-child {
+                border: 0;
+            }
+
+        #wrapper table thead {
+            display: none;
+        }
+
+        .exportbtnwrapper {
+            float: none;
+            display: block;
+            margin: 10px auto;
+            text-align: center;
+        }
+    }
+</style>
+<div id="wrapper">
+
+    <div class="topnav">
+        <div class="container">
+            <div class="row py-2">
+                <div class="col-md-4 d-flex align-items-center justify-content-start topbtns">
+                    <div class="dropdown mr-2">
+                        <button class="btn btnnav" type="button" data-toggle="dropdown">
+                            <i class="fa-solid fa-bars"></i>
+                        </button>
+                        <div class="dropdown-menu topnavdropdown">
+                            <a class="dropdown-item" href="@Url.Action("ProductDiscription","IsDtoC")">Check Full Record</a>
+                        </div>
+                    </div>
+                </div>
+                @Html.HiddenFor(m => m.BusinessUnitId, new { id = "hdnBUId" })
+                @Html.HiddenFor(m => m.Email, new { id = "hdnLoginEmail" })
+                @Html.HiddenFor(m => m.BusinessPartnerId, new { id = "hdnBusinessPartnerId" })
+                @Html.HiddenFor(m => m.BusinessUnitId, new { id = "hdnBusinessUnitId" })
+                @Html.HiddenFor(m => m.SaleAssociateCode, new { id = "hdnAssociateCode" })
+                <div class="col-md-4 order-xs-first text-center">
+                    <div class="logowrapper">
+                        @if (Model.BULogoName != null)
+                        {
+                            <img class="logo"
+                                 src="@Model.BULogoName"> }
+                        else
+                        {
+                            <img class="logo" src="https://i.pinimg.com/originals/3f/95/48/3f9548beef7804b53a111ced870da0c6.png">}
+
+                        <h6 class="rightslidedtitle">Dashboard</h6>
+                    </div>
+                </div>
+                <div class="col-md-4 d-flex align-items-center justify-content-end topbtns">
+                    <div class="btn logoutbtn primarybtn">
+                        <p> @Html.DisplayFor(model => model.AssociateName, new { htmlAttributes = new { @class = "form-control", @id = "txtAssociateName" } })  <a class="nav-link" href="@Url.Action("LogOut","IsDtoC")"><i class="fa-solid fa-arrow-right-to-bracket" data-toggle="tooltip" data-placement="bottom" title="Logout"></i></a></>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="section">
+            <div class="row">
+                <div class="col-12 mx-auto">
+                    <div class="boxwrap highlightbox highlightboxtop">
+                        <h5>Total Registration  <a class="nav-link" href="@Url.Action("ProductDiscription","IsDtoC")">Check Full Report <i class="fa fa-arrow-right" aria-hidden="true"></i></a></h5>
+                        <h3 class="valuewrap">@ViewBag.NoOfOrders</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="section">
+            <div class="row">
+                <div class="col-12 mx-auto">
+                    <div class="boxwrap highlightbox">
+                        <h5>Total QC Status  <a class="nav-link" href="@Url.Action("ProductDiscription","IsDtoC")">Check Full Report <i class="fa fa-arrow-right" aria-hidden="true"></i></a></h5>
+                        <h3 class="valuewrap">@ViewBag.TotalQcStatus</h3>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+
+                <div class="col-md-3">
+                    <div class="boxwrap">
+                        <h5>Duplicate Order</h5>
+                        <h3 class="valuewrap">@ViewBag.DuplicateOrder</h3>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="boxwrap">
+                        <h5>QC Declined</h5>
+                        <h3 class="valuewrap">@ViewBag.QCDeclined</h3>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="boxwrap">
+                        <h5>Price Accepted</h5>
+                        <h3 class="valuewrap">@ViewBag.PriceAcccepted</h3>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="boxwrap">
+                        <h5>Price Rejected</h5>
+                        <h3 class="valuewrap">@ViewBag.PriceRejected</h3>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="boxwrap">
+                        <h5>QC Rejected</h5>
+                        <h3 class="valuewrap">@ViewBag.QCRejected</h3>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="section noborder">
+            <div class="row">
+                <div class="col-12 mx-auto">
+                    <div class="boxwrap highlightbox">
+                        <h5>Order Completion Status  <a class="nav-link" href="@Url.Action("ProductDiscription","IsDtoC")">Check Full Report <i class="fa fa-arrow-right" aria-hidden="true"></i></a></h5>
+                        <h3 class="valuewrap">@ViewBag.OrderCompleted</h3>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+
+
+                <div class="col-md-4">
+                    <div class="boxwrap">
+                        <h5>Appointment Declined</h5>
+                        <h3 class="valuewrap">@ViewBag.AppointmentDeclined</h3>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="boxwrap">
+                        <h5>Pickup Declined</h5>
+                        <h3 class="valuewrap">@ViewBag.PickupDeclined</h3>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="boxwrap">
+                        <h5>Pickup Accepted</h5>
+                        <h3 class="valuewrap">@ViewBag.PickupAccepted</h3>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/jquery-3.4.1.slim.min.js"></script>
+<script src="~/Scripts/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+</script>
+
+
+<script type="text/JavaScript">
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
+</script>
+
+

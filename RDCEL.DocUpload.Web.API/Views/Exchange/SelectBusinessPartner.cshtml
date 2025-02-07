@@ -1,0 +1,344 @@
+﻿@model RDCEL.DocUpload.DataContract.SponsorModel.ExchagneViewModel
+
+@{
+    ViewBag.Title = "Select Location";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@using (Html.BeginForm("SelectBusinessPartner", "Exchange", FormMethod.Post, new { @class = "form-horizontal", @id = "Course-form" }))
+{
+    @Html.HiddenFor(m => m.BUId, new { id = "hdnBUId" })
+    @Html.HiddenFor(m => m.IsSweetnerModelBased, new { id = "hdnSweetnerModalbased" })
+    @Html.HiddenFor(m => m.OldBrandId, new { id = "hdnoldbrand" })
+    @Html.HiddenFor(m => m.oldProductypeId, new { id = "hdnOldTypeId" })
+    @Html.HiddenFor(m => m.OldProductCategoryId, new { id = "hdnOldCategoryId" })
+    @Html.HiddenFor(m => m.NewTypeId, new { id = "hdnNewType" })
+    @Html.HiddenFor(m => m.NewCategoryId, new { id = "hdnNewCAtegory" })
+    @Html.HiddenFor(m => m.NewBrandId, new { id = "hdnnewBrand" })
+    @Html.HiddenFor(m => m.ExchangePrice, new { id = "hdnExchangePrice" })
+    @Html.HiddenFor(m => m.QualityCheckValue, new { id = "hdnQualityChnage" })
+    @Html.HiddenFor(m => m.ProductAge, new { id = "hdnProductAge" })
+    @Html.HiddenFor(m => m.FormatName, new { id = "hdnFormatName" })
+    @Html.HiddenFor(m => m.ProductModelIdNew, new { id = "hdnNewProductModelId" })
+    @Html.HiddenFor(m => m.CityId, new { id = "hdnCityId" })
+    @Html.HiddenFor(m => m.IsBPAssociated, new { id = "hdnisBPAssociated" })
+
+    <div class="location mt-4">
+        <div class="container location-slider">
+
+            <div class="row mb-4 justify-content-center">
+
+                <div class="col-md-8 pincodebox text-center mx-auto mt-md-5">
+                    <div class="searchwrap my-3">
+                        @*<label for="">City <span style="color:red;">*</span></label>*@
+                        @Html.TextBoxFor(model => model.CityName, new { @class = "form-control form-select searchinput", @id = "ddlCity", @placeholder = "Search City" })
+                        @Html.ValidationMessageFor(model => model.CityName)
+                    </div>
+                </div>
+
+                <div class="col-md-7 pincodewrap text-center mx-auto mt-5">
+                    <div class="row mb-2">
+
+                        <a href="javascript:void(0)" class="col-md-8 mx-auto"><img src="~/content/assets/img/Address-pana.svg" class="w-50 my-2" alt=""></a>
+
+                    </div>
+                    <h3 class="section-title hidden">Enter <span>Pincode</span> to continue</h3>
+                    <div class="searchwrap mb-3">
+                        @Html.TextBoxFor(model => model.ZipCode, new { @class = "form-control form-select searchinput", @id = "txtPincode", placeholder = "Enter Store Pincode to continue", @type = "number", @onchange = "GetStoreList(this.value);" })
+                        @Html.ValidationMessageFor(model => model.ZipCode)
+                        @*<input type="text" class="form-control searchinput" placeholder="Enter Pincode to continue" autofocus />*@
+                    </div>
+                </div>
+                <div class="col-12 cityselectwrap">
+                    <div class="row justify-content-center">
+                        @if (Model.metroCities != null)
+                        {
+                            foreach (var item in Model.metroCities)
+                            {
+                                if (item.isMetro == true)
+                                {
+                                    <div class="col-6 col-md-3 col-lg-2">
+                                        <a href="#" class="box citybox" id="@item.CityId">
+                                            <img src=@item.cityLogo alt="">
+                                            <h6>@item.Name</h6>
+                                        </a>
+                                    </div>
+                                }
+                            }
+                        }
+
+                    </div>
+                </div>
+
+                <div class="col-md-7 mx-auto" id="storeCodebox">
+                    <div class="box mt-3 p-3">
+                        <h3 class="section-title mt-3 mb-3"> - Authorized Dealer Store - </h3>
+                        @Html.DropDownListFor(model => model.BusinessPartnerId, Model.StoreList, "--Select Store Name--", new { @class = "form-control form-select", @id = "ddlStore" })
+                        @Html.ValidationMessageFor(model => model.BusinessPartnerId, "", new { @class = "text-danger" })
+                        <label id="lblStoreCode" style="color:red;"></label>
+                        <div id="btnSubmitbox" class="text-center">
+                            <input type="button" id="btnSubmit" value="Submit" class="btn btn-primary">
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+        </div>
+    </div>
+}
+
+<script>
+
+    var selectedCityId = 0;
+    $(document).ready(function () {
+        $('.pincodewrap').hide();
+        $('#storeCodebox').hide();
+        $('#btnSubmitbox').hide();
+        $('.citybox').click(function () {
+            selectedCityId = $(this).attr('id');
+           // console.log(selectedCityId);
+            $('.pincodebox').hide();
+            $('.pincodewrap').slideToggle(500);
+            $('.cityselectwrap').hide();
+            $('.location').addClass('AfterCitySelect');
+        });
+        $('#ddlStore').change(function () {
+            $('#btnSubmitbox').show();
+        });
+    });
+
+
+    $(document).ready(function () {
+    });
+    //get city by state
+
+    $('#btnSubmit').click(function () {
+        if (validateLeadForm()) {
+            $("#Course-form").submit();
+        }
+    })
+
+    function validateLeadForm() {
+
+        if ($("form").valid()) {
+
+            var bpid = parseInt($("#ddlStore").val());
+            if (bpid > 0) {
+                return true;
+            }
+            else {
+                $("#lblStoreCode").text("please select store");
+                return false;
+            }
+        }
+        else {
+
+            return false;
+        }
+    }
+
+    function GetCity(_stateName) {
+        var stateName = _stateName;
+        var buid = $("#hdnBUId").val();
+        if (stateName) {
+            $.ajax({
+                type: "GET",
+                url: "@Url.Action("GetCityByStateName", "Exchange")" + "?stateName=" + stateName + "&buid=" + buid,
+                //data: { stateName: stateName, buid: buid},
+                success: function (data) {
+                    if (data) {
+                        //console.log(data);
+                        $("#ddlCity").empty();
+                        $("#ddlCity").append('<option value="">--Select City--</option>');
+                        $.each(data, function (key, value) {
+                            //console.log(value.Value);
+                            // alert("get data");
+                            $("#ddlCity").append('<option value="' + value.Value + '">' + value.Text + '</option>');
+                        });
+                    } else {
+                        $("#ddlCity").empty();
+                    }
+                    //GetPincode(_stateName);
+                }
+            });
+        } else {
+            $("#ddlCity").empty();
+        }
+    }
+
+
+    $("#txtPincode").autocomplete({
+      source: function (request, response)
+   {
+          //var customer = new array();
+            var buid = $("#hdnBUId").val();
+            var cityId = $("#hdnCityId").val();
+            if (cityId == null || cityId == "") {
+                cityId = selectedCityId;
+            }
+         $.ajax({
+           async: false,
+           cache: false,
+           type: "POST",
+           url:
+                 "@(Url.Action("PincodeByCityIdBUId", "Exchange"))" + "?pintext=" + $("#txtPincode").val() + "&buid=" + $("#hdnBUId").val() + "&cityId=" + $("#hdnCityId").val(),
+             data: { "pintext": request.pintext, buid: buid, cityId: cityId},
+           success: function (data) {
+               //console.log(data);
+               if (data.length > 0) {
+                   response($.map(data.slice(0, 5), function (item) {
+                       if (item.Text != "No pincode available on this location") {
+                           return { label: item.Text, value: item.Text };
+                       }
+                       else {
+                           $("#txtPincode").val("");
+                       }
+                   }))
+               }
+               else {
+                   $("#txtPincode").val("");
+               }
+           }
+
+
+       });
+
+       //response(data);
+        },
+        select: function (event, ui) {
+            $("#storeCodebox").show();
+            $(".pincodewrap ").removeClass('mt-5');
+            $('#btnSubmitbox').hide();
+        }
+ });
+    //get pincode by State
+   function GetPincode(_stateName) {
+        var stateName = _stateName;
+        var buid = $("#hdnBUId").val();
+        if (stateName) {
+            $.ajax({
+                type: "GET",
+                url: "@Url.Action("GetPincodeByStateName", "Exchange")" + "?stateName=" + stateName + "&buid=" + buid,
+                //data: { stateName: stateName, buid: buid},
+                success: function (data) {
+                    if (data) {
+                        //console.log(data);
+                        $("#ddlPincode").empty();
+                        $("#ddlPincode").append('<option value="">--Select Ci--</option>');
+                        $.each(data, function (key, value) {
+                            //console.log(value.Value);
+                            // alert("get data");
+                            $("#ddlPincode").append('<option value="' + value.Value + '">' + value.Text + '</option>');
+                        });
+                    } else {
+                        $("#ddlPincode").empty();
+                    }
+                }
+            });
+        } else {
+            $("#ddlPincode").empty();
+        }
+    }
+
+    function GetPlaceOfOrder(_pincode) {
+        if (_pincode) {
+            $.ajax({
+                type: "GET",
+                url: "@Url.Action("GetORCStoreByCityStatePin", "Exchange")" + "?stateName=" + $("#ddlState").val() + "&cityName=" + $("#ddlCity").val() + "&pintext=" + _pincode + "&buid=" + $("#hdnBUId").val(),
+                success: function (data) {
+                    if (data) {
+                        //console.log(data);
+                        $("#ddlFormat").empty();
+                        $("#ddlFormat").append('<option value="">--Select Place of Order--</option>');
+                        $.each(data, function (key, value) {
+                            $("#ddlFormat").append('<option value="' + value.Value + '">' + value.Text + '</option>');
+                        });
+                    } else {
+                        //$("#ddlFormat").empty();
+                    }
+                }
+            });
+        } else {
+            //$("#ddlFormat").empty();
+        }
+    }
+
+    $("#ddlCity").autocomplete({
+        source: function (request, response) {
+            var buid = $("#hdnBUId").val();
+            var pintext = $("#ddlCity").val();
+
+            //var customer = new array();
+            $.ajax({
+                async: false,
+                cache: false,
+                type: "POST",
+                url:
+                    "@(Url.Action("GetCityForAutoComplete", "Exchange"))" + "?pintext=" + $("#ddlCity").val() + "&buid=" + $("#hdnBUId").val(),
+                data: { pintext: pintext, buid: buid },
+                success: function (data) {
+                   // console.log(data);
+                    if (data.length > 0) {
+                        response($.map(data.slice (0, 10), function (item) {
+
+                            return { label: item.Text, value: item.Value };
+                        }))
+                    }
+                    else {
+                        $("#ddlCity").val("");
+                    }
+                }
+            });
+
+            //response(data);
+        },
+        select: function (event, ui) {
+            var value = ui.item.value;
+            selectedCityId = value;
+              $("#hdnCityId").val(value);
+              $('.pincodebox').hide();
+              $('.pincodewrap').slideToggle(500);
+              $('.cityselectwrap').hide();
+              $('.location').addClass('AfterCitySelect');
+        }
+});
+
+
+    //Code to get Store details
+    function GetStoreList(pincode) {
+        var pincode = $('#txtPincode').val();
+ var buid = parseInt($("#hdnBUId").val());
+        var isBPAssociated =($("#hdnisBPAssociated").val());
+ //var city = $("#ddlCity").val();
+var city = selectedCityId;
+ if (buid > 0 && pincode != null && city != null) {
+    $.ajax({
+        type: "GET",
+        url: "@Url.Action("GetStoreList", "Exchange")",
+        data: { city: city, pincode: pincode, buid: buid, isBPAssociated: isBPAssociated},
+        success: function (data) {
+
+            if (data) {
+                $("#ddlStore").empty();
+                $("#ddlStore").append('<option value="">--Select store--</option>');
+                $.each(data, function (key, value) {
+                    //console.log(value.Value);
+                    // alert("get data");
+                    $("#ddlStore").append('<option value="' + value.Value + '">' + value.Text + '</option>');
+                });
+                $("#loader").hide();
+            } else {
+                $("#ddlStore").empty();
+                $("#storeCodebox").hide();
+            }
+        }
+    });
+} else {
+     $("#ddlStore").empty();
+}
+
+    }
+</script>

@@ -1,0 +1,772 @@
+﻿@model RDCEL.DocUpload.DataContract.SponsorModel.ExchangeDashBoardViewModel
+
+@{
+    ViewBag.Title = "StatusDashboard";
+}
+
+
+<style>
+    body {
+        background: transparent linear-gradient(292deg, #ab01fc0d 0%, #3325b014 100%) 0% 0% no-repeat padding-box;
+        font-family: 'Open Sans', sans-serif;
+        line-height: normal;
+    }
+
+    img {
+        width: 100%;
+    }
+
+    a:hover {
+        text-decoration: none;
+    }
+
+    .btn-primary {
+        background: transparent linear-gradient(109deg, #AB01FC 0%, #3325B0 100%) 0% 0% no-repeat padding-box;
+        border: 0;
+        padding: 10px 15px;
+    }
+
+    .btn:focus {
+        box-shadow: none;
+    }
+
+    #wrapper {
+        min-height: 100vh;
+    }
+
+        #wrapper .nav-link {
+            display: inline-block;
+            padding: 0;
+        }
+
+        #wrapper table.dataTable thead .sorting {
+            vertical-align: middle;
+        }
+
+    .topnav {
+        background: #fff;
+    }
+
+        .topnav .logoutbtn a {
+            color: rgb(70, 70, 70);
+        }
+
+        .topnav .btnnav a, .topnav button.btnnav {
+            display: inline-block;
+            border-radius: 50%;
+            height: 40px;
+            width: 40px;
+            background: transparent linear-gradient(109deg, #AB01FC 0%, #3325B0 100%) 0% 0% no-repeat padding-box;
+            color: #fff;
+            border: none;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+            .topnav .btnnav a i {
+                margin-top: 12px;
+            }
+
+    .logowrapper h6 {
+        font-size: 16px;
+        padding-left: 18px;
+        color: rgb(125, 125, 125);
+        font-weight: 600;
+    }
+
+    .topnavdropdown {
+        padding: 0;
+        border: 0;
+        box-shadow: 0 4px 4px rgba(0,0,0,0.3);
+    }
+
+        .topnavdropdown .dropdown-item {
+            padding: 10px 20px;
+            border-bottom: 1px dashed #ccc;
+        }
+
+    .logoutbtn p {
+        margin: 0;
+        font-weight: 600;
+    }
+
+    .logoutbtn i {
+        margin-left: 6px;
+        color: rgb(102, 102, 102);
+    }
+
+    .topnavdropdown .dropdown-item:last-child {
+        border: 0;
+    }
+
+    .section {
+        padding: 40px 0;
+        border-bottom: 1px dashed #ccc;
+    }
+
+
+    .boxwrap {
+        padding: 0 0 16px 0;
+        margin: 10px 0;
+        width: 100%;
+        background-color: #fff;
+        border-radius: 5px;
+        box-shadow: 0px 0px 20px rgb(62 62 62 / 17%);
+        position: relative;
+        overflow: hidden;
+    }
+
+        .boxwrap:before {
+            background: url(img/boxbg-01.png) right no-repeat;
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: -1px;
+        }
+
+    .highlightbox {
+        background: #0D004C;
+        color: #fff;
+    }
+
+    .boxwrap .valuewrap {
+        margin-bottom: 0;
+        font-size: 26px;
+        font-weight: bold;
+        position: relative;
+        z-index: 99;
+        color: #0D004C;
+        padding: 0 24px;
+    }
+
+    .highlightbox .valuewrap {
+        color: #fff;
+    }
+
+    .boxwrap h5 {
+        font-size: 15px;
+        position: relative;
+        z-index: 99;
+        background: transparent linear-gradient(109deg, #AB01FC 0%, #3325B0 100%) 0% 0% no-repeat padding-box;
+        padding: 13px 20px;
+        color: #fff;
+        position: relative;
+    }
+
+        .boxwrap h5 a {
+            text-align: right;
+            float: right;
+            color: #fff;
+            font-size: 13px;
+            font-weight: 400;
+        }
+
+            .boxwrap h5 a:hover {
+                opacity: 0.7;
+            }
+
+
+    .highlightbox h5:after {
+        background-color: #fff;
+    }
+
+    .mgtablewrapper {
+    }
+
+        .mgtablewrapper .boxwrap {
+            padding: 25px;
+        }
+
+        .mgtablewrapper table {
+            margin: 0 auto;
+        }
+
+    thead {
+        background: transparent linear-gradient(109deg, #AB01FC 0%, #3325B0 100%) 0% 0% no-repeat padding-box;
+        color: #fff;
+    }
+
+
+    #wrapper .dataTables_wrapper .dataTables_paginate .paginate_button.current {
+        background: #f16234;
+        color: #fff !important;
+        border: none;
+    }
+
+    #wrapper .dataTables_wrapper .dataTables_paginate .paginate_button {
+        background: #fab39c;
+        border: none;
+        color: #fff !important;
+    }
+
+    #wrapper .dataTables_scrollHeadInner {
+        margin: 0;
+        width: 100% !important;
+    }
+
+    .exportbtnwrapper {
+        display: inline-block;
+        float: right;
+        margin-left: 10px;
+    }
+
+    #exportbtn {
+        padding: 9px 10px;
+        font-size: 15px;
+    }
+
+    #wrapper table.table.reportingtbl.dataTable.no-footer {
+        width: 100% !important;
+    }
+
+    .logowrapper img {
+        max-width: 420px;
+    }
+
+    #wrapper .dataTables_wrapper .dataTables_length select {
+        background: #f36a5c;
+        color: #fff;
+        padding: 6px 8px;
+        border: 0;
+    }
+
+    .dataTables_wrapper .dataTables_filter input {
+        border: none;
+        background: #ddf8ff;
+        color: #000;
+        padding: 10px 20px;
+    }
+
+    #wrapper .dataTables_wrapper .dataTables_info {
+        margin: 10px 0;
+    }
+
+    #wrapper .dataTables_wrapper .dataTables_paginate {
+        margin: 10px 0;
+    }
+
+    .rightslidedtitle {
+        margin-left: -52px;
+    }
+
+
+
+    @@media only screen and (max-width: 768px) {
+        .topbtns {
+            justify-content: center !important;
+            margin: 20px auto;
+            border-top: 1px dashed #ccc;
+            padding-top: 15px;
+        }
+
+        .order-xs-first {
+            order: -1;
+        }
+
+        .topbtns:last-child {
+            border: none;
+            padding: 0;
+            margin-top: 0px;
+        }
+
+        .logowrapper {
+            text-align: center;
+        }
+
+        #wrapper .dataTables_wrapper .dataTables_scroll div.dataTables_scrollBody > table > thead > tr > th, .dataTables_wrapper .dataTables_scroll div.dataTables_scrollBody > table > thead > tr > td, .dataTables_wrapper .dataTables_scroll div.dataTables_scrollBody > table > tbody > tr > th, .dataTables_wrapper .dataTables_scroll div.dataTables_scrollBody > table > tbody > tr > td {
+            display: block;
+            text-align: right;
+        }
+
+        #wrapper table td::before {
+            content: attr(data-label);
+            float: left;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        #wrapper table.dataTable tbody tr {
+            margin: 20px 0;
+            display: block;
+            border: 1px solid #eee;
+            padding: 10px;
+        }
+
+            #wrapper table.dataTable tbody tr td:first-child {
+                border: 0;
+            }
+
+        #wrapper table thead {
+            display: none;
+        }
+
+        .exportbtnwrapper {
+            float: none;
+            display: block;
+            margin: 10px auto;
+            text-align: center;
+        }
+    }
+
+    .topnav .col-6 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .mainlogobox img {
+        padding: 0;
+    }
+
+    #wrapper .logowrapper .logo {
+        width: 50% !important;
+        min-width: 80px;
+        max-width: 220px;
+    }
+
+    .topnav .container .row {
+        gap: 10px 0;
+    }
+
+    .logowrapper.mainlogobox {
+        box-shadow: none !important;
+        padding: 20px !important;
+    }
+
+    #wrapper .logowrapper {
+        padding: 20px !important;
+        height: 100%;
+        border-radius: 6px;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid #dedede;
+        margin: 10px 0;
+        box-shadow: 0 3px 0px rgb(0 0 0 / 19%), 0 6px 12px rgb(0 0 0 / 23%);
+    }
+
+    .topnav .col-6:last-child {
+        margin: 0 auto !important;
+    }
+
+    #wrapper h3 {
+        font-size: 26px;
+        font-weight: bold;
+        position: relative;
+        z-index: 99;
+        padding: 0 24px;
+        background: no-repeat;
+        text-align: left;
+        margin: 0;
+        border-radius: 0;
+        background: none !important;
+    }
+
+    .highlightbox .valuewrap {
+        color: #fff !important;
+    }
+
+    .boxwrap .valuewrap {
+        color: #0D0056 !important;
+    }
+
+    .ui-widget.ui-widget-content {
+        z-index: 9999 !important;
+    }
+
+    .sectionwrap {
+        border: 1px solid #ccc;
+        border-radius: 10px 10px 0 0;
+        margin: 0 0 40px;
+        padding: 20px;
+    }
+    .sectionheading {
+        font-size: 21px;
+        margin: -20px -20px 14px;
+        text-align: center;
+        background: #1f1377;
+        color: #fff;
+        padding: 10px;
+        border-radius: 10px 10px 0 0;
+    }
+    #wrapper h3 {
+        border: none !important;
+    }
+
+    #wrapper .dashwrapper {
+        display: block !important;
+        flex: none !important;
+        max-width: 85% !important;
+    }
+
+    .wavewrapper {
+        height: 160px;
+        margin-top: -34px;
+    }
+
+    @@media only screen and (max-width: 1920px) {
+        .wavewrapper {
+            margin-top: -1px;
+            height: 158px;
+        }
+    }
+
+    @@media only screen and (max-width: 1336px) {
+        .wavewrapper {
+            height: 135px;
+            margin-top: -34px;
+        }
+    }
+
+    @@media only screen and (max-width: 1100px) {
+        .wavewrapper {
+            margin-top: -1px;
+            height: 120px;
+        }
+    }
+
+    @@media only screen and (max-width: 767px) {
+        .wavewrapper {
+            height: 86px;
+        }
+    }
+
+    @@media only screen and (max-width: 440px) {
+        .wavewrapper {
+            height: 54px;
+        }
+    }
+
+
+</style>
+
+@using RDCEL.DocUpload.DAL
+
+<div id="wrapper">
+    <div class="topnav">
+        <div class="container">
+            <div class="row mb-4 mt-0">
+                <div class="col-12 order-xs-first text-center">
+                    <div class="logowrapper">
+                        <a href="@Url.Action("Dashboard","Exchange", new { buid = 1})">
+                            <img class="logo" src="https://www.pngitem.com/pimgs/m/77-773512_sponsor-icon-png-transparent-png.png" alt="" />
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="section">
+
+            <div class="sectionwrap">
+                <div class="row">
+
+
+                    <div class="col-12">
+                        <h2 class="sectionheading">Initiated</h2>
+                    </div>
+
+                    <div class="col-md-4 col-sm-6 col-xs-6">
+                        <div class="boxwrap">
+                            <h5>Order created by Sponsor(0)</h5>
+                            <h3 class="valuewrap" id="ttlORCOrderCount">@ViewBag.orderCreatedBySponsor</h3>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 col-sm-6 col-xs-6">
+                        <div class="boxwrap">
+                            <h5>Exchange order cancelled after creation (Sponsor)(0X)</h5>
+                            <h3 class="valuewrap" id="ttlVoucherRedeemed">@ViewBag.exchangeOrderCancelledAfterCreation</h3>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 col-sm-6 col-xs-6">
+                        <div class="boxwrap">
+                            <h5>Duplicate Order(0D)</h5>
+                            <h3 class="valuewrap" id="ttlBUOrderCount">@ViewBag.duplicateOrder</h3>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 col-sm-6 col-xs-6">
+                        <div class="boxwrap">
+                            <h5>Customer Communicated about Program(1)</h5>
+                            <h3 class="valuewrap" id="ttlVoucherRedeemed">@ViewBag.customerCommunicatedAboutProgram</h3>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 col-sm-6 col-xs-6">
+                        <div class="boxwrap">
+                            <h5>Customer Communicated about Order Cancellation(1X)</h5>
+                            <h3 class="valuewrap" id="ttlVoucherRedeemed">@ViewBag.customerCommunicatedAboutOrderCancellation</h3>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 col-sm-6 col-xs-6">
+                        <div class="boxwrap">
+                            <h5>Customer Address different from registered address(2X)</h5>
+                            <h3 class="valuewrap" id="ttlDefferedOrderCount">@ViewBag.customerAddressDifferentFromRegisteredAddress</h3>
+                        </div>
+                    </div>
+                </div>
+
+                </div>
+
+
+                <div class="sectionwrap">
+
+                    <div class="row">
+
+                    <div class="col-12">
+                        <h2 class="sectionheading">QC</h2>
+                    </div>
+
+                    <div class="col-md-4 col-sm-6 col-xs-6">
+                        <div class="boxwrap">
+                            <h5>Call Assigned for QC & Data transferred to SVC(3)</h5>
+                            <h3 class="valuewrap" id="ttlVoucherRedeemed">@ViewBag.callAssignedForQCDataTransferredToSVC</h3>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 col-sm-6 col-xs-6">
+                        <div class="boxwrap">
+                            <h5>Call & Go scheduled: Appointment taken(3P)</h5>
+                            <h3 class="valuewrap" id="ttlVoucherRedeemed">@ViewBag.callGoScheduledAppointmentTaken</h3>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 col-sm-6 col-xs-6">
+                        <div class="boxwrap">
+                            <h5>Appointment rescheduled(3R)</h5>
+                            <h3 class="valuewrap" id="ttlVoucherRedeemed">@ViewBag.appointmentRescheduled</h3>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 col-sm-6 col-xs-6">
+                        <div class="boxwrap">
+                            <h5>QC appointment declined by customer: Not Interested(3X)</h5>
+                            <h3 class="valuewrap" id="ttlVoucherRedeemed">@ViewBag.QCAppointmentDeclinedByCustomerNotInterested</h3>
+                        </div>
+                    </div>
+
+
+
+                    <div class="col-md-4 col-sm-6 col-xs-6">
+                        <div class="boxwrap">
+                            <h5>QC In Progress(3Q)</h5>
+                            <h3 class="valuewrap" id="ttlVoucherRedeemed">@ViewBag.QCInProgress</h3>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 col-sm-6 col-xs-6">
+                        <div class="boxwrap">
+                            <h5>QC fail (product substantially different)(3Y)</h5>
+                            <h3 class="valuewrap" id="ttlVoucherRedeemed">@ViewBag.QCFail</h3>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 col-sm-6 col-xs-6">
+                        <div class="boxwrap">
+
+                            <h5>Amount Approved by customer ater QC(5)</h5>
+                            <h3 class="valuewrap" id="ttlVoucherRedeemed">@ViewBag.amountApprovedByCustomerAfterQC</h3>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 col-sm-6 col-xs-6">
+                        <div class="boxwrap">
+                            <h5>QC Amount Confirmation Declined by customer after QC(5X)</h5>
+                            <h3 class="valuewrap" id="ttlVoucherRedeemed">@ViewBag.QCAmountConfirmationDeclinedByCustomerAfterQC</h3>
+                        </div>
+                    </div>
+
+                </div>
+
+                    </div>
+
+
+
+                <div class="sectionwrap">
+
+                    <div class="row">
+
+                        <div class="col-12">
+                            <h2 class="sectionheading">Installation</h2>
+                        </div>
+
+                        <div class="col-md-4 col-sm-6 col-xs-6">
+                            <div class="boxwrap">
+                                <h5>New product delivered/ Installed by Sponsor(6)</h5>
+                                <h3 class="valuewrap" id="ttlVoucherRedeemed">@ViewBag.newproductdeliveredInstalledBySponsor</h3>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="sectionwrap">
+
+                    <div class="row">
+
+
+                        <div class="col-12">
+                            <h2 class="sectionheading">LGC</h2>
+                        </div>
+
+                        <div class="col-md-4 col-sm-6 col-xs-6">
+                            <div class="boxwrap">
+                                <h5>Call Assigned for Pickup(7)</h5>
+                                <h3 class="valuewrap" id="ttlVoucherRedeemed">@ViewBag.callAssignedForPickup</h3>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 col-sm-6 col-xs-6">
+                            <div class="boxwrap">
+                                <h5>Pickup Appointment is fixed(7P)</h5>
+                                <h3 class="valuewrap" id="ttlVoucherRedeemed">@ViewBag.pickupAppointmentIsFixed</h3>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 col-sm-6 col-xs-6">
+                            <div class="boxwrap">
+                                <h5>Ticket is assigned for pickup(7Q)</h5>
+                                <h3 class="valuewrap" id="ttlVoucherRedeemed">@ViewBag.ticketIsAssignedForPickup</h3>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 col-sm-6 col-xs-6">
+                            <div class="boxwrap">
+                                <h5>Pickup Ticket cancellation by UTC(7X)</h5>
+                                <h3 class="valuewrap" id="ttlVoucherRedeemed">@ViewBag.pickupTicketCancellationByUTC</h3>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 col-sm-6 col-xs-6">
+                            <div class="boxwrap">
+                                <h5>Customer has asked for Pickup Reschedule(7R)</h5>
+                                <h3 class="valuewrap" id="ttlVoucherRedeemed">@ViewBag.customerHasAskedforPickupReschedule</h3>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 col-sm-6 col-xs-6">
+                            <div class="boxwrap">
+                                <h5>Pickup completed(8)</h5>
+                                <h3 class="valuewrap" id="ttlVoucherRedeemed">@ViewBag.pickupcompleted</h3>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 col-sm-6 col-xs-6">
+                            <div class="boxwrap">
+                                <h5>Pickup Product is assigned for drop to EVC(8Q)</h5>
+                                <h3 class="valuewrap" id="ttlVoucherRedeemed">@ViewBag.pickupProductIsAssignedForDropToEVC</h3>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 col-sm-6 col-xs-6">
+                            <div class="boxwrap">
+                                <h5>Pickup Appointment declined by customer to call center(8X)</h5>
+                                <h3 class="valuewrap" id="ttlVoucherRedeemed">@ViewBag.pickupAppointmentDeclinedByCustomerToCallCenter</h3>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 col-sm-6 col-xs-6">
+                            <div class="boxwrap">
+                                <h5>Physical Evaluation at the time of pickup Fail(8Y))</h5>
+                                <h3 class="valuewrap" id="ttlVoucherRedeemed">@ViewBag.physicalEvaluationAtTheTimeOfPickupFail</h3>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 col-sm-6 col-xs-6">
+                            <div class="boxwrap">
+                                <h5>Pickup by Dealer(8D)</h5>
+                                <h3 class="valuewrap" id="ttlOrderCount">@ViewBag.pickupByDealer</h3>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 col-sm-6 col-xs-6">
+                            <div class="boxwrap">
+                                <h5>In Transit(8N)</h5>
+                                <h3 class="valuewrap" id="ttlDTCOrdderCount">@ViewBag.inTransit</h3>
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-4 col-sm-6 col-xs-6">
+                            <div class="boxwrap">
+                                <h5>Pickup Product has reached Logistics Hub(8P)</h5>
+                                <h3 class="valuewrap" id="ttlVoucherRedeemed">@ViewBag.pickupProductHasReachedLogisticsHub</h3>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="sectionwrap">
+
+                    <div class="row">
+
+                        <div class="col-12">
+                            <h2 class="sectionheading">Complete</h2>
+                        </div>
+
+
+                        <div class="col-md-4 col-sm-6 col-xs-6">
+                            <div class="boxwrap">
+                                <h5>Amount paid to customer(9)</h5>
+                                <h3 class="valuewrap" id="ttlVoucherRedeemed">@ViewBag.amountPaidToCustomer</h3>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 col-sm-6 col-xs-6">
+                            <div class="boxwrap">
+                                <h5>Amount Paid to Sponsor(9R))</h5>
+                                <h3 class="valuewrap" id="ttlVoucherRedeemed">@ViewBag.amountPaidToSponsor</h3>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 col-sm-6 col-xs-6">
+                            <div class="boxwrap">
+                                <h5>Product Delivered at EVC(11))</h5>
+                                <h3 class="valuewrap" id="ttlVoucherRedeemed">@ViewBag.productDeliveredAtEVC</h3>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 col-sm-6 col-xs-6">
+                            <div class="boxwrap">
+                                <h5>EVC Rejection of the material/ Material returned to Hub(11X)</h5>
+                                <h3 class="valuewrap" id="ttlVoucherRedeemed">@ViewBag.EVCRejectionOfTheMaterial</h3>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 col-sm-6 col-xs-6">
+                            <div class="boxwrap">
+                                <h5>Posted(12)</h5>
+                                <h3 class="valuewrap" id="ttlVoucherRedeemed">@ViewBag.posted</h3>
+                            </div>
+                        </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+@*<script src="~/Scripts/popper.min.js"></script>*@
+@*<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>*@
+<script src="~/Content/jquery-ui-1.13.1.custom/jquery-ui.js"></script>
+
+<script type="text/JavaScript">
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
+</script>
+
+

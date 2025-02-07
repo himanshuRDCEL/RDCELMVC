@@ -1,0 +1,899 @@
+﻿@model RDCEL.DocUpload.DataContract.Voucher.VoucherDataContract
+
+@{ ViewBag.Title = "Voucher Generation";
+    Layout = "~/Views/Shared/_Layout.cshtml"; }
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+<style>
+    #showImg {
+        width: 50%;
+        height: auto;
+        display: block;
+        margin: 10px auto;
+    }
+
+    .custom-file {
+        height: 50% !important;
+    }
+</style>
+
+@using (Html.BeginForm("VoucherGeneration", "Voucher", FormMethod.Post, new { enctype = "multipart/form-data", @id = "VoucherGeneration-form", @class = "form-horizontal", autocomplete = "off" }))
+{
+    <div class="row">
+
+        @Html.HiddenFor(m => m.VoucherVerficationId, new { id = "hdnVoucherVerficationId" })
+        @Html.HiddenFor(m => m.CreatedBy)
+        @Html.HiddenFor(m => m.CreatedDate)
+        @Html.HiddenFor(m => m.ModifiedBy)
+        @Html.HiddenFor(m => m.ModifiedDate)
+        @Html.HiddenFor(m => m.IsActive)
+        @Html.HiddenFor(m => m.ExchangeOrderDataContract.CustomerDetailsId, new { id = "hdnCustomerDetailsId" })
+        @Html.HiddenFor(m => m.ExchangeOrderDataContract.Id, new { id = "hdnExchangeOrderId" })
+        @Html.HiddenFor(m => m.IsVoucherused)
+        @Html.HiddenFor(m => m.IsActive)
+        @Html.HiddenFor(m => m.BusinessUnitId, new { id = "hdnbuid" })
+        @Html.HiddenFor(m => m.ExchangeOrderDataContract.FormatName, new { id = "hdnFormatName" })
+        @Html.HiddenFor(m => m.ExchangeOrderDataContract.ExchangePriceString, new { id = "hdnExchangePriceString" })
+        @Html.HiddenFor(m => m.ExchangeOrderDataContract.BusinessUnitId, new { id = "hdnBusinessUnitId" })
+        @Html.HiddenFor(m => m.ExchangeOrderDataContract.QualityCheck)
+        @Html.HiddenFor(m => m.ExchangeOrderDataContract.QualityCheckValue, new { id = "hdnQualityCheck" })
+        @Html.HiddenFor(m => m.ExchangeOrderDataContract.IsSweetnerModelBased, new { id = "hdnIsSweetnerModelBased" })
+        @Html.HiddenFor(m => m.ExchangeOrderDataContract.IsVoucher, new { id = "hdnIsVoucher" })
+        @Html.HiddenFor(m => m.ExchangeOrderDataContract.VoucherType, new { id = "hdnIsVoucherType" })
+        @Html.HiddenFor(m => m.ExchangeOrderDataContract.IsDifferedSettlement, new { id = "hdnIsDifferedSettlement" })
+        @Html.HiddenFor(m => m.ExchangeOrderDataContract.voucherCash, new { id = "hdnvoucherCash" })
+        @Html.HiddenFor(m => m.ExchangeOrderDataContract.voucherDiscount, new { id = "hdnvoucherDiscount" })
+        @Html.HiddenFor(m => m.Base64StringValue, new { id = "hdnBase64StringValue" })
+        @Html.HiddenFor(m => m.ExchangeOrderDataContract.ImageName, new { id = "hdnImageName" })
+        @Html.HiddenFor(m => m.ExchangeOrderDataContract.IsQualityWorkingNonWorking, new { id = "hdnIsQualityWorkingNonWorking" })
+        <div class="col-6 m-auto" style="margin: 5px;">
+            <div class="logowrapper py-3">
+                @if (Model.ExchangeOrderDataContract.BULogoName != null)
+                {
+                    <img class="logo"
+                         src="@Model.ExchangeOrderDataContract.BULogoName"> }
+                else
+                {
+                    <img class="logo"
+                         src="https://i.pinimg.com/originals/3f/95/48/3f9548beef7804b53a111ced870da0c6.png">
+                }
+            </div>
+        </div>
+
+
+    </div>
+
+
+
+    <h3 class="section-title">Voucher Generation</h3>
+
+    <div class="form-group">
+        <label for="">Order Number<span style="color:red;">*</span></label>
+        @Html.EditorFor(model => model.RNumber, new { htmlAttributes = new { @class = "form-control", @id = "txtRNumber" } })
+        @Html.ValidationMessageFor(model => model.RNumber, "", new { @class = "text-danger" })
+        <label id="lblVoucherCode" style="color:red;"></label>
+    </div>
+
+    <div class="form-group text-center" id="divValidate">
+        <input type="Button" value="Validate" class="btn btn-primary" id="btnValidate">
+    </div>
+
+    <div id="divCustomerDetails" style="display:none">
+        <h3 class="section-title">Customer Details</h3>
+        <div class="form-group">
+            <div class="row">
+                <div class="col-6">
+                    <label>First Name <span style="color:red;">*</span></label>
+                    @Html.EditorFor(model => model.ExchangeOrderDataContract.FirstName, new { htmlAttributes = new { @class = "form-control", @id = "txtFirstName" } })
+                    @Html.ValidationMessageFor(model => model.ExchangeOrderDataContract.FirstName, "", new { @class = "text-danger" })
+                    <label id="lblFirstName" style="color:red;"></label>
+                </div>
+                <div class="col-6">
+                    <label>Last Name <span style="color:red;">*</span></label>
+                    @Html.EditorFor(model => model.ExchangeOrderDataContract.LastName, new { htmlAttributes = new { @class = "form-control", @id = "txtLastName" } })
+                    @Html.ValidationMessageFor(model => model.ExchangeOrderDataContract.LastName, "", new { @class = "text-danger" })
+                    <label id="lblLastName" style="color:red;"></label>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="">Mobile Number <span style="color:red;">*</span></label>
+            @Html.EditorFor(model => model.ExchangeOrderDataContract.PhoneNumber, new { htmlAttributes = new { @class = "form-control", @id = "txtMobile", @type = "number" } })
+            @Html.ValidationMessageFor(model => model.ExchangeOrderDataContract.PhoneNumber, "", new { @class = "text-danger" })
+            <label id="lblMobile" style="color:red;"></label>
+        </div>
+
+        <div class="form-group">
+            <label for="">E-mail <span style="color:red;">*</span></label>
+            <div class="input-group">
+                @Html.EditorFor(model => model.ExchangeOrderDataContract.Email, new { htmlAttributes = new { @class = "form-control", @id = "txtEmail" } })
+                <span class="right"><i class="fas fa-envelope"></i></span>
+            </div>
+            @Html.ValidationMessageFor(model => model.ExchangeOrderDataContract.Email, "", new { @class = "text-danger" })
+            <label id="lblEmail" style="color:red;"></label>
+        </div>
+
+        <div class="form-group">
+            <label for="">Address Line 1 <span style="color:red;">*</span></label>
+            @Html.EditorFor(model => model.ExchangeOrderDataContract.Address1, new { htmlAttributes = new { @class = "form-control required", @id = "txtAddress1" } })
+            @Html.ValidationMessageFor(model => model.ExchangeOrderDataContract.Address1, "", new { @class = "text-danger" })
+            <label id="lblAddress1" style="color:red;"></label>
+        </div>
+        <div class="form-group">
+            <label for="">Address Line 2</label>
+            @Html.EditorFor(model => model.ExchangeOrderDataContract.Address2, new { htmlAttributes = new { @class = "form-control", @id = "txtAddress2" } })
+            @Html.ValidationMessageFor(model => model.ExchangeOrderDataContract.Address2, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group">
+            <label for="">Pin Code <span style="color:red;">*</span></label>
+            @Html.EditorFor(model => model.ExchangeOrderDataContract.ZipCode, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @id = "ddlZipcode" } })
+            @Html.ValidationMessageFor(model => model.ExchangeOrderDataContract.ZipCode, "", new { @class = "text-danger" })
+            <label id="lblZipcode" style="color:red;"></label>
+        </div>
+
+        <div class="form-group">
+            <label for="">City</label>
+            @Html.EditorFor(model => model.ExchangeOrderDataContract.City, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @id = "ddlCity" } })
+            @Html.ValidationMessageFor(model => model.ExchangeOrderDataContract.City, "", new { @class = "text-danger" })
+        </div>
+        <h3 class="section-title">Product Details to Exchange</h3>
+        <div class="form-group">
+            <label for="">Product Group <span style="color:red;">*</span></label>
+            @Html.DropDownListFor(model => model.ExchangeOrderDataContract.ProductCategoryId, ViewBag.ProductCategoryList as SelectList, "--Select Product Group--", new { @class = "custom-select", @onchange = "GetProType(this.value);", @id = "ddlProdGroup" })
+            @Html.ValidationMessageFor(model => model.ExchangeOrderDataContract.ProductCategoryId, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group">
+            <label for="">Product Type <span style="color:red;">*</span></label>
+            @Html.DropDownListFor(model => model.ExchangeOrderDataContract.ProductTypeId, Model.ExchangeOrderDataContract.ProductTypeList, "--Select Brand--", new { @class = "custom-select", @id = "ddlProdType" })
+            @Html.ValidationMessageFor(model => model.ExchangeOrderDataContract.ProductTypeId, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group">
+            <label for="">Brand</label>
+            @Html.DropDownListFor(model => model.ExchangeOrderDataContract.BrandId, Model.ExchangeOrderDataContract.BrandList, "--Select Brand--", new { @class = "custom-select", @id = "ddlBrand" })
+            @Html.ValidationMessageFor(model => model.ExchangeOrderDataContract.BrandId, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group">
+            <label for="">Purchased Year<span style="color:red;">*</span></label>
+            @Html.EditorFor(model => model.ExchangeOrderDataContract.ProductAge, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.ExchangeOrderDataContract.ProductAge, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group">
+            <label for="">Quality Status<span style="color:red;">*</span></label>
+            @for (int i = 0; i < Model.ExchangeOrderDataContract.QualityCheckList.Count; i++)
+            {
+                <div class="row">
+                    <div class="col-10">
+                        <label for=""> <b> @Model.ExchangeOrderDataContract.QualityCheckList[i].Text</b></label>
+                        <br />
+                        <label id="lblQualityIndex_@i"></label>
+                    </div>
+                    <div class="col-2">
+                        @Html.RadioButtonFor(m => m.ExchangeOrderDataContract.QualityCheck, Model.ExchangeOrderDataContract.QualityCheckList[i].Value, new { @class = "form-control rdoQualityIndex" })
+                    </div>
+                </div>
+                <br />
+            }
+        </div>
+        @if (Model.ExchangeOrderDataContract.IsSweetnerModelBased == true)
+        {
+            <div id="divNewProductDetailsForDealerandHome">
+                <h3 class="section-title">New Product Details</h3>
+                <div class="form-group">
+                    <label for="">Product Group <span style="color:red;">*</span></label>
+                    @Html.DropDownListFor(model => model.ExchangeOrderDataContract.NewProductCategoryId, ViewBag.NewProductCategoryList as SelectList, "--Select Product Group--", new { @class = "custom-select", @onchange = "GetProTypeNew(this.value);", @id = "ddlProdGroupNew" })
+                    @Html.ValidationMessageFor(model => model.ExchangeOrderDataContract.NewProductCategoryId, "", new { @class = "text-danger" })
+                    <label id="lblProdGroup" style="color:red;"></label>
+                </div>
+                <div class="form-group">
+                    <label for="">Product Type <span style="color:red;">*</span></label>
+                    @Html.DropDownListFor(model => model.ExchangeOrderDataContract.NewProductCategoryTypeId, Model.ExchangeOrderDataContract.ProductTypeList, new { @class = "custom-select", @onchange = "GetModelNew(this.value);", @id = "ddlProdTypeNew" })
+                    @Html.ValidationMessageFor(model => model.ExchangeOrderDataContract.NewProductCategoryTypeId, "", new { @class = "text-danger" })
+                    <label id="lblProdType" style="color:red;"></label>
+                </div>
+                <div class="form-group">
+                    <label for="">Brand</label>
+                    @Html.EditorFor(model => model.ExchangeOrderDataContract.BUName, new { htmlAttributes = new { @id = "txtBrand", @class = "form-control", @readonly = "readonly" } })
+                    @Html.HiddenFor(m => m.ExchangeOrderDataContract.NewBrandId)
+                </div>
+                <div id="divProductPriceposted" style="display:none">
+                    <h3 class="section-title">Proposed Price</h3>
+                    <div class="form-group">
+                        <h5>Product Price: ₹<lable id="productPriceposted"></lable></h5>
+                        <b><label style="color:green">Subject to quality check of the product.<span style="color:red;">* T&C Applied</span></label></b>
+                    </div>
+                </div>
+                <div id="vouchertypecash" style="display:none">
+                    <div class="form-group">
+                        <label for="">Model Number <span style="color:red;">*</span></label>
+                        @Html.DropDownListFor(model => model.ExchangeOrderDataContract.ModelNumberId, Model.ExchangeOrderDataContract.ProductModelList, new { @class = "custom-select", @id = "ddlModelNo" })
+                        @Html.ValidationMessageFor(model => model.ExchangeOrderDataContract.ModelNumberId, "", new { @class = "text-danger" })
+                        <label id="lblModelNo" style="color:red;"></label>
+                    </div>
+                    <div id="divProductPricevouchertype" style="display:none">
+                        <h3 class="section-title">Proposed Price</h3>
+                        <div class="form-group">
+                            <h5>Product Price: ₹<lable id="productPricev"></lable></h5>
+                            <b><label style="color:green">Subject to quality check of the product.<span style="color:red;">* T&C Applied</span></label></b>
+                        </div>
+                    </div>
+                    <div id="divNewProductDetails">
+                        <h3 class="section-title">Invoice Details</h3>
+                        <div class="form-group">
+                            <label for="">Invoice Number </label>
+                            @Html.EditorFor(model => model.InvoiceNumberv, new { htmlAttributes = new { @class = "form-control", @id = "txtInvoiceNumber" } })
+                            @Html.ValidationMessageFor(model => model.InvoiceNumberv, "", new { @class = "text-danger" })
+                            <label id="lblInvoiceNumber" style="color:red;"></label>
+                        </div>
+                        <div class="form-group">
+                            <label for="">Invoice Image </label>
+                            <div class="custom-file">
+                                <input type="file" class="" name="InvoiceImage" id="validatedCustomFile" accept="image/*" />
+                            </div>
+                            @Html.ValidationMessageFor(model => model.InvoiceImageName, "", new { @class = "text-danger" })
+                            <label id="lbInvoicelFileName"></label>
+                            <label id="lblInvoiceImage" style="color:red;"></label>
+                        </div>
+                        <div class="form-group">
+                            <img id="showImg" src="" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+        <div id="divProductPrice" style="display:none">
+            <h3 class="section-title">Proposed Price</h3>
+            <div class="form-group">
+                <h5>Product Price: ₹<lable id="productPrice"></lable></h5>
+                <b><label style="color:green">Subject to quality check of the product.<span style="color:red;">* T&C Applied</span></label></b>
+            </div>
+        </div>
+        <h3 class="section-title">Validate and Generate Voucher</h3>
+        <div class="form-group text-right">
+            <input type="button" id="btnSubmit" value="Verify Order" class="btn btn-secondary">
+        </div>
+    </div>
+}
+@*<div class="form-group otpwrapper" id="divShowOTP" style="display:none">
+        <div class="otpbox text-center">
+            <p>OTP has been sent to <strong id="txtmobileOTP"></strong></p>
+            @using (Html.BeginForm())
+            {
+                <input type="number" id="digit-1" name="digit-1" data-next="digit-2" placeholder="please enter OTP" maxlength="4" />
+                <input type="button" id="btnOTPVerification" value="Verify OTP" class="btn btn-secondary" style="margin-top:2px;">
+                <input type="button" id="btnOTPResend" value="Re-Send OTP" class="btn btn-secondary" style="margin-top:2px;">
+            }
+        </div>
+    </div>*@
+<script src="~/Scripts/jquery.resizeImg.js"></script>
+<script src="~/Scripts/mobileBUGFix.mini.js"></script>
+
+
+<script>
+    $(document).ready(function () {
+
+
+
+
+        $('#btnValidate').click(function () {
+            GetOrderDetailByRnumber();
+        })
+
+        $('#btnSubmit').click(function () {
+            if (validateLeadForm()) {
+                $("#VoucherGeneration-form").submit();
+            }
+        })
+
+        $(".rdoQualityIndex").change(function () {
+            $("#hdnQualityCheck").val($(this).val());
+            ShowProductPrice();
+        });
+
+        $('#btnOTPResend').click(function () {
+            SendOTP();
+            $($("#btnOTPVerification")).prop('disabled', false);
+        })
+
+           $("#btnOTPVerification").click(function () {
+        var mobnumber = $('#txtMobile').val();
+        var OTP = $('#digit-1').val();
+
+         $.ajax({
+                url: "@Url.Action("VerifyOTP", "Voucher")",
+                type: "POST",
+                dataType: 'json',
+                contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+             data: {
+                 mobnumber: mobnumber,
+                 OTP: OTP
+             },
+                success: function (response) {
+                    //
+                    if (response == true || response == "True" || response == "true") {
+                        $($("#btnOTPVerification")).prop('disabled', true);
+                        $("#VoucherGeneration-form").submit();
+                        //alert("disable");
+                    }
+                    else {
+                        //Show message that OTP is not correct
+                        //$("#OTPVerificationMsg").append("OTP is not correct");
+                        document.getElementById("digit-1").value = "";
+                        alert("OTP is not correct. Please enter correct OTP");
+
+                    }
+                    //$("#divShowOTP").show();
+
+
+                },
+                failure: function (response) {
+                },
+                error: function (response) {
+                }
+            });
+
+    });
+    });
+
+    function GetOrderDetailByRnumber() {
+        var rNumber = $("#txtRNumber").val();
+        if (rNumber) {
+            $.ajax({
+                type: "GET",
+                url: "@Url.Action("GetExchangeOrderByRNumber", "Voucher")",
+                data: { rnumber: rNumber },
+                success: function (data) {
+                    if (data) {
+                        //console.log(data);
+                        //
+                        $("#divCustomerDetails").show();
+                        $("#txtFirstName").val(data.FirstName);
+                        $("#txtLastName").val(data.LastName);
+                        $("#txtMobile").val(data.PhoneNumber);
+                        $("#txtEmail").val(data.Email);
+                        $("#txtAddress1").val(data.Address1);
+                        $("#txtAddress2").val(data.Address2);
+                        $("#ddlCity").val(data.City);
+                        $("#hdnIsVoucher").val(data.IsVoucher);
+                        $("#hdnIsDifferedSettlement").val(data.IsDifferedSettlement);
+                        $("#hdnIsVoucherType").val(data.VoucherType);
+                        $("#hdnvoucherCash").val(data.voucherCash);
+                        var vouchertype = $("#hdnIsVoucherType").val();
+                        var vouchercash = $("#hdnvoucherCash").val();
+                        if (vouchertype == vouchercash) {
+                            $("#vouchertypecash").show();
+                        }
+                        $("#hdnvoucherDiscount").val(data.VoucherDiscount);
+                        $("#ddlZipcode").val(data.ZipCode);
+                        $("#ddlProdGroup").val(data.ProductCategoryId);
+                        $("#hdnCustomerDetailsId").val(data.CustomerDetailsId);
+                        $("#hdnExchangeOrderId").val(data.Id);
+                        $("#ddlProdGroup").attr("disabled", true);
+                        $("#hdnFormatName").val(data.FormatName);
+                        $("#hdnQualityCheck").val(data.QualityCheck);
+                        if (data.ExchangePriceString) {
+                            $("#divProductPrice").show();
+                            $("#productPrice").text(data.ExchangePriceString);
+                        } else {
+                            $("#divProductPrice").hide();
+                            $("#productPrice").text("");
+                        }
+                        GetProductType(data.ProductCategoryId, data.ProductTypeId, data.BrandId, data.QualityCheck);
+                        GetNewProductCategory(data.ProductCategoryId, data.NewProductCategoryId);
+                        GetProTypeNew(data.NewProductCategoryId, data.NewProductCategoryTypeId);
+                        $("#ddlProdTypeNew").val(data.NewProductCategoryTypeId);
+                        $("#ddlProdGroupNew").val(data.NewProductCategoryId);
+                        $("#ddlProdTypeNew").val(data.NewProductCategoryTypeId);
+                    } else {
+                        alert("Invalid Order number.");
+                    }
+                },
+                failure: function (response) {
+                    alert("Invalid Order Number.");
+                },
+                error: function (response) {
+                    alert("Invalid Order Number.");
+                }
+            });
+            } else {
+              $("#ddlBrand").empty();
+            }
+    }
+
+    function SendOTP() {
+        if (validateLeadForm()) {
+
+             var mobnumber = $('#txtMobile').val();
+            var buid = $("#hdnbuid").val();
+           // alert("hi");
+            $.ajax({
+                url: "@Url.Action("SendOTP", "Voucher")",
+                type: "POST",
+                dataType: 'json',
+                contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+                data: {
+                    mobnumber: mobnumber, buid: buid, tempaltename: "SMS_VoucherGeneration_OTP"
+                },
+                success: function (response) {
+                    if (response == true || response == "True" || response == "true") {
+                        $("#txtmobileOTP").text(mobnumber);
+                        alert("OTP has been sent to mobile number: " + mobnumber);
+                        $("#divShowOTP").show();
+                    }
+                    else {
+                        alert("Unable to send OTP. Please check your Mobile Number");
+                    }
+                },
+                failure: function (response) {
+                },
+                error: function (response) {
+                }
+            });
+        }
+    }
+    function validateLeadForm() {
+        var flag = true;
+        if ($("form").valid()) {
+            var vouchertype = $("#hdnIsVoucherType").val();
+            var vouchercash = $("#hdnvoucherCash").val();
+            if (vouchertype == vouchercash) {
+                if ($("#hdnBase64StringValue").val() == '' || $("#hdnBase64StringValue").val() == null) {
+                    $("#validatedCustomFile").css("border", "2px solid red");
+                    $("#validatedCustomFile").focus();
+                    $("#lblInvoiceImage").append("Please Upload Invoice Image.");
+                    flag=  false;
+                }
+                else {
+                    $("#validatedCustomFile").css("border", "");
+                    $("#lblInvoiceImage").text("");
+                    flag = true;
+                }
+
+                if ($("#ddlModelNo").val() == '' || $("#ddlModelNo").val() == null || $("#ddlModelNo").val() == 0) {
+                    $("#ddlModelNo").css("border", "2px solid red");
+                    $("#ddlModelNo").focus();
+                    //$("#lblEmail").css("display", "block");
+                    $("#lblModelNo").append("Please select Model.");
+                    flag = false;
+                }
+                else {
+                    $("#ddlModelNo").css("border", "");
+                    $("#lblModelNo").text("");
+                    flag = true;
+                }
+
+                if ($("#txtInvoiceNumber").val() == '' || $("#txtInvoiceNumber").val() == null) {
+                    $("#txtInvoiceNumber").css("border", "2px solid red");
+                    $("#txtInvoiceNumber").focus();
+                    //$("#lblEmail").css("display", "block");
+                    $("#lblInvoiceNumber").append("Please enter invoice number.");
+                    flag = false;
+                }
+                else {
+                    $("#txtInvoiceNumber").css("border", "");
+                    $("#lblInvoiceNumber").text("");
+                    flag = true;
+                }
+                return flag;
+            }
+            else {
+
+                return true;
+            }
+
+        }
+        else {
+
+            return false
+        }
+    }
+    function GetProductType(_productCatId,_typeValue,_brandValue,_qualityIndex) {
+        var productCatId = _productCatId;
+          if (productCatId) {
+            $.ajax({
+                type: "GET",
+                url: "@Url.Action("GetProdTypeByProdGroupId", "Exchange")",
+                data: { productCatId: productCatId },
+                success: function (data) {
+                    if (data) {
+                        //console.log(data);
+                        $("#ddlProdType").empty();
+                        $("#ddlProdType").append('<option value="">--Select Product Type--</option>');
+                        $.each(data, function (key, value) {
+                            //console.log(value.Value);
+                           // alert("get data");
+                            $("#ddlProdType").append('<option value="' + value.Value + '">' + value.Text + '</option>');
+                        });
+
+                        $("#ddlProdType").val(_typeValue);
+                        $("#ddlProdType").attr("disabled", true);
+                        if (productCatId > 0) {
+                            GetBrandByProductGroup(productCatId, _brandValue);
+                        }
+                        if (_qualityIndex > 0) {
+                            GetProdqualityIndexDetailbyCategotyId(productCatId, _qualityIndex);
+                        }
+
+
+                    } else {
+                        $("#ddlProdType").empty();
+                    }
+                }
+            });
+            } else {
+                 $("#ddlProdType").empty();
+            }
+    }
+
+   
+
+
+    function GetProdqualityIndexDetailbyCategotyId(_productCatId, _qualityIndex) {
+        var QualityCheckCondition = $("#hdnIsQualityWorkingNonWorking").val();
+        var productCatId = parseInt(_productCatId);
+        if (productCatId > 0 && (QualityCheckCondition == "false" || QualityCheckCondition == "False" || QualityCheckCondition == false)) {
+
+            $.ajax({
+                type: "GET",
+                url: "@Url.Action("GetProdqualityIndexDetailbyCategotyId", "Exchange")",
+                data: { productCatId: productCatId },
+                success: function (data) {
+                    if (data) {
+                       // console.log(data);
+                        $("#lblQualityIndex_3").text(data.ExcellentDesc);
+                        $("#lblQualityIndex_2").text(data.GoodDesc);
+                        $("#lblQualityIndex_1").text(data.AverageDesc);
+                        $("#lblQualityIndex_0").text(data.NonWorkingDesc);
+                        $('.rdoQualityIndex').each(function () {
+                            if ($(this).val() == _qualityIndex) {
+                                $(this).prop('checked', true);
+                            }
+                            else {
+                                $(this).prop('checked', false);
+                            }
+                        });
+                        ShowProductPrice();
+
+                    } else {
+                        //$("#ddlProdType").empty();
+                    }
+                }
+            });
+        }
+        else {
+             $.ajax({
+                 type: "GET",
+                 url: "@Url.Action("GetProdqualityIndexDetailbyCategotyId", "Exchange")",
+                 data: { productCatId: productCatId },
+                 success: function (data) {
+                     if (data) {
+                        // console.log(data);
+                         $("#lblQualityIndex_1").text(data.ExcellentDesc);
+                         $("#lblQualityIndex_0").text(data.NonWorkingDesc);
+                         $('.rdoQualityIndex').each(function () {
+                             if ($(this).val() == _qualityIndex) {
+                                 $(this).prop('checked', true);
+                             }
+                             else {
+                                 $(this).prop('checked', false);
+                             }
+                         });
+                         ShowProductPrice();
+
+                     } else {
+                         //$("#ddlProdType").empty();
+                     }
+                 }
+             });
+        }
+    }
+
+
+
+    function GetBrandByProductGroup(_productCatId, _brandValue) {
+        var productCatId = _productCatId;
+        var buid = $("#hdnBusinessUnitId").val();
+          if (productCatId) {
+            $.ajax({
+                type: "GET",
+                url: "@Url.Action("GetBrandByProductGroup", "Exchange")",
+                data: { productCatId: productCatId, buid: buid},
+                success: function (data) {
+                    if (data) {
+                        //console.log(data);
+                        $("#ddlBrand").empty();
+                        $("#ddlBrand").append('<option value="">--Select Brand--</option>');
+                        $.each(data, function (key, value) {
+                            $("#ddlBrand").append('<option value="' + value.Value + '">' + value.Text + '</option>');
+
+                        });
+                        $("#ddlBrand").val(_brandValue);
+                        $("#ddlBrand").attr("disabled", true);
+                        ShowProductPrice();
+                    } else {
+                        $("#ddlBrand").empty();
+                    }
+                }
+            });
+            } else {
+              $("#ddlBrand").empty();
+            }
+    }
+    $("#ddlProdGroupNew").change(function () {
+        var cat = 0;
+        $("#ddlProdTypeNew").val(cat);
+        $("#ddlModelNo").val(cat);
+        ShowProductPrice();
+    });
+
+    $("#ddlProdTypeNew").change(function () {
+        var type = 0;
+        $("#ddlModelNo").val(type);
+        ShowProductPrice();
+    });
+
+    $("#ddlModelNo").change(function () {
+        ShowProductPrice();
+    });
+
+    function ShowProductPrice() {
+        var productCatId = $("#ddlProdGroup").val();
+        var productSubCatId = $("#ddlProdType").val();
+        var brandId = $("#ddlBrand").val();
+        var buiId = $("#hdnBusinessUnitId").val();
+        var formatType = $("#hdnFormatName").val();
+        var conditionId = $('input[name="ExchangeOrderDataContract.QualityCheck"]:checked').val();
+        var newcatid = $("#ddlProdGroupNew").val();
+        var newsubcatid = $("#ddlProdTypeNew").val();
+        var modelno = $("#ddlModelNo").val();
+        var IsOrc = false;
+        var voucherCash = $("#hdnvoucherCash").val();
+        var vouchertype = $("#hdnIsVoucherType").val();
+        var IsSweetnerModelBased = $("#hdnIsSweetnerModelBased").val();
+        $("#hdnExchangePriceString").val('');
+
+        if (productCatId > 0 && productSubCatId > 0 && conditionId > 0 && brandId > 0 && buiId > 0 && newcatid > 0 && newsubcatid > 0 && modelno > 0 && voucherCash == vouchertype && (IsSweetnerModelBased == "true" || IsSweetnerModelBased == "True" || IsSweetnerModelBased == true)) {
+
+            $.ajax({
+                type: "GET",
+                url: "@Url.Action("GetProdPrice", "Exchange")",
+                data: { productCatId: productCatId, productSubCatId: productSubCatId, brandId: brandId, conditionId: conditionId, buid: buiId, newcatid: newcatid, newsubcatid: newsubcatid, modelno: modelno, IsSweetnerModelBased: IsSweetnerModelBased, formatType: formatType },
+                success: function (data) {
+                    if (data) {
+                        $("#divProductPrice").hide();
+                        $("#productPrice").text("");
+                        $("#divProductPrice").hide();
+                        $("#productPrice").text("");
+                        $("#divProductPricevouchertype").show();
+                        $("#productPricev").text(data);
+                        $('html, body').animate({
+                            scrollTop: $("#divProductPricevouchertype").offset().top
+                        }, 2000);
+                        $("#hdnExchangePriceString").val(data);
+                    } else {
+                        $("#divProductPricevouchertype").hide();
+                        $("#productPricev").text("");
+                        $("#divProductPriceposted").hide();
+                        $("#productPriceposted").text("");
+                        $("#hdnExchangePriceString").val('');
+                    }
+                }
+            });
+        }
+
+        if (productCatId > 0 && productSubCatId > 0 && conditionId > 0 && brandId > 0 && buiId > 0 && newcatid > 0 && newsubcatid > 0 && voucherCash != vouchertype && (IsSweetnerModelBased == "true" || IsSweetnerModelBased == "True" || IsSweetnerModelBased == true)) {
+             $.ajax({
+                type: "GET",
+                url: "@Url.Action("GetProdPrice", "Exchange")",
+                data: { productCatId: productCatId, productSubCatId: productSubCatId, brandId: brandId, conditionId: conditionId, buid: buiId, newcatid: newcatid, newsubcatid: newsubcatid, modelno: modelno, IsSweetnerModelBased: IsSweetnerModelBased, formatType: formatType },
+                success: function (data) {
+                    if (data) {
+                        $("#divProductPrice").hide();
+                        $("#productPrice").text("");
+                        $("#divProductPriceposted").show();
+                        $("#productPriceposted").text(data);
+                        $('html, body').animate({
+                            scrollTop: $("#divProductPriceposted").offset().top
+                        }, 2000);
+                        $("#hdnExchangePriceString").val(data);
+                    } else {
+                        $("#divProductPricevouchertype").hide();
+                        $("#productPricev").text("");
+                        $("#divProductPriceposted").hide();
+                        $("#productPriceposted").text("");
+                        $("#divProductPrice").hide();
+                        $("#productPrice").text("");
+                        $("#hdnExchangePriceString").val('');
+                    }
+                }
+            });
+        }
+
+          if (productCatId > 0 && productSubCatId > 0 && conditionId > 0 && brandId > 0 && buiId > 0 && (IsSweetnerModelBased == "false" || IsSweetnerModelBased == "False" || IsSweetnerModelBased == false)) {
+             $.ajax({
+                type: "GET",
+                url: "@Url.Action("GetProdPrice", "Exchange")",
+                data: { productCatId: productCatId, productSubCatId: productSubCatId, brandId: brandId, conditionId: conditionId, buid: buiId, newcatid: newcatid, newsubcatid: newsubcatid, modelno: modelno, IsSweetnerModelBased: IsSweetnerModelBased, formatType: formatType },
+                success: function (data) {
+                    if (data) {
+                        $("#divProductPrice").show();
+                        $("#productPrice").text(data);
+                        $('html, body').animate({
+                            scrollTop: $("#divProductPrice").offset().top
+                        }, 2000);
+                        $("#hdnExchangePriceString").val(data);
+                    } else {
+                        $("#divProductPrice").hide();
+                        $("#productPrice").text("");
+                        $("#hdnExchangePriceString").val('');
+                    }
+                }
+            });
+        }
+    }
+
+    //get prod type by prod group id
+       function GetModelNew(_prodTypeId) {
+        //alert(_prodTypeId);
+        var ProdTypeId = _prodTypeId;
+           var buid = $("#hdnbuid").val();
+            //
+        if (ProdTypeId) {
+            $.ajax({
+                type: "GET",
+                url: "@Url.Action("GetModelNumberByProdTypeId", "ABB")",
+                data: { ProdTypeId: ProdTypeId, buid: buid },
+                success: function (data) {
+                    if (data) {
+                        //console.log(data);
+                        $("#ddlModelNo").empty();
+                        $("#ddlModelNo").append('<option value="">--Select Model Number--</option>');
+                        $.each(data, function (key, value) {
+                            //console.log(value.Value);
+                           // alert("get data");
+                            $("#ddlModelNo").append('<option value="' + value.Value + '">' + value.Text + '</option>');
+                        });
+                    } else {
+                        $("#ddlModelNo").empty();
+                    }
+                }
+            });
+            } else {
+                $("#ddlModelNo").empty();
+            }
+    }
+
+     function GetProTypeNew(_productCatId,_producttypeId) {
+
+         var productCatId = _productCatId;
+         var buid = $("#hdnBusinessUnitId").val();
+         var ProductTypeOld = $("#ddlProdType").val();
+        if (productCatId) {
+            $.ajax({
+                type: "GET",
+                url: "@Url.Action("GetProdTypeByProdGroupId", "ABB")",
+                data: { stateID: productCatId, buid: buid, ProductTypeOld: ProductTypeOld},
+                success: function (data) {
+                    if (data) {
+                       // console.log(data);
+                        $("#ddlProdTypeNew").empty();
+                        $("#ddlProdTypeNew").append('<option value="">--Select Product Type--</option>');
+                        $.each(data, function (key, value) {
+                            //console.log(value.Value);
+                           // alert("get data");
+                            $("#ddlProdTypeNew").append('<option value="' + value.Value + '">' + value.Text + '</option>');
+                        });
+
+                    } else {
+                        $("#ddlProdTypeNew").empty();
+                    }
+                    $("#ddlProdTypeNew").val(_producttypeId);
+                    if (_producttypeId > 0) {
+                        GetModelNew(_producttypeId)
+                    }
+                }
+
+            });
+            } else {
+                $("#ddlProdTypeNew").empty();
+        }
+    }
+     function GetNewProductCategory(_productCatIdOld,NewProductCatid) {
+
+        var productCatId = _productCatIdOld;
+        var newcatid = NewProductCatid;
+         var buid = parseInt($("#hdnBusinessUnitId").val());
+        if (productCatId) {
+            $.ajax({
+                type: "GET",
+                url: "@Url.Action("GetProductCategoryForNew", "Exchange")",
+                data: { oldCatId: productCatId, buid: buid},
+                success: function (data) {
+                    if (data) {
+                       // console.log(data);
+                        $("#ddlProdGroupNew").empty();
+                        $("#ddlProdGroupNew").append('<option value="">--Select Product Type--</option>');
+                        $.each(data, function (key, value) {
+                            //console.log(value.Value);
+                           // alert("get data");
+                            $("#ddlProdGroupNew").append('<option value="' + value.Value + '">' + value.Text + '</option>');
+                        });
+
+                    } else {
+                        $("#ddlProdGroupNew").empty();
+                    }
+                    $("#ddlProdGroupNew").val(newcatid);
+                }
+            });
+            } else {
+            $("#ddlProdGroupNew").empty();
+        }
+    }
+
+    //code to resize image
+    $('#validatedCustomFile').bind('change', function () {
+        $("#lbInvoicelFileName").text("");
+        $("#lbInvoicelFileName").append(this.files[0].name);
+        $("#hdnImageName").val(this.files[0].name);
+    });
+
+    $("#validatedCustomFile").resizeImg(function () {
+        var value = parseInt("350");
+        var Weight = parseInt("2");
+        let type, quality;
+        {
+            type = "image/jpeg";
+            quality = 0.8;
+        }
+        return {
+            use_reader: false,
+            mode: Weight,
+            val: value,
+            type: type,
+            quality: quality,
+            callback: function (result) {
+
+                $("#showImg").attr('src', result);
+                $("#hdnBase64StringValue").val(result.substr(result.indexOf(',') + 1)).css("height", 100);
+                $("#validatedCustomFile").val(null);
+               // IsImageValid(result);
+            }
+        };
+    });
+
+      //method to check Invoice Data
+    function IsImageValid(imageData) {
+
+        var postImageString = imageData.replace('data:image/png;base64,', '');
+        postImageString = imageData.replace('data:image/jpeg;base64,', '');
+        var ImageName = $("#hdnImageName").val();
+            $.ajax({
+                url: "@Url.Action("ValidateImage", "ABB")",
+                type: "POST",
+                dataType: 'json',
+                contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+                data: {
+                    imageData: postImageString, ImageName: ImageName
+                },
+                success: function (response) {
+                    if (response == false || response == "False" || response == "false") {
+                        alert('Invoice image is not valid');
+                        $("#hdnBase64StringValue").val(null);
+                        $("#validatedCustomFile").val(null);
+                        $("#showImg").attr('src', "");
+                    }
+                },
+                failure: function (response) {
+                    ShowAlert([response.responseText], window.AlertType.error);
+                },
+                error: function (response) {
+                    ShowAlert([response.responseText], window.AlertType.error);
+                }
+            });
+    }
+
+
+</script>

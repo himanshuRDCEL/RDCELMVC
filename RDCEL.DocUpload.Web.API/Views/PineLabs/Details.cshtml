@@ -1,0 +1,51 @@
+﻿
+@{
+    ViewBag.Title = "DetailsForD2C";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .logotext {
+        font-size: 20px;
+        font-weight: bold;
+        color: #4e13cd;
+        padding: 0;
+    }
+
+    .logotexttagline {
+        display: block;
+        color: #170b64;
+        font-size: 17px;
+        margin-top: 8px;
+    }
+
+    img {
+        width: 100%;
+    }
+
+    .logoimg img {
+        max-width: 180px;
+        margin-bottom: 20px;
+    }
+</style>
+<div class="row">
+    <div class="col-12 pt-0 text-center">
+        <div class="logoimg">
+            <img src="~/Content/DB_Files/SponsorLogo/Digi2L_Logo_Final.png" />
+        </div>
+        <h4 class="logotext">
+            India's First Digital Platform To Sell Used Appliances! <span class="logotexttagline">CUSTOMER READY! PRICE READY! PAYMENT READY!</span>
+        </h4>
+    </div>
+    <div class="col-12">
+        <h3 class="p-4">@ViewBag.MSG</h3>
+    </div>
+    <div class="vectorbox">
+        <div class="row">
+            <div class="col-md-9 mx-auto">
+                <img src="~/Content/DB_Files/SponsorLogo/12.png" />
+            </div>
+        </div>
+    </div>
+
+</div>
+

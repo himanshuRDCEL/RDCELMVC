@@ -1,0 +1,154 @@
+﻿
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    #wrapper .footer {
+        padding: 10px;
+        background-color: #fff;
+        -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+        padding-bottom: 15px;
+    }
+
+
+    #wrapper .footer {
+        padding: 10px;
+        background-color: #fff;
+        -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+        padding-bottom: 15px;
+    }
+
+
+
+    .wavewrapper path {
+        fill: #F26159 !important;
+    }
+
+    .mainformarea {
+        border-top: 4px solid #f26159;
+    }
+
+    #wrapper h3 {
+        border-bottom: none;
+        border-top: none;
+        padding: 15px 0;
+        background: linear-gradient(to right, #f3537a 0%,#f96857 100%);
+        font-size: 18px;
+        font-weight: 600;
+        background: linear-gradient(90deg, #f75878 0%, #f7635b 38.39%, #fbb03b 100%);
+    }
+
+    input#btnSubmit {
+        border: 4px solid #FF3D51 !important;
+        padding: 8px 30px;
+        border-radius: 50px;
+        margin-top: 16px;
+        background: none !important;
+        color: #FF3D51 !important;
+        font-weight: 600;
+    }
+
+    #wrapper .form-control, #wrapper .custom-select {
+        background: #F6F8FC;
+        height: auto;
+        padding: 10px;
+        border: none;
+        border-bottom: 3px solid #f7635b !important;
+    }
+
+    #wrapper .footer {
+        background: #FF3D51 !important;
+        border-top: 4px solid #ff6878 !important;
+        box-shadow: none !important;
+    }
+
+    #wrapper .mainformarea {
+        box-shadow: 0 3px 6px rgb(0 0 0 / 16%);
+        padding-bottom: 10px;
+    }
+
+    .footer label {
+        margin: 0 !important;
+    }
+
+    #wrapper .btn-primary {
+        background: linear-gradient(to right, #f3537a 0%,#f96857 100%);
+        border: 4px solid #FF3D51 !important;
+        padding: 6px 24px;
+        border-radius: 50px;
+        margin-top: 16px;
+        background: none !important;
+        color: #FF3D51 !important;
+        font-weight: 600;
+    }
+
+    #wrapper .btn-dark {
+        border: 4px solid #002554 !important;
+        padding: 6px 24px;
+        border-radius: 50px;
+        margin-top: 16px;
+        background: none !important;
+        color: #002554 !important;
+        font-weight: 600;
+    }
+
+    #wrapper .form-control[type="radio"] {
+        width: 100%;
+        height: 25px;
+    }
+
+    #wrapper .btn-dark {
+        background-color: #53565a;
+        border: none;
+    }
+
+    .logotext {
+        font-size: 26px;
+        font-weight: bold;
+        color: #e3553f;
+        padding: 10px 50px;
+    }
+
+    .logotexttagline {
+        display: block;
+        color: #a54a1d;
+        font-size: 17px;
+        margin-top: 8px;
+    }
+
+    img {
+        width: 100%;
+    }
+
+    .logoimg img {
+        max-width: 180px;
+        margin-bottom: 20px;
+    }
+
+    .thankyoupage h5 {
+        font-size: 20px;
+        line-height: 1.8rem;
+    }
+</style>
+
+<div class="row justify-content-center align-items-center thankyoupage">
+    <div class="col-md-6 mx-auto">
+        @*<h3 class="section-title">Product Details</h3>*@
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card box">
+                    <div class="row text-center">
+
+                        <h5 class="p-4">@ViewBag.MSG</h5>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

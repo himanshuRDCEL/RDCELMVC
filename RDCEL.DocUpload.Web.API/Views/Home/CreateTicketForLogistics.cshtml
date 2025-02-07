@@ -1,0 +1,189 @@
+﻿@model RDCEL.DocUpload.DataContract.LogisticsDetails.ServicePartnerLogin
+@{
+    ViewBag.Title = "Create Ticket";
+}
+
+<style>
+    .clsCheckboxwrap {
+        width: 19px;
+        height: 19px;
+        margin: 0 6px 0 0;
+    }
+</style>
+
+@*<div class="row">
+    <div class="col-6 m-auto" style="margin: 5px;">
+        <div class="logowrapper py-3">
+            <img class="logo" style="" src="~/Content/DB_Files/SponsorLogo/Digi2L_Logo_Final.png" alt="https://i.pinimg.com/originals/3f/95/48/3f9548beef7804b53a111ced870da0c6.pngs">
+        </div>
+    </div>
+</div>*@
+@using (Html.BeginForm("CreateTicketForLogistics", "Home", FormMethod.Post, new { enctype = "multipart/form-data", @id = "Course-form", @class = "form-horizontal", autocomplete = "off" }))
+{
+    @Html.HiddenFor(model=>model.IsServicePartnerLocal,new {id="hdnLocal"})
+    @*<h3 class="section-title">Create Ticket</h3>*@
+    <div class="row justify-content-center align-items-center">
+        <div class="col-md-6 mx-auto">
+            <h3 class="section-title">Create Ticket</h3>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card box">
+
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="">RegdNo<span style="color:red;">*</span></label>
+                                    @Html.EditorFor(model => model.RegdNo, new { htmlAttributes = new { @class = "form-control", @id = "txtregdNo", @required = "required", @maxlength = "15" } })
+                                    <label id="lblName" style="color:red;"></label>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="">Select Service Partner <span style="color:red;">*</span></label>
+                                    @Html.DropDownListFor(model => model.ServicePartnerId, ViewBag.servicePartner as SelectList, "--Select service Partner--", new { @class = "form-control form-select", @onchange = "GetServicePArtnerDetails(this.value);", @id = "ddlservicePartner", @required = "required" })
+                                </div>
+                            </div>
+
+                            <div class="col-6 mb-3">
+                                <div class="form-group" style=" display:none" id="divPriority">
+                                    <label for="">Select Priority <span style="color:red;">*</span></label>
+                                    @Html.DropDownListFor(model => model.priority, Model.priorityList, new { @class = "form-control form-select", @required = "required", @id = "ddlpriority" })
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <div class="form-group d-flex">
+                                    @Html.CheckBoxFor(model => model.GenerateticketWithutCheckingBalance, new { @id = "chk1", @class = "clsCheckboxwrap" })
+                                    <label for="">Generate Ticket Without Checking Balance<span style="color:red;">*</span></label>
+                                </div>
+                            </div>
+
+                            <div class="col-12 text-center">
+                                <div class="form-group">
+                                    <input type="submit" value="Submit" class="btn btn-primary" id="submitButton" />
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="~/Scripts/jquery.resizeImg.js"></script>
+    <script src="~/Scripts/mobileBUGFix.mini.js"></script>
+
+    <script type="text/javascript">
+
+        $("#submitButton").click(function (){
+            $(this).prop('disabled', true);
+            $("#Course-form").submit();
+        })
+        function GetPriorityList(servicePartnerId) {
+            var servicePArtnerId = servicePartnerId;
+             $.ajax({
+                type: "GET",
+                url: "@Url.Action("GetOrderPriorityList", "Home")",
+                 data: { servicepartnerId: servicePArtnerId},
+                success: function (data) {
+                    if (data) {
+                        //console.log(data);
+                        $("#divPriority").show();
+                        $("#ddlpriority").empty();
+                        $("#ddlpriority").append('<option value="">--Select Priority--</option>');
+                        $.each(data, function (key, value) {
+                            //console.log(value.Value);
+                           // alert("get data");
+                            $("#ddlpriority").append('<option value="' + value.Value + '">' + value.Text + '</option>');
+                        });
+                    } else {
+                        $("#ddlpriority").empty();
+                        $("#divPriority").hide();
+                    }
+                 },
+                 failure: function (response) {
+                     $("#ddlpriority").empty();
+                     $("#divPriority").hide();
+                 }
+            });
+        }
+        function CheckPrioritySelectTion(servicePartnerId) {
+            var servicePartnerId = servicePartnerId;
+            $.ajax({
+                type: "GET",
+                url: "@Url.Action("GetPriorityNeddedforpartner", "Home")",
+                data: { servicepartnerId: servicePartnerId},
+                success: function (data) {
+                    if (data) {
+                        if (data == true || data == "True" || data == "true") {
+                            $("#divPriority").show();
+                            GetPriorityList(servicePartnerId);
+                        }
+                        else {
+                            $("#ddlpriority").empty();
+                            $("#divPriority").hide();
+                        }
+                    } else {
+                        $("#ddlpriority").empty();
+                        $("#divPriority").hide();
+                    }
+                 },
+                 failure: function (response) {
+                     $("#ddlpriority").empty();
+                     $("#divPriority").hide();
+                 }
+            });
+        }
+
+        function CheckPrioritySelectTion(servicePartnerId) {
+            var servicePartnerId = servicePartnerId;
+            $.ajax({
+                type: "GET",
+                url: "@Url.Action("GetPriorityNeddedforpartner", "Home")",
+                data: { servicepartnerId: servicePartnerId},
+                success: function (data) {
+                    if (data) {
+                        if (data == true || data == "True" || data == "true") {
+                            $("#divPriority").show();
+                            GetPriorityList(servicePartnerId);
+                        }
+                        else {
+                            $("#ddlpriority").empty();
+                            $("#divPriority").hide();
+                        }
+                    } else {
+                        $("#ddlpriority").empty();
+                        $("#divPriority").hide();
+                    }
+                 },
+                 failure: function (response) {
+                     $("#ddlpriority").empty();
+                     $("#divPriority").hide();
+                 }
+            });
+        }function GetServicePArtnerDetails(servicePartnerId) {
+            var servicePartnerId = servicePartnerId;
+            $.ajax({
+                type: "GET",
+                url: "@Url.Action("GetServicepartnerDetails", "Home")",
+                data: { servicepartnerId: servicePartnerId},
+                success: function (data) {
+                    if (data) {
+                        if (data == true || data == "True" || data == "true") {
+                            var localpartner = true;
+                            $("#hdnLocal").val(localpartner);
+                            CheckPrioritySelectTion(servicePartnerId);
+                        }
+                        else {
+                            CheckPrioritySelectTion(servicePartnerId);
+                        }
+                    } else {
+                        CheckPrioritySelectTion(servicePartnerId);
+                    }
+                 },
+            });
+        }
+    </script>
+}

@@ -1,0 +1,11 @@
+﻿@{
+    ViewBag.Title = "GetSponsorOrderStatusbyOrderNumberfromUTC";
+}
+<div class="jumbotron">
+    @using (Html.BeginForm("SponsorOrderStatus", "Home", FormMethod.Post))
+    {
+        <label>SponsorOrderNo:</label>
+        @Html.TextBox("SponsorOrderNo")
+        <input type="submit" value="Submit" />
+    }
+</div>

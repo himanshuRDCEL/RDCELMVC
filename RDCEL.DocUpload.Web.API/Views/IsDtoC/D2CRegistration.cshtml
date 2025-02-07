@@ -1,0 +1,476 @@
+﻿@model RDCEL.DocUpload.DataContract.SponsorModel.ExchangeOrderDataContract
+@{
+    ViewBag.Title = "D2CRegistration";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Content/jquery-ui-1.13.1.custom/jquery-ui.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<script src="~/Content/jquery-ui-1.13.1.custom/jquery-ui.js"></script>
+<style>
+    .logotext {
+        font-size: 20px;
+        font-weight: bold;
+        color: #4e13cd;
+        padding: 0;
+    }
+
+    .logotexttagline {
+        display: block;
+        color: #170b64;
+        font-size: 17px;
+        margin-top: 8px;
+    }
+
+    img {
+        width: 100%;
+    }
+
+    .logoimg img {
+        max-width: 180px;
+        margin-bottom: 20px;
+    }
+</style>
+@using (Html.BeginForm("D2CRegistration", "IsDtoC", FormMethod.Post, new { enctype = "multipart/form-data", @id = "Course-form", @class = "form-horizontal", autocomplete = "off" }))
+{
+    <div class="row">
+
+        @Html.HiddenFor(m => m.Id, new { id = "hdnExchangeId" })
+        @Html.HiddenFor(m => m.CreatedBy)
+        @Html.HiddenFor(m => m.ModifiedBy)
+        @Html.HiddenFor(m => m.ModifiedDate)
+        @Html.HiddenFor(m => m.IsActive)
+        @Html.HiddenFor(m => m.BusinessUnitId, new { id = "hdnbuid" })
+        @Html.HiddenFor(m => m.ZohoSponsorNumber)
+        @Html.HiddenFor(m => m.ExpectedDeliveryHours)
+        @Html.HiddenFor(m => m.CompanyName)
+        @Html.HiddenFor(m => m.QualityCheck)
+        @Html.HiddenFor(m => m.ProductAge, new { id = "hdnProductage" })
+        @Html.HiddenFor(m => m.ProductCategoryId)
+        @Html.HiddenFor(m => m.BrandId)
+        @Html.HiddenFor(m => m.ProductTypeId, new { id = "hdnProducttypeId" })
+        @Html.HiddenFor(m => m.ExchangePriceString, new { id = "hdnExchangePrice" })
+        @Html.HiddenFor(m => m.ExchangePrice)
+        @Html.HiddenFor(m => m.FormatName)
+        @Html.HiddenFor(m => m.UnInstallationPrice)
+        @Html.HiddenFor(m => m.IsUnInstallationRequired, new { id = "hdnNeeded" })
+        @Html.HiddenFor(m => m.StartTime, new { id = "hdnStartTime" })
+        @Html.HiddenFor(m => m.QCDate, new { id = "hdnQCadate" })
+        @Html.HiddenFor(m => m.stringUnInstallationPrice, new { id = "hdnString" })
+        @Html.HiddenFor(m => m.BusinessUnitId, new { id = "hdnBUId" })
+        @Html.HiddenFor(m => m.BusinessPartnerId, new { id = "hdnBuisnessPartnerId" })
+        @Html.HiddenFor(m => m.State1, new { id = "hdnState" })
+        @Html.HiddenFor(m => m.City1, new { id = "hdnCity" })
+        @Html.HiddenFor(m => m.IsOtpRequired, new { id = "hdnotprequired" })
+        @Html.HiddenFor(m => m.BusinessUnitSponser, new { id = "hdnBusinessSponser" })
+        @Html.HiddenFor(m => m.mobileNoWithCountryCode, new { id = "hdnmobileNoWithCountryCode" })
+        @Html.HiddenFor(m => m.priceMasterNameID, new { id = "hdnpriceMasterNameID" })
+        @Html.HiddenFor(m => m.BasePrice, new { id = "hdnBasePrice" })
+        @Html.HiddenFor(m => m.SweetenerBu, new { id = "hdnSweetenerBu" })
+        @Html.HiddenFor(m => m.SweetenerBP, new { id = "hdnSweetenerBP" })
+        @Html.HiddenFor(m => m.SweetenerDigi2L, new { id = "hdnSweetenerDigi2L" })
+        @Html.HiddenFor(m => m.SweetenerTotal, new { id = "hdnSweetenerTotal" })
+        @Html.HiddenFor(m => m.IsSponsorLogorequiredOnUI, new { id = "hdnIsSponsorLogorequiredOnUI" })
+
+
+        @*<div class="col-12 pt-0 text-center">
+            <div class="logoimg">
+                <img src="~/Content/DB_Files/SponsorLogo/Digi2L_Logo_Final.png" />
+            </div>
+            <h4 class="logotext">
+                India's First Digital Platform To Sell Used Appliances! <span class="logotexttagline">CUSTOMER READY! PRICE READY! PAYMENT READY!</span>
+            </h4>
+        </div>*@
+
+
+
+
+    </div>
+
+    <div class="row justify-content-center align-items-center">
+        <div class="col-md-6 mx-auto">
+            <h3 class="section-title">Product Details</h3>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card box">
+                        <div class="row">
+
+                            @if (Model.IsSponsorLogorequiredOnUI == true)
+                            {
+                                <h3 class="section-title">Sponsor Order Number</h3>
+                                <div class="form-group">
+
+                                    <label>Sponsor Order Number <span style="color:red;">*</span></label>
+                                    @Html.EditorFor(model => model.SponsorOrderNumber, new { htmlAttributes = new { @maxlength = "100", @class = "form-control", @id = "txtSponserOrderNumber" } })
+                                    @Html.ValidationMessageFor(model => model.SponsorOrderNumber, "", new { @class = "text-danger" })
+                                    <label id="lblSponsorOrderNumber" style="color:red;"></label>
+
+                                </div>
+                            }
+
+                            <h3 class="section-title">Pickup Details</h3>
+
+
+                            <div class="col-md-6">
+                                <div class="inputbox">
+                                    <label>First Name <span style="color:red;">*</span></label>
+                                    @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @maxlength = "50", @class = "form-control", @id = "txtFirstName" } })
+                                    @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+                                    <label id="lblFirstName" style="color:red;"></label>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="inputbox">
+                                    <label>Last Name <span style="color:red;">*</span></label>
+                                    @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @maxlength = "50", @class = "form-control", @id = "txtLastName" } })
+                                    @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+                                    <label id="lblLastName" style="color:red;"></label>
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <div class="inputbox">
+                                    <label for="">Mobile Number <span style="color:red;">*</span></label>
+                                    @Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @maxlength = "10", @class = "form-control", @id = "txtMobile", @type = "number" } })
+                                    @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
+                                    <label id="lblMobile" style="color:red;"></label>
+                                    <label style="color:green;" id="WhatsappNumber" class="conditionDescription">Number should be active on whatsapp.</label>
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <div class="inputbox">
+                                    <label for="">E-mail <span style="color:red;">*</span></label>
+                                    <div class="input-group">
+                                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @maxlength = "100", @class = "form-control", @id = "txtEmail" } })
+                                        <span class="right mailbox"><i class="fas fa-envelope"></i></span>
+                                    </div>
+                                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                                    <label id="lblEmail" style="color:red;"></label>
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <div class="inputbox">
+                                    <label for="">Pincode <span style="color:red;">*</span></label>
+                                    @Html.TextBoxFor(model => model.ZipCode, new { @class = "form-control form-select", @onchange = "GetState(this.value);", @id = "txtPincode" })
+                                    @Html.ValidationMessageFor(model => model.ZipCode, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="inputbox">
+                                    <label for="">State</label>
+                                    @Html.EditorFor(model => model.StateName, new { htmlAttributes = new { @class = "form-control", @id = "ddlState", disabled = "disabled", @readonly = "readonly" } })
+                                    @Html.ValidationMessageFor(model => model.StateName, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="inputbox">
+                                    <label for="">City</label>
+                                    @Html.EditorFor(model => model.CityName, new { htmlAttributes = new { @class = "form-control", @id = "ddlCity", disabled = "disabled", @readonly = "readonly" } })
+                                    @Html.ValidationMessageFor(model => model.CityName, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <div class="inputbox">
+                                    <label for="">Address 1 <span style="color:red;">*</span></label>
+                                    @Html.EditorFor(model => model.Address1, new { htmlAttributes = new { @maxlength = "200", @class = "form-control required", @id = "txtAddress1" } })
+                                    @Html.ValidationMessageFor(model => model.Address1, "", new { @class = "text-danger" })
+                                    <label id="lblAddress1" style="color:red;"></label>
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <div class="inputbox">
+                                    <label for="">Address 2</label>
+                                    @Html.EditorFor(model => model.Address2, new { htmlAttributes = new { @maxlength = "200", @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Address2, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            @if (Model.showEmployeeId == true)
+                            {
+                                <div class="col-12">
+                                    <div class="inputbox">
+                                        <label for="">Employee Id<span style="color:red;">*</span></label>
+                                        @Html.EditorFor(model => model.EmployeeId, new { htmlAttributes = new { @class = "form-control", @id = "EmployeeId", @maxlength = "50" } })
+                                        @Html.ValidationMessageFor(model => model.EmployeeId, "", new { @class = "text-danger" })
+                                        <label id="lblStoreCode" style="color:red;"></label>
+                                    </div>
+                                </div>
+                            }
+                            @if (Model.IsSFIDRequired == true)
+                            {
+                                <div class="col-12">
+                                    <div class="inputbox">
+                                        <label for="">SFID<span style="color:red;">*</span></label>
+                                        @Html.EditorFor(model => model.SponsorServiceRefId, new { htmlAttributes = new { @class = "form-control", @id = "SFID", @maxlength = "50" } })
+                                        @Html.ValidationMessageFor(model => model.SponsorServiceRefId, "", new { @class = "text-danger" })
+                                        <label id="lblStoreCode" style="color:red;"></label>
+                                    </div>
+                                </div>
+                            }
+                            <h3 class="section-title">Customer Acceptance Required</h3>
+                            @*<div class="form-group">
+            @Html.CheckBoxFor(model => model.OtherCommunications, new { @id = "chkAge18", @class = "clsChecks" })
+            <span for="">I am above the age of 18 years.</span>
+        </div>*@
+
+                            <div class="form-group inputbox termsbox my-2">
+                                @Html.CheckBoxFor(model => model.OtherCommunications, new { @id = "chkAge18", @class = "clsChecks" })
+                                <label for="chkAge18">I agree to receive communication from  Digi2l.</label>
+                            </div>
+
+                            <div class="form-group inputbox termsbox my-2">
+                                @Html.CheckBoxFor(model => model.OtherCommunications, new { @id = "chkTC", @class = "clsChecks" })
+                                <label for="chkTC">Old Product will be ready for pickup.</label>
+                            </div>
+                            <div class="form-group inputbox termsbox my-2">
+                                @Html.CheckBoxFor(model => model.OtherCommunications1, new { @id = "chkBoschTC", @class = "clsChecks" })
+                                <label for="chkBoschTC">I state that I have read and understood the <a href="https://digi2l.in/privacy-policy/" target="_blank">privacy policy</a> and <a href="https://digi2l.in/exchange-terms-condition/" target="_blank">terms and conditions</a> of Digi2L.</label>
+                            </div>
+                            <div class="form-group text-center text-md-right" id="divSubmit" style="display:none">
+                                <input type="Button" value="Submit" class="btn btn-primary" id="btnSubmit">
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+<div class="form-group otpwrapper" id="divShowOTP" style="display:none">
+    <div class="otpbox text-center">
+        <p>OTP has been sent to <strong id="txtmobileOTP"></strong></p>
+        @using (Html.BeginForm())
+        {
+            <input type="number" id="digit-1" name="digit-1" data-next="digit-2" placeholder="please enter OTP" maxlength="4" />
+            <input type="button" id="btnOTPVerification" value="Verify OTP" class="btn btn-secondary" style="margin-top:2px;">
+            <input type="button" id="btnOTPResend" value="Re-Send OTP" class="btn btn-secondary" style="margin-top:2px;">
+        }
+    </div>
+</div>
+
+
+
+<script>
+
+
+     $(document).ready(function () {
+         $('#txtPincode').attr('autocomplete', 'one-time-code');
+         $('#btnSubmit').click(function () {
+
+             if ($("#hdnotprequired").val() == 'True' || $("#hdnotprequired").val() == 'true') {
+                 SendOTP();
+             }
+             else {
+                 if (validateLeadForm()) {
+                     $(this).prop('disabled', true);
+                     $("#loader").show();
+                     $("#Course-form").submit();
+                 }
+             }
+         })
+
+
+        $('#btnOTPResend').click(function () {
+            SendOTP();
+            $($("#btnOTPVerification")).prop('disabled', false);
+        })
+
+    $("#btnOTPVerification").click(function () {
+        var mobnumber = $('#txtMobile').val();
+        var OTP = $('#digit-1').val();
+
+         $.ajax({
+                url: "@Url.Action("VerifyOTP", "Exchange")",
+                type: "POST",
+                dataType: 'json',
+                contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+             data: {
+                 mobnumber: mobnumber,
+                 OTP: OTP
+             },
+                success: function (response) {
+                    //
+                    if (response == true || response == "True" || response == "true") {
+                        $($("#btnOTPVerification")).prop('disabled', true);
+                        $("#loader").show();
+                        $("#Course-form").submit();
+
+                        //alert("disable");
+                    }
+                    else {
+                        //Show message that OTP is not correct
+                        //$("#OTPVerificationMsg").append("OTP is not correct");
+                        document.getElementById("digit-1").value = "";
+                        alert("OTP is not correct. Please enter correct OTP");
+
+                    }
+                    //$("#divShowOTP").show();
+
+
+                },
+                failure: function (response) {
+                },
+                error: function (response) {
+                }
+            });
+
+    });
+    });
+
+    function SendOTP() {
+
+         if (validateLeadForm()) {
+             var mobnumber = $('#txtMobile').val();
+             var buid = $('#hdnbuid').val();
+           // alert("hi");
+            $.ajax({
+                url: "@Url.Action("SendOTP", "Exchange")",
+                type: "POST",
+                dataType: 'json',
+                contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+                data: {
+                    mobnumber: mobnumber, buid: buid
+                },
+                success: function (response) {
+                    if (response == true || response == "True" || response == "true") {
+                        $("#txtmobileOTP").text(mobnumber);
+                        alert("OTP has been sent to mobile number: " + mobnumber);
+                        $("#divShowOTP").show();
+                        $('html, body').animate({
+                            scrollTop: $("#divShowOTP").offset().top
+                        }, 2000);
+                    }
+                    else {
+                        alert("Unable to send OTP. Please check your Mobile Number");
+                    }
+                },
+                failure: function (response) {
+                },
+                error: function (response) {
+                }
+            });
+        }
+    }
+    function validateLeadForm() {
+
+        if ($("form").valid()) {
+            var IsSponsorOrderNumber = $("#hdnIsSponsorLogorequiredOnUI").val();
+            if (IsSponsorOrderNumber == true || IsSponsorOrderNumber == "true" || IsSponsorOrderNumber=="True") {
+                var sponserOrderNumber = $("#txtSponserOrderNumber").val();
+                if (sponserOrderNumber == "" || sponserOrderNumber == null) {
+
+                    $("#lblSponsorOrderNumber").text("Please provide sponser order number");
+
+                    return false;
+                }
+                else {
+                    $("#lblSponsorOrderNumber").text("");
+                    return true;
+                }
+            }
+            else {
+                return true;
+            }
+
+        }
+        else {
+            return false;
+        }
+    }
+
+
+       $("#txtPincode").autocomplete({
+         source: function (request, response)
+         {
+            //var customer = new array();
+            $.ajax({
+                async: false,
+                cache: false,
+                type: "POST",
+                url:
+                    "@(Url.Action("GetPincodeForMyGate", "IsDtoC"))" + "?pintext=" + $("#txtPincode").val() + "&buid=" + $("#hdnBUId").val(),
+                data: { "pintext": request.pintext, buid: request.buid },
+                success: function (data) {
+                    ;
+                    if (data.length > 0) {
+                        response($.map(data, function (item) {
+                            
+                            if (item.Text != "No pincode available on this location") {
+                                return { label: item.Text, value: item.Text };
+                            }
+                            else {
+                                $("#txtPincode").val("");
+                            }
+                        }))
+                    }
+                    else {
+                        $("#txtPincode").val("");
+                    }
+                }
+            });
+            //response(data);
+         },
+       });
+
+
+     function GetState(_pinCode) {
+         var pinCode = _pinCode;
+         var buid = $("#hdnbuid").val();
+         if (pinCode) {
+            $.ajax({
+                type: "GET",
+                url: "@Url.Action("GetState", "IsDtoC")" + "?pincode=" + pinCode,
+                //data: { stateName: stateName, buid: buid},
+                success: function (data) {
+                    if (data.StateName != null) {
+                        //console.log(data);
+                        $("#ddlState").empty();
+                        $("#ddlState").val(data.StateName);
+                        $("#ddlCity").val(data.CityName);
+                        $("#hdnState").val(data.StateName);
+                        $("#hdnCity").val(data.CityName);   
+
+                    } else {
+                        $("#ddlState").empty();
+                        $("#ddlCity").empty();
+                        $("#txtPincode").val("");
+                        $("#ddlState").val("");
+                        $("#ddlCity").val("");
+                    }
+                    //GetPincode(_stateName);
+                }
+            });
+        } else {
+             $("#ddlState").empty();
+             $("#ddlCity").empty();
+        }
+     }
+
+    $('.clsChecks').change(function () {
+
+        if ($(this).is(':checked')) {
+            if (($("#chkTC").is(':checked')) && $('#chkAge18').is(':checked')) {
+                $('#divSubmit').show();
+
+            }
+            else {
+                $('#divSubmit').hide();
+            }
+
+        } else {
+            $('#divSubmit').hide();
+        }
+    });
+</script>
+
+

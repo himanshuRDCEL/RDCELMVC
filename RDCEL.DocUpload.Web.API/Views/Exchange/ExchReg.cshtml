@@ -1,0 +1,1476 @@
+﻿@model RDCEL.DocUpload.DataContract.SponsorModel.ExchangeOrderDataContract
+
+@{
+    ViewBag.Title = "Exchange Registration";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    #showImg {
+        width: 50%;
+        height: auto;
+        display: block;
+        margin: 10px auto;
+    }
+
+    .custom-file {
+        height: 50% !important;
+    }
+    /*Added by VK*/
+    .getExtraValueBtn .btn {
+        border-radius: 10px !important;
+        padding: 12px 40px;
+    }
+
+    .getExtraValueBtn p {
+        font-size: 13px;
+        color: red;
+        font-weight: 600;
+        pointer-events: all;
+    }
+
+    .sweetnerPriceQuestions label, .sweetnerPriceQuestions input {
+        font-size: 16px !important;
+        font-weight: 500;
+        text-align: left;
+        pointer-events: all !important;
+        cursor: pointer;
+        height: 100%;
+        display: block;
+        margin: 0 5px;
+    }
+
+    .sweetnerPriceQuestions label {
+        display: inline;
+    }
+
+    .sweetnerPriceQuestions .form-group {
+        padding: 0 !important;
+        display: flex !important;
+        align-items: baseline;
+    }
+</style>
+
+
+
+@using (Html.BeginForm("ExchReg", "Exchange", FormMethod.Post, new { enctype = "multipart/form-data", @id = "Course-form", @class = "form-horizontal", autocomplete = "one-time-code" }))
+{
+<div class="row">
+
+    @Html.HiddenFor(m => m.Id, new { id = "hdnExchangeId" })
+    @Html.HiddenFor(m => m.CreatedBy)
+    @Html.HiddenFor(m => m.CreatedDate)
+    @Html.HiddenFor(m => m.ModifiedBy)
+    @Html.HiddenFor(m => m.ModifiedDate)
+    @Html.HiddenFor(m => m.IsActive)
+    @Html.HiddenFor(m => m.BusinessUnitId, new { id = "hdnBusinessUnitId" })
+    @Html.HiddenFor(m => m.BusinessPartnerId)
+    @Html.HiddenFor(m => m.ZohoSponsorNumber)
+    @Html.HiddenFor(m => m.ExpectedDeliveryHours)
+    @Html.HiddenFor(m => m.CompanyName)
+    @Html.HiddenFor(m => m.StoreCode)
+    @Html.HiddenFor(m => m.QualityCheck, new { id = "hdnQualityCheck" })
+    @Html.HiddenFor(m => m.FormatName, new { id = "hdnFormatName" })
+    @Html.HiddenFor(m => m.ExchangePriceString, new { id = "hdnExchangePriceString" })
+    @Html.HiddenFor(m => m.Base64StringValue, new { id = "hdnBase64StringValue" })
+    @Html.HiddenFor(m => m.Condition1, new { id = "hdnCondition1" })
+    @Html.HiddenFor(m => m.Condition2, new { id = "hdnCondition2" })
+    @Html.HiddenFor(m => m.Condition3, new { id = "hdnCondition3" })
+    @Html.HiddenFor(m => m.Condition4, new { id = "hdnCondition4" })
+    @Html.HiddenFor(m => m.StateName, new { id = "hdnState" })
+    @Html.HiddenFor(m => m.City1, new { id = "hdnCity" })
+    @Html.HiddenFor(m => m.IsOrc, new { id = "hdnOrc" })
+    @Html.HiddenFor(m => m.IsD2C, new { id = "hdnIsD2C" })
+    @Html.HiddenFor(m => m.IsSweetnerModelBased, new { id = "hdnIssweetnerModelBased" })
+    @Html.HiddenFor(m => m.IsDifferedSettlement, new { id = "hdnDifferedsettele,ent" })
+    @Html.HiddenFor(m => m.productBrandID, new { id = "hdnBrandId" })
+    @Html.HiddenFor(m => m.ImageName, new { id = "hdnImageName" })
+    @Html.HiddenFor(m => m.ProductCategoryId, new { id = "hdnoldCatId" })
+    @Html.HiddenFor(m => m.ProductTypeId, new { id = "hdnOldTypeId" })
+    @Html.HiddenFor(m => m.BrandId, new { id = "hdnOldBrandId" })
+    @Html.HiddenFor(m => m.NewBrandId, new { id = "hdnNewBrandId" })
+    @Html.HiddenFor(m => m.NewProductCategoryId, new { id = "hdnNewCatId" })
+    @Html.HiddenFor(m => m.NewProductCategoryTypeId, new { id = "hdnNewTypeId" })
+    @Html.HiddenFor(m => m.ProductAge, new { id = "hdnproductage" })
+    @Html.HiddenFor(m => m.IsVoucher, new { id = "hdnIsVoucher" })
+    @Html.HiddenFor(m => m.VoucherType, new { id = "hdnVoucherType" })
+    @Html.HiddenFor(m => m.voucherCash, new { id = "hdnvoucherCash" })
+    @Html.HiddenFor(m => m.AssociateCode, new { id = "hdnAssociateCode" })
+    @Html.HiddenFor(m => m.StoreType, new { id = "hdnStoreType" })
+    @Html.HiddenFor(m => m.businessUnitForHidingModelNumberAndInvoiceData, new { id = "hdnbusinessUnitForHidingModelNumberAndInvoiceData" })
+    @Html.HiddenFor(m => m.IsInvoiceDetailsReqiured, new { id = "hdnIsInvoiceDetailsReqiured" })
+    @Html.HiddenFor(m => m.NewBrandIdDefault)
+    @Html.HiddenFor(m => m.AreaLocalityName, new { id = "hdnAreaLocalityName" })
+    @Html.HiddenFor(m => m.BusinessUnitDataContract.IsAreaLocality, new { id = "hdnIsAreaLocality" })
+    @*//Added by Vk for Relience*@
+    @Html.HiddenFor(m => m.ProductModelIdNew, new { id = "hdnProductModelIdNew" })
+    @Html.HiddenFor(m => m.EmployeeId, new { id = "hdnEmployeeId" })
+    @Html.HiddenFor(m => m.SweetenerBP, new { id = "hdnSweetenerBP" })
+    @Html.HiddenFor(m => m.SweetenerBu, new { id = "hdnSweetenerBu" })
+    @Html.HiddenFor(m => m.SweetenerDigi2L, new { id = "hdnSweetenerDigi2L" })
+    @Html.HiddenFor(m => m.priceMasterNameID, new { id = "hdnpriceMasterNameID" })
+    @Html.HiddenFor(m => m.SweetenerTotal, new { id = "hdnSweetenerTotal" })
+    @Html.HiddenFor(m => m.ModelNumberId, new { id = "hdnModelNumberId" })
+    @Html.HiddenFor(m => m.BasePrice, new { id = "hdnBasePrice" })
+    @Html.HiddenFor(m => m.IsValidationBasedSweetner, new { id = "hdnIsValidationBasedSweetner" })
+    @Html.HiddenFor(m => m.IsUnInstallation, new { id = "hdnIsUnInstallation" })
+    @Html.HiddenFor(m => m.UnInstallationPrice, new { id = "hdnUnInstallationPrice" })
+    @Html.HiddenFor(m => m.IsDefaultPickupAddress, new { id = "IsDefaultPickupAddress" })
+    @Html.HiddenFor(m => m.IsCouponAplied, new { id = "hdnIsCouponAplied" })
+    @Html.HiddenFor(m => m.CouponId, new { id = "hdnCouponId" })
+    @Html.HiddenFor(m => m.UsedCouponCode, new { id = "hdnUsedCouponCode" })
+    @Html.HiddenFor(m => m.CouponValue, new { id = "hdnCouponValue" })
+</div>
+
+    <div class="row justify-content-center align-items-center">
+        <div class="col-md-6 mx-auto">
+            <h3 class="section-title">Exchange Registration</h3>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card box">
+                        <div class="row">
+                            @*<h3 class="section-title">Exchange Registration</h3>*@
+
+                            <div id="divStoreOther" style="display:none">
+
+                                <div class="form-group">
+                                    <label for="">Business Partner Name<span style="color:red;">*</span></label>
+                                    @Html.EditorFor(model => model.AssociateName, new { htmlAttributes = new { @class = "form-control", @id = "txtName" } })
+                                    @Html.ValidationMessageFor(model => model.AssociateName, "", new { @class = "text-danger" })
+                                    <label id="lblName" style="color:red;"></label>
+
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <label>Mobile number<span style="color:red;">*</span></label>
+                                            @Html.EditorFor(model => model.StorePhoneNumber, new { htmlAttributes = new { @class = "form-control", @id = "txtPhoneNumber", @type = "number", @maxlenght = "10" } })
+                                            @Html.ValidationMessageFor(model => model.StorePhoneNumber, "", new { @class = "text-danger" })
+                                            <label id="txtPhoneNumber" style="color:red;"></label>
+                                        </div>
+
+                                        <div class="col-6">
+                                            <label for="">Email<span style="color:red;">*</span></label>
+                                            @Html.EditorFor(model => model.AssociateEmail, new { htmlAttributes = new { @class = "form-control", @Required = "required", @id = "txtEmail", type = "email" } })
+                                            @Html.ValidationMessageFor(model => model.AssociateEmail, "", new { @class = "text-danger" })
+                                            <label id="txtEmail" style="color:red;"></label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <h3 class="section-title">Customer Details</h3>
+
+                            <div class="col-md-12">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="inputbox">
+                                            <label>First Name <span style="color:red;">*</span></label>
+                                            @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @maxlength = "50", @class = "form-control", @id = "txtFirstName" } })
+                                            @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+                                            <label id="lblFirstName" style="color:red;"></label>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="inputbox">
+                                            <label>Last Name <span style="color:red;">*</span></label>
+                                            @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @maxlength = "50", @class = "form-control", @id = "txtLastName" } })
+                                            @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+                                            <label id="lblLastName" style="color:red;"></label>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <div class="inputbox">
+                                    <label for="">Mobile Number<span style="color:red;">*</span></label>
+                                    @Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "form-control", @id = "txtMobile", @type = "number", @maxlength = "10" } })
+                                    @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
+                                    <label id="lblMobile" style="color:red;"></label>
+                                    <label style="color:green" class="conditionDescription">Note: Enter same mobile number used at the time of new product purchase.</label>
+                                    <label class="conditionDescription" style="color:green;" id="WhatsappNumber">Number should be active on whatsapp.</label>
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <div class="inputbox">
+                                    <label for="">E-mail <span style="color:red;">*</span></label>
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @maxlength = "100", @class = "form-control required", @id = "txtEmail" } })
+                                    </div>
+                                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                                    <label id="lblEmail" style="color:red;"></label>
+                                </div>
+                            </div>
+                            @if (Model.IsDefaultPickupAddress == false)
+                            {
+                                <div class="col-12">
+                                    <div class="inputbox">
+                                        <label for="">Address Line 1 <span style="color:red;">*</span></label>
+                                        @Html.EditorFor(model => model.Address1, new { htmlAttributes = new { @maxlength = "250", @class = "form-control required", @id = "txtAddress1" } })
+                                        @Html.ValidationMessageFor(model => model.Address1, "", new { @class = "text-danger" })
+                                        <label id="lblAddress1" style="color:red;"></label>
+                                    </div>
+                                </div>
+
+                                <div class="col-12">
+                                    <div class="inputbox">
+                                        <label for="">Address Line 2</label>
+                                        @Html.EditorFor(model => model.Address2, new { htmlAttributes = new { @maxlength = "250", @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Address2, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="col-12">
+                                    <div class="inputbox">
+                                        <label for="">Pin Code <span style="color:red;">*</span></label>
+                                        @Html.EditorFor(model => model.PinCode, new { htmlAttributes = new { @class = "form-control", autocomplete = "one-time-code", @type = "number", @onchange = "GetState(this.value);", @id = "txtZipcode", @maxlength = "6" } })
+                                        @Html.ValidationMessageFor(model => model.PinCode, "", new { @class = "text-danger" })
+                                        <label id="lblZipcode" style="color:red;"></label>
+                                    </div>
+                                </div>
+                            }
+                            else
+                            {
+                                @Html.HiddenFor(m => m.Address1)
+                                @Html.HiddenFor(m => m.Address2)
+                                @Html.HiddenFor(m => m.ZipCode)
+                            }
+
+
+                            @if (Model.BusinessUnitDataContract != null && Model.BusinessUnitDataContract.IsAreaLocality == true)
+                            {
+                                <div class="col-12">
+                                    <div class="inputbox">
+                                        <label for="">Area Locality<span style="color:red;">*</span></label>
+                                        @Html.DropDownListFor(model => model.AreaLocality, Model.AreaLocalityList, "--Select Area Locality--", new { @class = "form-control form-select", @id = "ddlArealocality" })
+                                        @Html.ValidationMessageFor(model => model.AreaLocality, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            }
+                            @if (Model.IsDefaultPickupAddress == false)
+                            {
+                                <div class="col-md-6">
+                                    <div class="inputbox">
+                                        <label for="">State<span style="color:red;"></span></label>
+                                        @Html.EditorFor(model => model.State, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @id = "txtState", @disabled = "disabled" } })
+                                        @Html.ValidationMessageFor(model => model.State, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="inputbox">
+                                        <label for="">City<span style="color:red;"></span></label>
+                                        @Html.EditorFor(model => model.City, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @id = "txtCity", @disabled = "disabled" } })
+                                        @Html.ValidationMessageFor(model => model.City, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            }
+                            else
+                            {
+                                @Html.HiddenFor(m => m.State)
+                                @Html.HiddenFor(m => m.City)
+                            }
+                            <h3 class="section-title">Product Details to Exchange</h3>
+
+                            <div class="col-12">
+                                <div class="inputbox">
+                                    <label for="">Product Group<span style="color:red;">*</span></label>
+                                    @Html.EditorFor(model => model.ProductCategory, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @id = "txtoldcat", @disabled = "disabled" } })
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="inputbox">
+                                    <label for="">Product type<span style="color:red;">*</span></label>
+                                    @Html.EditorFor(model => model.ProductType, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @id = "txtoldtype", @disabled = "disabled" } })
+                                </div>
+                            </div>
+
+                            <div class="col-md-6" id="divBrandOld">
+                                <div class="inputbox">
+                                    <label for="">Brand<span style="color:red;">*</span></label>
+                                    @Html.EditorFor(model => model.BrandName, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @id = "txtoldbrand", @disabled = "disabled" } })
+                                </div>
+                            </div>
+
+
+
+                            @if (Model.IsSweetnerModelBased == true && Model.IsNewProductDetailsReqiured == true)
+                            {
+                                <div class="col-md-12">
+                                    <div class="row" id="divNewProductDetailsForDealerandHome">
+
+                                        <h3 class="section-title">New Product Details</h3>
+
+                                        <div class="col-12">
+                                            <div class="inputbox">
+                                                <label for="">Product Group <span style="color:red;">*</span></label>
+                                                @Html.EditorFor(model => model.NewProductCategory, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @id = "txtnewcat", @disabled = "disabled" } })
+                                                <label id="lblProdGroup" style="color:red;"></label>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <div class="inputbox">
+                                                <label for="">Product Type <span style="color:red;">*</span></label>
+                                                @Html.EditorFor(model => model.NewProductType, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @id = "txtnewtype", @disabled = "disabled" } })
+                                                <label id="lblProdType" style="color:red;"></label>
+                                            </div>
+                                        </div>
+
+                                        @if (Model.IsNewBrandRequired == true)
+                                        {
+                                            <div class="col-md-6">
+                                                <div class="inputbox">
+                                                    <label for="">Brand<span style="color:red;">*</span></label>
+                                                    @Html.EditorFor(model => model.NewBrandName, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @id = "txtnewbrand", @disabled = "disabled" } })
+                                                    @Html.HiddenFor(m => m.NewBrandId)
+                                                </div>
+                                            </div>
+                                        }
+
+                                    </div>
+
+                                </div>
+
+                                if (Model.voucherCash == Model.VoucherType && Model.IsD2C == false && Model.IsModelNumberRequired == true)
+                                {
+                                    <div class="col-12" id="divNewModelDetails">
+                                        <h3 class="section-title">Model Details</h3>
+
+                                        <div class="inputbox">
+                                            <label for="">Model Number <span style="color:red;">*</span></label>
+                                            @*@Html.EditorFor(model => model.ModelNumberId, Model.ProductModelList, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @id = "txtnewbrand", @disabled = "disabled" } })*@
+                                            @Html.EditorFor(model => model.ModelNumber, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @id = "ddlModelNo", @disabled = "disabled" } })
+
+                                            @*@Html.DropDownListFor(model => model.ModelNumberId, Model.ProductModelList, new { @class = "custom-select", @id = "ddlModelNo", @disabled = "disabled" })*@
+                                            @Html.ValidationMessageFor(model => model.ModelNumberId, "", new { @class = "text-danger" })
+                                            <label id="lblModelNo" style="color:red;"></label>
+                                        </div>
+                                    </div>
+
+                                }
+                                else if (Model.BusinessUnitId == 5)
+                                {
+                                    <div id="ModelDisplayForOthers">
+                                        <h3 class="section-title">Model Details</h3>
+                                        <div class="form-group">
+                                            <label for="">Model Number <span style="color:red;">*</span></label>
+                                            @Html.EditorFor(model => model.ProductModelNew, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @id = "txtnewModel" } })
+                                            @Html.ValidationMessageFor(model => model.ProductModelNew, "", new { @class = "text-danger" })
+                                            <label id="lblModelNo" style="color:red;"></label>
+                                        </div>
+                                    </div>
+                                }
+                            }
+
+                            <div class="col-12" id="divProductPrice">
+                                <div class="inputbox pricebox">
+                                    <h3 class="mainprice">Product Price: <span>₹ <lable id="productPrice"></lable> </span></h3>
+                                    @if (Model.IsValidationBasedSweetner == true)
+                                    {
+                                        <h6 class="SweetnerPriceBoxWrap">
+                                            Sweetner value: <strong class="text-success">+ ₹<label id="sweetnerPrice"></label></strong>&nbsp;
+                                            <span class="text-muted font-italic" style="font-size: 12px;">(Will be credit after QC)</span>
+                                        </h6>
+                                    }
+                                    <p class="text-muted m-0">Subject to quality check of the product. * T&C Applied</p>
+                                </div>
+                            </div>
+                            @if (Model.IsValidationBasedSweetner == true)
+                            {
+                                <div id="divSweetnerPrice" style="display:none;text-align:center;">
+                                    <div class="row">
+                                        <div class="col-12 text-center getExtraValueBtn">
+                                            <a href="javascript:void(0)" class="btn btn-primary">Get Extra Value</a>
+                                            <p class="mt-2">*Unlock additional value based on your condition selection!</p>
+                                        </div>
+                                    </div>
+                                    <div class="row sweetnerPriceQuestions" style="text-align:left;margin-left:6px;margin-right:6px;">
+                                        <div class="col-12">
+                                            @if (Model.buBasedSweetnerValidationsList != null && Model.buBasedSweetnerValidationsList.Count > 0)
+                                            {
+                                                int i = 1;
+                                                foreach (var item in Model.buBasedSweetnerValidationsList)
+                                                {
+                                                    <div class="form-group m-0 my-2">
+                                                        <input type="checkbox" class="sweetnerQuestions" value="@item.IsRequired.ToString()" id="Question_@i">
+                                                        <label for="Question_@i">
+                                                            @item.Question
+                                                            @if (item.IsRequired)
+                                                            {<span style="color:red">*</span>}
+                                                        </label>
+                                                        <br />
+                                                        @if (item.IsRequired)
+                                                        {
+                                                            <span class="text-muted font-italic" style="font-size: 12px;display:none;">
+                                                                (This field is required for Get Extra Value)
+                                                            </span>
+                                                        }
+                                                    </div>
+                                                    i++;
+                                                }
+                                            }
+                                        </div>
+                                    </div>
+                                    <br />
+                                </div>
+                            }
+
+                            @*//New Section for IsORC and IsDefferedSettelment*@
+                            @if (Model.voucherCash == Model.VoucherType && Model.IsD2C == false && Model.IsInvoiceDetailsReqiured == true)
+                            {
+                                <div id="divNewProductDetails">
+                                    <h3 class="section-title">Invoice Details</h3>
+
+                                    @if (Model.IsProductSerialNumberRequired == true)
+                                    {
+                                        <div class="col-12">
+                                            <div class="inputbox">
+                                                <label for="">Product Serial Number<span style="color:red;">*</span> </label>
+                                                @Html.EditorFor(model => model.ProductSerialNumber, new { htmlAttributes = new { @maxlength = "50", @class = "form-control", @id = "txtProductSerialNumber" } })
+                                                @Html.ValidationMessageFor(model => model.ProductSerialNumber, "", new { @class = "text-danger" })
+                                                <label id="lblProductSerialNumber" style="color:red;"></label>
+                                            </div>
+                                        </div>
+                                    }
+
+                                    <div class="col-12">
+                                        <div class="inputbox">
+                                            <label for="">Invoice Number<span style="color:red;">*</span> </label>
+                                            @Html.EditorFor(model => model.InvoiceNumber, new { htmlAttributes = new { @maxlength = "50", @class = "form-control", @id = "txtInvoiceNumber" } })
+                                            @Html.ValidationMessageFor(model => model.InvoiceNumber, "", new { @class = "text-danger" })
+                                            <label id="lblInvoiceNumber" style="color:red;"></label>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12">
+                                        <div class="inputbox">
+                                            <label for="">Invoice Image <span style="color:red;">*</span></label>
+                                            <div class="preview-container" id="showImg"></div>
+
+                                            @*<div class="custom-file">*@
+                                            <input type="file" class="form-control" name="InvoiceImage" id="validatedCustomFile" accept="image/*" />
+                                            <label class="conditionDescription text-success mt-2">You can only upload jpg, jpeg, png, gif files.</label><br />
+                                            @*</div>*@
+                                            @Html.ValidationMessageFor(model => model.InvoiceImageName, "", new { @class = "text-danger" })
+                                            <label id="lbInvoicelFileName" class="d-none"></label>
+                                            <label id="lblInvoiceImage" style="color:red;"></label>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <img id="showImg" src="" />
+                                    </div>
+                                </div>
+                            }
+
+                            <h3 class="section-title">Customer Acceptance Required</h3>
+                            @if (Model.IsCustomerAcceptenceRequired == true)
+                            {
+                                <div class="row">
+                                    <p class="text-muted f-12">
+                                        <div class="inputbox termsbox">
+                                            @Html.CheckBoxFor(model => model.OtherCommunications1, new { @id = "chk1", @class = "clsChecks form-check-input" })
+                                            <span for="">Old product will be ready for pickup.</span>
+                                        </div>
+
+                                        <div class="inputbox termsbox">
+                                            @Html.CheckBoxFor(model => model.FollowupCommunication, new { @id = "chk2", @class = "clsChecks form-check-input" })
+                                            <span for="">I accept LG exchange offer and confirm to handover my old product to Digi2l at the time of Pickup.</span>
+                                        </div>
+
+                                        <div class="inputbox termsbox">
+                                            @Html.CheckBoxFor(model => model.FollowupCommunication1, new { @id = "chk3", @class = "clsChecks form-check-input" })
+                                            <span for="">I agree to receive communication from  Digi2l.</span>
+                                        </div>
+                                        <div class="inputbox termsbox">
+                                            @Html.CheckBoxFor(model => model.OtherCommunications, new { @id = "chk4", @class = "clsChecks form-check-input" })
+                                            <label for="termsandcondition">I state that I have read and understood the <a href="https://digi2l.in/privacy-policy/" target="_blank">privacy policy</a> and <a href="https://digi2l.in/exchange-terms-condition/" target="_blank">terms and conditions</a> of Digi2L.</label>
+                                        </div>
+                                    </p>
+                                </div>
+                            }
+                            else
+                            {
+
+                                <div class="row">
+                                    <p class="text-muted f-12">
+
+                                        <div class="inputbox termsbox">
+                                            @Html.CheckBoxFor(model => model.OtherCommunications1, new { @id = "chkTC", @class = "clsChecks form-check-input" })
+                                            <label for="chkTC">Old product will be ready for pickup.</label>
+                                        </div>
+
+                                        @if (Model.IsUnInstallation == true)
+                                        {
+                                            <div class="inputbox termsbox">
+                                                @Html.CheckBoxFor(model => model.FollowupCommunication1, new { @id = "chkUnistallation", @class = "clsChecks form-check-input" })
+                                                <label for="chkUnistallation">
+                                                    I require uninstallation for my product. I agree to the following prices:
+                                                    <span id="productType"></span> : <strong id="UnInstallationPrice"></strong>
+                                                </label>
+                                            </div>
+                                        }
+
+                                        @if (Model.BusinessUnitId != 11)
+                                        {
+                                            <div class="inputbox termsbox">
+                                                @Html.CheckBoxFor(model => model.FollowupCommunication, new { @id = "chkBoschTC", @class = "clsChecks form-check-input" })
+                                                <label for="chkBoschTC">I accept exchange offer and confirm to handover my old product to Digi2l at the time of Pickup.</label>
+                                            </div>
+                                        }
+                                        <div class="inputbox termsbox">
+                                            @Html.CheckBoxFor(model => model.OtherCommunications, new { @id = "chkAge18", @class = "clsChecks form-check-input" })
+                                            <label for="chkAge18">I state that I have read and understood the <a href="https://digi2l.in/privacy-policy/" target="_blank">privacy policy</a> and <a href="https://digi2l.in/exchange-terms-condition/" target="_blank">terms and conditions</a> of Digi2L.</label>
+                                        </div>
+
+                                    </p>
+
+                                </div>
+
+
+                            }
+
+                            <div class="form-group text-center" id="divSubmit" style="display:none">
+                                <input type="Button" value="Submit" class="btn btn-primary" id="btnSubmit">
+                            </div>
+                            @*//*@
+
+
+                            <div class="form-group otpwrapper" id="divShowOTP" style="display:none">
+                                <div class="inputbox otpbox text-center">
+                                    <label>OTP has been sent to <strong id="txtmobileOTP"></strong></label>
+                                    @using (Html.BeginForm())
+                                    {
+                                        <input type="number" id="digit-1" name="digit-1" data-next="digit-2" class="form-control d-block w-25 mx-auto bg-light text-center fw-bold border-dashed" placeholder="" maxlength="4" />
+                                        <a id="btnOTPResend" class="text-link f-12 mt-2 d-inline-block"><u>Re-Send OTP</u></a>
+                                        <div class="col-12 mt-4">
+                                            <a id="btnOTPVerification" value="Verify OTP" class="btn btn-primary">Verify OTP</a>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+}
+
+
+<script src="~/Scripts/jquery.resizeImg.js"></script>
+<script src="~/Scripts/mobileBUGFix.mini.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        function removeValidationAttributes() {
+            var form = document.getElementById('Course-form');
+            var elements = form.elements;
+
+            for (var i = 0; i < elements.length; i++) {
+                elements[i].removeAttribute('required');
+                elements[i].removeAttribute('pattern');
+                elements[i].removeAttribute('min');
+                elements[i].removeAttribute('max');
+                elements[i].removeAttribute('maxlength');
+            }
+        }
+        ///event listener
+
+        window.addEventListener('DOMContentLoaded', function () {
+            
+            var isDefaultPickupAddress = document.getElementById('IsDefaultPickupAddress').value;
+            if (isDefaultPickupAddress === "True") {
+                removeValidationAttributes();
+                document.getElementById('Course-form').submit();
+            }
+        });
+
+
+
+
+        $('#txtZipcode').attr('autocomplete', 'one-time-code');
+
+        //exchange price on load
+        var exchangeprice = $("#hdnExchangePriceString").val();
+        $("#divProductPrice").show();
+        $("#productPrice").text(exchangeprice);
+        var buid = parseInt($("#hdnBusinessUnitId").val());
+        //For Other Business Unit
+        if (buid != 5) {
+            GetModelsFromProductTypeNew();
+        }
+
+        //SHOW EXCHANGE PRICE ON PAGE LOAD
+        var exchangePrice = $("#hdnExchangePriceString").val();
+        $("#divProductPrice").show();
+        $("#productPrice").text(exchangePrice);
+
+        $('#btnSubmit').click(function () {
+
+            SendOTP();
+        })
+
+        $('#btnOTPResend').click(function () {
+            SendOTP();
+            $($("#btnOTPVerification")).prop('disabled', false);
+        })
+        $(".rdoQualityIndex").change(function () {
+            $("#hdnQualityCheck").val($(this).val());
+        });
+        $("#btnOTPVerification").click(function () {
+            if (validateLeadForm()) {
+                 var mobnumber = $('#txtMobile').val();
+        var OTP = $('#digit-1').val();
+
+         $.ajax({
+                url: "@Url.Action("VerifyOTP", "Exchange")",
+                type: "POST",
+                dataType: 'json',
+                contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+             data: {
+                 mobnumber: mobnumber,
+                 OTP: OTP
+             },
+                success: function (response) {
+                    if (response == true || response == "True" || response == "true") {
+                        $($("#btnOTPVerification")).prop('disabled', true);
+                        $("#loader").show();
+                        $("#Course-form").submit();
+                        //alert("disable");
+                    }
+                    else {
+                        //Show message that OTP is not correct
+                        //$("#OTPVerificationMsg").append("OTP is not correct");
+                        document.getElementById("digit-1").value = "";
+                        alert("OTP is not correct. Please enter correct OTP");
+                    }
+                    //$("#divShowOTP").show();
+                },
+                failure: function (response) {
+                },
+                error: function (response) {
+                }
+            });
+            }
+
+
+    });
+
+
+
+        //BU Sweetner Validation Added by VK
+        $('.sweetnerPriceQuestions').hide();
+        $('.getExtraValueBtn .btn').click(function () {
+            $(this).css({ 'pointer-events': 'none', 'cursor': 'not-allowed', 'opacity': '0.7' });
+            $('.sweetnerPriceQuestions').show();
+        });
+        $('.SweetnerPriceBoxWrap').hide();
+        $('.sweetnerPriceQuestions input[type="checkbox"]').on('change', function () {
+            var anyChecked = $('.sweetnerPriceQuestions input[type="checkbox"]:checked').length > 0;
+            if (anyChecked) {
+                CheckRequiredForSweetner();
+            } else {
+                $('.SweetnerPriceBoxWrap').hide();
+            }
+        });
+        var price = $("#hdnUnInstallationPrice").val();
+        var type = $("#txtoldtype").val();
+        $("#UnInstallationPrice").text(price);
+        $("#productType").text(type);
+        $("#hdnIsUnInstallation").val(false);
+        //BU Sweetner Validation
+    });
+
+    function SendOTP() {
+         if (validateLeadForm()) {
+             var mobnumber = $('#txtMobile').val();
+             var buid = $("#hdnBusinessUnitId").val();
+           // alert("hi");
+            $.ajax({
+                url: "@Url.Action("SendOTP", "Exchange")",
+                type: "POST",
+                dataType: 'json',
+                contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+                data: {
+                    mobnumber: mobnumber, buid: buid
+                },
+                success: function (response) {
+                    if (response == true || response == "True" || response == "true") {
+                        $("#txtmobileOTP").text(mobnumber);
+                        alert("OTP has been sent to mobile number: " + mobnumber);
+                        $("#divShowOTP").show();
+                        $('html, body').animate({
+                            scrollTop: $("#divShowOTP").offset().top
+                        }, 2000);
+                    }
+                    else {
+                        alert("Unable to send OTP. Please check your Mobile Number");
+                    }
+                },
+                failure: function (response) {
+                },
+                error: function (response) {
+                }
+            });
+        }
+    }
+    function validateLeadForm() {
+        flag = true;
+        var vouchercash = $("#hdnvoucherCash").val();
+        var voucherType = $("#hdnVoucherType").val();
+        var modelnumber = $("#ddlModelNo").val();
+        var IsInvoiceRequired = $("#hdnIsInvoiceDetailsReqiured").val();
+        var isSweetnerModelBased = $("#hdnIssweetnerModelBased").val();
+		var d2c=$("#hdnIsD2C").val();
+        var buid = $("#hdnBusinessUnitId").val();
+        var buidfordaikin = $("#hdnbusinessUnitForHidingModelNumberAndInvoiceData").val();
+        if ($("form").valid()) {
+            var exchangePrice = $("#hdnExchangePriceString").val();
+
+            if (exchangePrice == null || exchangePrice == "") {
+                alert("Unable to process request for this order price not available");
+                flag = false;
+            }
+
+            if ((isSweetnerModelBased == "True" || isSweetnerModelBased == "true" || isSweetnerModelBased == true) && (d2c == "false" || d2c == "False" || d2c == false) && (IsInvoiceRequired == "True" || IsInvoiceRequired == "true" || IsInvoiceRequired == true)) {
+                if ($("#hdnBase64StringValue").val() == '' || $("#hdnBase64StringValue").val() == null) {
+                    $("#validatedCustomFile").css("border", "2px solid red");
+                    $("#validatedCustomFile").focus();
+                    $("#lblInvoiceImage").text("Please Upload Invoice Image.");
+                    flag = false;
+                }
+                else {
+                    $("#validatedCustomFile").css("border", "");
+                    $("#lblInvoiceImage").text("");
+
+                }
+            }
+            if (isSweetnerModelBased == "true" || isSweetnerModelBased == "True" || isSweetnerModelBased == true) {
+                if (modelnumber == 0) {
+                    alert("Model not available");
+                    flag = false;
+                }
+            }
+            return flag;
+        }
+        else {
+            flag = false;
+            return flag;
+        }
+    }
+    function GetProType(_productCatId) {
+        var productCatId = _productCatId;
+
+        if (productCatId) {
+
+            $.ajax({
+                type: "GET",
+                url: "@Url.Action("GetProdTypeByProdGroupId", "Exchange")",
+                data: { productCatId: productCatId },
+                success: function (data) {
+                    if (data) {
+                        //console.log(data);
+                        $("#ddlProdType").empty();
+
+                        $("#ddlProdType").append('<option value="">--Select Product Type--</option>');
+
+                        $.each(data, function (key, value) {
+                            //console.log(value.Value);
+                           // alert("get data");
+                            $("#ddlProdType").append('<option value="' + value.Value + '">' + value.Text + '</option>');
+
+                        });
+                        if (productCatId > 0) {
+                            GetBrandByProductGroup(productCatId);
+                            GetProdqualityIndexDetailbyCategotyId(productCatId);
+                            GetNewProductCategory(productCatId);
+
+
+                        }
+
+                    } else {
+                        $("#ddlProdType").empty();
+
+                    }
+                }
+            });
+            } else {
+                 $("#ddlProdType").empty();
+            }
+    }
+
+    $('#validatedCustomFile').bind('change', function () {
+        $("#lbInvoicelFileName").text("");
+        $("#lblInvoiceImage").text("");
+        $("#lbInvoicelFileName").append(this.files[0].name);
+        $("#hdnImageName").val(this.files[0].name);
+    });
+
+    $("#validatedCustomFile").resizeImg(function () {
+        var value = parseInt("350");
+        var Weight = parseInt("2");
+        let type, quality;
+        {
+            type = "image/jpeg";
+            quality = 0.8;
+        }
+        return {
+            use_reader: false,
+            mode: Weight,
+            val: value,
+            type: type,
+            quality: quality,
+            callback: function (result) {
+
+                $("#showImg").attr('src', result);
+                $("#hdnBase64StringValue").val(result.substr(result.indexOf(',') + 1)).css("height", 100);
+                $("#validatedCustomFile").val(null);
+               // IsImageValid(result);
+            }
+        };
+    });
+
+     //method to check Invoice Data
+    function IsImageValid(imageData) {
+
+        var postImageString = imageData.replace('data:image/png;base64,', '');
+        postImageString = imageData.replace('data:image/jpeg;base64,', '');
+        var ImageName = $("#hdnImageName").val();
+            $.ajax({
+                url: "@Url.Action("ValidateImage", "ABB")",
+                type: "POST",
+                dataType: 'json',
+                contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+                data: {
+                    imageData: postImageString, ImageName: ImageName
+                },
+                success: function (response) {
+                    if (response == false || response == "False" || response == "false") {
+                        alert('Invoice image is not valid');
+                        $("#hdnBase64StringValue").val(null);
+                        $("#validatedCustomFile").val(null);
+                        $("#showImg").attr('src', "");
+                    }
+                },
+                failure: function (response) {
+                    ShowAlert([response.responseText], window.AlertType.error);
+                },
+                error: function (response) {
+                    ShowAlert([response.responseText], window.AlertType.error);
+                }
+            });
+    }
+
+    $("#ddlStore").on('change', function () {
+
+
+        if ($(this).val() == "999999") {
+            $("#divStoreOther").show();
+            $('#txtName').prop('required', true);
+            $('#txtPhoneNumber').prop('required', true);
+            $('#txtEmail').prop('required', true);
+
+        } else {
+            $("#divStoreOther").hide();
+            $('#txtName').prop('required', false);
+            $('#txtPhoneNumber').prop('required', false);
+            $('#txtEmail').prop('required', false);
+             var businessPartnerId = $('#ddlStore').val();
+            if (businessPartnerId > 0 && businessPartnerId != null) {
+               var IssweetnerModelBased =  $("#hdnIssweetnerModelBased").val();
+            $.ajax({
+                type: "GET",
+                url: "@Url.Action("GetIsOrcAndIsDefferedSettelmentByBPId", "Exchange")",
+                data: { businessPartnerId: businessPartnerId },
+                success: function (data) {
+                        if (data == true || data == "True" || data == "true") {
+                            $("#divNewProductDetails").show();
+                            $("#divNewModelDetails").show();
+                            $('#ddlProdGroupNew').prop('required', true);
+                            $('#ddlProdTypeNew').prop('required', true);
+                            $('#ddlModelNo').prop('required', true);
+                            $('#hdnOrc').val(true);
+                            $("#divNewProductDetailsForDealerandHome").show();
+                        } else
+                        {
+                            $("#divNewProductDetails").hide();
+                            $("#divNewModelDetails").hide();
+                            $('#hdnOrc').val(false);
+                            if (IssweetnerModelBased == true || IssweetnerModelBased == "True" || IssweetnerModelBased == "true") {
+                                $("#divNewProductDetailsForDealerandHome").show();
+                            }
+                            else {
+                                $("#divNewProductDetailsForDealerandHome").hide();
+                            }
+
+                        }
+                    }
+                });
+            }
+            else {
+                alert("Please Choose Store");
+            }
+        }
+
+
+    });
+
+    function GetBrandByProductGroup(_productCatId) {
+        var productCatId = _productCatId;
+        var buid = $("#hdnBusinessUnitId").val();
+          if (productCatId) {
+            $.ajax({
+                type: "GET",
+                url: "@Url.Action("GetBrandByProductGroup", "Exchange")",
+                data: { productCatId: productCatId, buid: buid},
+                success: function (data) {
+                    if (data) {
+                        //console.log(data);
+                        $("#ddlBrand").empty();
+                        $("#ddlBrand").append('<option value="">--Select Brand--</option>');
+                        $.each(data, function (key, value) {
+                            //console.log(value.Value);
+                           // alert("get data");
+                            $("#ddlBrand").append('<option value="' + value.Value + '">' + value.Text + '</option>');
+                        });
+                        if (productCatId > 0) {
+                            GetProductCategoryDetails(productCatId);
+                        }
+                    } else {
+                        $("#ddlBrand").empty();
+                    }
+                }
+            });
+            } else {
+              $("#ddlBrand").empty();
+            }
+    }
+    function GetProdqualityIndexDetailbyCategotyId(_productCatId) {
+        var productCatId = _productCatId;
+          if (productCatId) {
+            $.ajax({
+                type: "GET",
+                url: "@Url.Action("GetProdqualityIndexDetailbyCategotyId", "Exchange")",
+                data: { productCatId: productCatId },
+                success: function (data) {
+                    if (data) {
+                       // console.log(data);
+                        $("#lblQualityIndex_3").text(data.ExcellentDesc);
+                        $("#lblQualityIndex_2").text(data.GoodDesc);
+                        $("#lblQualityIndex_1").text(data.AverageDesc);
+                        $("#lblQualityIndex_0").text(data.NonWorkingDesc);
+                        ShowProductPrice();
+
+                    } else {
+                        //$("#ddlProdType").empty();
+                    }
+                }
+            });
+            }
+    }
+
+    $("#ddlProdType").change(function () {
+        ShowProductPrice();
+    });
+
+    $("#ddlBrand").change(function () {
+        ShowProductPrice();
+    });
+
+    $('input[type=radio][name=QualityCheck]').change(function () {
+        ShowProductPrice();
+    });
+
+    $("#ddlProdGroupNew").change(function () {
+        var ProducttypeNew = 0;
+        $("#ddlProdTypeNew").val(ProducttypeNew);
+        ShowProductPrice();
+    });
+
+    $("#ddlProdTypeNew").change(function () {
+        var modelvalue = 0;
+        $("#ddlModelNo").val(modelvalue);
+        ShowProductPrice();
+        //Add By VK for BU Validation Based Sweetner Implementation
+        if ("@Model.IsValidationBasedSweetner" == "True") {
+            ShowSweetnerDiv();
+            $("#divSweetnerValidation").hide();
+            $("#rowSweetnerPrice").hide();
+            GetSweetnerPrice();
+        }
+    });
+
+    $("#ddlModelNo").change(function () {
+        ShowProductPrice();
+        //Add By VK for BU Validation Based Sweetner Implementation
+        if ("@Model.IsValidationBasedSweetner" == "True") {
+            ShowSweetnerDiv();
+            $("#divSweetnerValidation").hide();
+            $("#rowSweetnerPrice").hide();
+            GetSweetnerPrice();
+        }
+    });
+
+
+    //Added by VK
+    function ShowProductPrice() {
+        var productCatId = $("#hdnoldCatId").val();
+        var productSubCatId = $("#hdnOldTypeId").val();
+        var brandId = $("#hdnOldBrandId").val();
+        var buiId = parseInt($("#hdnBusinessUnitId").val());
+        var formatType = $("#hdnFormatName").val();
+        var conditionId = $("#hdnQualityCheck").val();
+        var newcatid = $("#hdnNewCatId").val();
+        var newsubcatid = $("#hdnNewTypeId").val();
+        var modelno = $("#ddlModelNo").val();
+        var IsSweetnerModelBased = $("#hdnIssweetnerModelBased").val();
+        var IsValidationBasedSweetner = "@Model.IsValidationBasedSweetner";
+        $("#divProductPrice").hide();
+        $("#productPrice").text("");
+        $("#hdnExchangePriceString").val('');
+        var flag = false;
+        // alert("hi");
+        if (productCatId > 0 && productSubCatId > 0 && conditionId > 0 && brandId > 0 && buiId > 0) {
+            if (IsSweetnerModelBased == false || IsSweetnerModelBased == "false" || IsSweetnerModelBased == "False") {
+                flag = true;
+            }
+            else if (newcatid > 0 && newsubcatid > 0 && (IsSweetnerModelBased == true || IsSweetnerModelBased == "true" || IsSweetnerModelBased == "True")) {
+                flag = true;
+            }
+            else if (newcatid > 0 && newsubcatid > 0 && modelno > 0 && (IsSweetnerModelBased == true || IsSweetnerModelBased == "True" || IsSweetnerModelBased == "true")) {
+                flag = true;
+            }
+            if (flag) {
+                $.ajax({
+
+                    type: "GET",
+                    url: "@Url.Action("GetProdPrice", "Exchange")",
+                    data: { productCatId: productCatId, productSubCatId: productSubCatId, brandId: brandId, conditionId: conditionId, buid: buiId, newcatid: newcatid, newsubcatid: newsubcatid, modelno: modelno, IsSweetnerModelBased: IsSweetnerModelBased, formatType: formatType, IsValidationBasedSweetner: IsValidationBasedSweetner },
+                    success: function (data) {
+                        if (data) {
+                            $("#divProductPrice").show();
+                            $("#productPrice").text(data);
+                            $('html, body').animate({
+                                scrollTop: $("#divProductPrice").offset().top
+                            }, 2000);
+                            $("#hdnExchangePriceString").val(data);
+                        } else {
+                            $("#divProductPrice").hide();
+                            $("#productPrice").text("");
+                            $("#hdnExchangePriceString").val('');
+                        }
+                    }
+                });
+            }
+        }
+    }
+
+      $('.clsChecks').change(function () {
+
+        if ($(this).is(':checked')) {
+            var buid =@Model.BusinessUnitId;
+            if (buid == 11) {
+                if (($("#chkTC").is(':checked') || $("#chkUnistallation").is(':checked') ) && $('#chkAge18').is(':checked')){
+                    $('#divSubmit').show();
+                }
+                else {
+                    $('#divSubmit').hide();
+                }
+            }
+            else {
+                if (($("#chkTC").is(':checked') || $("#chkUnistallation").is(':checked')) && $('#chkAge18').is(':checked') && $('#chkBoschTC').is(':checked')) {
+                    $('#divSubmit').show();
+
+                }
+                else {
+                    $('#divSubmit').hide();
+                }
+            }
+
+
+        } else {
+            $('#divSubmit').hide();
+        }
+    });
+
+    $("#chkTC").change(function () {
+        if ($("#chkTC").is(':checked')) {
+            if ($("#chkUnistallation").is(':checked')) {
+                $("#chkUnistallation").prop('checked', false);
+            }
+            $("#hdnIsUnInstallation").val(false);
+        }
+    });
+
+    $("#chkUnistallation").change(function () {
+        if ($("#chkUnistallation").is(':checked')) {
+            if ($("#chkTC").is(':checked')) {
+                $("#chkTC").prop('checked', false);
+            }
+            $("#hdnIsUnInstallation").val(true);
+        }
+        else {
+            $("#hdnIsUnInstallation").val(false);
+        }
+    });
+
+    $('.clsCheck').change(function () {
+
+        if ($(this).is(':checked')) {
+            if (($("#chk1").is(':checked')) && $('#chk2').is(':checked') && $('#chk3').is(':checked') && $('#chk4').is(':checked')) {
+
+                $('#hdnCondition1').val($('#chk1').val());
+                $('#hdnCondition2').val($('#chk2').val());
+                $('#hdnCondition3').val($('#chk3').val());
+                $('#hdnCondition4').val($('#chk4').val());
+                $('#divSubmit').show();
+
+            }
+            else {
+                $('#divSubmit').hide();
+            }
+
+        } else {
+            $('#divSubmit').hide();
+        }
+    });
+
+    function GetProTypeNew(_productCatId) {
+
+        var productCatId = _productCatId;
+        var buid = parseInt($("#hdnBusinessUnitId").val())
+        if (productCatId) {
+            $.ajax({
+                type: "GET",
+                url: "@Url.Action("GetProdTypeByProdGroupId", "ABB")",
+                data: { stateID: productCatId, buid: buid},
+                success: function (data) {
+                    if (data) {
+                       // console.log(data);
+                        $("#ddlProdTypeNew").empty();
+                        $("#ddlProdTypeNew").append('<option value="">--Select Product Type--</option>');
+                        $.each(data, function (key, value) {
+                            //console.log(value.Value);
+                           // alert("get data");
+                            $("#ddlProdTypeNew").append('<option value="' + value.Value + '">' + value.Text + '</option>');
+                        });
+                    } else {
+                        $("#ddlProdTypeNew").empty();
+                    }
+                }
+            });
+            } else {
+                $("#ddlProdTypeNew").empty();
+        }
+    }
+
+    function GetNewProductCategory(_productCatIdOld) {
+
+         var productCatId = _productCatIdOld;
+         var buid = parseInt ($("#hdnBusinessUnitId").val());
+        if (productCatId){
+            $.ajax({
+                type: "GET",
+                url: "@Url.Action("GetProductCategoryForNew", "Exchange")",
+                data: { oldCatId: productCatId, buid: buid},
+                success: function (data) {
+                    if (data) {
+                        //console.log(data);
+                        $("#ddlProdGroupNew").empty();
+                        $("#ddlProdGroupNew").append('<option value="">--Select Product Type--</option>');
+                        $.each(data, function (key, value) {
+                            //console.log(value.Value);
+                           // alert("get data");
+                            $("#ddlProdGroupNew").append('<option value="' + value.Value + '">' + value.Text + '</option>');
+                        });
+
+
+                    } else {
+                        $("#ddlProdGroupNew").empty();
+                    }
+                }
+            });
+            } else {
+            $("#ddlProdGroupNew").empty();
+        }
+    }
+
+    function GetState(_pinCode) {
+         var pinCode = _pinCode;
+         if (pinCode) {
+            $.ajax({
+                type: "GET",
+                url: "@Url.Action("GetState", "Exchange")" + "?pincode=" + pinCode,
+                //data: { stateName: stateName, buid: buid},
+                success: function (data) {
+                    if (data.StateName != null) {
+                        //console.log(data);
+                        $("#txtState").empty();
+                        $("#txtState").val(data.StateName);
+                        $("#txtCity").val(data.CityName);
+                        $("#hdnCity").val(data.CityName);
+                        $("#hdnState").val(data.StateName);
+
+                    } else
+                    {
+                        $("#ddlState").empty();
+                        $("#txtZipcode").val("");
+                        $("#txtState").val("");
+                        $("#txtCity").val("");
+                    }
+                    //GetPincode(_stateName);
+                }
+            });
+         }
+         else
+         {
+             $("#txtState").empty();
+         }
+         var buAreaLocality = $('#hdnIsAreaLocality').val();
+         if (buAreaLocality == true || buAreaLocality == "True" || buAreaLocality == "true")
+         {
+             GetAreaLocality(_pinCode);
+         }
+
+    }
+
+     $("#txtZipcode").autocomplete({
+        source: function (request, response)
+        {
+            //var customer = new array();
+             //alert("call ExchReg");
+            $.ajax({
+                async: false,
+                cache: false,
+                type: "POST",
+                 url:
+                     "@(Url.Action("GetPincodeList", "Exchange"))" + "?pintext=" + $("#txtZipcode").val() + "&buid=" + $("#hdnBusinessUnitId").val(),
+                data: { "pintext": request.pintext, buid: request.buid},
+                success: function (data) {
+
+                    if (data.length > 0) {
+                        response($.map(data.slice(0, 10), function (item) {
+
+                            if (item.Text != "No pincode available on this location") {
+                                return { label: item.Text, value: item.Text };
+                            }
+                            else {
+                                $("#txtZipcode").val("");
+                            }
+                        }))
+
+                    }
+                    else {
+                        $("#txtZipcode").val("");
+                    }
+                }
+
+            });
+
+            //response(data);
+        },
+    });
+
+     function GetProductCategoryDetails(_productCatId) {
+        var productCatId = _productCatId;
+            var buid = $("#hdnBusinessUnitId").val();
+
+          if (productCatId) {
+            $.ajax({
+                type: "GET",
+                url: "@Url.Action("GetCProductDetails", "Exchange")",
+                data: { buid: buid, productCategory: productCatId},
+                success: function (data) {
+                    if (data) {
+                        //console.log(data);
+                        if (data.flag == "false" || data.flag == "False" || data.flag == false) {
+                            $("#divCondition").show();
+                            $("#purchaseYear").show();
+                            $("#divBrandOld").show();
+                        }
+                        else {
+                            $("#divCondition").hide();
+                            $("#purchaseYear").hide();
+                            $("#divBrandOld").hide();
+                            var brandid = parseInt(data.brandIdOld);
+                            $("#hdnBrandId").val(brandid);
+                            $("#ddlBrand").val(data.brandIdOld);
+                        }
+                    } else {
+                        $("#divCondition").show();
+                        $("#purchaseYear").show();
+                        $("#divBrandOld").show();
+                    }
+                }
+            });
+            } else {
+              $("#divCondition").show();
+              $("#purchaseYear").show();
+              $("#divBrandOld").show();
+          }
+    }
+
+     //Add By VK for set Sweetner Price
+    function GetSweetnerPrice() {
+        var buiId = parseInt($("#hdnBusinessUnitId").val());
+        var formatType = $("#hdnFormatName").val();
+        var newcatid = $("#hdnNewCatId").val();
+        var newsubcatid = $("#hdnNewTypeId").val();
+        var modelno = $("#ddlModelNo").val();
+        $("#sweetnerPrice").text("");
+        // alert("hi");
+        if (newcatid > 0 && newsubcatid > 0 && buiId > 0) {
+            $.ajax({
+                type: "GET",
+                url: "@Url.Action("GetSweetnerPrice", "Exchange")",
+                data: { newcatid: newcatid, newsubcatid: newsubcatid, buid: buiId, modelno: modelno, formatType: formatType },
+                success: function (data) {
+
+                    if (data) {
+                        //$("#divSweetnerPrice").show();
+                        $("#sweetnerPrice").text(data);
+                        //$('html, body').animate({
+                        //    scrollTop: $("#divProductPrice").offset().top
+                        //}, 2000);
+                        //$("#hdnExchangePriceString").val(data);
+                    } else {
+                        $("#sweetnerPrice").text("");
+                        $("#divSweetnerPrice").hide();
+                        $('.SweetnerPriceBoxWrap').hide();
+                    }
+                }
+            });
+        }
+        else {
+            $("#divSweetnerPrice").hide();
+        }
+    }
+    // Added by VK for Display Sweetner Price
+    function ShowSweetnerDiv() {
+        $("#divSweetnerPrice").show();
+        $("#btnGetExtraValue").prop("disabled", false);
+    }
+    // Added by VK for Display Sweetner Price
+    function GetExtraValue() {
+        $("#btnGetExtraValue").prop("disabled",true);
+        $("#divSweetnerValidation").show();
+    }
+    // Added by VK for Display Sweetner Price
+    function ShowSweetnerPrice() {
+        $("#rowSweetnerPrice").show();
+    }
+    function CheckRequiredForSweetner() {
+        var flag = true;
+        $('.sweetnerQuestions').each(function () {
+
+            var $this = $(this);
+            var value = $this.val();
+            if (value == "True") {
+                if ($this.is(":checked")) {
+
+                }
+                else {
+                    flag = false;
+                }
+            }
+        });
+        if (flag == true) {
+            $('.SweetnerPriceBoxWrap').show();
+        }
+        else {
+            $('.SweetnerPriceBoxWrap').hide();
+        }
+    }
+
+
+    function GetAreaLocality(_Pincode) {
+
+         var Pincode = _Pincode;
+         if (Pincode) {
+            $.ajax({
+                type: "GET",
+                url: "@Url.Action("GetAreaLocalityList", "Exchange")" + "?PinCode=" + Pincode ,
+                success: function (data) {
+                   // console.log(data);
+                    if (data) {
+                        $("#ddlArealocality").empty();
+                        $("#ddlArealocality").append('<option value="">--Select Area Locality--</option>');
+                        $.each(data, function (key, value) {
+                            $("#ddlArealocality").append('<option value="' + value.Value + '">' + value.Text + '</option>');
+                            var AreaLocalityName = $('#ddlArealocality').val();
+                            //var AreaLocalityName = value.Text;
+                            $("#hdnAreaLocalityName").val(AreaLocalityName);
+                        });
+                    }
+                    else {
+                        $("#ddlArealocality").empty();
+                    }
+                }
+
+            });
+        } else {
+             $("#ddlArealocality").empty();
+        }
+    }
+
+    function GetModelsFromProductTypeNew() {
+
+        //Display Model number for new Prod
+       @* var newcatid = $("#hdnNewCatId").val();
+        var newsubcatid = $("#hdnNewTypeId").val();*@
+        var ProdTypeId = $("#hdnNewTypeId").val();
+        var newcatid = $("#hdnNewCatId").val();
+        var buid = $("#hdnBusinessUnitId").val();
+            //
+        if (ProdTypeId) {
+
+            $.ajax({
+                type: "GET",
+                url: "@Url.Action("GetModelNumberByProdTypeId", "Exchange")",
+                data: { ProdTypeId: ProdTypeId, buid: buid, newcatid: newcatid},
+                success: function (data) {
+                    if (data) {
+
+                        if (data != null && data.length > 0) {
+                            //console.log(data);
+                            $("#ddlModelNo").empty();
+                            $("#ddlModelNo").append('<option value="">--Select Model Number--</option>');
+                            $.each(data, function (key, value) {
+                                //console.log(value.Value);
+                                // alert("get data");
+                                $("#ddlModelNo").append('<option value="' + value.Value + '">' + value.Text + '</option>');
+                            });
+                        }
+                        else {
+                            $("#ddlModelNo").append('<option value="">No Model Available</option>');
+                        }
+                        $("#divNewModelDetails").show();
+                    } else {
+                        $("#ddlModelNo").empty();
+                    }
+                }
+            });
+            } else {
+                $("#ddlModelNo").empty();
+            }
+    }
+
+
+</script>

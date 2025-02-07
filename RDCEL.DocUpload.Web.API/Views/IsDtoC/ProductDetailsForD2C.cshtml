@@ -1,0 +1,434 @@
+﻿
+@model RDCEL.DocUpload.DataContract.SponsorModel.MyGateViewModel
+@{
+    ViewBag.Title = "ProductDetailsForD2C";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .logotext {
+        font-size: 20px;
+        font-weight: bold;
+        color: #4e13cd;
+        padding: 0;
+    }
+
+    .logotexttagline {
+        display: block;
+        color: #170b64;
+        font-size: 17px;
+        margin-top: 8px;
+    }
+
+    img {
+        width: 100%;
+    }
+
+    .logoimg img {
+        max-width: 180px;
+        margin-bottom: 20px;
+    }
+
+    .form-control[type='radio'] {
+        height: 20px;
+    }
+
+    .conditionboxwrap .row {
+        border-bottom: 1px dashed #ccc;
+        padding: 15px 0;
+    }
+
+        .conditionboxwrap .row:last-child {
+            border: none;
+        }
+
+        .conditionboxwrap .row .col-2 {
+            display: flex;
+            align-items: center;
+        }
+</style>
+@using (Html.BeginForm("ProductDetailsForD2C", "IsDtoC", FormMethod.Post, new { @class = "form-horizontal", autocomplete = "off", @id = "product-form" }))
+{
+    @Html.HiddenFor(m => m.BUId, new { id = "hdnBUId" })
+    @Html.HiddenFor(m => m.FormatName, new { id = "hdnFormatName" })
+    @Html.HiddenFor(m => m.ExchangePriceString, new { id = "hdnExchangePriceString" })
+    @Html.HiddenFor(m => m.BULogoName, new { id = "hdnBuLogoName" })
+    @Html.HiddenFor(m => m.ProductAge, new { id = "hdnAge" })
+    @Html.HiddenFor(m => m.BusinessPartnerId, new { id = "hdnBusinessPartnerId" })
+    @Html.HiddenFor(m => m.PriceCode, new { id = "hdnPriceCode" })
+    @Html.HiddenFor(m => m.IsSweetnerModelBased, new { id = "hdnIsSweetnerModelBased" })
+    @Html.HiddenFor(m => m.firstName, new { id = "firstName" })
+    @Html.HiddenFor(m => m.lastName, new { id = "lastName" })
+    @Html.HiddenFor(m => m.email, new { id = "email" })
+    @Html.HiddenFor(m => m.mobileNo, new { id = "mobileNo" })
+    @Html.HiddenFor(m => m.IsQualityConditionWorkingNOnWorking, new { id = "hdnIsQualityWorkingNonWorking" })
+    @Html.HiddenFor(m => m.mobileNoWithCountryCode, new { id = "hdnmobileNoWithCountryCode" })
+    @Html.HiddenFor(m => m.ProductConditionCount, new { id = "hdnProductConditionCount" })
+    @Html.HiddenFor(m => m.ShowQCTimeandDatepage, new { id = "hdnShowQCTimeandDatepage" })
+    @Html.HiddenFor(m => m.priceMasterNameID, new { id = "hdnpriceMasterNameID" })
+    @Html.HiddenFor(m => m.SweetenerBu, new { id = "hdnSweetenerBu" })
+    @Html.HiddenFor(m => m.SweetenerBP, new { id = "hdnSweetenerBP" })
+    @Html.HiddenFor(m => m.BasePrice, new { id = "hdnBasePrice" })
+    @Html.HiddenFor(m => m.SweetenerDigi2L, new { id = "hdnSweetenerDigi2L" })
+    @Html.HiddenFor(m => m.SweetenerTotal, new { id = "hdnSweetenerTotal" })
+
+    <div class="row justify-content-center align-items-center">
+        <div class="col-md-6 mx-auto">
+            <h3 class="section-title">Enter Your Old Product Details</h3>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card box">
+                        <div class="row">
+
+                            <div class="col-12">
+                                <div class="inputbox">
+                                    <label for="">Select Your Appliance <span style="color:red;">*</span></label>
+                                    @Html.DropDownListFor(model => model.ProductCategoryId, ViewBag.ProductCategoryList as SelectList, "--Select Product Group--", new { @class = "form-control form-select", @onchange = "GetProType(this.value);", @id = "ddlProdGroup" })
+                                    @Html.ValidationMessageFor(model => model.ProductCategoryId, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <div class="inputbox">
+                                    <label for="">Appliance Type <span style="color:red;">*</span></label>
+                                    @Html.DropDownListFor(model => model.ProductTypeId, Model.ProductTypeList, new { @class = "form-control form-select", @id = "ddlProdType" })
+                                    @Html.ValidationMessageFor(model => model.ProductTypeId, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <div class="inputbox">
+                                    <label for="">Brand</label>
+                                    @Html.DropDownListFor(model => model.BrandId, Model.BrandList, "--Select Brand--", new { @class = "form-control form-select", @id = "ddlBrand" })
+                                    @Html.ValidationMessageFor(model => model.BrandId, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="row my-2" id="divCondition">
+                                <label for="">Quality Status<span style="color:red;">*</span></label>
+
+                                @for (int i = 0; i < Model.QualityCheckList.Count; i++)
+                                {
+                                    <div class="col-md-6">
+                                        <div class="inputbox conditionbox">
+                                            <label>
+                                                <i class="fas fa-check-circle"></i>
+                                                @*@Html.RadioButtonFor(m => m.QualityCheck, Model.QualityCheckList[i].Value, new { @class = "form-check-input", @type = "radio", @name = "condition" })*@
+                                                <input type="radio" class="form-check-input radioButtonBox" id="tbnRadio" name="QualityCheck" value="@Model.QualityCheckList[i].Value" />
+                                                @*@Html.RadioButtonFor(m => m.QualityCheck, Model.QualityCheckList[i].Value, new { htmlAttributes = new { @class = "form-check-input", @type = "radio", @name = "QualityCheck" }, @value = "@Model.QualityCheckList[i].Value" })*@
+
+                                                @Model.QualityCheckList[i].Text
+                                            </label>
+
+                                        </div>
+                                        <label style="color:green" class="conditionDescription" id="lblQualityIndex_@i">
+                                        </label>
+                                    </div>
+
+                                }
+
+                            </div>
+
+                            @*<div class="form-group conditionboxwrap">
+                                    <label for="">Quality Status<span style="color:red;">*</span></label>
+                                    @for (int i = 0; i < Model.QualityCheckList.Count; i++)
+                                    {
+                                        <div class="row">
+                                            <div class="col-10">
+                                                <label for=""> <b> @Model.QualityCheckList[i].Text</b></label>
+                                                <br />
+                                                <label id="lblQualityIndex_@i"></label>
+                                            </div>
+                                            <div class="col-2">
+                                                @Html.RadioButtonFor(m => m.QualityCheck, Model.QualityCheckList[i].Value, new { @class = "form-control rdoQualityIndex" })
+                                            </div>
+                                        </div>
+                                    }
+                                </div>*@
+                            <div class="col-12" id="divProductPrice" style="display:none">
+                                <div class="inputbox pricebox">
+                                    <h3 class="mainprice">Proposed Product Price: <span>₹ <lable id="productPrice"></lable> </span></h3>
+
+                                    <p class="text-muted m-0">Subject to quality check of the product. <span style="color:red;">* T&C Applied</span></p>
+                                </div>
+                            </div>
+
+
+
+                            <div class="col-12 my-2" id="ShowUninstallation">
+                                <div class="inputbox">
+                                    <p class="text-muted f-12">
+                                        1. Product should be available with all the components.
+                                        <br>
+                                        2. In case of cancellation, the exchange amount is not payable.
+                                        <br>
+                                        3. Please ensure the product is kept uninstalled and ready for pickup.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="form-group text-center" id="divValidate">
+                                        <input type="button" value="Accept Price" class="btn btn-primary" id="btnValidate">
+                                        <a href="@Model.url" class="btn btn-dark" id="btnCancel">Cancel </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+}
+@*<script src="~/Scripts/DataTables/jquery-1.12.1.dataTables.min.js"></script>
+    <script src="~/Scripts/DataTables/dataTables.buttons.min.js"></script>
+    <script src="~/Scripts/JsZip.min.js"></script>
+    <script src="~/Scripts/DataTables/buttons.html5.min.js"></script>*@
+
+<script>
+    $(document).ready(function () {
+        $("#ShowUninstallation").hide();
+        //$(document).on('change', 'input[type=radio][name=QualityCheck]', function () {
+        //    ShowProductPrice();
+        //});
+        //$('input[name=QualityCheck]').change(function () {
+  
+        //    //input[name="QualityCheck"]:checked
+        //    ShowProductPrice();
+        //});
+
+        //conditionbox
+    });
+    $('#btnValidate').click(function () {
+        validateLeadForm();
+    })
+    function validateLeadForm() {
+        if ($("form").valid()) {
+            var exchangePrice = $("#hdnExchangePriceString").val();
+            if (exchangePrice == null || exchangePrice == "") {
+                alert("Unable to process request for this order price not available");
+                return false;
+            }
+            else {
+                $("#product-form").submit();
+            }
+        }
+        else {
+            return false;
+        }
+    }
+    function GetProType(_productCatId) {
+        var proCatId = _productCatId;
+        var priceMasterNameID = $("#hdnpriceMasterNameID").val();
+        var pricecode = $("#hdnPriceCode").val();
+        if (proCatId) {
+            $.ajax({
+                type: "GET",
+                url: "@Url.Action("GetProdTypeByPriceMasterNameIdAndCatid", "Exchange")",
+                data: { proCatId: proCatId, priceMasterNameID: priceMasterNameID },
+                success: function (data) {
+                    if (data) {
+                        //console.log(data);
+                        $("#ddlProdType").empty();
+                        $('#ddlBrand').empty();
+                        $("#ddlProdType").append('<option value="">--Select Product Type--</option>');
+                        $.each(data, function (key, value) {
+                            //console.log(value.Value);
+                           // alert("get data");
+                            $("#ddlProdType").append('<option value="' + value.Value + '">' + value.Text + '</option>');
+                        });
+                        if (proCatId > 0) {
+                           // GetBrandByProductGroup(productCatId);
+                            GetProdqualityIndexDetailbyCategotyId(proCatId);
+                        }
+
+                    } else {
+                        $("#ddlProdType").empty();
+                        $('#ddlBrand').empty();
+                    }
+                }
+            });
+            } else {
+                 $("#ddlProdType").empty();
+                 $('#ddlBrand').empty();
+                 $("#divProductPrice").hide();
+                 $("#productPrice").text("");
+                 $("#productPrice").val('');
+            }
+    }
+
+    function GetBrandByProductGroup(_productTypeId) {
+        var productCatId = $("#ddlProdGroup").val();
+        var typeId = _productTypeId;
+        var priceCode = $("#hdnBUId").val();
+        var buid = parseInt(priceCode);
+        var priceMasterNameId = $("#hdnpriceMasterNameID").val();
+        if (productCatId) {
+            $.ajax({
+                type: "GET",
+                url: "@Url.Action("GetBrandForOldByPriceMasterNameId", "Exchange")",
+                data: { productCatId: productCatId, buid: buid, typeId: typeId, priceMasterNameId: priceMasterNameId },
+                success: function (data) {
+                    if (data) {
+                        //console.log(data);
+                        $("#ddlBrand").empty();
+                        $("#ddlBrand").append('<option value="">--Select Brand--</option>');
+                        $.each(data, function (key, value) {
+                            //console.log(value.Value);
+                           // alert("get data");
+                            $("#ddlBrand").append('<option value="' + value.Value + '">' + value.Text + '</option>');
+                        });
+                    } else {
+                        $("#ddlBrand").empty();
+                    }
+                }
+            });
+            } else {
+              $("#ddlBrand").empty();
+            }
+    }
+   function GetProdqualityIndexDetailbyCategotyId(_productCatId) {
+
+       var ConditionCount = parseInt($("#hdnProductConditionCount").val());
+        var productCatId = parseInt(_productCatId);
+         if (ConditionCount==4) {
+
+            $.ajax({
+                type: "GET",
+                url: "@Url.Action("GetProdqualityIndexDetailbyCategotyId", "Exchange")",
+                data: { productCatId: productCatId },
+                success: function (data) {
+                    if (data) {
+                       // console.log(data);
+                        $("#lblQualityIndex_3").text(data.ExcellentDesc);
+                        $("#lblQualityIndex_2").text(data.GoodDesc);
+                        $("#lblQualityIndex_1").text(data.AverageDesc);
+                        $("#lblQualityIndex_0").text(data.NonWorkingDesc);
+                        ShowProductPrice();
+
+                    } else {
+                        //$("#ddlProdType").empty();
+                    }
+                }
+            });
+        }
+        else if (ConditionCount==2) {
+             $.ajax({
+                 type: "GET",
+                 url: "@Url.Action("GetProdqualityIndexDetailbyCategotyId", "Exchange")",
+                 data: { productCatId: productCatId },
+                 success: function (data) {
+                     if (data) {
+                         //console.log(data);
+                         $("#lblQualityIndex_1").text(data.ExcellentDesc);
+                         $("#lblQualityIndex_0").text(data.NonWorkingDesc);
+                         ShowProductPrice();
+
+                     } else {
+                         //$("#ddlProdType").empty();
+                     }
+                 }
+             });
+        }
+         else if (ConditionCount==3) {
+             $.ajax({
+                 type: "GET",
+                 url: "@Url.Action("GetProdqualityIndexDetailbyCategotyId", "Exchange")",
+                 data: { productCatId: productCatId },
+                 success: function (data) {
+                     if (data) {
+                         //console.log(data);
+                         $("#lblQualityIndex_2").text(data.ExcellentDesc);
+                         $("#lblQualityIndex_1").text(data.AverageDesc);
+                         $("#lblQualityIndex_0").text(data.NonWorkingDesc);
+                         ShowProductPrice();
+
+                     } else {
+                         //$("#ddlProdType").empty();
+                     }
+                 }
+             });
+        }
+    }
+
+    $("#ddlProdType").change(function () {
+        $('#ddlBrand').val("");
+        var typeId = $("#ddlProdType").val();
+        GetBrandByProductGroup(typeId);
+        $("#ShowUninstallation").show();
+        ShowProductPrice();
+    });
+
+    $("#ddlBrand").change(function () {
+        ShowProductPrice();
+    });
+
+
+
+    $('.conditionbox').click(function () {
+        var radio = $(this).find('input[name="QualityCheck"]');
+        if (radio.length > 0) {
+            radio.prop('checked', true);
+            $(this).addClass('active');
+            ShowProductPrice();
+        }
+        $('.conditionbox').not(this).removeClass('active');
+    });
+
+    function ShowProductPrice() {
+        var productCatId = $("#ddlProdGroup").val();
+        var productSubCatId = $("#ddlProdType").val();
+        var brandId = $("#ddlBrand").val();
+        var buiId = $("#hdnBUId").val();
+        var formatType = $("#hdnFormatName").val();
+        var conditionId = $('input[name="QualityCheck"]:checked').val();
+        var Isorc = false;
+        var IsSweetnerModelBased = $("#hdnIsSweetnerModelBased").val();
+        var IsValidationBasedSweetner = 0;
+        var newBrandId = 0;
+        var priceNameId = $("#hdnpriceMasterNameID").val();
+        var bpid = $("#hdnBusinessPartnerId").val();
+        $("#divProductPrice").hide();
+        $("#productPrice").text("");
+       $("#hdnExchangePriceString").val('');
+        // alert("hi");
+        if (productCatId > 0 && productSubCatId > 0 && conditionId > 0 && brandId > 0 && buiId > 0) {
+            $.ajax({
+                type: "GET",
+                url: "@Url.Action("GetPriceOnBasisofNewPriceMaster", "Exchange")",
+                data: { productCatId: productCatId, productSubCatId: productSubCatId, brandId: brandId, conditionId: conditionId, buid: buiId, IsSweetnerModelBased: IsSweetnerModelBased, Isorc: Isorc, formatType: formatType, IsValidationBasedSweetner: IsValidationBasedSweetner, newBrandId: newBrandId, priceNameId: priceNameId, bpid: bpid },
+                success: function (data) {
+                        if (data) {
+                            $("#divProductPrice").show();
+                            $("#productPrice").text(data.ExchangePrice);
+                            $("#productPrice").val(data.ExchangePrice);
+                            $("#hdnExchangePriceString").val(data.ExchangePrice);
+                            $("#hdnBasePrice").val(data.BaseValue);
+                            $("#sweetnerPrice").text(data.SweetenerTotal);
+                            $("#hdnSweetenerBu").val(data.SweetenerBu);
+                            $("#hdnSweetenerBP").val(data.SweetenerBP);
+                            $("#hdnSweetenerDigi2L").val(data.SweetenerDigi2L);
+                            $("#hdnSweetenerTotal").val(data.SweetenerTotal);
+                            $('html, body').animate({
+                                scrollTop: $("#divProductPrice").offset().top
+                            }, 2000);
+                           
+
+                        } else {
+                            $("#divProductPrice").hide();
+                            $("#productPrice").text("");
+                            $("#productPrice").val('');
+                            $("#hdnExchangePriceString").val('');
+                        }
+                    }
+                });
+            }
+            else {
+
+        }
+    }
+
+</script>

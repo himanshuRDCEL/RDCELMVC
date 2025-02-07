@@ -1,0 +1,354 @@
+﻿@model RDCEL.DocUpload.DataContract.ABBRegistration.ABBViewModel
+
+@{
+    ViewBag.Title = "ProductDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+@using (Html.BeginForm("ProductDetails", "ABB", FormMethod.Post, new { enctype = "multipart/form-data", @id = "Product-form", @class = "form-horizontal", autocomplete = "off" }))
+{
+    @*<h3>@ViewBag.Msg</h3>*@
+    <div class="row">
+        @Html.HiddenFor(m => m.BusinessPartnerId, new { id = "hdnbusinessPartnerId" })
+        @Html.HiddenFor(m => m.BusinessUnitId, new { id = "hdnBuid" })
+        @Html.HiddenFor(m => m.Buname)
+        @Html.HiddenFor(m => m.planprice, new { id = "hdnPlanprice" })
+        @Html.HiddenFor(m => m.planName, new { id = "hdnplanName" })
+        @Html.HiddenFor(m => m.planduration, new { id = "hdnplanduration" })
+        @Html.HiddenFor(m => m.NoClaimPeriod, new { id = "hdnNoClaimPeriod" })
+        @Html.HiddenFor(m => m.IsBUD2C, new { id = "hdnBUD2C" })
+        @Html.HiddenFor(m => m.IsdeferredABB, new { id = "hdndeferredABB" })
+        @Html.HiddenFor(m => m.ShowAbbPlan, new { id = "hdnShowAbbPlan" })
+        @Html.HiddenFor(m => m.MarginType, new { id = "hdnMarginType" })
+        @Html.HiddenFor(m => m.GstType, new { id = "hdnGstType" })
+        @Html.HiddenFor(m => m.BaseValue, new { id = "hdnBaseValue" })
+        @Html.HiddenFor(m => m.Cgst, new { id = "hdnGstCgst" })
+        @Html.HiddenFor(m => m.Sgst, new { id = "hdnSgst" })
+    </div>
+
+
+<div class="row justify-content-center align-items-center">
+    <div class="col-lg-6 col-md-8 mx-auto">
+        <h3 class="section-title">Product Details</h3>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card box">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="inputbox">
+                                <label for="">Product Group <span style="color:red;">*</span></label>
+                                @Html.DropDownListFor(model => model.productCategoryId, ViewBag.ProductCategoryList as SelectList, "--Select Product Group--", new { @class = "form-control form-select", @onchange = "GetProType(this.value);", @id = "ddlProdGroup" })
+                                @Html.ValidationMessageFor(model => model.productCategoryId, "", new { @class = "text-danger" })
+                                <label id="lblProdGroup" style="color:red;"></label>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="inputbox">
+                                <label for="">Product Type <span style="color:red;">*</span></label>
+                                @Html.DropDownListFor(model => model.ProductTypeId, Model.ProductType, new { @class = "form-control form-select", @id = "ddlProdType" })
+                                @Html.ValidationMessageFor(model => model.ProductTypeId, "", new { @class = "text-danger" })
+                                <label id="lblProdType" style="color:red;"></label>
+
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="inputbox">
+                                    <label for="">Product Price <span style="color:red;">*</span></label>
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text"><i class="fa-solid fa-indian-rupee-sign"></i></span>
+                                        @Html.EditorFor(model => model.NetProductPrice, new { htmlAttributes = new { @class = "form-control form-select", @type = "number", @min = "0",@max="999999999" ,@id = "txtNetProductPrice"} })
+                                        @*<span class="right"><i class="fas fa-rupee-sign"></i></span>*@
+                                    </div>
+                                    @Html.ValidationMessageFor(model => model.NetProductPrice, "", new { @class = "text-danger" })
+                            <label id="lblNetProductPrice" style="color:forestgreen;"> <span style="color:forestgreen;">*</span> Final price, as mentioned on the invoice, excluding any discount, cashback etc.</label>
+                            </div>
+                        </div>
+
+                        @if (Model.ShowAbbPlan == false)
+                        {
+                            <div class="form-group text-end" id="divSubmitbtn">
+                                <input type="submit" id="btnsubmit" value="Next" class="btn btn-primary" />
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="form-group text-end" id="divSubmitbtn">
+                                <input type="button" id="submit" value="Next" class="btn btn-primary" />
+                            </div>
+                        }
+                        <div id="divProductPrice" style="display:none">
+                            <h3 class="section-title">Plan Details</h3>
+                        </div>
+
+
+                        <div class="col-12 abbPlanTop" style="display:none">
+
+                            <table class="table w-100 table-bordered">
+                                <tr>
+                                    <td>
+                                        <div id="divPrice" style="display:none" class="form-group planTopPeriods text-center">
+                                            <h6>Plan Price: <label>₹ <span id="productPrice"></span></label></h6>
+                                            @*<b><label style="color:green"></label></b>*@
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-group text-center planTopPeriods" style="display:none" id="divplnperiod">
+                                            <h6>Plan Period: <label id="txtplanperiod"></label> </h6>
+                                            @*<b><label style="color:green"></label></b>*@
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-group text-center planTopPeriods" style="display:none" id="divclaimperiod">
+                                            <h6>No claim Period: <label id="txtclaimperiod"> </label></h6>
+                                            @*<b><label style="color:green"></label></b>*@
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+
+                        </div>
+
+                        <div class="col-12" id="plndata" style="display:none">
+                            <table class="table table-striped table-hover table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th class="center">Duration in months</th>
+                                        <th class="center">Return percentage</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="PlanTable"></tbody>
+
+                            </table>
+                        </div>
+                        
+
+                        <div class="row px-3 mt-1 termsbox" id="termsandcondition" style="display:none">
+                            <div class="col-12 text-muted f-12">
+                                 <label>By clicking Accept Plan button below I accept Digi2L's  <a href="https://digi2l.in/terms-conditions/" target="_blank">  terms and conditions</a></label>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group text-center mt-2" id="divsubmitend" style="display:none">
+                                    <input type="submit" id="formSubmit" value="Accept Plan" class="btn btn-primary" />
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                        </div>
+                    </div>
+        </div>
+    </div>
+</div>
+                            
+}
+  <script src="~/Scripts/jquery.resizeImg.js"></script>
+  <script src="~/Scripts/mobileBUGFix.mini.js"></script>
+  <script>
+  $(document).ready(function () {
+
+      $('#txtNetProductPrice').change(function () {
+
+          $("#divplnperiod").hide();
+          $("#divclaimperiod").hide();
+          $("#divPrice").hide();
+          $(".abbPlanTop").hide();
+          $("#termsandcondition").hide();
+          $("#divProductPrice").hide();
+          $("#divsubmitend").hide();
+          $("#productPrice").text("");
+          $("#txtclaimperiod").val('');
+          $("#txtclaimperiod").text("");
+          $("#productPrice").val('');
+          $("#txtplanperiod").text("");
+          $("#txtplanperiod").val('');
+          $("#PlanTable").empty();
+          $("#plndata").hide();
+
+      });
+
+    });
+      function GetProType(_stateId) {
+          // alert(_stateId);
+          var prodCatid = _stateId;
+          var buid = parseInt($("#hdnBuid").val());
+
+          //
+          if (prodCatid) {
+            $.ajax({
+                type: "GET",
+                url: "@Url.Action("GetProductCategoryForABB", "ABB")",
+                data: { buid: buid, prodCatid: prodCatid},
+                success: function (data) {
+                    if (data) {
+                        //console.log(data);
+                        $("#ddlProdType").empty();
+                        $("#ddlProdType").append('<option value="">--Select Product Type--</option>');
+                        $.each(data, function (key, value) {
+                            //console.log(value.Value);
+                           // alert("get data");
+                            $("#ddlProdType").append('<option value="' + value.Value + '">' + value.Text + '</option>');
+                        });
+                    } else {
+                        $("#ddlProdType").empty();
+                    }
+                }
+            });
+            } else {
+                 $("#ddlProdType").empty();
+            }
+      }
+
+    function GetPlandata() {
+
+        var productCatId = parseInt($("#ddlProdGroup").val());
+        var productSubCatId = parseInt($("#ddlProdType").val());
+        var buid = parseInt($("#hdnBuid").val());
+        var productPrice = parseInt($("#txtNetProductPrice").val());
+        if (productCatId > 0 && productSubCatId > 0 && buid > 0 && productPrice > 0) {
+            $.ajax({
+                url: "@Url.Action("GetPlanDetails", "ABB")",
+                type: "GET",
+                contentType: "application/json; charset=utf-8",
+                data: { productCatId: productCatId, productSubCatId: productSubCatId, buid: buid, productPrice: productPrice },
+                dataType: "json",
+                success: function (data) {
+                    var row = "";
+                    $.each(data, function (index, item) {
+                        row += "<tr><td>" + item.From_month + "-" + item.To_month + "</td><td>" + item.Assured_BuyBack_Percentage + "% </td></tr>";
+                    });
+                    $("#PlanTable").html(row);
+                    $("#plndata").show();
+                },
+                error: function (result) {
+                    alert("Error");
+                    $("#plndata").hide();
+                }
+            });
+        }
+        else {
+            $("#plndata").hide();
+        }
+    }
+
+    function ShowPlanPrice() {
+         var productCatId =parseInt($("#ddlProdGroup").val());
+         var productSubCatId = parseInt($("#ddlProdType").val());
+        var buid = parseInt($("#hdnBuid").val());
+        var productPrice = parseInt($("#txtNetProductPrice").val());
+        var GstType = parseInt($("#hdnGstType").val());
+        $("#divProductPrice").hide();
+        $("#productPrice").text("");
+
+         if (productCatId > 0 && productSubCatId > 0 && buid > 0 && productPrice>0) {
+            $.ajax({
+                type: "GET",
+                url: "@Url.Action("GetPlanPrice", "ABB")",
+                data: { productCatId: productCatId, productSubCatId: productSubCatId, buid: buid, productPrice: productPrice, GstType: GstType},
+                success: function (data) {
+                    if (data) {
+                        if (data.Message == "Success") {
+                            var planPrice = data.planprice;
+                            var planName = data.planName;
+                            var planduration = data.planduration;
+                            var NoClaimPeriod = data.NoClaimPeriod;
+                            var BaseValue = data.BaseValue;
+                            var Cgst = data.Cgst;
+                            var Sgst = data.Sgst;
+
+                            $("#divProductPrice").show();
+                            $("#divsubmitend").show();
+                            $("#divplnperiod").show();
+                            $("#divclaimperiod").show();
+                            $("#divPrice").show();
+                            $(".abbPlanTop").show();
+                            $("#termsandcondition").show();
+                            $("#productPrice").text(planPrice);
+                            $("#productPrice").val(planPrice);
+                            $('html, body').animate({
+                                scrollTop: $("#divProductPrice").offset().top
+                            }, 2000);
+                            $("#hdnplanName").val(planName);
+                            $("#hdnPlanprice").val(planPrice);
+                            $("#hdnBaseValue").val(BaseValue);
+                            $("#hdnGstCgst").val(Cgst);
+                            $("#hdnSgst").val(Sgst);
+                            $("#hdnplanduration").val(planduration);
+                            $("#txtplanperiod").text(planduration + " Months");
+                            $("#txtplanperiod").val(planduration);
+                            $("#hdnNoClaimPeriod").val(NoClaimPeriod);
+                            $("#txtclaimperiod").text(NoClaimPeriod + " Months");
+                            $("#txtclaimperiod").val(NoClaimPeriod);
+                            GetPlandata();
+                        }
+                        else {
+                            $("#divplnperiod").hide();
+                            $("#divclaimperiod").hide();
+                            $("#divPrice").hide();
+                            $(".abbPlanTop").hide();
+                            $("#termsandcondition").hide();
+                            $("#divProductPrice").hide();
+                            $("#divsubmitend").hide();
+                            $("#productPrice").text("");
+                            $("#txtclaimperiod").val('');
+                            $("#txtclaimperiod").text("");
+                            $("#productPrice").val('');
+                            $("#txtplanperiod").text("");
+                            $("#txtplanperiod").val('');
+                            $("#PlanTable").empty();
+                            $("#plndata").hide();
+                            alert(data.Message );
+
+                        }
+
+                    }
+                    else {
+                        $("#divplnperiod").hide();
+                        $("#divclaimperiod").hide();
+                        $("#divPrice").hide();
+                        $(".abbPlanTop").hide();
+                        $("#termsandcondition").hide();
+                        $("#divProductPrice").hide();
+                        $("#divsubmitend").hide();
+                        $("#productPrice").text("");
+                        $("#txtclaimperiod").val('');
+                        $("#txtclaimperiod").text("");
+                        $("#productPrice").val('');
+                        $("#txtplanperiod").text("");
+                        $("#txtplanperiod").val('');
+                        $("#PlanTable").empty();
+                        $("#plndata").hide();
+                        }
+                    }
+                });
+            }
+            else {
+
+        }
+    }
+    function validateLeadForm() {
+        if ($("form").valid()) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+    $('#submit').click(function () {
+        var ShowPlan = $("#hdnShowAbbPlan").val();
+        var IsBUD2C = $("#hdnBUD2C").val();
+        if (validateLeadForm()) {
+            if (ShowPlan == true || ShowPlan == "True" || ShowPlan == "true") {
+                ShowPlanPrice();
+            }
+        }
+
+    });
+
+</script>
+
+

@@ -1,0 +1,72 @@
+﻿
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    string message = ViewBag.MSG;
+}
+
+
+<div class="col-6 m-auto" style="margin: 5px;">
+    <div class="logowrapper py-3">
+        <img class="logo"
+             src="~/Content/DB_Files/SponsorLogo/Digi2L_Logo_Final.png">
+    </div>
+</div>
+
+
+
+<div class="feedbackbox p-4 pt-0">
+    @*<div class="feedbackmeta">
+            <div class="row">
+                <div class="col col-6">
+                    <div class="row">
+                        <div class="col-md-6">Name</div>
+                        <div class="col-md-6"><span>John Doe</span></div>
+                    </div>
+                </div>
+
+                <div class="col col-6">
+                    <div class="row">
+                        <div class="col-md-6">Product</div>
+                        <div class="col-md-6"><span>LG 32" LCD</span></div>
+                    </div>
+                </div>
+
+                <div class="col col-6">
+                    <div class="row">
+                        <div class="col-md-6">Price</div>
+                        <div class="col-md-6"><span>Rs. 12,000</span></div>
+                    </div>
+                </div>
+
+                <div class="col col-6">
+                    <div class="row">
+                        <div class="col-md-6">Status</div>
+                        <div class="col-md-6"><span>Completed</span></div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>*@
+    <div class="row">
+        @if (message.Contains("Thank"))
+        {
+            <div class="col-md-12 text-center">
+                <img src="~/Content/img/thumbs-up-01.png" width="160px" alt="">
+            </div>
+
+            <div class="col-12 text-center mt-4">
+                <h4>Thank you for your feedback!</h4>
+                <p class="text-muted">Thank you for sharing your thoughts. We appreciate your valuable feedback.</p>
+            </div>
+        }
+        else
+        {
+            <div class="col-12 text-center mt-4">
+                <h4>Error!</h4>
+                <p class="text-muted">Some error has occured, please connect admin.</p>
+            </div>
+        }
+    </div>
+</div>

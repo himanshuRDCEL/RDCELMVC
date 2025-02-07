@@ -1,0 +1,190 @@
+﻿@model RDCEL.DocUpload.DAL.tblBusinessPartner
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+
+    <h3 class="mt-0">Store Details</h3>
+
+    <div class="row">
+
+        <div class="col-md-12">
+            <table class="table table-striped">
+                <tr>
+                    <td>
+                        <b>Store Name :</b>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.Name)
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <b> Description :</b>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.Description)
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <b>Store Code: </b>
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model => model.StoreCode)
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <b>QR Code URL: </b>
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model => model.QRCodeURL)
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <b>QR Image:</b>
+                    </td>
+
+                    <td>
+                        <img src="@Model.QRImage" alt="QR Code img" width="100" height="100">
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <b>Sponsor Name:</b>
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model => model.tblBusinessUnit.Name)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <b>Contact Person First Name: </b>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.ContactPersonFirstName)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <b>Contact Person Last Name:</b>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.ContactPersonLastName)
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <b>Phone Number:</b>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.PhoneNumber)
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <b>Email: </b>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.Email)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <b>Address Line 1: </b>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.AddressLine1)
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <b>Address Line 2: </b>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.AddressLine2)
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <b>Pincode: </b>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.Pincode)
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <b>City: </b>
+
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model => model.City)
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <b>State: </b>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.State)
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <b>Is Active: </b>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.IsActive.Value, new { @class = "check-box" })
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <b>Created Date: </b>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.CreatedDate)
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <b>Modified Date: </b>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.ModifiedDate)
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+
+    </div>
+    <p class="text-right">
+        @Html.ActionLink("Back to List", "Index", "QRCode", new { @class = "btn btn-primary" })
+    </p>
+</div>
+
+

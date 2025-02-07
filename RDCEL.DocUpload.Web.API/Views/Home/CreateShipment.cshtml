@@ -1,0 +1,14 @@
+﻿
+@{
+    ViewBag.Title = "CreateShipment";
+}
+
+<div class="jumbotron">
+    @using (Html.BeginForm("CreateShipment", "Home", FormMethod.Post))
+    {
+        <label>SponsorOrderNo:</label>
+        @Html.TextBox("SponsorOrderNo")
+        <input type="submit" value="Submit" />
+    }
+</div>
+

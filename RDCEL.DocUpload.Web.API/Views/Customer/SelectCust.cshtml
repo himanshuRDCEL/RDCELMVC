@@ -1,0 +1,159 @@
+﻿@model RDCEL.DocUpload.DataContract.SponsorModel.ExchagneViewModel
+
+@{
+    ViewBag.Title = "Select Location";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-N3ZTGJQQ39"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-N3ZTGJQQ39');
+</script>
+<link href="~/Content/jquery-ui-1.13.1.custom/jquery-ui.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<script src="~/Content/jquery-ui-1.13.1.custom/jquery-ui.js"></script>
+@using (Html.BeginForm("SelectCust", "Customer", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    @Html.HiddenFor(m => m.FormatName, new { id = "hdnFormatName" })
+    @Html.HiddenFor(m => m.BUId, new { id = "hdnBUId" })
+    <div class="col-6 m-auto" style="margin: 5px;">
+        <div class="logowrapper py-3">
+            @if (Model.BULogoName != null)
+            {
+                <img class="logo"
+                     src="@Model.BULogoName">
+            }
+            else
+            {
+                <img class="logo"
+                     src="https://i.pinimg.com/originals/3f/95/48/3f9548beef7804b53a111ced870da0c6.png">
+            }
+
+        </div>
+    </div>
+   
+    <h3 class="section-title">Select Location</h3>
+    <div class="form-group">
+        <label for="">State <span style="color:red;">*</span></label>
+        @Html.DropDownListFor(model => model.StateName, ViewBag.StateList as SelectList, "--Select State--", new { @class = "custom-select", @onchange = "GetCity(this.value);", @id = "ddlState" })
+        @Html.ValidationMessageFor(model => model.StateName)
+    </div>
+
+    <div class="form-group">
+        <label for="">City <span style="color:red;">*</span></label>
+        @Html.DropDownListFor(model => model.CityName, Model.CityList, new { @class = "custom-select", @id = "ddlCity" })
+        @Html.ValidationMessageFor(model => model.CityName)
+    </div>
+    <div class="form-group">
+        <label for="">Pincode <span style="color:red;">*</span></label>
+        @Html.TextBoxFor(model => model.ZipCode, new { @class = "custom-select", @type = "number", @id = "txtPincode" })
+        @Html.ValidationMessageFor(model => model.ZipCode)
+    </div>
+    @*<div class="form-group">
+            <label for="">Place of Order<span style="color:red;">*</span></label>
+            @Html.TextBoxFor(model => model.FormatName, ViewBag.FormateList, new { @id = "ddlFormat", @readonly = "readonly" })
+            @Html.ValidationMessageFor(model => model.FormatName)
+        </div>*@
+
+    <div class="form-group text-right">
+        <input type="submit" id="btnSubmit" value="Submit" class="btn btn-secondary">
+    </div>
+}
+
+<script>
+    $(document).ready(function () {
+        $('#txtPincode').attr('autocomplete', 'one-time-code');
+    });
+    //get city by state
+    function GetCity(_stateName) {
+        var stateName = _stateName;
+        var buid = $("#hdnBUId").val();
+        if (stateName) {
+            $.ajax({
+                type: "GET",
+                url: "@Url.Action("GetCityByStateName", "Exchange")" + "?stateName=" + stateName + "&buid=" + buid,
+                //data: { stateName: stateName, buid: buid},
+                success: function (data) {
+                    if (data) {
+                        //console.log(data);
+                        $("#ddlCity").empty();
+                        $("#ddlCity").append('<option value="">--Select City--</option>');
+                        $.each(data, function (key, value) {
+                            //console.log(value.Value);
+                            // alert("get data");
+                            $("#ddlCity").append('<option value="' + value.Value + '">' + value.Text + '</option>');
+                        });
+                    } else {
+                        $("#ddlCity").empty();
+                    }
+                    //GetPincode(_stateName);
+                }
+            });
+        } else {
+            $("#ddlCity").empty();
+        }
+    }
+
+
+      $("#txtPincode").autocomplete({
+        source: function (request, response)
+        {
+            //var customer = new array();
+            $.ajax({
+                async: false,
+                cache: false,
+                type: "POST",
+                url:
+                    "@(Url.Action("GetPincodeByStateName", "Exchange"))" + "?stateName=" + $("#ddlState").val() + "&cityName=" + $("#ddlCity").val() + "&pintext=" + $("#txtPincode").val() + "&buid=" + $("#hdnBUId").val(),
+                data: {"pintext": request.pintext},
+                success: function (data) {
+                    if (data.length > 0) {
+                        response($.map(data.slice(0, 10), function (item) {
+                            return { label: item.Text, value: item.Text };
+                        }))
+                    }
+                    else {
+                        $("#txtPincode").val("");
+                    }
+                }
+            });
+
+            //response(data);
+        },
+    });
+    //get pincode by State
+         function GetPincode(_stateName) {
+        var stateName = _stateName;
+        var buid = $("#hdnBUId").val();
+        if (stateName) {
+            $.ajax({
+                type: "GET",
+                url: "@Url.Action("GetPincodeByStateName", "Exchange")" + "?stateName=" + stateName + "&buid=" + buid,
+                //data: { stateName: stateName, buid: buid},
+                success: function (data) {
+                    if (data) {
+                        //console.log(data);
+                        $("#ddlPincode").empty();
+                        $("#ddlPincode").append('<option value="">--Select Ci--</option>');
+                        $.each(data, function (key, value) {
+                            //console.log(value.Value);
+                            // alert("get data");
+                            $("#ddlPincode").append('<option value="' + value.Value + '">' + value.Text + '</option>');
+                        });
+                    } else {
+                        $("#ddlPincode").empty();
+                    }
+                }
+            });
+        } else {
+            $("#ddlPincode").empty();
+        }
+    }
+</script>

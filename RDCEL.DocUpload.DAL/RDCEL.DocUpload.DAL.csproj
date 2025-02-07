@@ -1,0 +1,490 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{CE3F7A61-1A9E-41B8-8B7B-68E1C6F51A62}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>RDCEL.DocUpload.DAL</RootNamespace>
+    <AssemblyName>RDCEL.DocUpload.DAL</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="RestSharp, Version=106.11.7.0, Culture=neutral, PublicKeyToken=598062e77f915f75, processorArchitecture=MSIL">
+      <HintPath>..\packages\RestSharp.106.11.7\lib\net452\RestSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AbstractRepository\AbstractRepository.cs" />
+    <Compile Include="AbstractRepository\IAbstractRepository.cs" />
+    <Compile Include="Digi2l_DBEntities.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Digi2l_DBEntities.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Digi2l_DBEntities.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Digi2l_DBEntities.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Digi2l_DBEntities.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="EVCAll_Call_AllocationsData.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Helper\DBHelper.cs" />
+    <Compile Include="Helper\Logging.cs" />
+    <Compile Include="Login.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\ABBPaymentRepository.cs" />
+    <Compile Include="Repository\ABBPlanMasterRepository.cs" />
+    <Compile Include="Repository\ABBPriceMasterRepository.cs" />
+    <Compile Include="Repository\AbbRedemptionRepository.cs" />
+    <Compile Include="Repository\BPPincodeMappingRepository.cs" />
+    <Compile Include="Repository\BPBUAssociationRepository.cs" />
+    <Compile Include="Repository\BUProductCategoryMappingRepository.cs" />
+    <Compile Include="Repository\CouponMasterRepository.cs" />
+    <Compile Include="Repository\CouponRepository.cs" />
+    <Compile Include="Repository\CustomerFilesRepository.cs" />
+    <Compile Include="Repository\LOVRepository.cs" />
+    <Compile Include="Repository\BlowHornRepository.cs" />
+    <Compile Include="Repository\BrandSmartSellRepository.cs" />
+    <Compile Include="Repository\ModalMappingRepository.cs" />
+    <Compile Include="Repository\OrderBasedConfigurationRepository.cs" />
+    <Compile Include="Repository\PriceMasterMappingRepository.cs" />
+    <Compile Include="Repository\PriceMasterNameRepository.cs" />
+    <Compile Include="Repository\QuestionsForSweetnerRepository.cs" />
+    <Compile Include="Repository\BUBasedSweetnerValidationRepository.cs" />
+    <Compile Include="Repository\CityMasterRepository.cs" />
+    <Compile Include="Repository\ConfigurationRepository.cs" />
+    <Compile Include="Repository\EVCPODDetailsRepository.cs" />
+    <Compile Include="Repository\EVCRegistrationRepository.cs" />
+    <Compile Include="Repository\EVCWalletAdditionRepository.cs" />
+    <Compile Include="Repository\EVCWalletHistoryRepository.cs" />
+    <Compile Include="Repository\EVCWalletRepository.cs" />
+    <Compile Include="Repository\ExchangeABBStatusHistoryRepository.cs" />
+    <Compile Include="Repository\AreaLocalityRepository.cs" />
+    <Compile Include="Repository\LogisticsRepository.cs" />
+    <Compile Include="Repository\OrderLGC_Repository.cs" />
+    <Compile Include="Repository\OrderQC_Repository.cs" />
+    <Compile Include="Repository\OrderTransactionRepository.cs" />
+    <Compile Include="Repository\ExchangeOrderStatusRepository.cs" />
+    <Compile Include="Repository\FeedBackAnswerRepository.cs" />
+    <Compile Include="Repository\FeedBackQuestionsRepository.cs" />
+    <Compile Include="Repository\FeedBackRepository.cs" />
+    <Compile Include="Repository\HistoryRepository.cs" />
+    <Compile Include="Repository\MahindraLogisticsRepository.cs" />
+    <Compile Include="Repository\ModelNumberRepository.cs" />
+    <Compile Include="Repository\BusinessPartnerRepository.cs" />
+    <Compile Include="Repository\ABBRegistrationRepository.cs" />
+    <Compile Include="Repository\BusinessUnitRepository.cs" />
+    <Compile Include="Repository\EVCApprovedRepository.cs" />
+    <Compile Include="Repository\MessageDetailRepository.cs" />
+    <Compile Include="Repository\ErrorLogRepository.cs" />
+    <Compile Include="Repository\BizlogTicketStatusRepository.cs" />
+    <Compile Include="Repository\BizlogTicketRepository.cs" />
+    <Compile Include="Repository\CustomerDetailsRepository.cs" />
+    <Compile Include="Repository\LoginDetailsUTCRepository.cs" />
+    <Compile Include="Repository\BrandRepository.cs" />
+    <Compile Include="Repository\PincodeMasterDtoCRepository.cs" />
+    <Compile Include="Repository\PriceMasterRepository.cs" />
+    <Compile Include="Repository\ProductCategoryMappingRepository.cs" />
+    <Compile Include="Repository\ProductConditionLabelRepository.cs" />
+    <Compile Include="Repository\ProductQualityIndexRepository.cs" />
+    <Compile Include="Repository\ProductTypeRepository.cs" />
+    <Compile Include="Repository\ProductCategoryRepository.cs" />
+    <Compile Include="Repository\CurrentAuthtokenRepository.cs" />
+    <Compile Include="Repository\PinCodeRepository.cs" />
+    <Compile Include="Repository\ExchangeOrderRepository.cs" />
+    <Compile Include="Repository\ServicePartnerRepository.cs" />
+    <Compile Include="Repository\SocietyRepository.cs" />
+    <Compile Include="Repository\BPBURedemptionMappingRepository.cs" />
+    <Compile Include="Repository\SponsorCategoryMappingRepository.cs" />
+    <Compile Include="Repository\StateMasterRepository.cs" />
+    <Compile Include="Repository\TimeSlotMasterRepository.cs" />
+    <Compile Include="Repository\TermsAndConditionsForVoucherRepository.cs" />
+    <Compile Include="Repository\TransactionABBPlanMasterRepository.cs" />
+    <Compile Include="Repository\UninstallationPriceRepository.cs" />
+    <Compile Include="Repository\UnInstallationRepository.cs" />
+    <Compile Include="Repository\UniversalPriceMasterRepository.cs" />
+    <Compile Include="Repository\VoucherStatusRepository.cs" />
+    <Compile Include="Repository\VoucherVerificationRepository.cs" />
+    <Compile Include="Repository\WalletTransactioRepository.cs" />
+    <Compile Include="Repository\WhatsappMessageRepository.cs" />
+    <Compile Include="Repository\_247AroundRepository.cs" />
+    <Compile Include="tbl247Around.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblABBPlanMaster.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblABBPriceMaster.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblABBRedemption.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblABBRegistration.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblAccessList.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblAddress.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblAreaLocality.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblBizlogTicket.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblBizlogTicketStatu.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblBlowHornTicket.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblBPBUAssociation.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblBPBURedemptionMapping.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TblBPPincodeMapping.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblBrand.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblBrandSmartBuy.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblBUBasedSweetnerValidation.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblBUProductCategoryMapping.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblBusinessPartner.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblBusinessUnit.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblCity.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblCompany.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblConfiguration.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblCoupon.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblCouponMaster.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblCurrentAuthtoken.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblCustomerDetail.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblCustomerFile.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblDriverDetail.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblEntityType.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblErrorLog.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblEVCApproved.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblEVCDispute.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblEVCPODDetail.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblEvcPriceMaster.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblEVCPriceRangeMaster.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblEVCRegistration.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblEVCWalletAddition.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TblEVCWalletHistory.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblEVCWalletStatu.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblExchangeABBStatusHistory.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblExchangeOrder.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblExchangeOrderStatu.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblFeedBack.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblFeedBackAnswer.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblFeedBackQuestion.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblHistory.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblImage.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblImageLabelMaster.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblLogistic.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblLoV.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblMahindraLogistic.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblMessageDetail.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblModelMapping.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblModelNumber.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblOrderBasedConfig.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblOrderImageUpload.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblOrderLGC.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblOrderPromoVoucher.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblOrderQC.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblOrderTran.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblPaymentLeaser.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblPinCode.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblPincodeMasterDtoC.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblPriceMaster.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblPriceMasterMapping.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblPriceMasterName.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblProductCategory.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblProductConditionLabel.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblProductQualityIndex.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblProductType.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblPromotionalVoucherMaster.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblQuestionsForSweetner.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblRole.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblRoleAccess.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblSelfQC.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblServicePartner.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblSociety.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblSponsorCategoryMapping.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblState.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblTimeLine.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblTimelineStatusMapping.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblTransMasterABBPlanMaster.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblUninstallationPrice.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblUnInstallationPriceMaster.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblUniversalPriceMaster.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblUser.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblUserRole.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblVcareService.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblVoucherStatu.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblVoucherTermsAndCondition.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblVoucherVerfication.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblWalletTransaction.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblWhatsAppMessage.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TimeSlotMaster.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ZohoExchangeData.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GraspCorn.Common\GraspCorn.Common.csproj">
+      <Project>{cfa052f5-2880-487c-a837-9c8726ef87df}</Project>
+      <Name>GraspCorn.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config" />
+    <EntityDeploy Include="Digi2l_DBEntities.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Digi2l_DBEntities.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Digi2l_DBEntities.edmx.diagram">
+      <DependentUpon>Digi2l_DBEntities.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Digi2l_DBEntities.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Digi2l_DBEntities.edmx</DependentUpon>
+      <LastGenOutput>Digi2l_DBEntities.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Digi2l_DBEntities.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Digi2l_DBEntities.edmx</DependentUpon>
+      <LastGenOutput>Digi2l_DBEntities.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

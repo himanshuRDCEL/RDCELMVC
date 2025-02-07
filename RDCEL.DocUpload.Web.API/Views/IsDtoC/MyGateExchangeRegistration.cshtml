@@ -1,0 +1,438 @@
+﻿@model RDCEL.DocUpload.DataContract.SponsorModel.ExchangeOrderDataContract
+
+@{
+    ViewBag.Title = "MyGateExchangeRegistration";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+   /* .wavewrapper path {
+        fill: #F26159 !important;
+    }
+
+    .mainformarea {
+        border-top: 4px solid #f26159;
+    }
+
+    #wrapper h3 {
+        border-bottom: none;
+        border-top: none;
+        padding: 15px 0;
+        background: linear-gradient(to right, #f3537a 0%,#f96857 100%);
+        font-size: 18px;
+        font-weight: 600;
+        background: linear-gradient(90deg, #f75878 0%, #f7635b 38.39%, #fbb03b 100%);
+    }
+
+    input#btnSubmit {
+        border: 4px solid #FF3D51 !important;
+        padding: 8px 30px;
+        border-radius: 50px;
+        margin-top: 16px;
+        background: none !important;
+        color: #FF3D51 !important;
+        font-weight: 600;
+    }
+
+    #wrapper .form-control, #wrapper .custom-select {
+        background: #F6F8FC;
+        height: auto;
+        padding: 10px;
+        border: none;
+        border-bottom: 3px solid #f7635b !important;
+    }
+
+    #wrapper .footer {
+        background: #FF3D51 !important;
+        border-top: 4px solid #ff6878 !important;
+        box-shadow: none !important;
+    }
+
+    #wrapper .mainformarea {
+        box-shadow: 0 3px 6px rgb(0 0 0 / 16%);
+        padding-bottom: 10px;
+    }
+
+    .footer label {
+        margin: 0 !important;
+    }
+
+    #wrapper .footer {
+        padding: 10px;
+        background-color: #fff;
+        -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+        padding-bottom: 15px;
+    }
+
+
+
+    #wrapper .input-group span.mailbox {
+        background: linear-gradient(90deg, #f75878 0%, #f7635b 38.39%, #fbb03b 100%);
+        padding-top: 10px;
+    }
+
+    #wrapper .btn-primary {
+        background: linear-gradient(90deg, #f75878 0%, #f7635b 38.39%, #fbb03b 100%);
+        border: 0;
+    }
+
+    .logotext {
+        font-size: 20px;
+        font-weight: bold;
+        color: #e3553f;
+        padding: 0;
+    }
+
+    .logotexttagline {
+        display: block;
+        color: #a54a1d;
+        font-size: 17px;
+        margin-top: 8px;
+    }
+
+    img {
+        width: 100%;
+    }
+
+    .logoimg img {
+        max-width: 180px;
+        margin-bottom: 20px;
+    }
+
+    .otpinputbox {
+        height: 100%;
+        padding: 4px;
+        vertical-align: middle;
+    }
+
+    @@media screen and (min-width: 485px) {
+        .otpinputbox {
+            margin-bottom: 15px;
+            vertical-align: sub;
+        }
+    }*/
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-L8SDT9VTMV"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-L8SDT9VTMV');
+</script>
+<link href="~/Content/jquery-ui-1.13.1.custom/jquery-ui.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<script src="~/Content/jquery-ui-1.13.1.custom/jquery-ui.js"></script>
+
+@using (Html.BeginForm("MyGateExchangeRegistration", "IsDtoC", FormMethod.Post, new { enctype = "multipart/form-data", @id = "Course-form", @class = "form-horizontal", autocomplete = "off" }))
+{
+    <div class="row">
+
+        @Html.HiddenFor(m => m.Id, new { id = "hdnExchangeId" })
+        @Html.HiddenFor(m => m.CreatedBy)
+        @Html.HiddenFor(m => m.ModifiedBy)
+        @Html.HiddenFor(m => m.ModifiedDate)
+        @Html.HiddenFor(m => m.IsActive)
+        @Html.HiddenFor(m => m.BusinessUnitId, new { id = "hdnbuid" })
+        @Html.HiddenFor(m => m.ZohoSponsorNumber)
+        @Html.HiddenFor(m => m.ExpectedDeliveryHours)
+        @Html.HiddenFor(m => m.CompanyName)
+        @Html.HiddenFor(m => m.QualityCheck)
+        @Html.HiddenFor(m => m.ProductAge, new { id = "hdnProductage" })
+        @Html.HiddenFor(m => m.ProductCategoryId)
+        @Html.HiddenFor(m => m.BrandId)
+        @Html.HiddenFor(m => m.ProductTypeId, new { id = "hdnProducttypeId" })
+        @Html.HiddenFor(m => m.ExchangePriceString, new { id = "hdnExchangePrice" })
+        @Html.HiddenFor(m => m.ExchangePrice)
+        @Html.HiddenFor(m => m.FormatName)
+        @Html.HiddenFor(m => m.UnInstallationPrice)
+        @Html.HiddenFor(m => m.IsUnInstallationRequired, new { id = "hdnNeeded" })
+        @Html.HiddenFor(m => m.StartTime, new { id = "hdnStartTime" })
+        @Html.HiddenFor(m => m.QCDate, new { id = "hdnQCadate" })
+        @Html.HiddenFor(m => m.stringUnInstallationPrice, new { id = "hdnString" })
+        @Html.HiddenFor(m => m.BusinessUnitId, new { id = "hdnBUId" })
+        @Html.HiddenFor(m => m.State1, new { id = "hdnState" })
+        @Html.HiddenFor(m => m.City1, new { id = "hdnCity" })
+        @Html.HiddenFor(m => m.BusinessPartnerId, new { id = "hdnBusinessPartnerId" })
+        @Html.HiddenFor(m => m.priceMasterNameID, new { id = "hdnpriceMasterNameID" })
+        @Html.HiddenFor(m => m.BasePrice, new { id = "hdnBasePrice" })
+        @Html.HiddenFor(m => m.SweetenerBu, new { id = "hdnSweetenerBu" })
+        @Html.HiddenFor(m => m.SweetenerBP, new { id = "hdnSweetenerBP" })
+        @Html.HiddenFor(m => m.SweetenerDigi2L, new { id = "hdnSweetenerDigi2L" })
+        @Html.HiddenFor(m => m.SweetenerTotal, new { id = "hdnSweetenerTotal" })
+
+
+
+        <!--<div class="col-12 pt-0 text-center">-->
+        @*<div class="logoimg">
+            <img src="~/Content/DB_Files/SponsorLogo/Digi2L_Logo_Final.png" />
+        </div>*@
+        <!--<h4 class="logotext">
+            India's First Digital Platform To Sell Used Appliances! <span class="logotexttagline">CUSTOMER READY! PRICE READY! PAYMENT READY!</span>
+        </h4>
+    </div>
+
+    <div class="col-12 pt-0 text-center">
+        <div class="logoimg">-->
+        @*<div class="vectorbox">*@
+        <!--<img src="~/Content/DB_Files/SponsorLogo/11.png" />-->
+        @*</div>*@
+        <!--</div>
+    </div>-->
+
+
+    </div>
+
+    <div class="row justify-content-center align-items-center">
+        <div class="col-md-6 mx-auto">
+            @*<h3 class="section-title">Product Details</h3>*@
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card box">
+                        <div class="row">
+                            <h3 class="section-title">Pickup Details</h3>
+
+                            @*<div class="form-group">
+        <div class="row">*@
+                            <div class="col-md-6">
+                                <div class="inputbox">
+                                    <label>First Name <span style="color:red;">*</span></label>
+                                    @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control", @id = "txtFirstName" } })
+                                    @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+                                    <label id="lblFirstName" style="color:red;"></label>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="inputbox">
+                                    <label>Last Name <span style="color:red;">*</span></label>
+                                    @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control", @id = "txtLastName" } })
+                                    @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+                                    <label id="lblLastName" style="color:red;"></label>
+                                </div>
+                            </div>
+
+                            @*</div>
+        </div>*@
+                            <div class="col-12">
+                                <div class="inputbox">
+                                    <label for="">Mobile Number <span style="color:red;">*</span></label>
+                                    @Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "form-control", @id = "txtMobile", @type = "number" } })
+                                    @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
+                                    <label style="color:green;" class="conditionDescription mt-2" id="WhatsappNumber">Number should be active on whatsapp.</label>
+                                    <label id="lblMobile" style="color:red;"></label>
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <div class="inputbox">
+                                    <label for="">E-mail <span style="color:red;">*</span></label>
+                                    <div class="input-group">
+                                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @id = "txtEmail" } })
+                                        <span class="right mailbox"><i class="fas fa-envelope"></i></span>
+                                    </div>
+                                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                                    <label id="lblEmail" style="color:red;"></label>
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <div class="inputbox">
+                                    <label for="">Pincode <span style="color:red;">*</span></label>
+                                    @Html.TextBoxFor(model => model.ZipCode, new { @class = "form-control form-select", @onchange = "GetState(this.value);", @id = "txtPincode" })
+                                    @Html.ValidationMessageFor(model => model.ZipCode, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="inputbox">
+                                    <label for="">State <span style="color:red;">*</span></label>
+                                    @Html.EditorFor(model => model.State, new { htmlAttributes = new { @class = "form-control", @id = "ddlState", disabled = "disabled", @readonly = "readonly" } })
+                                    @Html.ValidationMessageFor(model => model.State, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="inputbox">
+                                    <label for="">City <span style="color:red;">*</span></label>
+                                    @Html.EditorFor(model => model.CityName, new { htmlAttributes = new { @class = "form-control", @id = "ddlCity", disabled = "disabled", @readonly = "readonly" } })
+                                    @Html.ValidationMessageFor(model => model.CityName, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <div class="inputbox">
+                                    <label for="">Address 1 <span style="color:red;">*</span></label>
+                                    @Html.EditorFor(model => model.Address1, new { htmlAttributes = new { @class = "form-control required", @id = "txtAddress1" } })
+                                    @Html.ValidationMessageFor(model => model.Address1, "", new { @class = "text-danger" })
+                                    <label id="lblAddress1" style="color:red;"></label>
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <div class="inputbox">
+                                    <div class="form-group">
+                                        <label for="">Address 2</label>
+                                        @Html.EditorFor(model => model.Address2, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Address2, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                            <h3 class="section-title">Customer Acceptance Required</h3>
+                            @*<div class="form-group">
+            @Html.CheckBoxFor(model => model.OtherCommunications, new { @id = "chkAge18", @class = "clsChecks" })
+            <span for="">I am above the age of 18 years.</span>
+        </div>*@
+                            <div class="col-12">
+                                <div class="row">
+
+                                    <div class="col-12">
+                                        <div class="inputbox termsbox">
+                                            @Html.CheckBoxFor(model => model.OtherCommunications, new { @id = "chkAge18", @class = "clsChecks" })
+                                            <label for="chkAge18">I agree to receive communication from  Digi2l.</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12">
+                                        <div class="inputbox termsbox">
+                                            @Html.CheckBoxFor(model => model.OtherCommunications, new { @id = "chkTC", @class = "clsChecks" })
+                                            <label for="chkTC">Old Product will be ready for pickup.</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12">
+                                        <div class="inputbox termsbox">
+                                            @Html.CheckBoxFor(model => model.OtherCommunications1, new { @id = "chkBoschTC", @class = "clsChecks" })
+                                            <label for="chkBoschTC">I state that I have read and understood the <a href="https://digi2l.in/privacy-policy/" target="_blank">privacy policy</a> and <a href="https://digi2l.in/exchange-terms-condition/" target="_blank">terms and conditions</a> of Digi2L.</label>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="form-group text-center text-md-right" id="divSubmit" style="display:none">
+                                <input type="button" value="Submit" class="btn btn-primary" id="btnSubmit">
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+}
+
+
+
+<script>
+    function validateLeadForm() {
+        if ($("form").valid()) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    $(document).ready(function () {
+        $('#txtPincode').attr('autocomplete', 'one-time-code');
+         $('#btnSubmit').click(function () {
+            if (validateLeadForm()) {
+                $(this).prop('disabled', true);
+                $("#loader").show();
+                $("#Course-form").submit();
+            }
+        })
+    });
+       $("#txtPincode").autocomplete({
+         source: function (request, response)
+         {
+            //var customer = new array();
+            $.ajax({
+                async: false,
+                cache: false,
+                type: "POST",
+                url:
+                    "@(Url.Action("GetPincodeForMyGate", "IsDtoC"))" + "?pintext=" + $("#txtPincode").val() + "&buid=" + $("#hdnbuid").val(),
+                data: { "pintext": request.pintext ,buid: request.buid},
+                success: function (data) {
+                    if (data.length > 0) {
+                        response($.map(data, function (item) {
+                            if (item.Text != "No pincode available on this location") {
+                                return { label: item.Text, value: item.Text };
+                            }
+                            else {
+                                $("#txtPincode").val("");
+                            }
+                         
+                        }))
+                    }
+                    else {
+                        $("#txtPincode").val("");
+                    }
+                }
+            });
+
+            //response(data);
+         },
+       });
+
+
+     function GetState(_pinCode) {
+         var pinCode = _pinCode;
+         var buid = $("#hdnbuid").val();
+         if (pinCode) {
+            $.ajax({
+                type: "GET",
+                url: "@Url.Action("GetState", "IsDtoC")" + "?pincode=" + pinCode,
+                //data: { stateName: stateName, buid: buid},
+                success: function (data) {
+                    if (data) {
+                        //console.log(data);
+                        $("#ddlState").empty();
+                        $("#ddlState").val(data.StateName);
+                        $("#ddlCity").val(data.CityName);
+                        $("#hdnCity").val(data.CityName);
+                        $("#hdnState").val(data.StateName);
+
+                    } else {
+                        $("#ddlState").empty();
+                    }
+                    //GetPincode(_stateName);
+                }
+            });
+        } else {
+             $("#ddlState").empty();
+        }
+     }
+
+    $('.clsChecks').change(function () {
+
+        if ($(this).is(':checked')) {
+            if (($("#chkTC").is(':checked')) && $('#chkAge18').is(':checked')) {
+                $('#divSubmit').show();
+
+            }
+            else {
+                $('#divSubmit').hide();
+            }
+
+        } else {
+            $('#divSubmit').hide();
+        }
+    });
+
+    $("#daterangewrapper").datepicker({
+
+        format:"dd/mm/yyyy",
+        minDate: '0',
+        maxDate: "+5D"
+    });
+
+
+</script>

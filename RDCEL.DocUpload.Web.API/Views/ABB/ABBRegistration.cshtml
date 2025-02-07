@@ -1,0 +1,963 @@
+﻿@model RDCEL.DocUpload.DataContract.ABBRegistration.ABBRegistrationViewModel
+
+@{
+    ViewBag.Title = "ABB Registration";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+<style>
+    #showImg {
+        width: 50%;
+        height: auto;
+        display: block;
+        margin: 10px auto;
+    }
+
+    .custom-file {
+        height: 50% !important;
+    }
+</style>
+
+@using (Html.BeginForm("ABBRegistration", "ABB", FormMethod.Post, new { enctype = "multipart/form-data", @id = "ABB-form", @class = "form-horizontal", autocomplete = "off" }))
+{
+    @*<h3>@ViewBag.Msg</h3>*@
+    <div class="row">
+
+        @Html.HiddenFor(m => m.ABBRegistrationId, new { id = "hdnABBRegistrationId" })
+        @Html.HiddenFor(m => m.InvoiceImage)
+        @Html.HiddenFor(m => m.CreatedBy)
+        @Html.HiddenFor(m => m.CreatedDate)
+        @Html.HiddenFor(m => m.ModifiedBy)
+        @Html.HiddenFor(m => m.ModifiedDate)
+        @Html.HiddenFor(m => m.IsActive)
+        @Html.HiddenFor(m => m.BusinessUnitId, new { id = "hdnbuid" })
+        @Html.HiddenFor(m => m.ABBPlanName)
+        @Html.HiddenFor(m => m.Base64StringValue, new { id = "hdnBase64StringValue" })
+        @Html.HiddenFor(m => m.PlanPrice, new { id = "hdnPlanPrice" })
+        @Html.HiddenFor(m => m.IsPayNow, new { id = "hdnPayNow" })
+        @Html.HiddenFor(m => m.IsdefferedAbb, new { id = "hdnIsdefferedAbb" })
+        @Html.HiddenFor(m => m.city1, new { id = "hdncity" })
+        @Html.HiddenFor(m => m.state1, new { id = "hdnstate" })
+        @Html.HiddenFor(m => m.IsBUD2C, new { id = "hdnIsBUD2C" })
+        @Html.HiddenFor(m => m.bpId, new { id = "hdnBpid" })
+        @Html.HiddenFor(m => m.BusinessPartnerId, new { id = "hdnBusinessPartnerId" })
+        @Html.HiddenFor(m => m.BusinessUnitId, new { id = "hdnBusinessUnitId" })
+        @Html.HiddenFor(m => m.NewProductCategoryId, new { id = "hdnCatId" })
+        @Html.HiddenFor(m => m.NewProductCategoryTypeId, new { id = "hdntypid" })
+        @Html.HiddenFor(m => m.ABBPlanName, new { id = "hdnabbplanname" })
+        @Html.HiddenFor(m => m.ABBPlanPeriod, new { id = "hdnplanperiod" })
+        @Html.HiddenFor(m => m.NoOfClaimPeriod, new { id = "hdnclaimperiod" })
+        @Html.HiddenFor(m => m.ProductNetPrice, new { id = "hdnnetprice" })
+        @Html.HiddenFor(m => m.ABBFees, new { id = "hdnfees" })
+        @Html.HiddenFor(m => m.imageName, new { id = "hdnImageName" })
+        @Html.HiddenFor(m => m.IsD2C, new { id = "hdnIsD2C" })
+        @Html.HiddenFor(m => m.StoreName, new { id = "hdnStoreName" })
+        @Html.HiddenFor(m => m.StoreCode, new { id = "hdnStoreCode" })
+        @Html.HiddenFor(m => m.BUName, new { id = "hdnBUName" })
+        @Html.HiddenFor(m => m.EmployeeId, new { id = "hdnEmployeeId" })
+        @Html.HiddenFor(m => m.GstType, new { id = "hdnGstType" })
+        @Html.HiddenFor(m => m.Margintype, new { id = "hdnMargintype" })
+        @Html.HiddenFor(m => m.IsSponsorOrderNumberRequired, new { id = "hdnSponsorOrderNumberRequired" })
+        @Html.HiddenFor(m => m.IsAbbDayConfig, new { id = "hdnIsAbbDayConfig" })
+        @Html.HiddenFor(m => m.AbbDayDiff, new { id = "hdnAbbDayDiff" })
+    </div>
+
+    <div class="row justify-content-center align-items-center">
+        <div class="col-md-6 mx-auto">
+            <h3 class="section-title">ABB Registration</h3>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card box">
+                        <div class="row">
+
+                            @if (Model.IsSponsorOrderNumberRequired == true)
+                            {
+                                <div class="col-12">
+                                    <div class="inputbox">
+                                        <label for="">Sponsor Order Number <span style="color:red;">*</span></label>
+                                        @Html.EditorFor(model => model.SponsorOrderNo, new { htmlAttributes = new { @maxlength = "25", @class = "form-control form-select", @id = "txtSponsorOrderNo" } })
+                                        @Html.ValidationMessageFor(model => model.SponsorOrderNo, "", new { @class = "text-danger" })
+                                        <label id="lblMobile" style="color:red;"></label>
+                                    </div>
+                                </div>
+                            }
+
+                            <h3 class="section-title">Customer Details</h3>
+
+                            <div class="col-md-6">
+                                <div class="inputbox">
+                                    <label>First Name <span style="color:red;">*</span></label>
+                                    @Html.EditorFor(model => model.CustFirstName, new { htmlAttributes = new { @maxlength = "30", @class = "form-control", @id = "txtFirstName" } })
+                                    @Html.ValidationMessageFor(model => model.CustFirstName, "", new { @class = "text-danger" })
+                                    <label id="lblFirstName" style="color:red;"></label>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="inputbox">
+                                    <label>Last Name <span style="color:red;">*</span></label>
+                                    @Html.EditorFor(model => model.CustLastName, new { htmlAttributes = new { @maxlength = "50", @class = "form-control", @id = "txtLastName" } })
+                                    @Html.ValidationMessageFor(model => model.CustLastName, "", new { @class = "text-danger" })
+                                    <label id="lblLastName" style="color:red;"></label>
+                                </div>
+                            </div>
+
+
+                            <div class="col-12">
+                                <div class="inputbox">
+                                    <label for="">Mobile Number <span style="color:red;">*</span></label>
+                                    @Html.EditorFor(model => model.CustMobile, new { htmlAttributes = new { @maxlength = "10", @class = "form-control", @id = "txtMobile", @type = "number" } })
+                                    @Html.ValidationMessageFor(model => model.CustMobile, "", new { @class = "text-danger" })
+                                    <label id="lblMobile" style="color:red;"></label>
+                                    <label class="conditionDescription" style="color:green">Note: Enter same mobile number used at the time of new product purchase.</label>
+                                    <label class="conditionDescription" style="color:green;" id="WhatsappNumber">Number should be active on whatsapp.</label>
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <div class="inputbox">
+                                    <label for="">E-mail <span style="color:red;">*</span></label>
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                                        @Html.EditorFor(model => model.CustEmail, new { htmlAttributes = new { @maxlength = "70", @class = "form-control required", @id = "txtEmail" } })
+                                    </div>
+                                    @Html.ValidationMessageFor(model => model.CustEmail, "", new { @class = "text-danger" })
+                                    <label id="lblEmail" style="color:red;"></label>
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <div class="inputbox">
+                                    <label for="">Pin Code <span style="color:red;">*</span></label>
+                                    @Html.EditorFor(model => model.CustPinCode, new { htmlAttributes = new { @class = "form-control", @type = "number", @maxlength = "6", @onchange = "GetState(this.value);", @id = "txtZipcode" } })
+                                    @Html.ValidationMessageFor(model => model.CustPinCode, "", new { @class = "text-danger" })
+                                    <label id="lblZipcode" style="color:red;"></label>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="inputbox">
+                                    <label for="">State</label>
+                                    @Html.EditorFor(model => model.CustState, new { htmlAttributes = new { @class = "form-control", @id = "txtState", @required = "required", @disabled = "disabled" } })
+                                    @Html.ValidationMessageFor(model => model.CustState, "", new { @class = "text-danger" })
+                                    <label id="lblStateName" style="color:red;"></label>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="inputbox">
+                                    <label for="">City</label>
+                                    @Html.EditorFor(model => model.CustCity, new { htmlAttributes = new { @class = "form-control", @id = "txtCity", @required = "required", @disabled = "disabled" } })
+                                    @Html.ValidationMessageFor(model => model.CustCity, "", new { @class = "text-danger" })
+                                    <label id="lblCityName" style="color:red;"></label>
+
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <div class="inputbox">
+                                    <label for="">Address Line 1 <span style="color:red;">*</span></label>
+                                    @Html.EditorFor(model => model.CustAddress1, new { htmlAttributes = new { @maxlength = "100", @class = "form-control required", @id = "txtAddress1" } })
+                                    @Html.ValidationMessageFor(model => model.CustAddress1, "", new { @class = "text-danger" })
+                                    <label id="lblAddress1" style="color:red;"></label>
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <div class="inputbox">
+                                    <label for="">Address Line 2</label>
+                                    @Html.EditorFor(model => model.CustAddress2, new { htmlAttributes = new { @maxlength = "100", @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.CustAddress2, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <h3 class="section-title">Product Details</h3>
+
+                            @if (Model.IsBuMultibrand == false)
+                            {
+                                <div class="col-12">
+                                    <div class="inputbox">
+                                        <label for="">Product Brand</label>
+                                        @Html.EditorFor(model => model.BrandName, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @disabled = "disabled" } })
+                                        @Html.HiddenFor(model => model.NewBrandId)
+                                    </div>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="col-12">
+                                    <div class="inputbox">
+                                        <label for="">Product Brand<span style="color:red;">*</span></label>
+                                        @Html.DropDownListFor(model => model.NewBrandId, ViewBag.BrandList as SelectList, "--Select Product Group--", new { @class = "form-control form-select", @id = "ddlBrandNew" })
+                                        @Html.ValidationMessageFor(model => model.NewBrandId, "", new { @class = "text-danger" })
+                                        @*@Html.HiddenFor(model => model.BrandName)*@
+                                    </div>
+                                </div>
+                            }
+
+                            <div class="col-12">
+                                <div class="inputbox">
+                                    <label for="">Product Serial Number<span style="color:red;">*</span></label>
+                                    @Html.EditorFor(model => model.ProductSrNo, new { htmlAttributes = new { @maxlength = "50", @class = "form-control", @id = "txtProductSrNo" } })
+                                    @Html.ValidationMessageFor(model => model.ProductSrNo, "", new { @class = "text-danger" })
+                                    <label style="color:red;"></label>
+                                </div>
+                            </div>
+
+                            @if (Model.IsD2C == false)
+                            {
+                                <div class="col-12">
+                                    <div class="inputbox">
+                                        <label for="">Model Number <span style="color:red;">*</span></label>
+                                        @Html.DropDownListFor(model => model.ModelNumberId, Model.ProductModelList, new { @class = "form-control form-select", @id = "ddlModelNo" })
+                                        @Html.ValidationMessageFor(model => model.ModelNumberId, "", new { @class = "text-danger" })
+                                        <label id="lblModelNo" style="color:red;"></label>
+                                    </div>
+                                </div>
+                            }
+                            else
+                            {
+                                @Html.HiddenFor(m => m.ModelNumberId, new { @id = "hdnModelNumberId" })
+                            }
+
+                            <div class="col-12">
+                                <div class="inputbox">
+                                    <label for="">Invoice Date <span style="color:red;">*</span></label>
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text"><i class="fa-solid fa-calendar-days"></i></span>
+                                        @Html.EditorFor(model => model.InvoiceDate, new { htmlAttributes = new { @class = "form-control", @type = "text", @id = "txtInvoiceDate", @readonly = "readonly" } })
+                                        </div>
+                                        @Html.ValidationMessageFor(model => model.InvoiceDate, "", new { @class = "text-danger" })
+                                        <label id="lblInvoiceDate" style="color:red;"></label>
+                                    </div>
+                            </div>
+
+                            <div class="col-12">
+                                <div class="inputbox">
+                                    <label for="">Invoice Number<span style="color:red;">*</span></label>
+                                    @Html.EditorFor(model => model.InvoiceNo, new { htmlAttributes = new { @maxlength = "50", @id = "txtInvoiceNo", @class = "form-control"  } } )
+                                    @Html.ValidationMessageFor(model => model.InvoiceNo, "", new { @class = "text-danger" })
+                                    <label id="lblInvoiceNo" style="color:red;"></label>
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <div class="inputbox">
+                                    <label for="">Invoice Image <span style="color:red;">*</span></label>
+
+                                    @*<div class="custom-file">*@
+                                    <input type="file" class="" data-max-size="5000" name="InvoiceImage" id="validatedCustomFile" accept="image/*">
+                                    @*</div>*@
+                                    @Html.ValidationMessageFor(model => model.InvoiceImage, "", new { @class = "text-danger" })
+                                    <label class="conditionDescription text-success mt-2">You can only upload jpg, jpeg, png, gif files.</label><br />
+                                    <label id="lblInvoiceImage" style="color:red;"></label>
+                                    @*<label id="lbInvoicelFileName"></label>*@
+
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <img id="showImg" src="" />
+                            </div>
+
+                            <div class="col-12">
+                                <div class="inputbox">
+                                    <label for="">Upload Date</label>
+                                    @Html.EditorFor(model => model.UploadDateTime, new { htmlAttributes = new { @class = "form-control", @type = "date", @Value = DateTime.Now.ToString("yyyy'-'MM'-'dd"), @readonly = "readonly", @disabled = "disabled" } })
+                                    @Html.ValidationMessageFor(model => model.UploadDateTime, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <div class="inputbox termsbox my-2">
+                                    @Html.CheckBoxFor(model => model.OtherCommunications, new { @id = "chkTC" })
+                                    <label for="chkTC">I agree to the <a href="https://digi2l.in/terms-conditions/" target="_blank">terms and conditions</a> of the Assured Buyback Program.</label>
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <div class="inputbox termsbox my-2">
+                                    @Html.CheckBoxFor(model => model.FollowupCommunication, new { @id = "chkBoschTC" })
+                                    <label for="chkBoschTC">I agree to receive other communications from Digi2L.</label>
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <div class="inputbox termsbox my-2">
+                                    @Html.CheckBoxFor(model => model.OtherCommunications, new { @id = "chkAge18" })
+                                    <label for="chkAge18">I state that I have read and understood the <a href="https://digi2l.in/privacy-policy/" target="_blank"> privacy policy</a>  and <a href="https://digi2l.in/terms-conditions/" target="_blank">  terms and conditions</a> of Digi2L.</label>
+                                </div>
+                            </div>
+
+                            <div class="form-group text-center" id="divPayNow" style="display:none">
+                                <input type="button" id="btnforpayment" value="Pay Now" class="btn btn-primary" />
+                            </div>
+
+                            <div class="form-group text-center" id="divSubmit" style="display:none">
+                                <input type="button" id="btnFormSubmit" value="Submit" class="btn btn-primary" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+<div class="form-group otpwrapper" id="divShowOTP" style="display:none">
+    <div class="otpbox text-center">
+        <p>OTP has been sent to <strong id="txtmobile1"></strong></p>
+        @using (Html.BeginForm())
+        {
+
+            <input type="number" id="digit-1" name="digit-1" data-next="digit-2" placeholder="please enter OTP" maxlength="4" />
+
+            <input type="button" id="btnOTPVerification" value="Verify OTP" class="btn btn-primary" style="margin-top:2px;">
+        }
+    </div>
+</div>
+<script src="~/Scripts/jquery.resizeImg.js"></script>
+<script src="~/Scripts/mobileBUGFix.mini.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#txtZipcode').attr('autocomplete', 'one-time-code');
+        var d2c = $("#hdnIsD2C").val();
+        if (d2c == "true" || d2c == "True" || d2c == true) {
+            var modelvalue = 1;
+            $("#hdnModelNumberId").val(modelvalue);
+        }
+
+        var bpid =parseInt( $('#hdnBpid').val());
+        if (bpid>0) {
+            $('#ddlStore').val(bpid);
+        }
+
+        $('#txtInvoiceDate').datepicker({
+    maxDate: 0
+        });
+
+var IsAbbDayConfig = $("#hdnIsAbbDayConfig").val();
+
+if (IsAbbDayConfig == "true" || IsAbbDayConfig == "True" || IsAbbDayConfig == true) {
+    var abbDayDiff = parseInt($("#hdnAbbDayDiff").val());
+    if (abbDayDiff > 0) {
+        var backDate = new Date();
+        backDate.setDate(backDate.getDate() - abbDayDiff);
+        $('#txtInvoiceDate').datepicker("option", "minDate", backDate);
+    } else {
+        var backDate = new Date();
+        backDate.setDate(backDate.getDate());
+        $('#txtInvoiceDate').datepicker("option", "minDate", backDate);
+    }
+} else {
+    var abbDayDiff = parseInt($("#hdnAbbDayDiff").val());
+    if (abbDayDiff > 0) {
+        var backDate = new Date();
+        backDate.setDate(backDate.getDate() - abbDayDiff);
+        $('#txtInvoiceDate').datepicker("option", "minDate", backDate);
+    }
+}
+
+
+
+
+        //txtInvoiceDate.max = new Date().toISOString().slice(0, -14);
+
+
+
+
+            $('#btnFormSubmit').click(function () {
+             if (validateForm()) {
+
+                 var isdtoc = $("#hdnIsD2C").val();
+                 if (isdtoc == "true" || isdtoc == "True" || isdtoc == true) {
+                     var modelNumber = 999999;
+                 }
+                 else {
+                     var modelNumber = $('#ddlModelNo').val();
+                 }
+                var customerMobileNumber = $('#txtMobile').val();
+                var invoiceNumber = $('#txtInvoiceNo').val();
+
+                var PurchaseDate = $('#txtInvoiceDate').val();
+
+                 $.ajax({
+                url: "@Url.Action("ValidateABBOrder", "ABB")",
+                type: "POST",
+                dataType: 'json',
+                contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+                    data: {
+                                customerMobileNumber: customerMobileNumber, invoiceNumber: invoiceNumber, modelNumber: modelNumber, PurchaseDate: PurchaseDate
+                           },
+                success: function (response) {
+                    if (response == true || response == "True" || response == "true") {
+                        $($("#btnFormSubmit")).prop('disabled', true);
+                        $("#loader").show();
+                        $("#ABB-form").submit();
+                    }
+                    else {
+                        alert("Duplicate Order: With Respect to customer, ABB plan aready regitered for Model: " + $("#ddlModelNo option:selected").text() + ".");
+                    }
+                },
+                failure: function (response) {
+                },
+                error: function (response) {
+                }
+            });
+
+            }
+         })
+
+
+
+
+           var ProdTypeId = $("#hdntypid").val();
+            var buid = $("#hdnbuid").val();
+           if (ProdTypeId) {
+            $.ajax({
+                type: "GET",
+                url: "@Url.Action("GetModelNumberByProdTypeId", "ABB")",
+                data: { ProdTypeId: ProdTypeId, buid: buid },
+                success: function (data) {
+                    if (data) {
+                        //console.log(data);
+                        $("#ddlModelNo").empty();
+                        $("#ddlModelNo").append('<option value="">--Select Model Number--</option>');
+                        $.each(data, function (key, value) {
+                            $("#ddlModelNo").append('<option value="' + value.Value + '">' + value.Text + '</option>');
+                        });
+                    } else {
+                        $("#ddlModelNo").empty();
+                    }
+                }
+            });
+            } else {
+                $("#ddlModelNo").empty();
+        }
+
+
+         $('#btnforpayment').click(function () {
+
+             if (validateForm()) {
+
+                var customerMobileNumber = $('#txtMobile').val();
+                var invoiceNumber = $('#txtInvoiceNo').val();
+                 var isdtoc = $("#hdnIsD2C").val();
+                 if (isdtoc == "true" || isdtoc == "True" || isdtoc == true) {
+                     var modelNumber = 1;
+                 }
+                 else {
+                     var modelNumber = $('#ddlModelNo').val();
+                 }
+                var PurchaseDate = $('#txtInvoiceDate').val();
+                    $.ajax({
+                        url: "@Url.Action("ValidateABBOrder", "ABB")",
+                        type: "POST",
+                        dataType: 'json',
+                        contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+                        data: {
+                            customerMobileNumber: customerMobileNumber, invoiceNumber: invoiceNumber, modelNumber: modelNumber, PurchaseDate: PurchaseDate
+                        },
+                        success: function (response) {
+                            if (response == true || response == "True" || response == "true") {
+                                $($("#btnforpayment")).prop('disabled', true);
+                                var paynow = true;
+                                $("#hdnPayNow").val(paynow);
+                                $("#loader").show();
+                                $("#ABB-form").submit();
+                            }
+                            else {
+                                alert("Duplicate Order: With Respect to customer, ABB plan aready regitered for Model: " + $("#ddlModelNo option:selected").text() + ".");
+                            }
+                        },
+                        failure: function (response) {
+                        },
+                        error: function (response) {
+                        }
+                    });
+            }
+
+         });
+
+    });
+
+    function validateForm() {
+        validateLeadForm();
+
+        if ($("form").valid()) {
+            var Base64String = $("#hdnBase64StringValue").val();
+
+            if (Base64String == null || Base64String == "") {
+                alert("Unable to process request Please select Invoice Image");
+                return false;
+            }
+
+            if ($("#txtState").val() == '' || $("#txtState").val() == null) {
+
+                alert("Please select valid or active Pincode");
+                return false;
+
+            }
+
+
+            if ($("#txtCity").val() == '' || $("#txtCity").val() == null) {
+
+                alert("Please select valid or active Pincode");
+                return false;
+            }
+            else {
+                return true;
+            }
+
+
+        }
+        else {
+            return false;
+        }
+    }
+
+    function validateLeadForm() {
+        var flag = true;
+        if ($("#txtFirstName").val() == '' || $("#txtFirstName").val() == null) {
+            $("#txtFirstName").css("border", "2px solid red");
+            $("#txtFirstName").focus();
+            $("#divSubmitAlert").show();
+            //$("#lblFirstName").css("display", "block");
+            //$("#lblFirstName").append("Please enter First Name,");
+            flag = false;
+        }
+        else {
+            $("#txtFirstName").css("border", "");
+            $("#lblFirstName").text("");
+        }
+
+        if ($("#txtLastName").val() == '' || $("#txtLastName").val() == null) {
+            $("#txtLastName").css("border", "2px solid red");
+            $("#txtLastName").focus();
+            $("#divSubmitAlert").show();
+            //$("#lblLastName").css("display", "block");
+            //$("#lblLastName").append("Please enter Last Name,");
+            flag = false;
+        }
+        else {
+            $("#txtLastName").css("border", "");
+            $("#lblLastName").text("");
+        }
+
+        if ($("#txtEmail").val() == '' || $("#txtEmail").val() == null) {
+            $("#txtEmail").css("border", "2px solid red");
+            $("#txtEmail").focus();
+            $("#divSubmitAlert").show();
+            //$("#lblEmail").css("display", "block");
+            //$("#lblEmail").append("Please enter Email,");
+            flag = false;
+        }
+        else {
+            $("#txtEmail").css("border", "");
+            $("#lblEmail").text("");
+        }
+
+        if ($("#txtMobile").val() == '' || $("#txtMobile").val() == null) {
+            $("#txtMobile").css("border", "2px solid red");
+            $("#txtMobile").focus();
+            $("#divSubmitAlert").show();
+           // $("#lblMobile").css("display", "block");
+            //$("#lblMobile").append("Please enter Mobile Number");
+            flag = false;
+        }
+        else {
+            $("#txtMobile").css("border", ""); $("#lblMobile").text("");
+        }
+
+        if ($("#txtZipcode").val() == '' || $("#txtZipcode").val() == null) {
+            $("#txtZipcode").css("border", "2px solid red");
+            $("#txtZipcode").focus();
+            $("#divSubmitAlert").show();
+            //$("#lblZipcode").css("display", "block");
+            //$("#lblZipcode").append("Please enter Pin Code.");
+            flag = false;
+        }
+        else {
+            $("#txtZipcode").css("border", ""); $("#lblZipcode").text("");
+        }
+
+        //ddlBrandNew
+        if ($("#ddlBrandNew").val() == '' || $("#ddlBrandNew").val() == null) {
+            $("#ddlBrandNew").css("border", "2px solid red");
+            $("#ddlBrandNew").focus();
+            //$("#divSubmitAlert").show();
+            // $("#lblAddress1").css("display", "block");
+            //$("#lblAddress1").append("Please enter Address Line 1.");
+            flag = false;
+        }
+        //else {
+        //    $("#ddlBrandNew").css("border", ""); $("#ddlBrandNew").text("");
+        //}
+
+        if ($("#txtAddress1").val() == '' || $("#txtAddress1").val() == null) {
+            $("#txtAddress1").css("border", "2px solid red");
+            $("#txtAddress1").focus();
+            $("#divSubmitAlert").show();
+           // $("#lblAddress1").css("display", "block");
+            //$("#lblAddress1").append("Please enter Address Line 1.");
+            flag = false;
+        }
+        else {
+            $("#txtAddress1").css("border", ""); $("#lblAddress1").text("");
+        }
+
+
+
+        if ($("#ddlModelNo").val() == '' || $("#ddlModelNo").val() == null) {
+
+            $("#ddlModelNo").css("border", "2px solid red");
+            $("#ddlModelNo").focus();
+            $("#divSubmitAlert").show();
+            //$("#lblModelNo").css("display", "block");
+            //$("#lblModelNo").append("Please select Model Number.");
+            flag = false;
+        }
+        else {
+            $("#ddlModelNo").css("border", ""); $("#lblModelNo").text("");
+        }
+
+        if ($("#txtInvoiceDate").val() == '' || $("#txtInvoiceDate").val() == null) {
+            $("#txtInvoiceDate").css("border", "2px solid red");
+           // $("#txtInvoiceDate").focus();
+            $("#divSubmitAlert").show();
+           // $("#lblInvoiceDate").css("display", "block");
+            //$("#lblInvoiceDate").append("Please enter Invoice Date.");
+            flag = false;
+        }
+        else {
+            $("#txtInvoiceDate").css("border", ""); $("#lblInvoiceDate").text("");
+        }
+
+
+
+        if ($("#txtInvoiceNo").val() == '' || $("#txtInvoiceNo").val() == null) {
+            $("#txtInvoiceNo").css("border", "2px solid red");
+            $("#txtInvoiceNo").focus();
+            $("#divSubmitAlert").show();
+            //$("#lblNetProductPrice").css("display", "block");
+            //$("#lblInvoiceNo").append("Please enter Invoice Number.");
+            flag = false;
+        }
+        else {
+            $("#txtInvoiceNo").css("border", ""); $("#lblInvoiceNo").text("");
+        }
+
+
+        //txtProductSrNo
+        if ($("#txtProductSrNo").val() == '' || $("#txtProductSrNo").val() == null) {
+            $("#txtProductSrNo").css("border", "2px solid red");
+            $("#txtProductSrNo").focus();
+            //$("#txtProductSrNo").show();
+            //$("#lblNetProductPrice").css("display", "block");
+            //$("#lblInvoiceNo").append("Please enter Invoice Number.");
+            flag = false;
+        }
+        else {
+            $("#txtProductSrNo").css("border", ""); $("#txtProductSrNo").text("");
+        }
+
+        if ($("#hdnBase64StringValue").val() == '' || $("#hdnBase64StringValue").val() == null) {
+            $("#validatedCustomFile").css("border", "2px solid red");
+            $("#validatedCustomFile").focus();
+            $("#divSubmitAlert").show();
+            $("#lblInvoiceImage").text("");
+            $("#lblInvoiceImage").append("Please Upload Invoice Image.");
+            flag = false;
+        }
+        else {
+
+            $("#validatedCustomFile").css("border", ""); $("#lblInvoiceImage").text("");
+        }
+
+        return flag;
+    }
+    $('#validatedCustomFile').bind('change', function () {
+        $("#lbInvoicelFileName").text("");
+        $("#lblInvoiceImage").text("");
+        $("#lbInvoicelFileName").append(this.files[0].name);
+        $("#hdnImageName").val(this.files[0].name);
+    });
+
+    $("#validatedCustomFile").resizeImg(function () {
+        var value = parseInt("350");
+        var Weight = parseInt("2");
+        let type, quality;
+        {
+            type = "image/jpeg";
+            quality = 0.8;
+        }
+        return {
+            use_reader: false,
+            mode: Weight,
+            val: value,
+            type: type,
+            quality: quality,
+            callback: function (result) {
+                //Call method to validate the image contetnt using ORC API
+                    $("#showImg").attr('src', result);
+                    $("#hdnBase64StringValue").val(result.substr(result.indexOf(',') + 1)).css("height", 100);
+                    $("#validatedCustomFile").val(null);
+                 //IsImageValid(result);
+            }
+        };
+    });
+
+    //method to check Invoice Data
+    function IsImageValid(imageData) {
+
+        var postImageString = imageData.replace('data:image/png;base64,', '');
+        postImageString = imageData.replace('data:image/jpeg;base64,', '');
+        var ImageName = $("#hdnImageName").val();
+            $.ajax({
+                url: "@Url.Action("ValidateImage", "ABB")",
+                type: "POST",
+                dataType: 'json',
+                contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+                data: {
+                    imageData: postImageString, ImageName: ImageName
+                },
+                success: function (response) {
+                    if (response == false || response == "False" || response == "false") {
+                        alert('Invoice image is not valid');
+                        $("#hdnBase64StringValue").val(null);
+                        $("#validatedCustomFile").val(null);
+                        $("#showImg").attr('src', "");
+                    }
+                },
+                failure: function (response) {
+                    ShowAlert([response.responseText], window.AlertType.error);
+                },
+                error: function (response) {
+                    ShowAlert([response.responseText], window.AlertType.error);
+                }
+            });
+    }
+
+    //method to send OTP
+    function SendOTP() {
+        if (validateForm()) {
+            var mobnumber = $('#txtMobile').val();
+            // alert("hi");
+            $.ajax({
+                url: "@Url.Action("sendByTextLocalSMS", "ABB")",
+                type: "POST",
+                dataType: 'json',
+                contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+                data: {
+                    mobnumber: mobnumber
+                },
+                success: function (response) {
+                    if (response == true || response == "True" || response == "true") {
+                        $("#txtmobile1").append(mobnumber);
+                        alert("OTP sent to " + mobnumber);
+                        $("#divShowOTP").show();
+                    }
+                    else {
+                        alert("OTP not send. Please check your Mobile Number");
+                    }
+                },
+                failure: function (response) {
+                    ShowAlert([response.responseText], window.AlertType.error);
+                },
+                error: function (response) {
+                    ShowAlert([response.responseText], window.AlertType.error);
+                }
+            });
+        }
+    }
+    $("#txtZipcode").autocomplete({
+        source: function (request, response)
+        {
+            //var customer = new array();
+            $.ajax({
+                async: false,
+                cache: false,
+                type: "POST",
+                url:
+                    "@(Url.Action("GetPincodeForABB", "ABB"))" + "?pintext=" + $("#txtZipcode").val() + "&buid=" + $("#hdnBusinessUnitId").val(),
+                data: { "pintext": request.pintext, buid: request.buid },
+                success: function (data) {
+                    if (data.length > 0) {
+                        response($.map(data.slice(0, 10), function (item) {
+                            if (item.Text != "No pincode available on this location") {
+                                return { label: item.Text, value: item.Text };
+                            }
+                            else {
+                                $("#txtZipcode").val("");
+                            }
+                        }))
+                    }
+                      else {
+                        $("#txtZipcode").val("");
+                     }
+                }
+            });
+
+            //response(data);
+
+        },
+    });
+
+    //method to get state and city name for customer information
+     function GetState(_pinCode) {
+         var pinCode = _pinCode;
+         if (pinCode) {
+            $.ajax({
+                type: "GET",
+                url: "@Url.Action("GetStatecityabb", "ABB")" + "?pincode=" + pinCode,
+                //data: { stateName: stateName, buid: buid},
+                success: function (data) {
+                    if (data.StateName != null) {
+                        //console.log(data);
+                        $("#txtState").empty();
+                        $("#txtState").val(data.StateName);
+                        $("#txtCity").val(data.CityName);
+                        $("#hdncity").val(data.CityName);
+                        $("#hdnstate").val(data.StateName);
+
+                        if ($("#txtCity").val() == '' || $("#txtCity").val() == null) {
+                            $("#txtZipcode").empty();
+
+                        }
+                        if ($("#txtState").val() == '' || $("#txtState").val() == null) {
+                            $("#txtZipcode").empty();
+                        }
+
+                    } else {
+                        $("#ddlState").empty();
+                        $("#txtZipcode").empty();
+                        $("#txtZipcode").val("");
+                        $("#txtState").val("");
+                        $("#txtCity").val("");
+                    }
+                    //GetPincode(_stateName);
+                }
+            });
+        } else {
+             $("#txtState").empty();
+             $("#txtZipcode").empty();
+
+        }
+     }
+    //method for verify OTP
+    $("#btnOTPVerification").click(function () {
+        //alert("OTPVerification");
+        var mobnumber = $('#txtMobile').val();
+        var OTP = $('#digit-1').val();
+         $.ajax({
+                url: "@Url.Action("VerifyOTP", "ABB")",
+                type: "POST",
+                dataType: 'json',
+                contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+             data: {
+                 mobnumber: mobnumber,
+                 OTP: OTP
+             },
+                success: function (response) {
+                    //
+                    if (response == true || response == "True" || response == "true") {
+                        var paynow = false;
+                        $("#hdnPayNow").val(paynow);
+                        $("#loader").show();
+                        $("#ABB-form").submit();
+                        //disable "verification button" after submit form
+                        $($("#btnOTPVerification")).prop('disabled', true);
+                    }
+                    else {
+                        //Show message that OTP is not correct
+                        document.getElementById("digit-1").value = "";
+                        alert("OTP is not correct. Please enter correct OTP");
+
+                    }
+                },
+                failure: function (response) {
+                    ShowAlert([response.responseText], window.AlertType.error);
+                },
+                error: function (response) {
+                    ShowAlert([response.responseText], window.AlertType.error);
+                }
+            });
+
+    });
+
+    //get prod type by prod group id
+    //get value in model true/false
+    $('#chkBoschTC').change(function () {
+        if ($(this).is(':checked')) {
+            //alert("true");
+            $('#chkBoschTC').val(true);
+        } else {
+            //alert("false");
+            $('#chkBoschTC').val(false);
+        }
+
+    });
+
+    ////show hide button on chk
+    $(document).ready(function () {
+
+        $('#divSubmit').hide();
+
+
+    });
+
+    //show hide button on chk
+    $(document).ready(function () {
+
+        var value = $('#chkTC').val();
+
+        if ($('#chkTC').is(":checked")) {
+
+        } else {
+
+            $('#divSubmit').hide();
+        }
+
+    });
+
+    $('#chkTC').change(function () {
+                    //alert("chktc");
+
+        if ($(this).is(':checked')) {
+
+            if (($(this).is(':checked')) && $('#chkAge18').is(':checked')) {
+                var IsdefferedABB = $("#hdnIsdefferedAbb").val();
+                if (IsdefferedABB == "true" || IsdefferedABB == "True" || IsdefferedABB == true) {
+                    $('#divSubmit').show();
+                }
+                else {
+                    $('#divPayNow').show();
+                }
+
+            }
+
+            $('#chkAge18').change(function () {
+                if ($(this).is(':checked')) {
+                    var IsdefferedABB = $("#hdnIsdefferedAbb").val();
+                    if (IsdefferedABB == "true" || IsdefferedABB == "True" || IsdefferedABB == true) {
+                        $('#divSubmit').show();
+                    }
+                    else {
+                        $('#divPayNow').show();
+                    }
+
+                } else {
+                    $('#divSubmit').hide();
+                    $('#divPayNow').hide();
+                }
+            }
+            );
+        } else {
+            //alert("chktc");
+            $('#divSubmit').hide();
+            $('#divPayNow').hide();
+        }
+    });
+
+
+</script>

@@ -1,0 +1,100 @@
+﻿@model RDCEL.DocUpload.DataContract.BillCloud.Decryptdatacontract
+@{
+    ViewBag.Title = "GetDecryptedValue";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/Content/jquery-ui-1.13.1.custom/jquery-ui.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<script src="~/Content/jquery-ui-1.13.1.custom/jquery-ui.js"></script>
+
+<!DOCTYPE html>
+<html>
+<body>
+
+    <h1>Get Decrypted Data</h1>
+
+    <form id="decrypt">
+        <div>
+            <p><label for="EncryptedData">encrypted data</label></p>
+            <textarea id="encryptedd" name="digi2l"></textarea>
+            <br>
+            <p>
+                Click the "Decrypt" button and decrypt the data
+            </p>
+            <input type="button" value="Decrypt" id="btnSubmit">
+            <p><label id="Decrypteddata" style="color:orangered"></label></p>
+        </div>
+        <h1>Encrypt Data</h1>
+        <div id="Encryptedata">
+            <p><label for="Rawdata">Raw data</label></p>
+            <textarea id="Rawdata1" name="digi2l"></textarea>
+            <br>
+            <p>
+                Click the "Encrypt" button and encrypt the data
+            </p>
+            <input type="button" value="Encrypt" id="btnEncrypt">
+            <p><label id="EncryptedData1"style="color:orangered"></label></p>
+        </div>
+    </form>
+</body>
+</html>
+
+
+
+<script>
+    $("#btnSubmit").click(function () {
+        var Encrypted = $("#encryptedd").val();
+        if (Encrypted) {
+            $.ajax({
+                type: "GET",
+                url: "@Url.Action("GetDectypteddata", "Home")",
+                data: { Encrypted: Encrypted},
+                success: function (data) {
+                    if (data) {
+
+                        $("#Decrypteddata").empty();
+                        $("#Decrypteddata").text(data);
+
+                    } else {
+                        $("#Decrypteddata").empty();
+                    }
+                    //GetPincode(_stateName);
+                }
+            });
+        } else {
+            $("#Decrypteddata").empty();
+
+        }
+    });
+    
+    
+
+    $("#btnEncrypt").click(function () {
+        var RawData = $("#Rawdata1").val();
+        if (RawData) {
+            $.ajax({
+                type: "GET",
+                url: "@Url.Action("GetEncryptStringERP", "Home")",
+                data: { RawData: RawData},
+                success: function (data) {
+                    if (data) {
+
+                        $("#EncryptedData1").empty();
+                        $("#EncryptedData1").text(data);
+
+                    } else {
+                        $("#EncryptedData1").empty();
+                    }
+                    //GetPincode(_stateName);
+                }
+            });
+        } else {
+            $("#EncryptedData").empty();
+
+        }
+    });
+</script>
+

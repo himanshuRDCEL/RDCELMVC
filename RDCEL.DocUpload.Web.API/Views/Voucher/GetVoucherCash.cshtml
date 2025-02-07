@@ -1,0 +1,321 @@
+﻿@model RDCEL.DocUpload.DataContract.SponsorModel.ExchangeOrderDataContract
+@{
+    ViewBag.Title = "GetVoucherCash";
+    Layout = "";
+}
+
+
+    
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 14px;
+            line-height: normal;
+            color: #fff;
+            line-height: 1.4rem;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            color: #f36f2c;
+        }
+
+        .box {
+            display: inline-block;
+            height: 100%;
+            vertical-align: top;
+            height: auto;
+            position: relative;
+            display: flex;
+            justify-content: center;
+        }
+
+
+
+        .box-inner {
+            position: relative;
+            padding: 25px;
+            border-radius: 12px;
+            border: 1px dashed #787878;
+        }
+
+        .box-right {
+            border-left: none;
+            background-color: #466c3b;
+            padding: 10px;
+            border-radius: 0 12px 12px 0;
+            background: linear-gradient(109deg, #2a2a5a 30%, #6d1cd9 100%) no-repeat padding-box;
+        }
+
+            .box-right:after {
+                /* content: '';
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background-color: #ccc;
+            right: 20px;
+            bottom: -1px; */
+            }
+
+            .box-right .box-inner {
+                padding: 10px 40px;
+            }
+
+        .box-left {
+            margin-left: -6px;
+            padding: 10px;
+            padding-left: 18px;
+            background-color: #610bb3;
+            position: relative;
+            border-radius: 12px 0 0 12px;
+        }
+
+            .box-left .box-inner {
+                background: #4c2890;
+                width: 100%;
+            }
+
+        /* .box-left:after {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: auto;
+            top: 40%;
+            right: -82px;
+            z-index: 999;
+            border-left: 45px solid #610bb3;
+            border-top: 30px solid transparent;
+            border-bottom: 30px solid transparent;
+        } */
+
+        .vouchercode {
+            margin: 14px 0 20px;
+            display: inline-block;
+            padding: 10px 20px;
+            border: 1px dashed #dfc7b2;
+            font-size: 20px;
+            font-weight: bold;
+            letter-spacing: 4px;
+            color: #fff1e4;
+        }
+
+        .pattern {
+            position: relative;
+            display: flex;
+            justify-content: center;
+        }
+
+        .pattern-left {
+            margin-left: -45px;
+        }
+
+        .pattern-right {
+            margin-left: -45px;
+            left: 0px;
+            z-index: 99;
+        }
+
+        .pattern ul {
+            list-style: none;
+            height: 100%;
+        }
+
+
+            .pattern ul li {
+                height: 16px;
+                width: 16px;
+                border-radius: 50px;
+                margin: 8px 0;
+                background-color: #fff;
+            }
+
+        .amount {
+            font-size: 20px;
+            padding-bottom: 20px;
+            background-color: #2a2a5a;
+            padding: 10px 16px;
+            font-weight: bold;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: fit-content;
+            margin: 10px auto 30px;
+            border-radius: 6px;
+            color: #fff;
+            width: 100%;
+        }
+
+        .logowrap {
+            width: 200px;
+            padding: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #fff;
+            position: absolute;
+            right: 3%;
+            top: -4%;
+            border-radius: 0 0 30px 30px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+            .logowrap img {
+                width: 100%;
+            }
+
+        i {
+            color: #dbb264;
+        }
+
+        .rsSymbol {
+            font-size: 14px;
+            background-color: #4c2890;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            padding: 20px;
+            color: #fff;
+        }
+
+        .maintitle {
+            height: 45px;
+            width: auto;
+            padding-bottom: 6px;
+            border-bottom: 2px solid #ffffff14;
+            display: inline-block;
+            margin: 21px 0;
+        }
+
+            .maintitle img {
+                height: 100%;
+            }
+
+            .copyirght {
+                background: #fff;
+                padding: 10px 6px 4px 10px;
+                position: absolute;
+                bottom: -31px;
+                box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.05);
+                bottom: 0;
+                left: 0;
+                right: 0;
+                border-radius: 0 0 12px 12px;
+            }
+    </style>
+
+
+
+    <div id="cashvoucher" style="width: 1240px; margin: 8px;" >
+        <div id="previewImg">
+            <div style="background:#fff; width: 1240px; height: auto; display: flex; justify-content: center;">
+                <div class="pattern pattern-right">
+                    <ul>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                    </ul>
+                </div>
+                <div class="box box-left" style=" width: 26%; text-align: center;">
+                    <div class="box-inner">
+                        <div style="width: 100%; margin-top: 40px;">
+                            <h1 style="font-size:22px; color: #ffffff !important; text-align: center;">Voucher Worth upto</h1>
+                            <p class="amount"><span class="rsSymbol">₹</span>&nbsp;  @Html.DisplayFor(model => model.ExchangePrice, new { htmlAttributes = new { @class = "form-control", @id = "txtExchangePrice" } })/-</p>
+                            <p style="margin: -20px 0 0px 0; font-size: 12px; color: #ffffff85; line-height: 16px; text-align: center;">Voucher is valid for 7 days from the Quality Check of the Old Appliance. Product price subject to quality check.</p>
+
+
+                            <div class="copyirght">
+
+                                <p style="font-size:13px; line-height: normal; font-style: italic; font-weight: 400; margin: 0; color: #a8a8a8; display: flex; justify-content: center; align-items: center;">
+                                    Powered by <img src="~/Content/DB_Files/SponsorLogo/Digi2L_Logo_Final.png" alt=""
+                                                    style="width: 60px; border-radius: 6px; margin-left: 6px;">
+
+                                </p>
+                                <a href="www.digi2l.in"
+                                   style="color: #2a2a5a; text-decoration: none; color: #575757; font-size: 12px; margin: 8px 0 0 0; display: block;">digi2l.in</a>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+                <div class="box box-right" style=" width: 80%; ">
+                    <div class="box-inner">
+                        <div class="logowrap">
+                            @if (Model.BULogoName != null)
+                            {
+                                <img id="Bosch_logo" style="width: 150px"
+                                     src="@Model.BULogoName"> }
+                            else
+                            {
+                                <img id="Bosch_logo"
+                                     src="https://i.pinimg.com/originals/3f/95/48/3f9548beef7804b53a111ced870da0c6.png">
+                            }
+                        </div>
+                        <div class="maintitle">
+                            <img src="~/Content/img/Voucher/cash-voucher-02.png" />
+                        </div>
+                        <div style="font-size: 22px; font-weight:bold;">Voucher Code</div>
+                        <div class="vouchercode">@Html.DisplayFor(model => model.VoucherCode, new { htmlAttributes = new { @class = "form-control", @id = "txtRNumber" } })</div>
+                        <p style="font-size:12px; line-height: 16px; color: #ccc; font-style: italic;">
+                            *@for (int i = 0; i < Model.TermsandCondition.Count; i++)
+                            {
+                                 @Model.TermsandCondition[i].Text
+                            }
+                            .
+                        </p>
+                        <p style="float: right; margin: 0; font-size: 10px; font-style: italic;">UTC Digital Technologies Pvt. Ltd.</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<script src="~/Scripts/html2canvas.min.js"></script>
+<script>
+    $(document).ready(function () {
+        html2canvas(document.getElementById("cashvoucher"), {
+            allowTaint: true,
+            useCORS: true
+        }).then(function (canvas) {
+            var anchorTag = document.createElement("a");
+            document.body.appendChild(anchorTag);
+            //document.getElementById("previewImg").appendChild(canvas);
+            anchorTag.download = "DIGI2L_Voucher.jpg";
+            anchorTag.href = canvas.toDataURL();
+            anchorTag.target = '_blank';
+            anchorTag.click();
+
+        });
+
+    });
+
+</script>
+

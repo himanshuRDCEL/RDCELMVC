@@ -1,0 +1,273 @@
+﻿@model RDCEL.DocUpload.DataContract.ABBRegistration.BusinessPartnerViewModel
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+
+    <div class="row">
+        <div class="col-12 mainformarea">
+
+            <h3 class="mt-0">Create Store</h3>
+            @*@Html.Partial("_MessagePartial")*@
+            <form id = "abb-form">
+                @*@using (Html.BeginForm(new { enctype = "multipart/form-data", @id = "abb-form", @class = "form-horizontal", autocomplete = "off" }))*@
+                @*{*@
+                @Html.AntiForgeryToken()
+
+                @Html.HiddenFor(m => m.BusinessPartnerId, new { id = "hdnBusinessPartnerId" })
+                @Html.HiddenFor(m => m.BusinessUnitId)
+                @Html.HiddenFor(m => m.CreatedBy)
+                @Html.HiddenFor(m => m.CreatedDate)
+                @Html.HiddenFor(m => m.ModifiedBy)
+                @Html.HiddenFor(m => m.ModifiedDate)
+                @Html.HiddenFor(m => m.IsActive)
+
+
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-4" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", @id = "txtStoreName" } })
+                        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                    </div>
+                    <label class="control-label col-md-4" id="lblStoreName" style="color:red;"></label>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.StoreCode, htmlAttributes: new { @class = "control-label col-md-4" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.StoreCode, new { htmlAttributes = new { @class = "form-control text-box single-line", @id = "txtStoreCode" } })
+                        @Html.ValidationMessageFor(model => model.StoreCode, "", new { @class = "text-danger" })
+                    </div>
+                    <label class="control-label col-md-4" id="lblStoreCode" style="color:red;"></label>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-4" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control text-box single-line" } })
+                        @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                    </div>
+
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ContactPersonFirstName, htmlAttributes: new { @class = "control-label col-md-4"})
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.ContactPersonFirstName, new { htmlAttributes = new { @class = "form-control text-box single-line", @id = "txtFirstName" } })
+                        @Html.ValidationMessageFor(model => model.ContactPersonFirstName, "", new { @class = "text-danger" })
+                    </div>
+                    <label class="control-label col-md-4" id="lblFirstName" style="color:red;"></label>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ContactPersonLastName, htmlAttributes: new { @class = "control-label col-md-4" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.ContactPersonLastName, new { htmlAttributes = new { @class = "form-control text-box single-line", @id = "txtLastName" } })
+                        @Html.ValidationMessageFor(model => model.ContactPersonLastName, "", new { @class = "text-danger" })
+                    </div>
+                    <label class="control-label col-md-4" id="lblLastName" style="color:red;"></label>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.PhoneNumber, htmlAttributes: new { @class = "control-label col-md-4"})
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "form-control text-box single-line", @id = "txtPhoneNumber" } })
+                        @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
+                    </div>
+                    <label class="control-label col-md-4" id="lblPhoneNumber" style="color:red;"></label>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-4" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control text-box single-line", @id = "txtEmail" } })
+                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                    </div>
+                    <label class="control-label col-md-4" id="lblEmail" style="color:red;"></label>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.AddressLine1, htmlAttributes: new { @class = "control-label col-md-4" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.AddressLine1, new { htmlAttributes = new { @class = "form-control text-box single-line", @id = "txtAddressLine1" } })
+                        @Html.ValidationMessageFor(model => model.AddressLine1, "", new { @class = "text-danger" })
+                    </div>
+                    <label class="control-label col-md-4" id="lblAddressLine1" style="color:red;"></label>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.AddressLine2, htmlAttributes: new { @class = "control-label col-md-4" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.AddressLine2, new { htmlAttributes = new { @class = "form-control text-box single-line" } })
+                        @Html.ValidationMessageFor(model => model.AddressLine2, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Pincode, htmlAttributes: new { @class = "control-label col-md-4" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Pincode, new { htmlAttributes = new { @class = "form-control text-box single-line", @id = "txtPincode" } })
+                        @Html.ValidationMessageFor(model => model.Pincode, "", new { @class = "text-danger" })
+                    </div>
+                    <label class="control-label col-md-4" id="lblPincode" style="color:red;"></label>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.City, htmlAttributes: new { @class = "control-label col-md-4" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.City, new { htmlAttributes = new { @class = "form-control text-box single-line" } })
+                        @Html.ValidationMessageFor(model => model.City, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.State, htmlAttributes: new { @class = "control-label col-md-4" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.State, new { htmlAttributes = new { @class = "form-control text-box single-line" } })
+                        @Html.ValidationMessageFor(model => model.State, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                @*<div class="form-group">
+                        @Html.LabelFor(model => model.BusinessUnitId, "BusinessUnitId", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownList("BusinessUnitId", null, htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.BusinessUnitId, "", new { @class = "text-danger" })
+                        </div>
+                    </div>*@
+
+
+
+                <div class="form-group form-group text-right">
+                    <input type="button" value="Create" id="abbbtn" class="btn btn-primary" />
+                    @Html.ActionLink("Back to List", "Index", "QRCode", new { @class = "btn btn-secondary" })
+                </div>
+
+                @*}*@
+            </form>
+
+        </div>
+    </div>
+
+</div>
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script>
+
+    function validateLeadForm() {
+        var flag = true;
+        //alert("mobile");
+        //$("#divSubmitAlert").hide();
+        //$("#lblSubmitMessage").html('');
+        //$("#divSuccessAlert").hide();
+        //$("#lblSuccessMessage").html('');
+        //$("#Zipcode").blur();
+
+
+        if ($("#txtFirstName").val() == '') {
+            $("#txtFirstName").css("border", "2px solid red");
+            $("#txtFirstName").focus();
+            $("#divSubmitAlert").show();
+            $("#lblFirstName").append("Please enter First Name,");
+            flag = false;
+        }
+
+        if ($("#txtLastName").val() == '') {
+            $("#txtLastName").css("border", "2px solid red");
+            $("#txtLastName").focus();
+            $("#divSubmitAlert").show();
+            $("#lblLastName").append("Please enter Last Name,");
+            flag = false;
+        }
+
+        if ($("#txtEmail").val() == '') {
+            $("#txtEmail").css("border", "2px solid red");
+            $("#txtEmail").focus();
+            $("#divSubmitAlert").show();
+            $("#lblEmail").append("Please enter Email,");
+            flag = false;
+        }
+        //else {
+        //    $("#Phone").css("border", "");
+        //}
+
+        if ($("#txtPhoneNumber").val() == '') {
+            $("#txtPhoneNumber").css("border", "2px solid red");
+            $("#txtPhoneNumber").focus();
+            $("#divSubmitAlert").show();
+            $("#lblPhoneNumber").append("Please enter Mobile Number");
+            flag = false;
+        }
+        //else {
+        //    $("#First_Name").css("border", "");
+        //}
+
+        if ($("#txtPincode").val() == '') {
+            $("#txtPincode").css("border", "2px solid red");
+            $("#txtPincode").focus();
+            $("#divSubmitAlert").show();
+            $("#lblPincode").append("Please enter Pincode.");
+            flag = false;
+        }
+
+        if ($("#txtAddressLine1").val() == '') {
+            $("#txtAddressLine1").css("border", "2px solid red");
+            $("#txtAddressLine1").focus();
+            $("#divSubmitAlert").show();
+            $("#lblAddressLine1").append("Please enter Address Line 1.");
+            flag = false;
+        }
+
+        if ($("#txtStoreCode").val() == '') {
+            $("#txtStoreCode").css("border", "2px solid red");
+            $("#txtStoreCode").focus();
+            $("#divSubmitAlert").show();
+            $("#lblStoreCode").append("Please enter Store Code.");
+            flag = false;
+        }
+
+        if ($("#txtStoreName").val() == '') {
+            $("#txtStoreName").css("border", "2px solid red");
+            $("#txtStoreName").focus();
+            $("#divSubmitAlert").show();
+            $("#lblStoreName").append("Please enter Store Name.");
+            flag = false;
+        }
+
+        return flag;
+    }
+
+
+    //method for submit data
+    $("#abbbtn").click(function () {
+        if (validateLeadForm()) {
+            //alert("OTPVerification");
+            validateLeadForm();
+            //var id = $("#hdnBusinessPartnerId").val();
+            var valdata = $("#abb-form").serialize();
+            //var valdata = $("#LeadForm").serialize();
+            //console.log(valdata);
+            $.ajax({
+                url: "@Url.Action("Create", "QRCode")",
+                type: "POST",
+                dataType: 'json',
+                contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+                data: valdata,
+                //data: valdata,
+                success: function (response) {
+                    //
+                    if (response == true || response == "True" || response == "true") {
+                       //redirect to index
+                       // alert("Store Created Successfully");
+                        window.location.replace("@Url.Action("Index", "QRCode")");
+                    }
+                    else {
+                        //Show message that OTP is not correct
+                        //alert("Store Not Created ");
+                        window.location.replace("@Url.Action("Index", "QRCode")");
+                    }
+                },
+            });
+        }
+    });
+</script>

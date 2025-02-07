@@ -1,0 +1,615 @@
+﻿@model RDCEL.DocUpload.DataContract.SponsorModel.ExchangeOrderDataContract
+@{
+    ViewBag.Title = "CustomerDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/Content/jquery-ui-1.13.1.custom/jquery-ui.css" rel="stylesheet" />
+@*<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Content/jquery-ui-1.13.1.custom/jquery-ui.js"></script>*@
+<style>
+
+
+    img {
+        width: 100%;
+    }
+
+    .logoimg img {
+        max-width: 180px;
+        margin-bottom: 20px;
+    }
+</style>
+@using (Html.BeginForm("CustomerDetails", "Exchange", FormMethod.Post, new { enctype = "multipart/form-data", @id = "Course-form", @class = "form-horizontal", autocomplete = "off" }))
+{
+    <div class="row">
+
+        @Html.HiddenFor(m => m.Id, new { id = "hdnExchangeId" })
+        @Html.HiddenFor(m => m.PhoneNumber, new { id = "hdnPhoneNumber" })
+        @Html.HiddenFor(m => m.RegdNo, new { id = "hdnregdNo" })
+        @Html.HiddenFor(m => m.BusinessPartnerId, new { id = "hdnBusinessPartner" })
+        @Html.HiddenFor(m => m.BusinessUnitId, new { id = "hdnBusinessUnit" })
+        @Html.HiddenFor(m => m.City1, new { id = "hdnCity" })
+        @Html.HiddenFor(m => m.State1, new { id = "hdnState" })
+        @Html.HiddenFor(m => m.ProductCategoryId, new { id = "hdnProductCategoryId" })
+        @Html.HiddenFor(m => m.ProductTypeId, new { id = "hdnProductTypeId" })
+        @Html.HiddenFor(m => m.BrandId, new { id = "hdnBrandId" })
+        @Html.HiddenFor(m => m.FormatName, new { id = "hdnFormatName" })
+        @Html.HiddenFor(m => m.ExchangePriceString, new { id = "hdnExchangePriceString" })
+        @Html.HiddenFor(m => m.ProductConditionCount, new { id = "hdnProductConditionCount" })
+        @Html.HiddenFor(m => m.priceMasterNameID, new { id = "hdnpriceMasterNameId" })
+        @Html.HiddenFor(m => m.SweetenerBu, new { id = "hdnSweetenerBu" })
+        @Html.HiddenFor(m => m.SweetenerBP, new { id = "hdnSweetenerBP" })
+        @Html.HiddenFor(m => m.BasePrice, new { id = "hdnBasePrice" })
+        @Html.HiddenFor(m => m.SweetenerDigi2L, new { id = "hdnSweetenerDigi2L" })
+        @Html.HiddenFor(m => m.SweetenerTotal, new { id = "hdnSweetenerTotal" })
+        @Html.HiddenFor(m => m.ExchangePrice, new { id = "hdnExchangePriceString" })
+
+
+    </div>
+
+    <div class="row justify-content-center align-items-center">
+        <div class="col-lg-7 col-md-8 mx-auto">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card box">
+                        <div class="row">
+                            <h3 class="section-title">Pickup Details</h3>
+
+                            <div class="col-md-6">
+                                <div class="inputbox">
+                                    <label>First Name <span style="color:red;">*</span></label>
+                                    @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control", @id = "txtFirstName", @maxlength = 50 } })
+                                    @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+                                    <label id="lblFirstName" style="color:red;"></label>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="inputbox">
+                                    <label>Last Name <span style="color:red;">*</span></label>
+                                    @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control", @id = "txtLastName", @maxlength = 50 } })
+                                    @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+                                    <label id="lblLastName" style="color:red;"></label>
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <div class="inputbox">
+                                    <label for="">Mobile Number <span style="color:red;">*</span></label>
+                                    @Html.EditorFor(model => model.PhoneNo, new { htmlAttributes = new { @class = "form-control", @id = "txtMobile", @type = "number", disabled = "disabled", @readonly = "readonly" } })
+                                    @Html.ValidationMessageFor(model => model.PhoneNo, "", new { @class = "text-danger" })
+                                    <label id="lblMobile" style="color:red;"></label>
+                                </div>
+                            </div>
+
+                            @*<div class="col-12">
+                                    <div class="inputbox">
+                                        <label for="">E-mail <span style="color:red;">*</span></label>
+                                        <div class="input-group">
+                                            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @id = "txtEmail" } })
+                                            <span class="right mailbox"><i class="fas fa-envelope"></i></span>
+                                        </div>
+                                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                                        <label id="lblEmail" style="color:red;"></label>
+                                    </div>
+                                </div>*@
+
+                            <div class="col-12">
+                                <div class="inputbox">
+                                    <label for="">E-mail <span style="color:red;">*</span></label>
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @id = "txtEmail", @maxlength = 100 } })
+                                    </div>
+                                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                                    <label id="lblEmail" style="color:red;"></label>
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <div class="inputbox">
+                                    <label for="">Pincode <span style="color:red;">*</span></label>
+                                    @Html.TextBoxFor(model => model.ZipCode, new { @class = "form-control form-select", @onchange = "GetState(this.value);", @id = "txtPincode", @maxlength = 6 })
+                                    @Html.ValidationMessageFor(model => model.ZipCode, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <div class="inputbox">
+                                    <div class="form-group">
+                                        <label for="">State<span style="color:red;">*</span></label>
+                                        @Html.EditorFor(model => model.State, new { htmlAttributes = new { @class = "form-control", @id = "ddlState", @disabled = "disabled", @readonly = "readonly" } })
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <div class="inputbox">
+                                    <label for="">City<span style="color:red;">*</span></label>
+                                    @Html.EditorFor(model => model.CityName, new { htmlAttributes = new { @class = "form-control", @id = "ddlCity", disabled = "disabled", @readonly = "readonly" } })
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <div class="inputbox">
+                                    <label for="">Address 1 <span style="color:red;">*</span></label>
+                                    @Html.EditorFor(model => model.Address1, new { htmlAttributes = new { @class = "form-control required", @id = "txtAddress1", @maxlength = 150 } })
+                                    @Html.ValidationMessageFor(model => model.Address1, "", new { @class = "text-danger" })
+                                    <label id="lblAddress1" style="color:red;"></label>
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <div class="inputbox">
+                                    <label for="">Address 2</label>
+                                    @Html.EditorFor(model => model.Address2, new { htmlAttributes = new { @class = "form-control", @maxlength = 150 } })
+                                    @Html.ValidationMessageFor(model => model.Address2, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <h3 class="section-title">Old Product Details</h3>
+                            <div class="col-md-6">
+                                <div class="inputbox">
+                                    <label for="">Product Group <span style="color:red;"></span></label>
+                                    <div class="input-group">
+                                        @Html.EditorFor(model => model.ProductCategory, new { htmlAttributes = new { @class = "form-control", @id = "txtEmail", @readonly = "readonly", @disabled = "disabled" } })
+
+                                    </div>
+                                    <label id="lblProductGroup" style="color:red;"></label>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="inputbox">
+                                    <label for="">Product Type <span style="color:red;"></span></label>
+                                    <div class="input-group">
+                                        @Html.EditorFor(model => model.ProductType, new { htmlAttributes = new { @class = "form-control", @id = "txtEmail", @readonly = "readonly", @disabled = "disabled" } })
+
+                                    </div>
+
+                                    <label id="lblProductType" style="color:red;"></label>
+                                </div>
+                            </div>
+
+                           
+
+                            <div class="row inputbox p-0">
+                                <label for="">Quality Status<span style="color:red;">*</span></label>
+
+                                @for (int i = 0; i < Model.QualityCheckList.Count; i++)
+                                {
+                                    <div class="col-md-4">
+                                        <div class="inputbox conditionbox">
+                                            <label>
+                                                <i class="fas fa-check-circle"></i>
+                                                @*<input type="radio" class="form-check-input radioButtonBox" id="tbnRadio" name="QualityCheck" value="@Model.QualityCheck,@Model.QualityCheckList[i].Value" />
+                                                    @Model.QualityCheckList[i].Text*@
+
+                                                @Html.RadioButtonFor(m => m.QualityCheck, Model.QualityCheckList[i].Value, new { @class = "form-check-input radioButtonBox", @name = "QualityCheck" ,@id= "tbnRadio" })
+                                                @Model.QualityCheckList[i].Text
+
+                                            </label>
+                                        </div>
+                                        <label style="color:green" class="conditionDescription mb" id="lblQualityIndex_@i">
+                                        </label>
+                                    </div>
+                                }
+
+                            </div>
+
+
+                           
+
+                            <div class="col-12" id="divProductPrice" style="display:none">
+                                <h3 class="section-title">Proposed Price</h3>
+                                <div class="inputbox pricebox">
+                                    <h3 class="mainprice">Product Price: <span>₹ <lable id="productPrice"></lable> </span></h3>
+
+                                    <p class="text-muted m-0">Subject to quality check of the product. <span style="color:red;">* T&C Applied</span></p>
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <div class="inputbox">
+                                    <div class="text-muted f-12" id="ShowUninstallation">
+
+                                        <p>
+                                            1. Product should be available with all the components.
+                                            <br>
+                                            2. In case of cancellation, the exchange amount is not payable.
+                                            <br>
+                                            3. Please ensure the product is kept uninstalled and ready for pickup.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <h3 class="section-title">Customer Acceptance Required</h3>
+                        
+                            <div class=" inputbox termsbox">
+
+                                @Html.CheckBoxFor(model => model.OtherCommunications, new { @id = "chkAge18", @class = "clsChecks" })
+                                <label for="chkAge18">I agree to receive communication from  Digi2l.</label>
+                            </div>
+
+                            <div class="inputbox termsbox">
+                                @Html.CheckBoxFor(model => model.OtherCommunications, new { @id = "chkTC", @class = "clsChecks" })
+                                <label for="chkTC">Old Product will be ready for pickup.</label>
+                            </div>
+
+                            <div class="inputbox termsbox">
+
+                                @Html.CheckBoxFor(model => model.OtherCommunications1, new { @id = "chkBoschTC", @class = "clsChecks" })
+                                <label for="chkBoschTC">I state that I have read and understood the <a href="https://digi2l.in/privacy-policy/" target="_blank">privacy policy</a> and <a href="https://digi2l.in/exchange-terms-condition/" target="_blank">terms and conditions</a> of Digi2L.</label>
+                            </div>
+
+                            <div class="form-group text-center text-md-right" id="divSubmit" style="display:none">
+                                <input type="Button" value="Submit" class="btn btn-primary" id="btnSubmit">
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<div class="form-group otpwrapper" id="divShowOTP" style="display:none">
+
+    <div class="row justify-content-center align-items-center">
+        <div class="col-lg-7 col-md-8 mx-auto my-3">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card box">
+                        <div class="otpbox text-center">
+                            <p>OTP has been sent to <strong id="txtmobileOTP"></strong></p>
+                            @using (Html.BeginForm())
+                            {
+                                <input type="number" id="digit-1" name="digit-1" data-next="digit-2" class="form-control d-block w-25 mx-auto bg-light text-center fw-bold border-dashed" placeholder="" maxlength="4" />
+                                <div class="d-block w-100 text-center mt-3">
+                                    <a id="btnOTPVerification" class="btn btn-primary" style="margin-top:2px;">Verify OTP</a>
+                                </div>
+                                <a id="btnOTPResend" class="text-link f-12 mt-2 d-inline-block"><u>Re-Send OTP</u></a>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+<script>
+
+
+    $(document).ready(function () {
+        $('#txtPincode').attr('autocomplete', 'one-time-code');
+         var productCatId = $("#hdnProductCategoryId").val();
+         var ConditionCount = parseInt($("#hdnProductConditionCount").val());
+        if (ConditionCount==4) {
+
+            $.ajax({
+                type: "GET",
+                url: "@Url.Action("GetProdqualityIndexDetailbyCategotyId", "Exchange")",
+                data: { productCatId: productCatId },
+                success: function (data) {
+                    if (data) {
+                       // console.log(data);
+                        $("#lblQualityIndex_3").text(data.ExcellentDesc);
+                        $("#lblQualityIndex_2").text(data.GoodDesc);
+                        $("#lblQualityIndex_1").text(data.AverageDesc);
+                        $("#lblQualityIndex_0").text(data.NonWorkingDesc);
+                        ShowProductPrice();
+
+                    } else {
+                        //$("#ddlProdType").empty();
+                    }
+                }
+            });
+        }
+        else if (ConditionCount==2) {
+             $.ajax({
+                 type: "GET",
+                 url: "@Url.Action("GetProdqualityIndexDetailbyCategotyId", "Exchange")",
+                 data: { productCatId: productCatId },
+                 success: function (data) {
+                     if (data) {
+                         //console.log(data);
+                         $("#lblQualityIndex_1").text(data.ExcellentDesc);
+                         $("#lblQualityIndex_0").text(data.NonWorkingDesc);
+                         ShowProductPrice();
+
+                     } else {
+                         //$("#ddlProdType").empty();
+                     }
+                 }
+             });
+        }
+         else if (ConditionCount==3) {
+             $.ajax({
+                 type: "GET",
+                 url: "@Url.Action("GetProdqualityIndexDetailbyCategotyId", "Exchange")",
+                 data: { productCatId: productCatId },
+                 success: function (data) {
+                     if (data) {
+                         //console.log(data);
+                         $("#lblQualityIndex_2").text(data.ExcellentDesc);
+                         $("#lblQualityIndex_1").text(data.AverageDesc);
+                         $("#lblQualityIndex_0").text(data.NonWorkingDesc);
+                         ShowProductPrice();
+
+                     } else {
+                         //$("#ddlProdType").empty();
+                     }
+                 }
+             });
+        }
+
+
+
+
+        $('#btnSubmit').click(function () {
+            SendOTP();
+        })
+
+        $('#btnOTPResend').click(function () {
+            SendOTP();
+            $($("#btnOTPVerification")).prop('disabled', false);
+        })
+
+    $("#btnOTPVerification").click(function () {
+        var mobnumber = $('#hdnPhoneNumber').val();
+        var OTP = $('#digit-1').val();
+         $.ajax({
+                url: "@Url.Action("VerifyOTP", "Exchange")",
+                type: "POST",
+                dataType: 'json',
+                contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+             data: {
+                 mobnumber: mobnumber,
+                 OTP: OTP
+             },
+                success: function (response) {
+                    //
+                    if (response == true || response == "True" || response == "true") {
+                        $($("#btnOTPVerification")).prop('disabled', true);
+                        $("#loader").show();
+                        $("#Course-form").submit();
+                        //alert("disable");
+                    }
+                    else {
+                        //Show message that OTP is not correct
+                        //$("#OTPVerificationMsg").append("OTP is not correct");
+                        document.getElementById("digit-1").value = "";
+                        alert("OTP is not correct. Please enter correct OTP");
+
+                    }
+                    //$("#divShowOTP").show();
+
+
+                },
+                failure: function (response) {
+                },
+                error: function (response) {
+                }
+            });
+
+    });
+    });
+
+    function SendOTP() {
+         if (validateLeadForm()) {
+             var mobnumber = $('#hdnPhoneNumber').val();
+             var buid = $('#hdnBusinessUnit').val();
+           // alert("hi");
+            $.ajax({
+                url: "@Url.Action("SendOTP", "Exchange")",
+                type: "POST",
+                dataType: 'json',
+                contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+                data: {
+                    mobnumber: mobnumber, buid: buid
+                },
+                success: function (response) {
+                    if (response == true || response == "True" || response == "true") {
+                        $("#txtmobileOTP").text(mobnumber);
+                        alert("OTP has been sent to mobile number: " + mobnumber);
+                        $("#divShowOTP").show();
+                        $('html, body').animate({
+                            scrollTop: $("#divShowOTP").offset().top
+                        }, 2000);
+                    }
+                    else {
+                        alert("Unable to send OTP. Please check your Mobile Number");
+                    }
+                },
+                failure: function (response) {
+                },
+                error: function (response) {
+                }
+            });
+        }
+    }
+    function validateLeadForm() {
+        if ($("form").valid()) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+
+       $("#txtPincode").autocomplete({
+         source: function (request, response)
+         {
+            //var customer = new array();            
+               $.ajax({
+                async: false,
+                cache: false,
+                type: "POST",
+                url:
+                    "@(Url.Action("GetPincodeList", "Exchange"))" + "?pintext=" + $("#txtPincode").val() + "&buid=" + $("#hdnBusinessUnit").val(),
+                   data: { "pintext": request.pintext, buid: request.buid},
+                success: function (data) {
+                    if (data.length > 0) {
+                        response($.map(data.slice(0, 10), function (item) {
+                            if (item.Text != "No pincode available on this location") {
+                                return { label: item.Text, value: item.Text };
+                            }
+                            else {
+                                $("#txtPincode").val("");
+                            }
+                        }))
+                    }
+                    else {
+                        $("#txtPincode").val("");
+                    }
+                }
+            });
+
+            //response(data);
+         },
+       });
+
+
+    function GetState(_pinCode) {
+        var pinCode = parseInt( _pinCode);
+        var buid = $("#hdnBusinessUnit").val();
+         if (pinCode) {
+            $.ajax({
+                type: "GET",
+                url: "@Url.Action("GetState", "Exchange")" + "?pincode=" + pinCode,
+                //data: { stateName: stateName, buid: buid},
+                success: function (data) {
+                    if (data) {
+                        //console.log(data);
+                        $("#ddlState").empty();
+                        $("#ddlState").val(data.StateName);
+                        $("#ddlCity").val(data.CityName);
+                        $("#hdnState").val(data.StateName);
+                        $("#hdnCity").val(data.CityName);
+
+                    } else {
+                        $("#ddlState").empty();
+                        $("#ddlCity").empty();
+                    }
+                    //GetPincode(_stateName);
+                }
+            });
+        } else {
+             $("#ddlState").empty();
+             $("#ddlCity").empty();
+        }
+     }
+
+    $('.clsChecks').change(function () {
+
+        if ($(this).is(':checked')) {
+            if (($("#chkTC").is(':checked')) && $('#chkAge18').is(':checked') && $("#chkBoschTC").is(':checked')) {
+                $('#divSubmit').show();
+
+            }
+            else {
+                $('#divSubmit').hide();
+            }
+
+        } else {
+            $('#divSubmit').hide();
+        }
+    });
+
+
+    $('.conditionbox').click(function () {
+      
+       // console.log('Testing');
+        var radio = $(this).find('input[name="QualityCheck"]');
+        if (radio.length > 0) {
+            radio.prop('checked', true);
+            $(this).addClass('active');
+            ShowProductPrice();
+        }
+        $('.conditionbox').not(this).removeClass('active');
+    });
+
+
+
+    $('input[type=radio][name=QualityCheck]').change(function () {
+        ShowProductPrice();
+    });
+
+
+     function ShowProductPrice() {
+         var productCatId = $("#hdnProductCategoryId").val();
+         var productSubCatId = $("#hdnProductTypeId").val();
+         var brandId = $("#hdnBrandId").val();
+         var buiId = parseInt($("#hdnBusinessUnit").val());
+         var formatType = $("#hdnFormatName").val();
+        var IsOrc = false;
+        var conditionId = $('input[name="QualityCheck"]:checked').val();
+         var IsSweetnerModelBased = false;
+         var IsValidationBasedSweetner = 0;
+         var newBrandId = 0;
+         var priceNameId = $("#hdnpriceMasterNameId").val();
+         var bpid = $("#hdnBusinessPartner").val();
+        $("#divProductPrice").hide();
+        $("#productPrice").text("");
+         $("#hdnExchangePriceString").val('');
+        
+        // alert("hi");
+        if (productCatId > 0 && productSubCatId > 0 && conditionId > 0 && brandId > 0 && buiId > 0) {
+            $.ajax({
+                type: "GET",
+                url: "@Url.Action("GetPriceOnBasisofNewPriceMaster", "Exchange")",
+                data: { productCatId: productCatId, productSubCatId: productSubCatId, brandId: brandId, conditionId: conditionId, buid: buiId, IsOrc: IsOrc, IsSweetnerModelBased: IsSweetnerModelBased, formatType: formatType, IsValidationBasedSweetner: IsValidationBasedSweetner, newBrandId: newBrandId, priceNameId: priceNameId, bpid: bpid },
+                success: function (data) {
+                    if (data) {
+
+                            $("#divProductPrice").show();
+                            $("#productPrice").text(data.ExchangePrice);
+                            $("#productPrice").val(data.ExchangePrice);
+                            $("#hdnExchangePriceString").val(data.ExchangePrice);
+                            $("#hdnBasePrice").val(data.BaseValue);
+                            $("#sweetnerPrice").text(data.SweetenerTotal);
+                            $("#hdnSweetenerBu").val(data.SweetenerBu);
+                            $("#hdnSweetenerBP").val(data.SweetenerBP);
+                            $("#hdnSweetenerDigi2L").val(data.SweetenerDigi2L);
+                            $("#hdnSweetenerTotal").val(data.SweetenerTotal);
+                        } else {
+                            $("#divProductPrice").hide();
+                            $("#productPrice").text("");
+                        $("#productPrice").val('');
+                        $("#hdnExchangePriceString").val(data.ExchangePrice);
+                        }
+                    }
+                });
+            }
+            else {
+
+        }
+    }
+
+
+    $(document).ready(function () {
+    var conditionValueToSelect = @Model.QualityCheck; // Replace with the actual value you want to select
+    $('input[name="QualityCheck"]').each(function () {
+        if ($(this).val() == conditionValueToSelect) {
+            $(this).prop('checked', true);
+            $(this).closest('.conditionbox').addClass('active');
+        }
+    });
+});
+
+</script>
+
+

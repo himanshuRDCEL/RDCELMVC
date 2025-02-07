@@ -1,0 +1,36 @@
+﻿@model RDCEL.DocUpload.DataContract.SponsorModel.ExchangeorderConfirmation
+@{
+    ViewBag.Title = "Confirm Delivery";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@using (Html.BeginForm("ConfirmDeliveryBP", "Exchange", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    @Html.HiddenFor(m => m.BUId, new { id = "hdnBUId" })
+    @Html.HiddenFor(m => m.ExchangeOrderid)
+    @Html.HiddenFor(m => m.ZohoOrderId)
+    <div class="col-6 m-auto" style="margin: 5px;">
+        <div class="logowrapper py-3">
+            @if (Model.BULogoName != null)
+            {
+                <img class="logo"
+                     src="@Model.BULogoName">
+            }
+            else
+            {
+                <img class="logo"
+                     src="https://i.pinimg.com/originals/3f/95/48/3f9548beef7804b53a111ced870da0c6.png">
+            }
+
+        </div>
+    </div>
+    <h3 class="section-title">Delivery Confirmation</h3>
+    <div class="form-group">
+        <h6><label for="">Is Product Deliered <span style="color:red;">*</span></label></h6>@Html.CheckBoxFor(model => model.IsDelivered)
+        @Html.ValidationMessageFor(model => model.IsDelivered)
+    </div>
+    <div class="form-group text-right">
+        <input type="submit" id="btnSubmit" value="Submit" class="btn btn-secondary">
+    </div>
+}

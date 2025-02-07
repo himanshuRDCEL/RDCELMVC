@@ -1,0 +1,92 @@
+﻿@model RDCEL.DocUpload.DataContract.ABBRegistration.RedirectModel
+
+@{
+    ViewBag.Title = "Select Plan";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+@using (Html.BeginForm("SelectBP", "Exchange", FormMethod.Post, new { enctype = "multipart/form-data", @id = "Select-form", @class = "form-horizontal", autocomplete = "off" }))
+{
+    @Html.HiddenFor(m => m.BUId, new { id = "hdnBUId" })
+    @Html.HiddenFor(m => m.BusinessPartnerId, new { id = "hdnBusinessPartnerId" })
+    @Html.HiddenFor(m => m.BusinessUnitId, new { id = "hdnbusinessunitid" })
+    @Html.HiddenFor(m => m.IsABB, new { id = "hdnABB" })
+    @Html.HiddenFor(m => m.IsExchange, new { id = "hdnExchange" })
+    @Html.HiddenFor(m => m.IsBUD2C, new { id = "hdnBUD2C" })
+    @Html.HiddenFor(m => m.IsSweetnerModelBased, new { id = "hdnModelbasedSweetner" })
+
+
+    <div class="row vh-60 justify-content-center align-items-center">
+        <div class="col-md-5 mx-auto">
+            <h3 class="section-title"> - Select Plan - </h3>
+            <div class="row text-center">
+                @if (Model.IsBUABB == true)
+                {
+                    if (Model.BusinessUnitId != 11)
+                    {
+                        <div class="col-6 mx-auto">
+                            <div class="card text-center box box-hover SelectOffer" id="btnABBWrap">
+                                <img src="~/content/assets/img/smartcell.png" alt="">
+                                <input type="button" id="btnABB" value="Assured BuyBack" class="border-0 bg-transparent fs-5 fw-bold" />
+                            </div>
+                        </div>
+                    }
+                }
+                @if (Model.IsBUExchange == true)
+                {
+                    <div class="col-6 mx-auto">
+                        <div class="card text-center box box-hover SelectOffer" id="btnExchangeWrap">
+                            <img src="~/content/assets/img/smartcell.png" alt="">
+                            <input type="button" id="btnExchange" value="Smart Exchange" class="border-0 bg-transparent fs-5 fw-bold" />
+                        </div>
+                    </div>
+
+                }
+            </div>
+        </div>
+
+    </div>
+
+}
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+<script>
+
+    $(document).ready(function () {
+
+        var IsABB = false;
+        $("#hdnABB").val(IsABB);
+        var IsExchange = false;
+        $("#hdnExchange").val(IsExchange);
+    })
+
+    $("#btnABBWrap").click(function () {
+        var IsABB = true;
+        $("#hdnABB").val(IsABB);
+        $("#hdnExchange").val('false');
+        if (IsABB == "True" || IsABB == "true" || IsABB == true) {
+            $("#Select-form").submit();
+        }
+
+    });
+    $("#btnExchangeWrap").click(function () {
+
+        var IsExchange = true;
+        $("#hdnExchange").val(IsExchange);
+        $("#hdnABB").val('false');
+
+        if (IsExchange == "True" || IsExchange == "true" || IsExchange == true) {
+
+            $("#Select-form").submit();
+        }
+
+    });
+
+    $('.SelectOffer').click(function () {
+        $(this + 'input').click();
+    })
+
+</script>

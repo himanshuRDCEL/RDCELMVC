@@ -1,0 +1,4 @@
+﻿Could not parse the configuration file. The error message is: 'The 'data source' keyword is not supported.'. Try editing the file manually and then saving it.
+Generated model file: Digi2l_DBEntities.edmx.
+Loading metadata from the database took 00:00:01.7044740.
+Generating the model took 00:00:04.4607809.

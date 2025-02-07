@@ -1,0 +1,61 @@
+﻿@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("Login", "BulkExchnage", FormMethod.Post, new { id = "frmLogin", @class = "login-form form-horizontal", defaultbutton = "btnLogin" }))
+{
+
+    @*<div class="row">
+            <div class="col-6 m-auto" style="margin: 5px;">
+                <div class="logowrapper py-3">
+
+                    <img class="logo" style="" src="~/Content/DB_Files/SponsorLogo/Digi2L_Logo_Final.png" alt="https://i.pinimg.com/originals/3f/95/48/3f9548beef7804b53a111ced870da0c6.pngs">
+                </div>
+            </div>
+
+
+        </div>*@
+    <div class="row justify-content-center align-items-center">
+        <div class="col-md-6 mx-auto">
+            @*<h3 class="section-title">Product Details</h3>*@
+
+            <div class="row">
+                <div class="col-md-12">
+
+                    <h4 class="section-title text-center my-3">Exchange Login</h4>
+
+                    <div class="card box">
+                        <div class="row">
+                            <div>
+                                @Html.Partial("_MessagePartial")
+                            </div>
+
+                            <div class="col-12">
+                                <div class="inputbox">
+                                    <label for="">User Name<span style="color:red;">*</span></label>
+                                    <input type="text" id="txtUserName" class="form-control" autocomplete="off" placeholder="User Name" name="username" required />
+                                    <label id="lblName" style="display:none;color:red;"></label>
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <div class="inputbox">
+                                    <label for="">Password<span style="color:red;">*</span></label>
+                                    <input id="txtPassword" autocomplete="off" class="form-control" type="password" placeholder="Password" name="password" required />
+                                    <label id="lblPassword" style="display:none; color:red;"></label>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group text-center" id="divSubmit">
+                                <button id="btnLogin" class="btn btn-primary" type="submit">Login</button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

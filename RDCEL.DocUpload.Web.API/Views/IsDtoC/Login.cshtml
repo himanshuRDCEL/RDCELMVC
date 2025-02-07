@@ -1,0 +1,38 @@
+﻿@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@using (Html.BeginForm("Login", "IsDtoC", FormMethod.Post, new { id = "frmLogin", @class = "login-form form-horizontal", defaultbutton = "btnLogin" }))
+{
+
+    <div class="row">
+        <div class="col-6 m-auto" style="margin: 5px;">
+            <div class="logowrapper py-3">
+
+                <img class="logo" style="" src="~/Content/DB_Files/SponsorLogo/Digi2L_Logo_Final.png" alt="https://i.pinimg.com/originals/3f/95/48/3f9548beef7804b53a111ced870da0c6.pngs">
+            </div>
+        </div>
+
+    </div>
+    <div>
+        @Html.Partial("_MessagePartial")
+    </div>
+    <h3 class="section-title">Login</h3>
+    <div class="form-group">
+        <label for="">User Name<span style="color:red;">*</span></label>
+        <input type="text" id="txtUserName" class="form-control" autocomplete="off" placeholder="User Name" name="username" required />
+        <label id="lblName" style="display:none;color:red;"></label>
+    </div>
+    <div class="form-group">
+        <label for="">Password<span style="color:red;">*</span></label>
+        <input id="txtPassword" autocomplete="off" class="form-control" type="password" placeholder="Password" name="password" required />
+        <label id="lblPassword" style="display:none; color:red;"></label>
+    </div>
+
+
+    <div class="form-group text-right" id="divSubmit">
+        <button id="btnLogin" class="btn btn-primary" type="submit">Login</button>
+    </div>
+}

@@ -1,0 +1,200 @@
+﻿@model RDCEL.DocUpload.DataContract.ABBRegistration.ABBViewModel
+
+@{
+    ViewBag.Title = "SelectLocation";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("ABBRegistration", "ABB", FormMethod.Get, new { enctype = "multipart/form-data", @id = "Select-form", @class = "form-horizontal", autocomplete = "off" }))
+{
+    <div class="row">
+
+        @Html.HiddenFor(m => m.BusinessUnitId, new { id = "hdnBuid" })
+        @Html.HiddenFor(m => m.planduration)
+        @Html.HiddenFor(m => m.planName)
+        @Html.HiddenFor(m => m.planprice)
+        @Html.HiddenFor(m => m.NoClaimPeriod)
+        @Html.HiddenFor(m => m.productCategoryId)
+        @Html.HiddenFor(m => m.ProductTypeId)
+        @Html.HiddenFor(m => m.NetProductPrice)
+        @Html.HiddenFor(m => m.IsBUD2C, new { id = "hdnIsBuD2C" })
+    </div>
+
+        <div class="row justify-content-center align-items-center">
+            <div class="col-md-6 mx-auto">
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card box">
+                            <div class="row">
+
+                                <h3 class="section-title">Select Location</h3>
+                                <div class="col-12">
+                                    <div class="inputbox">
+                                        <label for="">State <span style="color:red;">*</span></label>
+                                        @Html.DropDownListFor(model => model.StateName, ViewBag.StateList as SelectList, "--Select State--", new { @class = "form-control form-select", @onchange = "GetCity(this.value);", @id = "ddlState" })
+                                        <label id="lblState" style="color:red;"></label>
+                                    </div>
+                                </div>
+
+                                <div class="col-12">
+                                    <div class="inputbox">
+                                        <label for="">City <span style="color:red;">*</span></label>
+                                        @Html.DropDownListFor(model => model.CityName, Model.CityList, new { @class = "form-control form-select", @onchange = "GetStores(this.value);", @id = "ddlCity" })
+                                        <label id="lblCity" style="color:red;"></label>
+                                    </div>
+                                </div>
+
+                                <div class="col-12" id="abbStore">
+                                    <div class="inputbox">
+                                        <label for="">Place Of Order<span style="color:red;">*</span></label>
+                                        @Html.DropDownListFor(model => model.BusinessPartnerId, Model.StoreList, new { @class = "form-control form-select", @id = "ddlStore" })
+                                        @*@Html.HiddenFor(m => m.BusinessPartnerId)*@
+                                        @Html.ValidationMessageFor(model => model.BusinessPartnerId, "", new { @class = "text-danger" })
+                                        <label id="lblStoreCode" style="color:red;"></label>
+                                    </div>
+                                </div>
+
+
+                                @if (Model.BusinessUnitId == Model.bussinessUnitenum)
+                                {
+                                    <div class="col-12" id="abbStore">
+                                        <div class="inputbox">
+                                            <label for="">Store Name<span style="color:red;">*</span> </label>
+                                            @Html.EditorFor(model => model.StoreName, new { htmlAttributes = new { @class = "form-control form-select", @id = "txtStoreName" } })
+                                            @Html.ValidationMessageFor(model => model.StoreName, "", new { @class = "text-danger" })
+                                            @*  <label id="lblStoreName" style="color:red;"></label>*@
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12" id="abbStore">
+                                        <div class="inputbox">
+                                                <label for="">Employee Id<span style="color:red;">*</span> </label>
+                                                @Html.EditorFor(model => model.EmployeeId, new { htmlAttributes = new { @class = "form-control form-select  ", @id = "txtEmployeeId" } })
+                                                @Html.ValidationMessageFor(model => model.EmployeeId, "", new { @class = "text-danger" })
+                                                @*  <label id="lblStoreName" style="color:red;"></label>*@
+                                        </div>
+                                    </div>
+                                 }
+
+                                        <div class="form-group text-end">
+                                            <input type="button" id="btnSubmit" value="Submit" class="btn btn-primary">
+                                        </div>
+
+                                    </div>
+                                </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+ }
+        <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+        <script src="~/Scripts/jquery.validate.min.js"></script>
+        <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+<script>
+    //validate form
+    function validateLeadForm() {
+        var flag = true;
+
+        if ($("#ddlState").val() == '' || $("#ddlState").val() == null) {
+            $("#ddlState").css("border", "2px solid red");
+            $("#ddlState").focus();
+            $("#divSubmitAlert").show();
+                $("#lblState").append("Please select State.");
+            flag = false;
+        }
+
+        if ($("#ddlCity").val() == '' || $("#ddlCity").val() == null) {
+            $("#ddlCity").css("border", "2px solid red");
+            $("#ddlCity").focus();
+            $("#divSubmitAlert").show();
+                $("#lblCity").append("Please select City.");
+           
+          
+            flag = false;
+        }
+
+        return flag;
+    }
+    $("#ddlState").change(function () {
+        $("#lblState").text("");
+
+    });
+        lblState
+    //submit
+    $("#btnSubmit").click(function () {
+        $("#lblState").text("");
+        $("#lblCity").text("");
+        if (validateLeadForm()) {
+
+            $("#Select-form").submit();
+        }
+
+    });
+
+    //get city by state
+    function GetCity(_stateName) {
+
+        var stateName = _stateName;
+        var buid = $("#hdnBuid").val();
+
+        if (stateName) {
+            $.ajax({
+                type: "GET",
+                url: "@Url.Action("GetCityByStateName", "ABB")",
+                data: { stateName: stateName, buid: buid },
+                success: function (data) {
+                if (data) {
+                //console.log(data);
+                    $("#ddlCity").empty();
+                    $("#ddlCity").append('<option value="">--Select City--</option>');
+                $.each(data, function (key, value) {
+                //console.log(value.Value);
+                // alert("get data");
+                    $("#ddlCity").append('<option value="' + value.Value + '">' + value.Text + '</option>');
+                });
+                } else {
+                    $("#ddlCity").empty();
+                }
+                }
+                });
+            } else {
+                   $("#ddlCity").empty();
+        }
+    }
+
+
+
+     function GetStores(_CityNAme) {
+         var city = _CityNAme;
+        var buid =parseInt($("#hdnBuid").val());
+         $("#lblCity").text("");
+         if (city) {
+            $.ajax({
+                type: "GET",
+                url: "@Url.Action("ABBBusinessPartnerList", "ABB")",
+                data: { city: city, Buid: buid },
+                success: function (data) {
+                if (data) {
+                //console.log(data);
+                    $("#ddlStore").empty();
+                    $("#ddlStore").append('<option value="">--Select Store Name--</option>');
+                $.each(data, function (key, value) {
+                //console.log(value.Value);
+                // alert("get data");
+                    $("#ddlStore").append('<option value="' + value.Value + '">' + value.Text + '</option>');
+                });
+                } else {
+                    $("#ddlStore").empty();
+                }
+                }
+                });
+            } else {
+            $("#ddlStore").empty();
+        }
+    }
+</script>
+

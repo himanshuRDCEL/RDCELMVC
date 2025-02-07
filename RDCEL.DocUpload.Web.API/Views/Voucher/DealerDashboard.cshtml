@@ -1,0 +1,326 @@
+﻿@model RDCEL.DocUpload.DataContract.SponsorModel.ExchangeOrderDataContract
+
+@{ ViewBag.Title = "DealerDashboard";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+      integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+      crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link href="~/Content/DataTables/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+<link href="~/Content/jquery-ui-1.13.1.custom/jquery-ui.css" rel="stylesheet" />
+<link href="~/Content/DataTables/css/jquery.dataTables.min.css" rel="stylesheet" />
+<style>
+    .ui-datepicker-calendar {
+        display: none;
+    }
+
+    .dt-buttons {
+        display: inline-block;
+    }
+
+    .exportbtnwrapper {
+        display: inline-block;
+    }
+
+</style>
+
+
+@Html.HiddenFor(m => m.BusinessUnitId, new { id = "hdnBUId" })
+@Html.HiddenFor(m => m.Email, new { id = "hdnLoginEmail" })
+@Html.HiddenFor(m => m.BusinessPartnerId, new { id = "hdnBusinessPartnerId" })
+@Html.HiddenFor(m => m.BusinessUnitId, new { id = "hdnBusinessUnitId" })
+@Html.HiddenFor(m => m.AssociateCode, new { id = "hdnAssociateCode" })
+@Html.HiddenFor(m => m.CompanyName, new { id = "hdnCompanyname" })
+<div class="col-6 m-auto" style="margin: 5px;">
+    <div class="logowrapper py-3">
+        @if (Model.BULogoName != null)
+        {
+            <img class="logo"
+                 src="@Model.BULogoName"> }
+        else
+        {
+            <img class="logo" src="https://i.pinimg.com/originals/3f/95/48/3f9548beef7804b53a111ced870da0c6.png">
+        }
+
+    </div>
+</div>
+
+
+<nav class="navbar navbar-dark bg-dark mainnavwrapper">
+    <h4 class="navbar-brand" href="#">Menu </h4>
+
+    <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="navbar-collapse collapse" id="navbarNav" style="">
+        <ul class="navbar-nav">
+            @if (ViewBag.BusinesPartnerCode != null && ViewBag.BusinesPartnerCode != "NE-KE-02")
+            {
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("DealerDashboard", "Voucher")">Dashboard</a>
+                </li>
+            }
+            <li class="nav-item">
+                <a class="nav-link" href="@Url.Action("VoucherVerification","Voucher",new {buid = Model.BusinessUnitId })">Redemption</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="@Url.Action("LogOut","Voucher")">Logout</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div class="row mr-2">
+    <div class="col-md-12 text-right mb-3">
+        <a href="@Url.Action("ExportExcel_StoreData", "Voucher")" class="btn btn-secondary p-2 px-4">
+            <i class="fa-solid fa-download"></i> Export To Excel
+        </a>
+    </div>
+</div>
+
+<center><h3 class="section-title">Select Location</h3></center>
+<div class="form-group">
+    <div class="row">
+        <div class="col-6">
+            <label for="">State <span style="color:red;">*</span></label>
+            @Html.DropDownListFor(model => model.StateName, ViewBag.StateList as SelectList, "--Select State--", new { @class = "custom-select", @onchange = "GetCity(this.value);", @id = "ddlState" })
+            @Html.ValidationMessageFor(model => model.StateName)
+        </div>
+
+        <div class="col-6">
+            <label for="">City <span style="color:red;">*</span></label>
+            @Html.DropDownListFor(model => model.CityName, Model.CityList, new { @class = "custom-select", @onchange = "GetBPs(this.value);", @id = "ddlCity" })
+            @Html.ValidationMessageFor(model => model.CityName)
+        </div>
+    </div>
+</div>
+<div class="form-group">
+    <div class="row">
+        <div class="col-md-6">
+            <label for="">Store Name<span style="color:red;">*</span></label>
+            @Html.DropDownListFor(model => model.BusinessPartnerId, Model.StoreList, "--Select Store Name--", new { @class = "form-control", @id = "ddlStore", @required = "" })
+            @Html.ValidationMessageFor(model => model.BusinessPartnerId, "", new { @class = "text-danger" })
+            <label id="lblStoreCode" style="color:red;"></label>
+        </div>
+        <div class="col-md-6">
+            <label for="">Select Month & Year <span style="color:red;">*</span></label>
+            @Html.EditorFor(model => model.Year1, new { htmlAttributes = new { @class = "form-control", @id = "daterangewrapperYear", autocomplete = "off" } })
+            @Html.ValidationMessageFor(model => model.Year)
+        </div>
+    </div>
+</div>
+
+
+<div class="form-group text-center" id="divValidate">
+    <input type="button" value="Submit" class="btn btn-primary" id="btnValidate">
+    <button type="button" class="btn btn-primary" onclick="window.location.href = '@Url.Action("DealerDashboard","Voucher")'" id="btnReset">Reset</button>
+
+</div>
+
+<div class="form-group">
+    <div class="row">
+        <div class="col-4">
+            <label for=""><b style="font-size: 14px; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif">Order Count : <span style="color:purple; font-size:14px; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif" id="spanCount"> @ViewBag.NoOfOrders </span></b></label>
+        </div>
+        <div class="col-4">
+            <label for=""><b style="font-size: 14px; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif">Pending Amt : <span style="color:purple; font-size:14px; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif" id="totalAmt"></span></b></label>
+        </div>
+        <div class="col-4">
+            <label for=""><b style="font-size: 14px; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif">Recived Amt : <span style="color:purple; font-size:14px; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif" id="spanCount"> 0 </span></b></label>
+        </div>
+    </div>
+</div>
+
+
+<table id="DealerOrdertable" class="table table-bordered" style="width:100%;">
+    <thead class="thead-dark text-white-50">
+        <tr>
+            <th>Voucher</th>
+            <th>Product</th>
+            <th>Exc Amt.</th>
+            <th>Sweetner Amt.</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td data-label="Voucher"></td>
+            <td data-label="Product"></td>
+            <td data-label="Exc Amt."></td>
+            <td data-label="Sweetner Amt."></td>
+            <td data-label="Status"></td>
+        </tr>
+    </tbody>
+</table>
+
+<script src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>
+<script src="~/Scripts/DataTables/dataTables.buttons.min.js"></script>
+<script src="~/Scripts/JsZip.min.js"></script>
+<script src="~/Scripts/DataTables/buttons.html5.min.js"></script>
+<script>
+    $(document).ready(function () {
+
+
+        $('#btnValidate').click(function () {
+          
+            GetOrderCountByBusinessPartnerId();
+        });
+        $("#btnReset").hide();
+    });
+    function GetOrderCountByBusinessPartnerId() {
+        var businessPartnerIdValue = $("#ddlStore").val();
+        var monthValue = $("#ddlMonth").val();
+        var yearValue = $("#daterangewrapperYear").val();
+        var associateCodeValue = $("#hdnAssociateCode").val();
+        var companyName = $("#hdnCompanyname").val();
+      
+        if (businessPartnerIdValue != null) {
+            $.ajax({
+                type: "GET",
+                url: "@Url.Action("GetOrderCount", "Voucher")",
+                data: { businessPartnerId: businessPartnerIdValue, Month: monthValue, Year1: yearValue, AssociateCode: associateCodeValue, CompanyName:companyName },
+                success: function (data) {
+                    if (data) {
+                        var businessPartnerIdValue = $("#ddlStore").val();
+                        $("#spanCount").text(data.data.length);
+                        var TotalAmt = 0;
+                        var Amt = 0;
+                        for (var i = 0; i < data.data.length; i++)
+                        {
+                            Amt += data.data[i].ExchangePrice ;
+                        }
+                        TotalAmt += Amt;
+                        $("#totalAmt").text(TotalAmt);
+
+                        $("#DealerOrdertable").DataTable({
+                            dom: 'Bfrtlp',
+                            buttons: [
+                                {
+                                    extend: 'csv', text: '<div class="exportbtnwrapper"><button class="btn btn-primary" id="exportbtn"><i class="fa-solid fa-download"></i> Download CSV</button></div>', id: "exportbtn"
+                                }
+                            ],
+                            "ajax": {
+                             "url": "@Url.Action("GetOrderCount", "Voucher")",
+                                "data": { businessPartnerId: businessPartnerIdValue, Month: monthValue, Year1: yearValue, AssociateCode: associateCodeValue},
+                            "type": "GET",
+                            "datatype": "json"
+                            },
+                            "columns": [
+                                { "data": "VoucherCode" },
+                                { "data": "PurchasedProductCategory" },
+                                { "data": "ExchangePrice" },
+                                { "data": "Sweetner" },
+                                { "data": "AmountStatus" }
+                            ],
+                        });
+
+                        $("#ddlStore").attr("disabled", true);
+                        $("#ddlCity").attr("disabled", true);
+                        $("#ddlState").attr("disabled", true);
+                        $("#btnValidate").hide();
+                        $("#btnReset").show();
+                    } else {
+                        alert("No Records Found.");
+                    }
+                },
+                failure: function (response) {
+                    alert("failure: No Records Found.");
+                },
+                error: function (response) {
+                    alert("error: No Records Found.");
+                }
+            });
+            } else {
+            $("#ddlStore").empty();
+            }
+    }
+
+    //get city by state
+    function GetCity(_stateName) {
+        var stateName = _stateName;
+        var buid = $("#hdnBUId").val();
+        var email = $("#hdnLoginEmail").val();
+        if (stateName) {
+            $.ajax({
+                type: "GET",
+                url: "@Url.Action("GetCityByStateName", "Voucher")" + "?stateName=" + stateName + "&buid=" + buid + "&email=" + email ,
+                success: function (data) {
+                    if (data) {
+                        $("#ddlCity").empty();
+                        $("#ddlCity").append('<option value="">--Select City--</option>');
+                        $.each(data, function (key, value) {
+                            $("#ddlCity").append('<option value="' + value.Value + '">' + value.Text + '</option>');
+                        });
+                    } else {
+                        $("#ddlCity").empty();
+                    }
+                }
+            });
+        } else {
+            $("#ddlCity").empty();
+        }
+    }
+
+    function GetBPs(_cityName) {
+        var cityName = _cityName;
+        var buid = $("#hdnBUId").val();
+        var email = $("#hdnLoginEmail").val();
+        var associateCodeValue = $("#hdnAssociateCode").val();
+        if (cityName ) {
+            $.ajax({
+                type: "GET",
+                url: "@Url.Action("GetBPByCity", "Voucher")" + "?city=" + cityName + "&buid=" + buid + "&associateCode=" + associateCodeValue ,
+                success: function (data) {
+                    if (data) {
+                        //console.log(data);
+                        $("#ddlStore").empty();
+                        $("#ddlStore").append('<option value="">--Select Store--</option>');
+                        $.each(data, function (key, value) {
+                            $("#ddlStore").append('<option value="' + value.Value + '">' + value.Text + '</option>');
+                        });
+                    } else {
+                        $("#ddlStore").empty();
+                    }
+                }
+            });
+        } else {
+            $("#ddlCity").empty();
+        }
+    }
+
+    (function () {
+        var header = Array();
+        //first get the data from the headings
+        $("#DealerOrdertable thead th").each(function (i, v) {
+            header[i] = $(this).text();
+        })
+        //now loop through table rows and apply headings to the td in each row
+        $("#DealerOrdertable tbody tr").each(function (i, v) {
+            var myRow = $(this);
+
+            myRow.find('td').each(function (j) {
+                $(this).attr('data-label', header[j]);
+            })
+        })
+    }());
+
+    $("#daterangewrapper").datepicker({
+
+        dateFormat: 'MM',
+        maxDate: '0'
+
+    });
+    $("#daterangewrapperYear").datepicker({
+        changeMonth: true,
+        changeYear: true,
+        showButtonPanel: true,
+        dateFormat: "mm/yy",
+        maxDate: '0',
+
+        onClose: function (dateText, inst) {
+            var month = $("#ui-datepicker-div .ui-datepicker-month :selected").val();
+            var year = $("#ui-datepicker-div .ui-datepicker-year :selected").val();
+            $(this).datepicker('setDate', new Date(year, month, 1));
+        }
+    });
+</script>
