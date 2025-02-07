@@ -18,7 +18,7 @@
 
 body {
     background: url(../img/bg/bg.png) center center;
-    background-size: 100%;
+   /* background-size: 100%;*/
     position: relative;
     color: var(--dark);
     padding-bottom: 80px;
@@ -119,12 +119,16 @@ main {
   background: var(--mainGradient);
   color: var(--LighBackground);
 }
-
+.allformheading {
+    background: #fff;
+    padding: 0px;
+    border-top-left-radius: 53px;
+}
 .logo {
     display: block;
     margin: 0 auto;
-    max-width: 200px;
-    max-height: 128px;
+    /* max-width: 200px;*/
+    max-height: 117px;
     width: auto;
     height: auto;
 }
@@ -139,13 +143,21 @@ main {
 }
 
 .section-title {
-  font-size: 20px;
-  text-align: center;
-  font-weight: 600;
-  margin-bottom: 26px;
+    font-size: 20px;
+    text-align: center;
+    font-weight: 600;
+  
+   
+}
+.mainformheading {
+    background: linear-gradient(109deg, #ef262cb5 0, #ef262cfc 100%) no-repeat padding-box;
+    color: #fff;
+    padding: 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
 }
 .section-title span {
-  color: var(--darkPrimary);
+    color: var(--darkPrimary);
 }
 
 .box.box-hover:hover {
@@ -222,7 +234,7 @@ div:where(.swal2-container) button:where(.swal2-styled) {
 }
 
 .searchwrap {
-  box-shadow: var(--shadow-md);
+
   border-radius: 8px;
   position: relative;
   border-radius: 50px;
@@ -309,10 +321,14 @@ div:where(.swal2-container) button:where(.swal2-styled) {
   border-radius: 8px;
   border: none;
 }
+#btnExchangeWrap {
+    background: none !important;
+    box-shadow: none !important;
+}
 .box h6 {
-  color: var(--dark);
-  font-size: 1rem;
-  font-weight: 600;
+    color: var(--dark);
+    font-size: 1rem;
+    font-weight: 600;
 }
 
 .preview-container {
@@ -917,7 +933,7 @@ input[type=checkbox]:before {
 
 .box .section-title {
     position: relative;
-    margin: 40px 0 8px;
+    margin: 12px 0 8px;
     font-size: 18px;
     padding: 0 0 20px 0;
 }

@@ -44,7 +44,7 @@
             .check-container .check-background {
                 width: 100%;
                 height: calc(100% - 1.25rem);
-                background: linear-gradient(to bottom right, #24ba60, #41d67c);
+                background: linear-gradient(to bottom right, #1b226c, #1b226c);
                 box-shadow: 0px 0px 0px 65px rgba(255, 255, 255, 0.25) inset, 0px 0px 0px 65px rgba(255, 255, 255, 0.25) inset;
                 transform: scale(0.84);
                 border-radius: 50%;
@@ -67,7 +67,7 @@
                 bottom: calc(-15% - 5px);
                 left: 0;
                 border-radius: 50%;
-                background: radial-gradient(closest-side, #49da83, transparent);
+                background: radial-gradient(closest-side, #1b226c, transparent);
                 animation: animateShadow 0.75s ease-out forwards 0.75s;
             }
 
@@ -137,6 +137,10 @@
                 opacity: 0.25;
             }
         }
+
+        #rdbtn {
+            background: linear-gradient(109deg, #ef262cb5 0, #ef262cfc 100%) no-repeat padding-box;
+        }
     </style>
 
 
@@ -151,9 +155,9 @@
                 <div class="row">
                     <div class="col-md-12 py-3 text-center">
                         <div class="logowrapper">
-                            <img src="https://RDCEL.in/wp-content/uploads/2022/09/logo.svg" alt="">
+                            <img src="~/Content/img/rockingdeallogo.png" alt="" class="logo">
                         </div>
-                        <p>The only platform to sell used appliances in best price.</p>
+                        @*<p>The only platform to sell used appliances in best price.</p>*@
                     </div>
                 </div>
             </div>
@@ -184,9 +188,9 @@
                         </div>
 
                         <div class="col-12 mb-4 text-center">
-                            <a href="https://RDCEL.in" class="btn btn-primary">
+                            <a href="https://rockingdeals.in" class="btn btn-primary" id="rdbtn">
                                 <i class="fa-solid fa-globe"></i>
-                                &nbsp;RDCEL.in
+                                &nbsp;rockingdeals.in
                             </a>
                         </div>
                     </div>
@@ -199,18 +203,16 @@
         <div class="footer">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                         <p>
-                            <a href="https://RDCEL.in" target="_blank">
-                                <label style="color:white">Powered by</label>
+                            <a href="https://rockingdeals.in" target="_blank">
+                                <label>&copy; 2025 - Rocking Deals. All right reserved.</label>
 
-                                <img src="https://RDCEL.in/wp-content/uploads/2022/09/logo-RDCEL.png">
+
                             </a>
                         </p>
                     </div>
-                    <div class="col-md-6 text-md-right footer-pattern">
 
-                    </div>
                 </div>
             </div>
         </div>

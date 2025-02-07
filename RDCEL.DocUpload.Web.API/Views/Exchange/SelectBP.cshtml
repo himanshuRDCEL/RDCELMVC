@@ -18,14 +18,14 @@
 
 
     <div class="row vh-60 justify-content-center align-items-center">
-        <div class="col-md-5 mx-auto">
-            <h3 class="section-title"> - Select Plan - </h3>
+        <div class="col-md-5 mx-auto allformheading">
+            <h3 class="section-title mainformheading"> - Select Plan - </h3>
             <div class="row text-center">
                 @if (Model.IsBUABB == true)
                 {
                     if (Model.BusinessUnitId != 11)
                     {
-                        <div class="col-6 mx-auto">
+                        <div class="col-6 mx-auto ">
                             <div class="card text-center box box-hover SelectOffer" id="btnABBWrap">
                                 <img src="~/content/assets/img/smartcell.png" alt="">
                                 <input type="button" id="btnABB" value="Assured BuyBack" class="border-0 bg-transparent fs-5 fw-bold" />
@@ -35,7 +35,7 @@
                 }
                 @if (Model.IsBUExchange == true)
                 {
-                    <div class="col-6 mx-auto">
+                    <div class="col-6 mx-auto mb-5">
                         <div class="card text-center box box-hover SelectOffer" id="btnExchangeWrap">
                             <img src="~/content/assets/img/smartcell.png" alt="">
                             <input type="button" id="btnExchange" value="Smart Exchange" class="border-0 bg-transparent fs-5 fw-bold" />

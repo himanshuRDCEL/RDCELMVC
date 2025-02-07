@@ -996,7 +996,7 @@ namespace RDCEL.DocUpload.BAL.SponsorsApiCall
                         }
                         if (exchangeOrderDC.BusinessUnitId == Convert.ToInt32(BusinessUnitEnum.Lg) && exchangeOrderDC.Email == null)
                         {
-                            customerObj.Email = "contacts@utcdigital.com";
+                            customerObj.Email = "contacts@rdcel.com";
                         }
                         else
                         {
@@ -1882,11 +1882,13 @@ namespace RDCEL.DocUpload.BAL.SponsorsApiCall
                             //}
                         }
                         #endregion
+
+
+
                     }
                     #endregion
 
-
-
+                    //var result= TestSendWhatsAppMessageService();
                 }
             }
             catch (Exception ex)
@@ -1898,14 +1900,37 @@ namespace RDCEL.DocUpload.BAL.SponsorsApiCall
 
             return productOrderResponseDC;
         }
-        #endregion
 
-        #region 99999manage Bulk exchange order
-        /// <summary>
-        /// manage exchange order
-        /// </summary>       
-        /// <returns></returns>   
-        public ProductOrderResponseDataContract ManageBulkExchangeOrder(ExchangeOrderDataContract exchangeOrderDC)
+    //    public async Task <IRestResponse> TestSendWhatsAppMessageService()
+    //    {
+    //          string campaignName = "Send_Voucher_Code_Template";
+    //    string destination = "+918962537774"; // User ka phone number
+    //    string userName = "Himanshu";
+
+    //    // Template parameters ko sequence me set karein
+    //    string[] templateParams = {
+    //                                "₹500",               // [Price]
+    //                                "Samsung",            // [Brand Name]
+    //                                "ABC123XYZ",          // [Code]
+    //                                "30",                 // [validity]
+    //                                "https://example.com/download"  // [download url]
+    //                            };
+
+    //    // Object create karke method call karein
+    //    WhatsappNotificationManager manager = new WhatsappNotificationManager();
+    //    var responseWa = await manager.SendWhatsAppMessage(campaignName, destination, userName, templateParams);
+
+    //        return responseWa;
+
+    //}
+    #endregion
+
+    #region 99999manage Bulk exchange order
+    /// <summary>
+    /// manage exchange order
+    /// </summary>       
+    /// <returns></returns>   
+    public ProductOrderResponseDataContract ManageBulkExchangeOrder(ExchangeOrderDataContract exchangeOrderDC)
         {
             int orderId = 0;
             CustomerManager customerInfo = new CustomerManager();

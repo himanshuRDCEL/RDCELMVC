@@ -46,43 +46,31 @@ namespace RDCEL.DocUpload.BAL.Common
 
         }
 
-        public static async Task<IRestResponse> SendWhatsAppMessage()
+        public async Task<IRestResponse> SendWhatsAppMessage (string campaignName, string destination, string userName, string[] templateParams)
         {
-            string url = "https://backend.aisensy.com/campaign/t1/api/v2"; // API URL
-
-            // Prepare the content for the API call
+            string apiURL= ConfigurationManager.AppSettings["AiSensy_ApiURL"].ToString();
             var content = new
             {
-                apiKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3YTM0MGFlMWJlYTVhMjhlMDQ4ZGU5NiIsIm5hbWUiOiJST0NLSU5HREVBTFMgQ0lSQ1VMQVIgRUNPTk9NWSBMSU1JVEVEIiwiYXBwTmFtZSI6IkFpU2Vuc3kiLCJjbGllbnRJZCI6IjY3YTM0MGFlMWJlYTVhMjhlMDQ4ZGU5MCIsImFjdGl2ZVBsYW4iOiJGUkVFX0ZPUkVWRVIiLCJpYXQiOjE3Mzg3NTIxNzR9.7OUECmQ57i5Yvus_AtNjPQiEGY9VxpXwkSB_Bhdve-M", // Your API Key
-                campaignName = "Utility Test Campaign",
-                destination = "8962537774", // Ensure this is the correct phone number with country code
-                userName = "Sakshi",
-                templateParams = new string[] { "Sakshi" } // Parameters for your template
+                apiKey = ConfigurationManager.AppSettings["AiSensy_ApiKey"].ToString(),
+                campaignName = campaignName,
+                destination = destination, // Recipient phone number with country code
+                userName = userName,
+                templateParams = templateParams // Template parameters
             };
 
             try
             {
-                var client = new RestClient(url);  // Create the RestClient
-                var request = new RestRequest();   // Create a new RestRequest
+                var client = new RestClient(apiURL);
+                var request = new RestRequest(Method.POST);
+                request.AddHeader("content-type", "application/json"); // Add Content-Type header
+                request.AddJsonBody(JsonConvert.SerializeObject(content)); // Serialize and add request body
 
-                request.Method = Method.POST;      // Set the request method to POST
-                request.AddHeader("content-type", "application/json");  // Add Content-Type header
-                request.AddHeader("x-api-key", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3YTM0MGFlMWJlYTVhMjhlMDQ4ZGU5NiIsIm5hbWUiOiJST0NLSU5HREVBTFMgQ0lSQ1VMQVIgRUNPTk9NWSBMSU1JVEVEIiwiYXBwTmFtZSI6IkFpU2Vuc3kiLCJjbGllbnRJZCI6IjY3YTM0MGFlMWJlYTVhMjhlMDQ4ZGU5MCIsImFjdGl2ZVBsYW4iOiJGUkVFX0ZPUkVWRVIiLCJpYXQiOjE3Mzg3NTIxNzR9.7OUECmQ57i5Yvus_AtNjPQiEGY9VxpXwkSB_Bhdve-M");  // Add API key header
-
-                // Serialize content to JSON and add it to the request body
-                var jsonString = JsonConvert.SerializeObject(content);
-                request.AddJsonBody(jsonString);
-
-                // Send the request asynchronously
                 var response = await client.ExecuteAsync(request);
-
-                // Return the response directly
                 return response;
             }
             catch (Exception ex)
             {
-                // Handle any exceptions
-                Console.WriteLine($"Error: {ex.Message}");
+                Console.WriteLine($"Error sending WhatsApp message: {ex.Message}");
                 throw;
             }
         }
