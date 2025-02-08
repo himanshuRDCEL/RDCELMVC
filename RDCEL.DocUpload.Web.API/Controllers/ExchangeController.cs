@@ -776,24 +776,24 @@ namespace RDCEL.DocUpload.Web.API.Controllers
                             {
                                 if (exchangeDataContract.FormatName.Equals("Home"))
                                 {
-                                    message = "Your Exchange details have been received at RDCEL.Our product registration referance no. " + exchangeDataContract.RegdNo + ". Our quality check team will connect with you soon.";
+                                    message = "Your Exchange details have been received at RockingDeals.Our product registration referance no. " + exchangeDataContract.RegdNo + ". Our quality check team will connect with you soon.";
                                 }
                                 else
                                 {
 
                                     if (exchangeDataContract.IsOrc == true && exchangeDataContract.IsDifferedSettlement == true)
                                     {
-                                        message = "Your Exchange details have been received at RDCEL. Our product registration referance no. " + exchangeDataContract.RegdNo + ". Our quality check team will connect with you soon.";
+                                        message = "Your Exchange details have been received at RockingDeals. Our product registration referance no. " + exchangeDataContract.RegdNo + ". Our quality check team will connect with you soon.";
                                     }
                                     else
                                     {
-                                        message = "Your Exchange details have been received at RDCEL.Our product registration referance no. " + exchangeDataContract.RegdNo + ". Our quality check team will connect with you soon." +
-                                           " Congratulations!!! Please check your voucher detail at registered SMS/Email.";
+                                        message = "Your Exchange details have been received at RockingDeals.Our product registration referance no. " + exchangeDataContract.RegdNo + ". Our quality check team will connect with you soon." +
+                                           " Congratulations!!! Please check your voucher detail at registered WhatsApp/Email.";
                                     }
                                 }
                             }
                             else
-                                message = "Your Exchange details have been received at RDCEL. Our product registration referance no. " + exchangeDataContract.RegdNo + ". Our quality check team will connect with you soon.";
+                                message = "Your Exchange details have been received at RockingDeals. Our product registration referance no. " + exchangeDataContract.RegdNo + ". Our quality check team will connect with you soon.";
                         }
                         else
                         {

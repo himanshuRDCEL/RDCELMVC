@@ -26,7 +26,7 @@ namespace RDCEL.DocUpload.BAL.Common
         /// <param name="phoneNumber">phone Number</param>
         /// <param name="message">v</param>
         /// <returns>bool</returns>
-        public bool SendNotificationSMS(string phoneNumber, string messages,string OTPCode = "")
+        public bool SendNotificationSMS(string phoneNumber, string message,string OTPCode = "")
         {
             String result;
             bool flag = false;
@@ -35,7 +35,7 @@ namespace RDCEL.DocUpload.BAL.Common
             string apiKey = ConfigurationManager.AppSettings["SMSKey"].ToString();
             string numbers = phoneNumber; //Code to trim number , remove blanks
 
-            string message = "Dear Customer - OTP for voucher generation for the AAA is 34343 by ROCKINGDEALS.";
+         //   string message = "Dear Customer - OTP for voucher generation for the AAA is 34343 by ROCKINGDEALS.";
            
             try
             {

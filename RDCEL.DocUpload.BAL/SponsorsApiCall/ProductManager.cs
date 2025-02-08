@@ -188,7 +188,7 @@ namespace RDCEL.DocUpload.BAL.SponsorsApiCall
                         _notificationManager.SendNotificationSMS(productOrderDataContract.PhoneNumber, message, null);
                     }
 
-                    jetmessage.From = new MailJetFrom() { Email = "customercare@utcdigital.com", Name = "UTC - Customer  Care" };
+                    jetmessage.From = new MailJetFrom() { Email = "customercare@rdcel.com", Name = "UTC - Customer  Care" };
                     jetmessage.To = new List<MailjetTo>();
                     jetmessage.To.Add(new MailjetTo() { Email = productOrderDataContract.Email.Trim(), Name = productOrderDataContract.FirstName });
                     jetmessage.Subject = businessUnit.Name + ": Exchange Voucher Detail";
@@ -216,7 +216,7 @@ namespace RDCEL.DocUpload.BAL.SponsorsApiCall
                          .Replace("[VLink]", "( " + voucherUrl + " )").Replace("[STORENAME]", businessUnit.Name);
                         _notificationManager.SendNotificationSMS(productOrderDataContract.PhoneNumber, message, null);
                     }
-                    jetmessage.From = new MailJetFrom() { Email = "customercare@utcdigital.com", Name = "UTC - Customer  Care" };
+                    jetmessage.From = new MailJetFrom() { Email = "customercare@rdcel.com", Name = "UTC - Customer  Care" };
                     jetmessage.To = new List<MailjetTo>();
                     jetmessage.To.Add(new MailjetTo() { Email = productOrderDataContract.Email.Trim(), Name = productOrderDataContract.FirstName });
                     jetmessage.Subject = businessUnit.Name + ": Exchange Voucher Detail";
