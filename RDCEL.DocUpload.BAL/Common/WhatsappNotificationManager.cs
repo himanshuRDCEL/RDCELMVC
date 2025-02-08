@@ -9,12 +9,13 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using RDCEL.DocUpload.DAL.Repository;
+using RDCEL.DocUpload.DataContract.WhatsappTemplates;
 
 namespace RDCEL.DocUpload.BAL.Common
 {
     public class WhatsappNotificationManager
     {
-      
+
         public static IRestResponse Rest_InvokeWhatsappserviceCall(string url, Method methodType, object content = null)
         {
             ServicePointManager.Expect100Continue = true;
@@ -36,7 +37,7 @@ namespace RDCEL.DocUpload.BAL.Common
                     request.AddJsonBody(jsonString);
                 }
                 getResponse = client.Execute(request);
-            
+
             }
             catch (Exception ex)
             {
@@ -46,9 +47,9 @@ namespace RDCEL.DocUpload.BAL.Common
 
         }
 
-        public async Task<IRestResponse> SendWhatsAppMessage (string campaignName, string destination, string userName, string[] templateParams)
+        public async Task<IRestResponse> SendWhatsAppMessage(string campaignName, string destination, string userName, string[] templateParams)
         {
-            string apiURL= ConfigurationManager.AppSettings["AiSensy_ApiURL"].ToString();
+            string apiURL = ConfigurationManager.AppSettings["AiSensy_ApiURL"].ToString();
             var content = new
             {
                 apiKey = ConfigurationManager.AppSettings["AiSensy_ApiKey"].ToString(),
@@ -56,6 +57,35 @@ namespace RDCEL.DocUpload.BAL.Common
                 destination = destination, // Recipient phone number with country code
                 userName = userName,
                 templateParams = templateParams // Template parameters
+            };
+
+            try
+            {
+                var client = new RestClient(apiURL);
+                var request = new RestRequest(Method.POST);
+                request.AddHeader("content-type", "application/json"); // Add Content-Type header
+                request.AddJsonBody(JsonConvert.SerializeObject(content)); // Serialize and add request body
+
+                var response = await client.ExecuteAsync(request);
+                return response;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error sending WhatsApp message: {ex.Message}");
+                throw;
+            }
+        }
+
+        public async Task<IRestResponse> SendWhatsAppMessage(string templateId, string recipientNumber, List<string> templateParams)
+        {
+            string apiURL = ConfigurationManager.AppSettings["AiSensy_ApiURL"].ToString();
+
+            var content = new
+            {
+                apiKey = ConfigurationManager.AppSettings["AiSensy_ApiKey"].ToString(),
+                campaignName = templateId, // Template ID dynamically set ho rahi hai
+                destination = recipientNumber, // Recipient phone number
+                templateParams = templateParams // Dynamic template parameters
             };
 
             try

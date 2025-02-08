@@ -26,6 +26,7 @@ namespace RDCEL.DocUpload.DataContract.WhatsappTemplates
     public class UserDetails
     {
         public string number { get; set; }
+        public string name { get; set; }
     }
 
     public class WhatasappResponse

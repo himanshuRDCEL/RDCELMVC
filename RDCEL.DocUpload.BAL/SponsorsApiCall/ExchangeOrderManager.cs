@@ -1361,18 +1361,46 @@ namespace RDCEL.DocUpload.BAL.SponsorsApiCall
                                     whatsappObj.userDetails = new UserDetails();
                                     whatsappObj.notification = new Notification();
                                     whatsappObj.notification.@params = new SendVoucherOnWhatssapp();
-                                    whatsappObj.userDetails.number = exchangeOrderDC.PhoneNumber;
-                                    whatsappObj.notification.sender = ConfigurationManager.AppSettings["Yello.aiSenderNumber"].ToString();
-                                    whatsappObj.notification.type = ConfigurationManager.AppSettings["Yellow.aiMesssaheType"].ToString();
-                                    whatsappObj.notification.templateId = NotificationConstants.Send_Voucher_Code_Template;
-                                    whatsappObj.notification.@params.voucherAmount = exchangeOrderObj.ExchangePrice.ToString();
-                                    whatsappObj.notification.@params.VoucherExpiry = Convert.ToDateTime(exchangeOrderObj.VoucherCodeExpDate).ToString("dd/MM/yyyy");
-                                    whatsappObj.notification.@params.voucherCode = exchangeOrderObj.VoucherCode.ToString();
-                                    whatsappObj.notification.@params.BrandName = businessUnit.Name.ToString();
-                                    whatsappObj.notification.@params.BrandName2 = businessUnit.Name.ToString();
-                                    whatsappObj.notification.@params.VoucherLink = ConfigurationManager.AppSettings["BaseURL"].ToString() + "Home/V/" + exchangeOrderObj.Id;
-                                    string url = ConfigurationManager.AppSettings["Yellow.AiUrl"].ToString();
-                                    IRestResponse response = WhatsappNotificationManager.Rest_InvokeWhatsappserviceCall(url, Method.POST, whatsappObj);
+                                   WhatsappNotificationManager whatsappNotificationManager = new WhatsappNotificationManager();
+                                    
+                                    //whatsappObj.userDetails.number = exchangeOrderDC.PhoneNumber;
+                                    //whatsappObj.notification.sender = ConfigurationManager.AppSettings["Yello.aiSenderNumber"].ToString();
+                                    //whatsappObj.notification.type = ConfigurationManager.AppSettings["Yellow.aiMesssaheType"].ToString();
+                                    //whatsappObj.notification.templateId = NotificationConstants.Send_Voucher_Code_Template;
+                                    //whatsappObj.notification.@params.voucherAmount = exchangeOrderObj.ExchangePrice.ToString();
+                                    //whatsappObj.notification.@params.VoucherExpiry = Convert.ToDateTime(exchangeOrderObj.VoucherCodeExpDate).ToString("dd/MM/yyyy");
+                                    //whatsappObj.notification.@params.voucherCode = exchangeOrderObj.VoucherCode.ToString();
+                                    //whatsappObj.notification.@params.BrandName = businessUnit.Name.ToString();
+                                    //whatsappObj.notification.@params.BrandName2 = businessUnit.Name.ToString();
+                                    //whatsappObj.notification.@params.VoucherLink = ConfigurationManager.AppSettings["BaseURL"].ToString() + "Home/V/" + exchangeOrderObj.Id;
+                                    //string url = ConfigurationManager.AppSettings["Yellow.AiUrl"].ToString();
+                                    //IRestResponse response = WhatsappNotificationManager.Rest_InvokeWhatsappserviceCall(url, Method.POST, whatsappObj);
+                                    //#region sa
+                                    //// Assign values
+                                    //whatsappObj.userDetails.number = exchangeOrderDC.PhoneNumber;
+                                    //whatsappObj.notification.templateId = NotificationConstants.Send_Voucher_Code_Template;
+                                    //whatsappObj.notification.@params.voucherAmount = exchangeOrderObj.ExchangePrice.ToString();
+                                    //whatsappObj.notification.@params.VoucherExpiry = Convert.ToDateTime(exchangeOrderObj.VoucherCodeExpDate).ToString("dd/MM/yyyy");
+                                    //whatsappObj.notification.@params.voucherCode = exchangeOrderObj.VoucherCode.ToString();
+                                    //whatsappObj.notification.@params.BrandName = businessUnit.Name.ToString();
+                                    //whatsappObj.notification.@params.VoucherLink = ConfigurationManager.AppSettings["BaseURL"].ToString() + "Home/V/" + exchangeOrderObj.Id;
+
+                                    //// Step 2: Convert WhatsappTemplate data into templateParams List
+                                    //List<string> templateParams = new List<string>
+                                    //    {
+                                    //        whatsappObj.notification.@params.voucherAmount,  // Price
+                                    //        whatsappObj.notification.@params.BrandName,      // Brand Name
+                                    //        whatsappObj.notification.@params.voucherCode,    // Code
+                                    //        whatsappObj.notification.@params.VoucherExpiry,  // Validity
+                                    //        whatsappObj.notification.@params.VoucherLink     // Download URL
+                                    //    };
+                                    //IRestResponse response = whatsappNotificationManager.SendWhatsAppMessage(
+                                    //                    whatsappObj.notification.templateId,
+                                    //                    whatsappObj.userDetails.number,
+                                    //                    templateParams
+                                    //                ).GetAwaiter().GetResult();
+
+                                    //#endregion
                                     ResponseCode = response.StatusCode.ToString();
                                     WhatssAppStatusEnum = ExchangeOrderManager.GetEnumDescription(WhatssAppEnum.SuccessCode);
                                     if (ResponseCode == WhatssAppStatusEnum)
@@ -1402,6 +1430,9 @@ namespace RDCEL.DocUpload.BAL.SponsorsApiCall
                                         logging.WriteAPIRequestToDB("WhatsappNotificationManager", "Rest_InvokeWhatsappserviceCall", exchangeOrderDC.SponsorOrderNumber, JsonObjectForExchangeOrder);
                                     }
                                     #endregion
+
+
+
                                     #region Code to send notification to customer for voucher generation
                                     string voucherUrl = ConfigurationManager.AppSettings["BaseURL"].ToString() + "Home/V/" + exchangeOrderObj.Id;
                                     if (SendMessageFlag == "true")
@@ -1901,36 +1932,38 @@ namespace RDCEL.DocUpload.BAL.SponsorsApiCall
             return productOrderResponseDC;
         }
 
-    //    public async Task <IRestResponse> TestSendWhatsAppMessageService()
-    //    {
-    //          string campaignName = "Send_Voucher_Code_Template";
-    //    string destination = "+918962537774"; // User ka phone number
-    //    string userName = "Himanshu";
+        public async Task<IRestResponse> TestSendWhatsAppMessageService()
+        {
+            string campaignName = "Send_Voucher_Code_Template";
+            string destination = "+918962537774"; // User ka phone number
+            string userName = "Himanshu";
 
-    //    // Template parameters ko sequence me set karein
-    //    string[] templateParams = {
-    //                                "₹500",               // [Price]
-    //                                "Samsung",            // [Brand Name]
-    //                                "ABC123XYZ",          // [Code]
-    //                                "30",                 // [validity]
-    //                                "https://example.com/download"  // [download url]
-    //                            };
+            // Template parameters ko sequence me set karein
+            string[] templateParams = {
+                                        "₹500",               // [Price]
+                                        "Samsung",            // [Brand Name]
+                                        "ABC123XYZ",          // [Code]
+                                        "30",                 // [validity]
+                                        "https://example.com/download"  // [download url]
+                                    };
 
-    //    // Object create karke method call karein
-    //    WhatsappNotificationManager manager = new WhatsappNotificationManager();
-    //    var responseWa = await manager.SendWhatsAppMessage(campaignName, destination, userName, templateParams);
+            // Object create karke method call karein
+            WhatsappNotificationManager manager = new WhatsappNotificationManager();
+            var responseWa = await manager.SendWhatsAppMessage(campaignName, destination, userName, templateParams);
 
-    //        return responseWa;
+            return responseWa;
 
-    //}
-    #endregion
+        }
 
-    #region 99999manage Bulk exchange order
-    /// <summary>
-    /// manage exchange order
-    /// </summary>       
-    /// <returns></returns>   
-    public ProductOrderResponseDataContract ManageBulkExchangeOrder(ExchangeOrderDataContract exchangeOrderDC)
+      
+        #endregion
+
+        #region 99999manage Bulk exchange order
+        /// <summary>
+        /// manage exchange order
+        /// </summary>       
+        /// <returns></returns>   
+        public ProductOrderResponseDataContract ManageBulkExchangeOrder(ExchangeOrderDataContract exchangeOrderDC)
         {
             int orderId = 0;
             CustomerManager customerInfo = new CustomerManager();
