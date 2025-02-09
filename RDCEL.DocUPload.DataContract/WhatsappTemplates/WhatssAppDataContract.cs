@@ -353,6 +353,8 @@ namespace RDCEL.DocUpload.DataContract.WhatsappTemplates
         public string ProdCategory { get; set; }
         [JsonProperty("6")]
         public string ProdType { get; set; }
+        public string Email { get; set; }
+        public string Number { get; set; }
 
     }
 

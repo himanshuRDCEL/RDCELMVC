@@ -30,6 +30,7 @@ using RDCEL.DocUpload.DataContract.SponsorModel;
 using RDCEL.DocUpload.DataContract.WhatsappTemplates;
 using RDCEL.DocUpload.DataContract.ZohoModel;
 using Data = RDCEL.DocUpload.DataContract.ZohoModel.Data;
+using static RDCEL.DocUpload.BAL.Common.WhatsappNotificationManager;
 
 namespace RDCEL.DocUpload.BAL.ProcessAPI
 {
@@ -322,7 +323,7 @@ namespace RDCEL.DocUpload.BAL.ProcessAPI
                                                 MailJetMessage jetmessage = new MailJetMessage();
                                                 MailJetFrom from = new MailJetFrom();
                                                 MailjetTo to = new MailjetTo();
-                                                jetmessage.From = new MailJetFrom() { Email = "customercare@rdcel.com", Name = "UTC - Customer  Care" };
+                                                jetmessage.From = new MailJetFrom() { Email = "hp@rdcel.com", Name = "Rocking Deals - Customer  Care" };
                                                 jetmessage.To = new List<MailjetTo>();
                                                 jetmessage.To.Add(new MailjetTo() { Email = productOrderDataContract.Email.Trim(), Name = productOrderDataContract.FirstName });
                                                 jetmessage.Subject = businessUnit.Name + ": Exchange Detail";
@@ -368,7 +369,7 @@ namespace RDCEL.DocUpload.BAL.ProcessAPI
                                                 MailJetMessage jetmessage = new MailJetMessage();
                                                 MailJetFrom from = new MailJetFrom();
                                                 MailjetTo to = new MailjetTo();
-                                                jetmessage.From = new MailJetFrom() { Email = "customercare@rdcel.com", Name = "UTC - Customer  Care" };
+                                                jetmessage.From = new MailJetFrom() { Email = "hp@rdcel.com", Name = "RockingDeals - Customer  Care" };
                                                 jetmessage.To = new List<MailjetTo>();
                                                 jetmessage.To.Add(new MailjetTo() { Email = productOrderDataContract.Email.Trim(), Name = productOrderDataContract.FirstName });
                                                 jetmessage.Subject = businessUnit.Name + ": Exchange Detail";
@@ -397,27 +398,58 @@ namespace RDCEL.DocUpload.BAL.ProcessAPI
                                     OrderConfirmationTemplateExchange whatsappObjforOrderConfirmation = new OrderConfirmationTemplateExchange();
                                     whatsappObjforOrderConfirmation.userDetails = new UserDetails();
                                     whatsappObjforOrderConfirmation.notification = new OrderConfiirmationNotification();
+                                    WhatsappNotificationManager whatsappNotificationManager = new WhatsappNotificationManager();
                                     whatsappObjforOrderConfirmation.notification.@params = new SendWhatssappForExcahangeConfirmation();
-                                    whatsappObjforOrderConfirmation.userDetails.number = productOrderDataContract.PhoneNumber;
-                                    whatsappObjforOrderConfirmation.notification.sender = ConfigurationManager.AppSettings["Yello.aiSenderNumber"].ToString();
-                                    whatsappObjforOrderConfirmation.notification.type = ConfigurationManager.AppSettings["Yellow.aiMesssaheType"].ToString();
-                                    whatsappObjforOrderConfirmation.notification.templateId = NotificationConstants.orderConfirmationForExchange;
                                     whatsappObjforOrderConfirmation.notification.@params.CustName = productOrderDataContract.FirstName + " " + productOrderDataContract.LastName;
-                                    whatsappObjforOrderConfirmation.notification.@params.Link = SelfQCLink;
+                                   whatsappObjforOrderConfirmation.notification.@params.Link = SelfQCLink;
                                     whatsappObjforOrderConfirmation.notification.@params.ProductBrand = BrandName;
                                     whatsappObjforOrderConfirmation.notification.@params.ProdCategory = ProductCategory;
                                     whatsappObjforOrderConfirmation.notification.@params.ProdType = ProductType;
+                                   whatsappObjforOrderConfirmation.notification.@params.RegdNO = productOrderDataContract.RegdNo.ToString();
+                                   
+                                    #region sa
+
+
+                                    // Step 2: Convert WhatsappTemplate data into templateParams List
+                                    whatsappObjforOrderConfirmation.userDetails.number = productOrderDataContract.PhoneNumber;
+                                    whatsappObjforOrderConfirmation.notification.templateId = NotificationConstants.orderConfirmationForExchange;
+                                    whatsappObjforOrderConfirmation.notification.@params.CustName = productOrderDataContract.FirstName + " " + productOrderDataContract.LastName; ;
                                     whatsappObjforOrderConfirmation.notification.@params.RegdNO = productOrderDataContract.RegdNo.ToString();
-                                    string urlforwhatsapp = ConfigurationManager.AppSettings["Yellow.AiUrl"].ToString();
-                                    IRestResponse responseConfirmation = WhatsappNotificationManager.Rest_InvokeWhatsappserviceCall(urlforwhatsapp, Method.POST, whatsappObjforOrderConfirmation);
-                                    ResponseCode = responseConfirmation.StatusCode.ToString();
+                                    whatsappObjforOrderConfirmation.notification.@params.ProdCategory = ProductCategory;
+                                   
+                                    whatsappObjforOrderConfirmation.notification.@params.CustName = productOrderDataContract.FirstName + " " + productOrderDataContract.LastName;
+                                    whatsappObjforOrderConfirmation.notification.@params.Number = productOrderDataContract.PhoneNumber;
+                                    whatsappObjforOrderConfirmation.notification.@params.Email = productOrderDataContract.Email;
+                                    whatsappObjforOrderConfirmation.notification.@params.Link = SelfQCLink;
+
+
+                                    // Step 2: Convert WhatsappTemplate data into templateParams List
+                                    List<string> templateParams = new List<string>
+                                   {
+                                       whatsappObjforOrderConfirmation.notification.@params.CustName,  // name
+                                       whatsappObjforOrderConfirmation.notification.@params.RegdNO,      //RegdNO
+                                       whatsappObjforOrderConfirmation.notification.@params.ProdCategory,    // Code
+                                       whatsappObjforOrderConfirmation.notification.@params.ProdType,  // prodtype
+                                       whatsappObjforOrderConfirmation.notification.@params.CustName,    
+                                       whatsappObjforOrderConfirmation.notification.@params.Number,   
+                                       whatsappObjforOrderConfirmation.notification.@params.Email,     
+                                       whatsappObjforOrderConfirmation.notification.@params.Link,    // oclink
+                                   };
+                                    HttpResponseDetails response = whatsappNotificationManager.SendWhatsAppMessageAsync(
+                                                        whatsappObjforOrderConfirmation.notification.templateId,
+                                                        whatsappObjforOrderConfirmation.userDetails.number,
+                                                        templateParams
+                                                    ).GetAwaiter().GetResult();
+
+                                    #endregion
+                                    ResponseCode = response.Response.StatusCode.ToString();
                                     WhatssAppStatusEnum = ExchangeOrderManager.GetEnumDescription(WhatssAppEnum.SuccessCode);
                                     if (ResponseCode == WhatssAppStatusEnum)
                                     {
-                                        responseforWhatasapp = responseConfirmation.Content;
-                                        if (responseforWhatasapp != null)
+                                        string responseContent = response.Content;
+                                        if (responseContent != null)
                                         {
-                                            whatssappresponseDC = JsonConvert.DeserializeObject<WhatasappResponse>(responseforWhatasapp);
+                                            whatssappresponseDC = JsonConvert.DeserializeObject<WhatasappResponse>(responseContent);
                                             tblWhatsAppMessage whatsapObj = new tblWhatsAppMessage();
                                             whatsapObj.TemplateName = NotificationConstants.orderConfirmationForExchange;
                                             whatsapObj.IsActive = true;

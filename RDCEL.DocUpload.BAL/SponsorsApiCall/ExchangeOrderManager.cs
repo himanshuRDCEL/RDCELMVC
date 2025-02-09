@@ -1412,9 +1412,9 @@ namespace RDCEL.DocUpload.BAL.SponsorsApiCall
                                         // responseforWhatasapp = response.Content.ToString();
                                         string responseContent = response.Content;
 
-                                        if (responseforWhatasapp != null)
+                                        if (responseContent != null)
                                         {
-                                            whatssappresponseDC = JsonConvert.DeserializeObject<WhatasappResponse>(responseforWhatasapp);
+                                            whatssappresponseDC = JsonConvert.DeserializeObject<WhatasappResponse>(responseContent);
                                             tblWhatsAppMessage whatsapObj = new tblWhatsAppMessage();
                                             whatsapObj.TemplateName = NotificationConstants.Send_Voucher_Code_Template;
                                             whatsapObj.IsActive = true;
