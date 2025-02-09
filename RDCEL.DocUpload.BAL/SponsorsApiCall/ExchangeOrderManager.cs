@@ -1362,7 +1362,7 @@ namespace RDCEL.DocUpload.BAL.SponsorsApiCall
                                     whatsappObj.notification = new Notification();
                                     whatsappObj.notification.@params = new SendVoucherOnWhatssapp();
                                    WhatsappNotificationManager whatsappNotificationManager = new WhatsappNotificationManager();
-                                    
+
                                     //whatsappObj.userDetails.number = exchangeOrderDC.PhoneNumber;
                                     //whatsappObj.notification.sender = ConfigurationManager.AppSettings["Yello.aiSenderNumber"].ToString();
                                     //whatsappObj.notification.type = ConfigurationManager.AppSettings["Yellow.aiMesssaheType"].ToString();
@@ -1373,8 +1373,8 @@ namespace RDCEL.DocUpload.BAL.SponsorsApiCall
                                     //whatsappObj.notification.@params.BrandName = businessUnit.Name.ToString();
                                     //whatsappObj.notification.@params.BrandName2 = businessUnit.Name.ToString();
                                     //whatsappObj.notification.@params.VoucherLink = ConfigurationManager.AppSettings["BaseURL"].ToString() + "Home/V/" + exchangeOrderObj.Id;
-                                    //string url = ConfigurationManager.AppSettings["Yellow.AiUrl"].ToString();
-                                    //IRestResponse response = WhatsappNotificationManager.Rest_InvokeWhatsappserviceCall(url, Method.POST, whatsappObj);
+                                    string url = ConfigurationManager.AppSettings["Yellow.AiUrl"].ToString();
+                                    IRestResponse response = WhatsappNotificationManager.Rest_InvokeWhatsappserviceCall(url, Method.POST, whatsappObj);
                                     //#region sa
                                     //// Assign values
                                     //whatsappObj.userDetails.number = exchangeOrderDC.PhoneNumber;

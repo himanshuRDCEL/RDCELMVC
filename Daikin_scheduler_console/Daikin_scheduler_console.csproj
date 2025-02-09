@@ -57,8 +57,8 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=7.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.7.0.0\lib\net462\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.8.0.0\lib\net462\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Extensions.Configuration, Version=7.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Extensions.Configuration.7.0.0\lib\net462\Microsoft.Extensions.Configuration.dll</HintPath>
@@ -155,11 +155,11 @@
       <HintPath>..\packages\System.Security.Principal.Windows.5.0.0\lib\net461\System.Security.Principal.Windows.dll</HintPath>
     </Reference>
     <Reference Include="System.ServiceProcess" />
-    <Reference Include="System.Text.Encodings.Web, Version=7.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Text.Encodings.Web.7.0.0\lib\net462\System.Text.Encodings.Web.dll</HintPath>
+    <Reference Include="System.Text.Encodings.Web, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.Encodings.Web.8.0.0\lib\net462\System.Text.Encodings.Web.dll</HintPath>
     </Reference>
-    <Reference Include="System.Text.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Text.Json.7.0.0\lib\net462\System.Text.Json.dll</HintPath>
+    <Reference Include="System.Text.Json, Version=8.0.0.4, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.Json.8.0.4\lib\net462\System.Text.Json.dll</HintPath>
     </Reference>
     <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
@@ -194,7 +194,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GraspCorn.Common\GraspCorn.Common.csproj">
-      <Project>{CFA052F5-2880-487C-A837-9C8726EF87DF}</Project>
+      <Project>{cfa052f5-2880-487c-a837-9c8726ef87df}</Project>
       <Name>GraspCorn.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\RDCEL.DeliveryCheck.Console\RDCEL.DeliveryCheck.Console.csproj">
@@ -203,15 +203,15 @@
     </ProjectReference>
     <ProjectReference Include="..\RDCEL.DocUpload.BAL\RDCEL.DocUpload.BAL.csproj">
       <Project>{605c4fb6-64b9-40d7-ab3c-3fd8772648b7}</Project>
-      <Name>UTC_Bridge.DocUpload.BAL</Name>
+      <Name>RDCEL.DocUpload.BAL</Name>
     </ProjectReference>
     <ProjectReference Include="..\RDCEL.DocUpload.DAL\RDCEL.DocUpload.DAL.csproj">
       <Project>{ce3f7a61-1a9e-41b8-8b7b-68e1c6f51a62}</Project>
-      <Name>UTC_Bridge.DocUpload.DAL</Name>
+      <Name>RDCEL.DocUpload.DAL</Name>
     </ProjectReference>
     <ProjectReference Include="..\RDCEL.DocUPload.DataContract\RDCEL.DocUPload.DataContract.csproj">
       <Project>{b8f80219-ce5f-4800-8f88-1a00fe3c2371}</Project>
-      <Name>UTC_Bridge.DocUPload.DataContract</Name>
+      <Name>RDCEL.DocUPload.DataContract</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
