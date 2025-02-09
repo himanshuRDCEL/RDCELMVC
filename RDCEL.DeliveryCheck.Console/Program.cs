@@ -195,7 +195,7 @@ namespace RDCEL.DeliveryCheck.Console
             MailJetMessage message = new MailJetMessage();
             MailJetFrom from = new MailJetFrom();
             MailjetTo to = new MailjetTo();
-            message.From = new MailJetFrom() { Email = "customercare@utcdigital.com", Name = "Customer  Care" };
+            message.From = new MailJetFrom() { Email = "customercare@rdcel.com", Name = "Customer  Care" };
             message.To = new List<MailjetTo>();
             message.To.Add(new MailjetTo() { Email = "himanshu.pathak07@gmail.com", Name = "Himanshu" });
             message.Subject = "You Voucher Detail";

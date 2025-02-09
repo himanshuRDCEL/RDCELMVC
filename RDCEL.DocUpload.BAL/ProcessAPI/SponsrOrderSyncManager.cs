@@ -322,7 +322,7 @@ namespace RDCEL.DocUpload.BAL.ProcessAPI
                                                 MailJetMessage jetmessage = new MailJetMessage();
                                                 MailJetFrom from = new MailJetFrom();
                                                 MailjetTo to = new MailjetTo();
-                                                jetmessage.From = new MailJetFrom() { Email = "customercare@utcdigital.com", Name = "UTC - Customer  Care" };
+                                                jetmessage.From = new MailJetFrom() { Email = "customercare@rdcel.com", Name = "UTC - Customer  Care" };
                                                 jetmessage.To = new List<MailjetTo>();
                                                 jetmessage.To.Add(new MailjetTo() { Email = productOrderDataContract.Email.Trim(), Name = productOrderDataContract.FirstName });
                                                 jetmessage.Subject = businessUnit.Name + ": Exchange Detail";
@@ -368,7 +368,7 @@ namespace RDCEL.DocUpload.BAL.ProcessAPI
                                                 MailJetMessage jetmessage = new MailJetMessage();
                                                 MailJetFrom from = new MailJetFrom();
                                                 MailjetTo to = new MailjetTo();
-                                                jetmessage.From = new MailJetFrom() { Email = "customercare@utcdigital.com", Name = "UTC - Customer  Care" };
+                                                jetmessage.From = new MailJetFrom() { Email = "customercare@rdcel.com", Name = "UTC - Customer  Care" };
                                                 jetmessage.To = new List<MailjetTo>();
                                                 jetmessage.To.Add(new MailjetTo() { Email = productOrderDataContract.Email.Trim(), Name = productOrderDataContract.FirstName });
                                                 jetmessage.Subject = businessUnit.Name + ": Exchange Detail";
@@ -1206,7 +1206,7 @@ namespace RDCEL.DocUpload.BAL.ProcessAPI
                                 _notificationManager.SendNotificationSMS(redemptionDataDC.PhoneNumber, message, null);
                             }
 
-                            jetmessage.From = new MailJetFrom() { Email = "customercare@utcdigital.com", Name = "UTC - Customer  Care" };
+                            jetmessage.From = new MailJetFrom() { Email = "customercare@rdcel.com", Name = "UTC - Customer  Care" };
                             jetmessage.To = new List<MailjetTo>();
                             jetmessage.To.Add(new MailjetTo() { Email = redemptionDataDC.Email.Trim(), Name = redemptionDataDC.FirstName });
                             jetmessage.Subject = businessUnit.Name + ": ABBRedemption Voucher Detail";
@@ -1234,7 +1234,7 @@ namespace RDCEL.DocUpload.BAL.ProcessAPI
                                  .Replace("[VLink]", "( " + voucherUrl + " )").Replace("[STORENAME]", businessUnit.Name);
                                 _notificationManager.SendNotificationSMS(redemptionDataDC.PhoneNumber, message, null);
                             }
-                            jetmessage.From = new MailJetFrom() { Email = "customercare@utcdigital.com", Name = "UTC - Customer  Care" };
+                            jetmessage.From = new MailJetFrom() { Email = "customercare@rdcel.com", Name = "UTC - Customer  Care" };
                             jetmessage.To = new List<MailjetTo>();
                             jetmessage.To.Add(new MailjetTo() { Email = redemptionDataDC.Email.Trim(), Name = redemptionDataDC.FirstName });
                             jetmessage.Subject = businessUnit.Name + ": Redemption Voucher Detail";

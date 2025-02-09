@@ -270,7 +270,7 @@ namespace RDCEL.DocUpload.BAL.ABBRegistration
                     //            }
 
                     //            //#region Code to send mail to customer for exchange details
-                    //            //jetmessage.From = new MailJetFrom() { Email = "customercare@utcdigital.com", Name = "UTC - Customer  Care" };
+                    //            //jetmessage.From = new MailJetFrom() { Email = "customercare@rdcel.com", Name = "UTC - Customer  Care" };
                     //            //jetmessage.To = new List<MailjetTo>();
                     //            //jetmessage.To.Add(new MailjetTo() { Email = ABBRegistrationVM.CustEmail.Trim(), Name = ABBRegistrationVM.CustFirstName });
                     //            //jetmessage.Subject = ABBRegistrationVM.BUName + ": Assured Buy Back Detail";
@@ -322,7 +322,7 @@ namespace RDCEL.DocUpload.BAL.ABBRegistration
                         {
 
                             #region Code to send mail to customer for exchange details currently disabled before approval of order
-                            //jetmessage.From = new MailJetFrom() { Email = "customercare@utcdigital.com", Name = "UTC - Customer  Care" };
+                            //jetmessage.From = new MailJetFrom() { Email = "customercare@rdcel.com", Name = "UTC - Customer  Care" };
                             //jetmessage.To = new List<MailjetTo>();
                             //jetmessage.To.Add(new MailjetTo() { Email = ABBRegistrationVM.CustEmail.Trim(), Name = ABBRegistrationVM.CustFirstName });
                             //jetmessage.Subject = ABBRegistrationVM.BUName + ": Assured Buy Back Detail";
