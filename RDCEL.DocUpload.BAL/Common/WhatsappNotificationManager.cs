@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using RDCEL.DocUpload.DAL.Repository;
 using RDCEL.DocUpload.DataContract.WhatsappTemplates;
+using System.Net.Http;
 
 namespace RDCEL.DocUpload.BAL.Common
 {
@@ -47,62 +48,51 @@ namespace RDCEL.DocUpload.BAL.Common
 
         }
 
-        public async Task<IRestResponse> SendWhatsAppMessage(string campaignName, string destination, string userName, string[] templateParams)
+        public async Task<HttpResponseDetails> SendWhatsAppMessageAsync(string templateId, string recipientNumber, List<string> templateParams)
         {
-            string apiURL = ConfigurationManager.AppSettings["AiSensy_ApiURL"].ToString();
+            string apiURL = ConfigurationManager.AppSettings["AiSensy_ApiURL"]?.ToString();
+            string apiKey = ConfigurationManager.AppSettings["AiSensy_ApiKey"]?.ToString();
+
+            if (string.IsNullOrEmpty(apiURL) || string.IsNullOrEmpty(apiKey))
+            {
+                throw new Exception("API URL/API Key missing");
+            }
+
             var content = new
             {
-                apiKey = ConfigurationManager.AppSettings["AiSensy_ApiKey"].ToString(),
-                campaignName = campaignName,
-                destination = destination, // Recipient phone number with country code
-                userName = userName,
-                templateParams = templateParams // Template parameters
+                apiKey = apiKey,
+                campaignName = templateId,
+                destination = recipientNumber,
+                templateParams = templateParams
             };
 
             try
             {
-                var client = new RestClient(apiURL);
-                var request = new RestRequest(Method.POST);
-                request.AddHeader("content-type", "application/json"); // Add Content-Type header
-                request.AddJsonBody(JsonConvert.SerializeObject(content)); // Serialize and add request body
+                using (var httpClient = new HttpClient())
+                {
+                    var jsonContent = JsonConvert.SerializeObject(content);
+                    var httpContent = new StringContent(jsonContent, Encoding.UTF8, "application/json");
 
-                var response = await client.ExecuteAsync(request);
-                return response;
+                    var response = await httpClient.PostAsync(apiURL, httpContent).ConfigureAwait(false);
+                    Console.WriteLine($"Response Status: {response.StatusCode}");
+                    var responseContent = await response.Content.ReadAsStringAsync();
+                    Console.WriteLine($"Response Content: {responseContent}");
+
+                    return new HttpResponseDetails { Response = response, Content = responseContent };
+                }
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error sending WhatsApp message: {ex.Message}");
+                Console.WriteLine($"WhatsApp: {ex.Message}");
                 throw;
             }
+
         }
 
-        public async Task<IRestResponse> SendWhatsAppMessage(string templateId, string recipientNumber, List<string> templateParams)
+        public class HttpResponseDetails
         {
-            string apiURL = ConfigurationManager.AppSettings["AiSensy_ApiURL"].ToString();
-
-            var content = new
-            {
-                apiKey = ConfigurationManager.AppSettings["AiSensy_ApiKey"].ToString(),
-                campaignName = templateId, // Template ID dynamically set ho rahi hai
-                destination = recipientNumber, // Recipient phone number
-                templateParams = templateParams // Dynamic template parameters
-            };
-
-            try
-            {
-                var client = new RestClient(apiURL);
-                var request = new RestRequest(Method.POST);
-                request.AddHeader("content-type", "application/json"); // Add Content-Type header
-                request.AddJsonBody(JsonConvert.SerializeObject(content)); // Serialize and add request body
-
-                var response = await client.ExecuteAsync(request);
-                return response;
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Error sending WhatsApp message: {ex.Message}");
-                throw;
-            }
+            public HttpResponseMessage Response { get; set; }
+            public string Content { get; set; }
         }
 
     }

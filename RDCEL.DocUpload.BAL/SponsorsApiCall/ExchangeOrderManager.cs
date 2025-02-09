@@ -48,6 +48,7 @@ using System.Web.Mail;
 using RDCEL.DocUpload.DataContract.DaikinModel;
 using RDCEL.DocUpload.BAL.SweetenerManager;
 using System.Runtime.Remoting.Contexts;
+using static RDCEL.DocUpload.BAL.Common.WhatsappNotificationManager;
 
 namespace RDCEL.DocUpload.BAL.SponsorsApiCall
 {
@@ -880,11 +881,14 @@ namespace RDCEL.DocUpload.BAL.SponsorsApiCall
             return societyDC;
         }
         #endregion
+
         #region manage exchange order
+
         /// <summary>
         /// manage exchange order
-        /// </summary>       
-        /// <returns></returns>   
+        /// </summary>
+        /// <param name="exchangeOrderDC">Exchange Order Data Contract</param>
+        /// <returns>ProductOrderResponseDataContract</returns>
         public ProductOrderResponseDataContract ManageExchangeOrder(ExchangeOrderDataContract exchangeOrderDC)
         {
             #region Variable Declaration
@@ -956,8 +960,8 @@ namespace RDCEL.DocUpload.BAL.SponsorsApiCall
                     #region Code to add Customer details in database
                     tblCustomerDetail customerObj = new tblCustomerDetail();
                     tblBusinessPartner tblBusinessPartner = new tblBusinessPartner();
-                    tblBusinessPartner = _businessPartnerRepository.GetSingle(x=>x.IsActive==true && x.BusinessPartnerId== exchangeOrderDC.BusinessPartnerId);
-                    if(tblBusinessPartner != null && tblBusinessPartner.IsDefaultPickupAddress==true)
+                    tblBusinessPartner = _businessPartnerRepository.GetSingle(x => x.IsActive == true && x.BusinessPartnerId == exchangeOrderDC.BusinessPartnerId);
+                    if (tblBusinessPartner != null && tblBusinessPartner.IsDefaultPickupAddress == true)
                     {
                         //customerObj.LastName = exchangeOrderDC.LastName;
                         customerObj.ZipCode = tblBusinessPartner.Pincode;
@@ -973,7 +977,7 @@ namespace RDCEL.DocUpload.BAL.SponsorsApiCall
                         customerObj.PhoneNumber = exchangeOrderDC.PhoneNumber;
                         customerObj.FirstName = exchangeOrderDC.FirstName;
                         customerObj.LastName = exchangeOrderDC.LastName;
-                        
+
                     }
                     else
                     {
@@ -1004,7 +1008,7 @@ namespace RDCEL.DocUpload.BAL.SponsorsApiCall
                         }
                         customerObj.PhoneNumber = exchangeOrderDC.PhoneNumber;
                     }
-                   
+
                     customerObj.IsActive = true;
                     customerObj.CreatedDate = currentDatetime;
                     _customerDetailsRepository.Add(customerObj);
@@ -1076,12 +1080,12 @@ namespace RDCEL.DocUpload.BAL.SponsorsApiCall
                         exchangeOrderObj.BusinessUnitId = exchangeOrderDC.BusinessUnitId;
                         exchangeOrderObj.ModelNumberId = exchangeOrderDC.ModelNumberId > 0 ? exchangeOrderDC.ModelNumberId : 0;
                         exchangeOrderObj.PriceMasterNameId = exchangeOrderDC.priceMasterNameID;
-                        if(exchangeOrderDC.IsUnInstallation == true)
+                        if (exchangeOrderDC.IsUnInstallation == true)
                         {
                             exchangeOrderObj.IsUnInstallationRequired = Convert.ToString(exchangeOrderDC.IsUnInstallation);
                             exchangeOrderObj.UnInstallationPrice = exchangeOrderDC.UnInstallationPrice;
                         }
-                        
+
                         if (exchangeOrderDC.BusinessUnitId == Convert.ToInt32(BusinessUnitEnum.Alliance))
                         {
                             exchangeOrderObj.StoreCode = exchangeOrderDC.StoreCode;
@@ -1172,7 +1176,7 @@ namespace RDCEL.DocUpload.BAL.SponsorsApiCall
                             exchangeOrderObj.InvoiceImageName = fileName;
                         }
                         exchangeOrderObj.EmployeeId = exchangeOrderDC.EmployeeId;
-                        exchangeOrderObj.PriceMasterNameId = exchangeOrderDC.priceMasterNameID!=0? exchangeOrderDC.priceMasterNameID:1;
+                        exchangeOrderObj.PriceMasterNameId = exchangeOrderDC.priceMasterNameID != 0 ? exchangeOrderDC.priceMasterNameID : 1;
                         exchangeOrderObj.BusinessUnitId = Convert.ToInt32(exchangeOrderDC.BusinessUnitId);
                         exchangeOrderObj.IsCouponAplied = exchangeOrderDC.IsCouponAplied;
                         exchangeOrderObj.CouponId = exchangeOrderDC.CouponId;
@@ -1272,7 +1276,7 @@ namespace RDCEL.DocUpload.BAL.SponsorsApiCall
                                              .Replace("[VLink]", "( " + voucherUrl + " )").Replace("[STORENAME]", businessUnit.Name);
                                             _notificationManager.SendNotificationSMS(exchangeOrderDC.PhoneNumber, message, null);
                                         }
-                                        jetmessage.From = new MailJetFrom() { Email = "customercare@utcdigital.com", Name = "UTC - Customer  Care" };
+                                        jetmessage.From = new MailJetFrom() { Email = "customercare@rdcel.com", Name = "ROCKINGDEALS - Customer  Care" };
                                         jetmessage.To = new List<MailjetTo>();
                                         jetmessage.To.Add(new MailjetTo() { Email = customerObj.Email.Trim(), Name = exchangeOrderDC.FirstName });
                                         jetmessage.Subject = businessUnit.Name + ": Exchange Voucher Detail";
@@ -1361,7 +1365,7 @@ namespace RDCEL.DocUpload.BAL.SponsorsApiCall
                                     whatsappObj.userDetails = new UserDetails();
                                     whatsappObj.notification = new Notification();
                                     whatsappObj.notification.@params = new SendVoucherOnWhatssapp();
-                                   WhatsappNotificationManager whatsappNotificationManager = new WhatsappNotificationManager();
+                                    WhatsappNotificationManager whatsappNotificationManager = new WhatsappNotificationManager();
 
                                     //whatsappObj.userDetails.number = exchangeOrderDC.PhoneNumber;
                                     //whatsappObj.notification.sender = ConfigurationManager.AppSettings["Yello.aiSenderNumber"].ToString();
@@ -1373,39 +1377,41 @@ namespace RDCEL.DocUpload.BAL.SponsorsApiCall
                                     //whatsappObj.notification.@params.BrandName = businessUnit.Name.ToString();
                                     //whatsappObj.notification.@params.BrandName2 = businessUnit.Name.ToString();
                                     //whatsappObj.notification.@params.VoucherLink = ConfigurationManager.AppSettings["BaseURL"].ToString() + "Home/V/" + exchangeOrderObj.Id;
-                                    string url = ConfigurationManager.AppSettings["Yellow.AiUrl"].ToString();
-                                    IRestResponse response = WhatsappNotificationManager.Rest_InvokeWhatsappserviceCall(url, Method.POST, whatsappObj);
-                                    //#region sa
-                                    //// Assign values
-                                    //whatsappObj.userDetails.number = exchangeOrderDC.PhoneNumber;
-                                    //whatsappObj.notification.templateId = NotificationConstants.Send_Voucher_Code_Template;
-                                    //whatsappObj.notification.@params.voucherAmount = exchangeOrderObj.ExchangePrice.ToString();
-                                    //whatsappObj.notification.@params.VoucherExpiry = Convert.ToDateTime(exchangeOrderObj.VoucherCodeExpDate).ToString("dd/MM/yyyy");
-                                    //whatsappObj.notification.@params.voucherCode = exchangeOrderObj.VoucherCode.ToString();
-                                    //whatsappObj.notification.@params.BrandName = businessUnit.Name.ToString();
-                                    //whatsappObj.notification.@params.VoucherLink = ConfigurationManager.AppSettings["BaseURL"].ToString() + "Home/V/" + exchangeOrderObj.Id;
+                                    // string url = ConfigurationManager.AppSettings["Yellow.AiUrl"].ToString();
+                                    //  IRestResponse response = WhatsappNotificationManager.Rest_InvokeWhatsappserviceCall(url, Method.POST, whatsappObj);
+                                    #region sa
+                                    // Assign values
+                                    whatsappObj.userDetails.number = exchangeOrderDC.PhoneNumber;
+                                    whatsappObj.notification.templateId = NotificationConstants.Send_Voucher_Code_Template;
+                                    whatsappObj.notification.@params.voucherAmount = exchangeOrderObj.ExchangePrice.ToString();
+                                    whatsappObj.notification.@params.VoucherExpiry = Convert.ToDateTime(exchangeOrderObj.VoucherCodeExpDate).ToString("dd/MM/yyyy");
+                                    whatsappObj.notification.@params.voucherCode = exchangeOrderObj.VoucherCode.ToString();
+                                    whatsappObj.notification.@params.BrandName = businessUnit.Name.ToString();
+                                    whatsappObj.notification.@params.VoucherLink = ConfigurationManager.AppSettings["BaseURL"].ToString() + "Home/V/" + exchangeOrderObj.Id;
 
-                                    //// Step 2: Convert WhatsappTemplate data into templateParams List
-                                    //List<string> templateParams = new List<string>
-                                    //    {
-                                    //        whatsappObj.notification.@params.voucherAmount,  // Price
-                                    //        whatsappObj.notification.@params.BrandName,      // Brand Name
-                                    //        whatsappObj.notification.@params.voucherCode,    // Code
-                                    //        whatsappObj.notification.@params.VoucherExpiry,  // Validity
-                                    //        whatsappObj.notification.@params.VoucherLink     // Download URL
-                                    //    };
-                                    //IRestResponse response = whatsappNotificationManager.SendWhatsAppMessage(
-                                    //                    whatsappObj.notification.templateId,
-                                    //                    whatsappObj.userDetails.number,
-                                    //                    templateParams
-                                    //                ).GetAwaiter().GetResult();
+                                    // Step 2: Convert WhatsappTemplate data into templateParams List
+                                    List<string> templateParams = new List<string>
+                                   {
+                                       whatsappObj.notification.@params.voucherAmount,  // Price
+                                       whatsappObj.notification.@params.BrandName,      // Brand Name
+                                       whatsappObj.notification.@params.voucherCode,    // Code
+                                       whatsappObj.notification.@params.VoucherExpiry,  // Validity
+                                       whatsappObj.notification.@params.VoucherLink     // Download URL
+                                   };
+                                    HttpResponseDetails response = whatsappNotificationManager.SendWhatsAppMessageAsync(
+                                                        whatsappObj.notification.templateId,
+                                                        whatsappObj.userDetails.number,
+                                                        templateParams
+                                                    ).GetAwaiter().GetResult();
 
-                                    //#endregion
-                                    ResponseCode = response.StatusCode.ToString();
+                                    #endregion
+                                    ResponseCode = response.Response.StatusCode.ToString();
                                     WhatssAppStatusEnum = ExchangeOrderManager.GetEnumDescription(WhatssAppEnum.SuccessCode);
                                     if (ResponseCode == WhatssAppStatusEnum)
                                     {
-                                        responseforWhatasapp = response.Content;
+                                        // responseforWhatasapp = response.Content.ToString();
+                                        string responseContent = response.Content;
+
                                         if (responseforWhatasapp != null)
                                         {
                                             whatssappresponseDC = JsonConvert.DeserializeObject<WhatasappResponse>(responseforWhatasapp);
@@ -1442,7 +1448,7 @@ namespace RDCEL.DocUpload.BAL.SponsorsApiCall
                                         _notificationManager.SendNotificationSMS(exchangeOrderDC.PhoneNumber, message, null);
                                     }
 
-                                    jetmessage.From = new MailJetFrom() { Email = "customercare@utcdigital.com", Name = "UTC - Customer  Care" };
+                                    jetmessage.From = new MailJetFrom() { Email = "hp@rdcel.com", Name = "ROCKINGDEALS - Customer  Care" };
                                     jetmessage.To = new List<MailjetTo>();
                                     jetmessage.To.Add(new MailjetTo() { Email = customerObj.Email.Trim(), Name = exchangeOrderDC.FirstName });
                                     jetmessage.Subject = businessUnit.Name + ": Exchange Voucher Detail";
@@ -1802,7 +1808,7 @@ namespace RDCEL.DocUpload.BAL.SponsorsApiCall
                                         string selfQC = ConfigurationManager.AppSettings["SelfQCUrl"].ToString();
                                         string url = ErpBaseUrl + "" + selfQC + "" + exchangeOrderDC.RegdNo;
                                         SelfQClink = url;
-                                        jetmessage.From = new MailJetFrom() { Email = "customercare@utcdigital.com", Name = "UTC - Customer  Care" };
+                                        jetmessage.From = new MailJetFrom() { Email = "customercare@rdcel.com", Name = "ROCKINGDEALS - Customer  Care" };
                                         jetmessage.To = new List<MailjetTo>();
                                         jetmessage.To.Add(new MailjetTo() { Email = customerObj.Email.Trim(), Name = exchangeOrderDC.FirstName });
                                         jetmessage.Subject = businessUnit.Name + ": Exchange Detail";
@@ -1875,42 +1881,7 @@ namespace RDCEL.DocUpload.BAL.SponsorsApiCall
                         }
                         else
                         {
-                            // in case of instant settlement not sendemail and whatsapp
-                            //tblProductCategory prroductCategory = _productCategoryRepository.GetSingle(x => x.Id == exchangeOrderDC.ProductCategoryId && x.IsActive == true);
-                            //if (prroductCategory != null)
-                            //{
-                            //    tblProductType productType = _productTypeRepository.GetSingle(x => x.Id == exchangeOrderDC.ProductTypeId);
-                            //    if (productType != null)
-                            //    {
-                            //        tblBrand brand = _brandRepository.GetSingle(x => x.Id == exchangeOrderDC.BrandId);
-                            //        if (brand != null)
-                            //        {
-                            //            BrandName = brand.Name;
-                            //            ProductTypeName = productType.Description;
-                            //            ProductCategoryName = prroductCategory.Description;
-                            //            string ErpBaseUrl = ConfigurationManager.AppSettings["ERPBaseURL"].ToString();
-                            //            string selfQC = ConfigurationManager.AppSettings["SelfQCUrl"].ToString();
-                            //            string url = ErpBaseUrl + "" + selfQC + "" + exchangeOrderDC.RegdNo;
-                            //            SelfQClink = url;
-                            //            jetmessage.From = new MailJetFrom() { Email = "customercare@utcdigital.com", Name = "UTC - Customer  Care" };
-                            //            jetmessage.To = new List<MailjetTo>();
-                            //            jetmessage.To.Add(new MailjetTo() { Email = customerObj.Email.Trim(), Name = exchangeOrderDC.FirstName });
-                            //            jetmessage.Subject = businessUnit.Name + ": Exchange Detail";
-                            //            string TemplaTePath = ConfigurationManager.AppSettings["InstantEmail"].ToString();
-                            //            string FilePath = TemplaTePath;
-                            //            StreamReader str = new StreamReader(FilePath);
-                            //            string MailText = str.ReadToEnd();
-                            //            str.Close();
-                            //            MailText = MailText.Replace("[CustomerName]", exchangeOrderDC.FirstName).Replace("[BusinessUnitName]", exchangeOrderDC.CompanyName).Replace("[SponserOrderNumber]", exchangeOrderObj.SponsorOrderNumber).Replace("[CreatedDate]", Convert.ToDateTime(_dateTime).ToString("dd/MM/yyyy")).Replace("[CustName]", exchangeOrderDC.FirstName).Replace("[CustMobile]", customerObj.PhoneNumber).Replace("[CustAdd1]", exchangeOrderDC.Address1)
-                            //                .Replace("[CustAdd2]", exchangeOrderDC.Address2).Replace("[State]", exchangeOrderDC.StateName).Replace("[PinCode]", exchangeOrderDC.ZipCode).Replace("[CustCity]", exchangeOrderDC.City).Replace("[ProductCategory]", prroductCategory.Description)
-                            //                .Replace("[OldProdType]", productType.Description).Replace("[OldBrand]", brand.Name).Replace("[Size]", productType.Size).Replace("[ExchangePrice]", exchangeOrderDC.ExchangePriceString).Replace("[EstimatedDeliveryDate]", exchangeOrderObj.EstimatedDeliveryDate).Replace("[SelfQCLink]", url);
-                            //            jetmessage.HTMLPart = MailText;
-                            //            mailJet.Messages = new List<MailJetMessage>();
-                            //            mailJet.Messages.Add(jetmessage);
-                            //            BillCloudServiceCall.MailJetSendMailService(mailJet);
-                            //        }
-                            //    }
-                            //}
+
                         }
                         #endregion
 
@@ -1918,8 +1889,6 @@ namespace RDCEL.DocUpload.BAL.SponsorsApiCall
 
                     }
                     #endregion
-
-                    //var result= TestSendWhatsAppMessageService();
                 }
             }
             catch (Exception ex)
@@ -1932,30 +1901,9 @@ namespace RDCEL.DocUpload.BAL.SponsorsApiCall
             return productOrderResponseDC;
         }
 
-        public async Task<IRestResponse> TestSendWhatsAppMessageService()
-        {
-            string campaignName = "Send_Voucher_Code_Template";
-            string destination = "+918962537774"; // User ka phone number
-            string userName = "Himanshu";
 
-            // Template parameters ko sequence me set karein
-            string[] templateParams = {
-                                        "₹500",               // [Price]
-                                        "Samsung",            // [Brand Name]
-                                        "ABC123XYZ",          // [Code]
-                                        "30",                 // [validity]
-                                        "https://example.com/download"  // [download url]
-                                    };
 
-            // Object create karke method call karein
-            WhatsappNotificationManager manager = new WhatsappNotificationManager();
-            var responseWa = await manager.SendWhatsAppMessage(campaignName, destination, userName, templateParams);
 
-            return responseWa;
-
-        }
-
-      
         #endregion
 
         #region 99999manage Bulk exchange order
