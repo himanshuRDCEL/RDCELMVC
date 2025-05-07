@@ -21,6 +21,8 @@ namespace RDCEL.DocUpload.DAL.AbstractRepository
         public DbContext GetCurrentContext()
         {
             return new Digi2l_DBEntities();
+           // return new Digi2L_Entities();
+
         }
         public DbContext Context
         {

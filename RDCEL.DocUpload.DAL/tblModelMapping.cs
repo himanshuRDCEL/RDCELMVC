@@ -28,11 +28,8 @@ namespace RDCEL.DocUpload.DAL
         public Nullable<bool> IsDefault { get; set; }
     
         public virtual tblBrand tblBrand { get; set; }
-        public virtual tblBrand tblBrand1 { get; set; }
         public virtual tblBusinessPartner tblBusinessPartner { get; set; }
-        public virtual tblBusinessPartner tblBusinessPartner1 { get; set; }
-        public virtual tblModelNumber tblModelNumber { get; set; }
-        public virtual tblModelNumber tblModelNumber1 { get; set; }
         public virtual tblBusinessUnit tblBusinessUnit { get; set; }
+        public virtual tblModelNumber tblModelNumber { get; set; }
     }
 }

@@ -101,6 +101,8 @@
     <Compile Include="Daikin\DaikinNewCustomerDataContract.cs" />
     <Compile Include="Daikin\SingleCustomerDataContract.cs" />
     <Compile Include="Daikin\SoapRequestResponse.cs" />
+    <Compile Include="EcomVoucher\EcomPhoneSpecificsDataContract.cs" />
+    <Compile Include="EcomVoucher\EcomVoucherDataContract.cs" />
     <Compile Include="EVCDataDB\EVCApprovedDataContract.cs" />
     <Compile Include="EVCPODDetails\EVCPODDetailsDataContract.cs" />
     <Compile Include="ExchangeOrderDetails\ExchangeABBStatusHistoryDataContract.cs" />
@@ -168,6 +170,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\GraspCorn.Common\GraspCorn.Common.csproj">
+      <Project>{CFA052F5-2880-487C-A837-9C8726EF87DF}</Project>
+      <Name>GraspCorn.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\RDCEL.DocUpload.DAL\RDCEL.DocUpload.DAL.csproj">
       <Project>{CE3F7A61-1A9E-41B8-8B7B-68E1C6F51A62}</Project>
       <Name>RDCEL.DocUpload.DAL</Name>

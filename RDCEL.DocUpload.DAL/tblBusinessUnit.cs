@@ -20,9 +20,11 @@ namespace RDCEL.DocUpload.DAL
             this.tblABBPlanMasters = new HashSet<tblABBPlanMaster>();
             this.tblABBPriceMasters = new HashSet<tblABBPriceMaster>();
             this.tblABBRegistrations = new HashSet<tblABBRegistration>();
+            this.TblBPPincodeMappings = new HashSet<TblBPPincodeMapping>();
             this.tblBrands = new HashSet<tblBrand>();
             this.tblBrandSmartBuys = new HashSet<tblBrandSmartBuy>();
             this.tblBUBasedSweetnerValidations = new HashSet<tblBUBasedSweetnerValidation>();
+            this.tblBUConfigurationMappings = new HashSet<tblBUConfigurationMapping>();
             this.tblBUProductCategoryMappings = new HashSet<tblBUProductCategoryMapping>();
             this.tblBusinessPartners = new HashSet<tblBusinessPartner>();
             this.tblCompanies = new HashSet<tblCompany>();
@@ -30,17 +32,19 @@ namespace RDCEL.DocUpload.DAL
             this.tblModelMappings = new HashSet<tblModelMapping>();
             this.tblModelNumbers = new HashSet<tblModelNumber>();
             this.tblOrderBasedConfigs = new HashSet<tblOrderBasedConfig>();
+            this.TblPriceMasterQuestioners = new HashSet<TblPriceMasterQuestioner>();
             this.tblPriceMasterMappings = new HashSet<tblPriceMasterMapping>();
             this.tblProductConditionLabels = new HashSet<tblProductConditionLabel>();
             this.tblTransMasterABBPlanMasters = new HashSet<tblTransMasterABBPlanMaster>();
+            this.tblUserMappings = new HashSet<tblUserMapping>();
             this.tblVoucherTermsAndConditions = new HashSet<tblVoucherTermsAndCondition>();
-            this.tblSocieties = new HashSet<tblSociety>();
-            this.tblBPBURedemptionMappings = new HashSet<tblBPBURedemptionMapping>();
-            this.tblSponsorCategoryMappings = new HashSet<tblSponsorCategoryMapping>();
             this.tblBPBUAssociations = new HashSet<tblBPBUAssociation>();
-            this.TblBPPincodeMappings = new HashSet<TblBPPincodeMapping>();
-            this.tblUninstallationPrices = new HashSet<tblUninstallationPrice>();
+            this.tblBPBURedemptionMappings = new HashSet<tblBPBURedemptionMapping>();
             this.tblCouponMasters = new HashSet<tblCouponMaster>();
+            this.tblSocieties = new HashSet<tblSociety>();
+            this.tblSponsorCategoryMappings = new HashSet<tblSponsorCategoryMapping>();
+            this.tblUninstallationPrices = new HashSet<tblUninstallationPrice>();
+            this.TblVehicleIncentives = new HashSet<TblVehicleIncentive>();
         }
     
         public int BusinessUnitId { get; set; }
@@ -75,6 +79,7 @@ namespace RDCEL.DocUpload.DAL
         public Nullable<bool> IsBUMultiBrand { get; set; }
         public Nullable<bool> IsBUD2C { get; set; }
         public Nullable<bool> ShowAbbPlan { get; set; }
+        public Nullable<bool> IsQualityWorkingNonWorking { get; set; }
         public Nullable<bool> IsInvoiceDetailsRequired { get; set; }
         public Nullable<bool> IsNewProductDetailsRequired { get; set; }
         public Nullable<int> GSTType { get; set; }
@@ -87,7 +92,6 @@ namespace RDCEL.DocUpload.DAL
         public Nullable<bool> IsAreaLocality { get; set; }
         public Nullable<bool> IsValidationBasedSweetner { get; set; }
         public Nullable<bool> IsQualityRequiredOnUI { get; set; }
-        public Nullable<bool> IsQualityWorkingNonWorking { get; set; }
         public Nullable<bool> IsStandardPriceMaster { get; set; }
         public Nullable<bool> ShowEmplyeeCode { get; set; }
         public Nullable<bool> IsQCDateTimeRequiredOnD2C { get; set; }
@@ -100,8 +104,8 @@ namespace RDCEL.DocUpload.DAL
         public string ReportEmails { get; set; }
         public Nullable<bool> IsAbbDayConfig { get; set; }
         public Nullable<int> AbbDayDiff { get; set; }
-        public Nullable<bool> IsBUCatIdOn { get; set; }
         public Nullable<bool> IsBPAssociated { get; set; }
+        public Nullable<bool> IsBUCatIdOn { get; set; }
         public Nullable<bool> IsProductSerialNumberRequired { get; set; }
         public Nullable<bool> IsSFIDRequired { get; set; }
     
@@ -113,11 +117,15 @@ namespace RDCEL.DocUpload.DAL
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblABBRegistration> tblABBRegistrations { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TblBPPincodeMapping> TblBPPincodeMappings { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblBrand> tblBrands { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblBrandSmartBuy> tblBrandSmartBuys { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblBUBasedSweetnerValidation> tblBUBasedSweetnerValidations { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblBUConfigurationMapping> tblBUConfigurationMappings { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblBUProductCategoryMapping> tblBUProductCategoryMappings { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -133,28 +141,32 @@ namespace RDCEL.DocUpload.DAL
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblOrderBasedConfig> tblOrderBasedConfigs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TblPriceMasterQuestioner> TblPriceMasterQuestioners { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblPriceMasterMapping> tblPriceMasterMappings { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblProductConditionLabel> tblProductConditionLabels { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblTransMasterABBPlanMaster> tblTransMasterABBPlanMasters { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblUserMapping> tblUserMappings { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblVoucherTermsAndCondition> tblVoucherTermsAndConditions { get; set; }
-        public virtual tblLoV tblLoV { get; set; }
-        public virtual tblLoV tblLoV1 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblSociety> tblSocieties { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblBPBURedemptionMapping> tblBPBURedemptionMappings { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblSponsorCategoryMapping> tblSponsorCategoryMappings { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblBPBUAssociation> tblBPBUAssociations { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TblBPPincodeMapping> TblBPPincodeMappings { get; set; }
+        public virtual ICollection<tblBPBURedemptionMapping> tblBPBURedemptionMappings { get; set; }
+        public virtual tblLoV tblLoV { get; set; }
+        public virtual tblLoV tblLoV1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblCouponMaster> tblCouponMasters { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblSociety> tblSocieties { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblSponsorCategoryMapping> tblSponsorCategoryMappings { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblUninstallationPrice> tblUninstallationPrices { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblCouponMaster> tblCouponMasters { get; set; }
+        public virtual ICollection<TblVehicleIncentive> TblVehicleIncentives { get; set; }
     }
 }

@@ -17,21 +17,21 @@ namespace RDCEL.DocUpload.DAL
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public tblBusinessPartner()
         {
-            this.tblExchangeOrders = new HashSet<tblExchangeOrder>();
-            this.tblVoucherVerfications = new HashSet<tblVoucherVerfication>();
-            this.tblABBRegistrations = new HashSet<tblABBRegistration>();
             this.tblABBRedemptions = new HashSet<tblABBRedemption>();
+            this.tblABBRegistrations = new HashSet<tblABBRegistration>();
+            this.TblBPPincodeMappings = new HashSet<TblBPPincodeMapping>();
+            this.tblModelMappings = new HashSet<tblModelMapping>();
             this.tblModelNumbers = new HashSet<tblModelNumber>();
             this.tblOrderBasedConfigs = new HashSet<tblOrderBasedConfig>();
-            this.tblProductConditionLabels = new HashSet<tblProductConditionLabel>();
             this.tblPriceMasterMappings = new HashSet<tblPriceMasterMapping>();
-            this.tblModelMappings = new HashSet<tblModelMapping>();
-            this.tblModelMappings1 = new HashSet<tblModelMapping>();
-            this.tblBPBURedemptionMappings = new HashSet<tblBPBURedemptionMapping>();
+            this.tblProductConditionLabels = new HashSet<tblProductConditionLabel>();
+            this.tblUserMappings = new HashSet<tblUserMapping>();
             this.tblBPBUAssociations = new HashSet<tblBPBUAssociation>();
-            this.TblBPPincodeMappings = new HashSet<TblBPPincodeMapping>();
-            this.tblUninstallationPrices = new HashSet<tblUninstallationPrice>();
+            this.tblBPBURedemptionMappings = new HashSet<tblBPBURedemptionMapping>();
             this.tblCouponMasters = new HashSet<tblCouponMaster>();
+            this.tblExchangeOrders = new HashSet<tblExchangeOrder>();
+            this.tblUninstallationPrices = new HashSet<tblUninstallationPrice>();
+            this.tblVoucherVerfications = new HashSet<tblVoucherVerfication>();
         }
     
         public int BusinessPartnerId { get; set; }
@@ -82,44 +82,44 @@ namespace RDCEL.DocUpload.DAL
         public Nullable<decimal> SweetenerBU { get; set; }
         public Nullable<decimal> SweetenerBP { get; set; }
         public Nullable<decimal> SweetenerDigi2l { get; set; }
-        public string UPIId { get; set; }
         public Nullable<bool> IsDefaultPickupAddress { get; set; }
+        public string UPIId { get; set; }
         public Nullable<bool> IsUnInstallationRequired { get; set; }
         public Nullable<bool> IsBarcodeReaderEnable { get; set; }
         public Nullable<bool> IsSrNumValidationEnable { get; set; }
         public Nullable<bool> IsCouponsAvailable { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblExchangeOrder> tblExchangeOrders { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblVoucherVerfication> tblVoucherVerfications { get; set; }
+        public virtual ICollection<tblABBRedemption> tblABBRedemptions { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblABBRegistration> tblABBRegistrations { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblABBRedemption> tblABBRedemptions { get; set; }
+        public virtual ICollection<TblBPPincodeMapping> TblBPPincodeMappings { get; set; }
         public virtual tblCity tblCity { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblModelMapping> tblModelMappings { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblModelNumber> tblModelNumbers { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblOrderBasedConfig> tblOrderBasedConfigs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblProductConditionLabel> tblProductConditionLabels { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblPriceMasterMapping> tblPriceMasterMappings { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblModelMapping> tblModelMappings { get; set; }
+        public virtual ICollection<tblProductConditionLabel> tblProductConditionLabels { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblModelMapping> tblModelMappings1 { get; set; }
-        public virtual tblBusinessUnit tblBusinessUnit { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblBPBURedemptionMapping> tblBPBURedemptionMappings { get; set; }
+        public virtual ICollection<tblUserMapping> tblUserMappings { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblBPBUAssociation> tblBPBUAssociations { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TblBPPincodeMapping> TblBPPincodeMappings { get; set; }
+        public virtual ICollection<tblBPBURedemptionMapping> tblBPBURedemptionMappings { get; set; }
+        public virtual tblBusinessUnit tblBusinessUnit { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblCouponMaster> tblCouponMasters { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblExchangeOrder> tblExchangeOrders { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblUninstallationPrice> tblUninstallationPrices { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblCouponMaster> tblCouponMasters { get; set; }
+        public virtual ICollection<tblVoucherVerfication> tblVoucherVerfications { get; set; }
     }
 }

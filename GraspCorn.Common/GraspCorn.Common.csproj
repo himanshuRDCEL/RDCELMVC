@@ -116,6 +116,7 @@
     <Compile Include="Enums\BrandIdEnum.cs" />
     <Compile Include="Enums\BusinessPartnerDiscriptionEnum.cs" />
     <Compile Include="Enums\BusinessUnitEnum.cs" />
+    <Compile Include="Enums\EcomVoucherTypeEnum.cs" />
     <Compile Include="Enums\LOVEnum.cs" />
     <Compile Include="Enums\MessageTypeEnum.cs" />
     <Compile Include="Enums\CoverageEnum.cs" />

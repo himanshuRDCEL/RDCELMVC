@@ -28,8 +28,8 @@ namespace RDCEL.DocUpload.DAL
         public Nullable<int> RedemptionId { get; set; }
         public Nullable<int> UserId { get; set; }
     
+        public virtual tblABBRedemption tblABBRedemption { get; set; }
         public virtual tblExchangeOrder tblExchangeOrder { get; set; }
         public virtual tblUser tblUser { get; set; }
-        public virtual tblABBRedemption tblABBRedemption { get; set; }
     }
 }

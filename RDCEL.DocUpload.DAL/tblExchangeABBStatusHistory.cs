@@ -33,11 +33,11 @@ namespace RDCEL.DocUpload.DAL
         public Nullable<int> ServicepartnerId { get; set; }
         public Nullable<int> DriverDetailId { get; set; }
     
-        public virtual tblOrderTran tblOrderTran { get; set; }
-        public virtual tblUser tblUser { get; set; }
-        public virtual tblUser tblUser1 { get; set; }
-        public virtual tblExchangeOrderStatu tblExchangeOrderStatu { get; set; }
         public virtual tblDriverDetail tblDriverDetail { get; set; }
+        public virtual tblUser tblUser { get; set; }
+        public virtual tblOrderTran tblOrderTran { get; set; }
         public virtual tblServicePartner tblServicePartner { get; set; }
+        public virtual tblExchangeOrderStatu tblExchangeOrderStatu { get; set; }
+        public virtual tblUser tblUser1 { get; set; }
     }
 }

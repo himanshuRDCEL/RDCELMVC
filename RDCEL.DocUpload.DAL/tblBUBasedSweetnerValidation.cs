@@ -25,9 +25,9 @@ namespace RDCEL.DocUpload.DAL
         public Nullable<int> ModifiedBy { get; set; }
         public Nullable<System.DateTime> ModifiedDate { get; set; }
     
+        public virtual tblBusinessUnit tblBusinessUnit { get; set; }
         public virtual tblUser tblUser { get; set; }
         public virtual tblUser tblUser1 { get; set; }
         public virtual tblQuestionsForSweetner tblQuestionsForSweetner { get; set; }
-        public virtual tblBusinessUnit tblBusinessUnit { get; set; }
     }
 }

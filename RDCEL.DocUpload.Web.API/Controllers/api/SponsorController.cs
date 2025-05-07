@@ -673,7 +673,7 @@ namespace RDCEL.DocUpload.Web.API.Controllers.api
                                 if (!string.IsNullOrEmpty(productOrderDataContract.ZipCode))
                                 {
                                     int? pincode = Convert.ToInt32(productOrderDataContract.ZipCode);
-                                    pincodeObj = _picodeRepository.GetSingle(x => x.IsActive.Equals(true) && x.isExchange.Equals(true) && x.ZipCode.Equals(pincode));
+                                    pincodeObj = _picodeRepository.GetSingle(x => x.IsActive.Equals(true) && x.IsExchange.Equals(true) && x.ZipCode.Equals(pincode));
                                     if (pincodeObj != null)
                                     {
                                         productOrderDataContract.City = !string.IsNullOrEmpty(pincodeObj.Location) ? pincodeObj.Location : null;

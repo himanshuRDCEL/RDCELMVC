@@ -31,6 +31,7 @@ namespace RDCEL.DocUpload.DAL
         public string TransactionId { get; set; }
         public Nullable<int> EVCPartnerId { get; set; }
     
+        public virtual tblEvcPartner tblEvcPartner { get; set; }
         public virtual tblEVCRegistration tblEVCRegistration { get; set; }
         public virtual tblOrderTran tblOrderTran { get; set; }
         public virtual tblUser tblUser { get; set; }

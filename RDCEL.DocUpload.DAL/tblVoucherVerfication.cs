@@ -39,6 +39,7 @@ namespace RDCEL.DocUpload.DAL
         public Nullable<int> VoucherStatusId { get; set; }
         public Nullable<int> RedemptionId { get; set; }
     
+        public virtual tblABBRedemption tblABBRedemption { get; set; }
         public virtual tblBrand tblBrand { get; set; }
         public virtual tblBusinessPartner tblBusinessPartner { get; set; }
         public virtual tblCustomerDetail tblCustomerDetail { get; set; }
@@ -47,6 +48,5 @@ namespace RDCEL.DocUpload.DAL
         public virtual tblProductCategory tblProductCategory { get; set; }
         public virtual tblProductType tblProductType { get; set; }
         public virtual tblVoucherStatu tblVoucherStatu { get; set; }
-        public virtual tblABBRedemption tblABBRedemption { get; set; }
     }
 }

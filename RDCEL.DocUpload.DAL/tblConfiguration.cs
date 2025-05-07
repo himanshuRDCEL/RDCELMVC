@@ -14,6 +14,12 @@ namespace RDCEL.DocUpload.DAL
     
     public partial class tblConfiguration
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public tblConfiguration()
+        {
+            this.tblEvcPartnerPreferences = new HashSet<tblEvcPartnerPreference>();
+        }
+    
         public int ConfigId { get; set; }
         public string Name { get; set; }
         public string Value { get; set; }
@@ -22,5 +28,8 @@ namespace RDCEL.DocUpload.DAL
         public Nullable<System.DateTime> CreatedDate { get; set; }
         public Nullable<int> ModifiedBy { get; set; }
         public Nullable<System.DateTime> ModifiedDate { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblEvcPartnerPreference> tblEvcPartnerPreferences { get; set; }
     }
 }

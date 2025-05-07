@@ -17,13 +17,13 @@ namespace RDCEL.DocUpload.DAL
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public tblExchangeOrder()
         {
+            this.tblEVCDisputes = new HashSet<tblEVCDispute>();
             this.tblFeedBacks = new HashSet<tblFeedBack>();
             this.tblHistories = new HashSet<tblHistory>();
             this.tblImages = new HashSet<tblImage>();
             this.tblSelfQCs = new HashSet<tblSelfQC>();
             this.tblOrderTrans = new HashSet<tblOrderTran>();
             this.tblVoucherVerfications = new HashSet<tblVoucherVerfication>();
-            this.tblEVCDisputes = new HashSet<tblEVCDispute>();
         }
     
         public int Id { get; set; }
@@ -96,15 +96,19 @@ namespace RDCEL.DocUpload.DAL
         public Nullable<int> BusinessUnitId { get; set; }
         public Nullable<int> PriceMasterNameId { get; set; }
         public Nullable<bool> IsDiagnoseV2 { get; set; }
+        public Nullable<bool> IsSrNumValid { get; set; }
+        public string NewSerialNumber { get; set; }
         public Nullable<int> CouponId { get; set; }
         public Nullable<bool> IsCouponAplied { get; set; }
         public Nullable<decimal> CouponValue { get; set; }
-        public Nullable<bool> IsSrNumValid { get; set; }
-        public string NewSerialNumber { get; set; }
     
         public virtual tblBrand tblBrand { get; set; }
         public virtual tblBusinessPartner tblBusinessPartner { get; set; }
+        public virtual tblBusinessUnit tblBusinessUnit { get; set; }
         public virtual tblCustomerDetail tblCustomerDetail { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblEVCDispute> tblEVCDisputes { get; set; }
+        public virtual TblProductTechnology TblProductTechnology { get; set; }
         public virtual tblExchangeOrderStatu tblExchangeOrderStatu { get; set; }
         public virtual tblVoucherStatu tblVoucherStatu { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -118,16 +122,11 @@ namespace RDCEL.DocUpload.DAL
         public virtual tblProductType tblProductType { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblOrderTran> tblOrderTrans { get; set; }
+        public virtual tblPriceMasterName tblPriceMasterName { get; set; }
         public virtual tblUser tblUser { get; set; }
         public virtual tblUser tblUser1 { get; set; }
         public virtual tblSociety tblSociety { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblVoucherVerfication> tblVoucherVerfications { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblEVCDispute> tblEVCDisputes { get; set; }
-        public virtual tblProductType tblProductType1 { get; set; }
-        public virtual tblBusinessUnit tblBusinessUnit { get; set; }
-        public virtual tblPriceMasterName tblPriceMasterName { get; set; }
-        public virtual tblCoupon tblCoupon { get; set; }
     }
 }

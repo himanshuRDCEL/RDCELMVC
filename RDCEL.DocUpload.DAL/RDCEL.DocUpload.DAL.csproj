@@ -87,6 +87,9 @@
   <ItemGroup>
     <Compile Include="AbstractRepository\AbstractRepository.cs" />
     <Compile Include="AbstractRepository\IAbstractRepository.cs" />
+    <Compile Include="All_Abb_Temp_Tables_Data.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Digi2l_DBEntities.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -105,9 +108,39 @@
     <Compile Include="EVCAll_Call_AllocationsData.cs">
       <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="GetBusinessCustomerDashboard_Result.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GetCityByStateName_Result.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GetWalletSummaryByEVC_Result.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Helper\DBHelper.cs" />
     <Compile Include="Helper\Logging.cs" />
+    <Compile Include="InsertNewBusinessUnitData_Result.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Login.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LoginByUsernamePassword_Result.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MapLoginUserDevice.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Map_ServicePartnerCityState.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MODELBASEDNEWBPMAPPING_Result.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PineLabsPriceMaster.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PriceMasterName.cs">
       <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -118,9 +151,13 @@
     <Compile Include="Repository\BPPincodeMappingRepository.cs" />
     <Compile Include="Repository\BPBUAssociationRepository.cs" />
     <Compile Include="Repository\BUProductCategoryMappingRepository.cs" />
+    <Compile Include="Repository\CategoryRepository.cs" />
+    <Compile Include="Repository\CompanyRepository.cs" />
     <Compile Include="Repository\CouponMasterRepository.cs" />
     <Compile Include="Repository\CouponRepository.cs" />
     <Compile Include="Repository\CustomerFilesRepository.cs" />
+    <Compile Include="Repository\EcomPhoneSpecificsRepository.cs" />
+    <Compile Include="Repository\EcomVoucherRepository.cs" />
     <Compile Include="Repository\LOVRepository.cs" />
     <Compile Include="Repository\BlowHornRepository.cs" />
     <Compile Include="Repository\BrandSmartSellRepository.cs" />
@@ -187,6 +224,111 @@
     <Compile Include="Repository\WalletTransactioRepository.cs" />
     <Compile Include="Repository\WhatsappMessageRepository.cs" />
     <Compile Include="Repository\_247AroundRepository.cs" />
+    <Compile Include="SPDaikin_Scheduler_Result.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_AtteroWeaklyReport_Result.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_DeleteTestRecords_Result.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_GetABBPincodeListByBuid_Result.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_GetAllStoreDataOfSingleDealer_Result.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_GetAreaLocalityListByPincode_Result.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_GetBPListbyPincode_Result.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_GetBrabdListForExchangeByCategoryId_Result.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_GetBrabdListForExchangeByCatId_Result.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_GetBrabdListForExchange_Result.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_GetBrabdList_Result.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_GetBrandListAsperBusinessUnitId_Result.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_GetBrandsByPriceMasterNameId_Result.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_GetCityListForBU_Result.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_GetCityListforExchange_Result.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_GetCityList_Result.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_GetExchangeOrderDCByVoucherCode_Result.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_GetExchangePincodeListByBuid_Result.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_GetListOfAllServicePartners_Result.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_GetModalDetailsByBUandBp_Result.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_GetNotDeliveredOrderForBU_Result.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_getPincodeforPineLabs_Result.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_GetPincodeListForABBD2C_Result.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_GetPincodeListForMYG_Result.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_GetPineLabsWeaklyReport_Result.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_GetPriceMasterMappingDetails_Result.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_GetPriceMasterNameIdbyBU_Result.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_getStateAndCityByPincode_Result.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_GetStateByPincode_Result.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_GetStateCityForABB_Result.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_GetStateForABB_Result.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_GetStateList_Result.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_InactiveTestRecords_Result.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_Pinelabs_DayEndReportData_Result.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_ValidateExchangeProductExists_Result.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="tbl247Around.cs">
       <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
     </Compile>
@@ -208,6 +350,9 @@
     <Compile Include="tblAddress.cs">
       <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="tblAPICall.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="tblAreaLocality.cs">
       <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
     </Compile>
@@ -218,6 +363,9 @@
       <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="tblBlowHornTicket.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblBookingItem.cs">
       <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="tblBPBUAssociation.cs">
@@ -232,19 +380,40 @@
     <Compile Include="tblBrand.cs">
       <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="TblBrandGroup.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="tblBrandSmartBuy.cs">
       <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="tblBUBasedSweetnerValidation.cs">
       <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="tblBUConfiguration.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblBUConfigurationMapping.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="tblBUProductCategoryMapping.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblBusinessCustomer.cs">
       <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="tblBusinessPartner.cs">
       <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="tblBusinessType.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblBusinessTypeMapping.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="tblBusinessUnit.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblCategory.cs">
       <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="tblCity.cs">
@@ -262,7 +431,13 @@
     <Compile Include="tblCouponMaster.cs">
       <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="tblCreditRequest.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="tblCurrentAuthtoken.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblCustomerCompany.cs">
       <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="tblCustomerDetail.cs">
@@ -272,6 +447,15 @@
       <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="tblDriverDetail.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblDriverList.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblEcomPhoneSpecific.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblEcomVoucher.cs">
       <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="tblEntityType.cs">
@@ -284,6 +468,12 @@
       <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="tblEVCDispute.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblEvcPartner.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblEvcPartnerPreference.cs">
       <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="tblEVCPODDetail.cs">
@@ -334,6 +524,12 @@
     <Compile Include="tblImageLabelMaster.cs">
       <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="tblItem.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblLogin_Mobile.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="tblLogistic.cs">
       <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
     </Compile>
@@ -367,6 +563,9 @@
     <Compile Include="tblOrderQC.cs">
       <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="tblOrderQCRating.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="tblOrderTran.cs">
       <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
     </Compile>
@@ -388,6 +587,12 @@
     <Compile Include="tblPriceMasterName.cs">
       <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="TblPriceMasterQuestioner.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TblProdCatBrandMapping.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="tblProductCategory.cs">
       <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
     </Compile>
@@ -397,13 +602,37 @@
     <Compile Include="tblProductQualityIndex.cs">
       <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="TblProductTechnology.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="tblProductType.cs">
       <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="tblPromotionalVoucherMaster.cs">
       <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="tblPushNotificationMessageDetail.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblPushNotificationSavedDetail.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblQCRatingMaster.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblQCRatingMasterMapping.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TblQuestionerLOV.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TblQuestionerLOVMapping.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="tblQuestionsForSweetner.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblRefurbisherRegistration.cs">
       <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="tblRole.cs">
@@ -427,6 +656,9 @@
     <Compile Include="tblState.cs">
       <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="tblTempData.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="tblTimeLine.cs">
       <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
     </Compile>
@@ -445,13 +677,31 @@
     <Compile Include="tblUniversalPriceMaster.cs">
       <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="tblUPIIdUpdatelog.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="tblUser.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblUserMapping.cs">
       <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="tblUserRole.cs">
       <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="tblVcareService.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TblVehicleIncentive.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TblVehicleJourneyTracking.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TblVehicleJourneyTrackingDetail.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblVehicleList.cs">
       <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="tblVoucherStatu.cs">
@@ -470,6 +720,42 @@
       <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="TimeSlotMaster.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UniversalPriceMaster.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="View_ABB.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="View_AllABBRedemptionData.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="View_Allexchagedata_customer.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="View_AllExchangeData.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="View_AllExchangeData2.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="View_AllExchangeDatawithQC.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="View_AllExchangeData_Daikin.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="View_AllExchangeData_Pickup.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="View_All_exchangeData_Address.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="View_BOSCHVoucher.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="View_ExchangWithQC.cs">
       <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="ZohoExchangeData.cs">

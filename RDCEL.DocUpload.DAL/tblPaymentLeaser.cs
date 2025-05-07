@@ -40,8 +40,8 @@ namespace RDCEL.DocUpload.DAL
         public Nullable<System.DateTime> CreatedDate { get; set; }
         public Nullable<int> ModifiedBy { get; set; }
         public Nullable<System.DateTime> ModifiedDate { get; set; }
-        public string GatewayTransactioId { get; set; }
         public string OrderStatus { get; set; }
+        public string GatewayTransactioId { get; set; }
         public Nullable<bool> IsDeleted { get; set; }
         public string UTCReferenceID { get; set; }
     }

@@ -17,8 +17,8 @@ namespace RDCEL.DocUpload.DAL
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Login()
         {
-            this.tblSocieties = new HashSet<tblSociety>();
             this.tblBusinessUnits = new HashSet<tblBusinessUnit>();
+            this.tblSocieties = new HashSet<tblSociety>();
         }
     
         public int id { get; set; }
@@ -30,10 +30,10 @@ namespace RDCEL.DocUpload.DAL
         public Nullable<int> BusinessPartnerId { get; set; }
         public Nullable<int> PriceMasterNameId { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblSociety> tblSocieties { get; set; }
+        public virtual PriceMasterName PriceMasterName { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblBusinessUnit> tblBusinessUnits { get; set; }
-        public virtual tblPriceMasterName tblPriceMasterName { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblSociety> tblSocieties { get; set; }
     }
 }

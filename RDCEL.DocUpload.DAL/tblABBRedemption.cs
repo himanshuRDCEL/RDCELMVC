@@ -17,9 +17,9 @@ namespace RDCEL.DocUpload.DAL
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public tblABBRedemption()
         {
-            this.tblOrderTrans = new HashSet<tblOrderTran>();
-            this.tblVoucherVerfications = new HashSet<tblVoucherVerfication>();
             this.tblSelfQCs = new HashSet<tblSelfQC>();
+            this.tblVoucherVerfications = new HashSet<tblVoucherVerfication>();
+            this.tblOrderTrans = new HashSet<tblOrderTran>();
         }
     
         public int RedemptionId { get; set; }
@@ -54,20 +54,20 @@ namespace RDCEL.DocUpload.DAL
         public Nullable<bool> IsDefferedSettelment { get; set; }
         public Nullable<int> BusinessPartnerId { get; set; }
     
-        public virtual tblCustomerDetail tblCustomerDetail { get; set; }
-        public virtual tblABBRegistration tblABBRegistration { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblSelfQC> tblSelfQCs { get; set; }
+        public virtual tblBusinessPartner tblBusinessPartner { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblVoucherVerfication> tblVoucherVerfications { get; set; }
         public virtual tblABBRedemption tblABBRedemption1 { get; set; }
         public virtual tblABBRedemption tblABBRedemption2 { get; set; }
+        public virtual tblABBRegistration tblABBRegistration { get; set; }
+        public virtual tblCustomerDetail tblCustomerDetail { get; set; }
         public virtual tblExchangeOrderStatu tblExchangeOrderStatu { get; set; }
         public virtual tblUser tblUser { get; set; }
         public virtual tblUser tblUser1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblOrderTran> tblOrderTrans { get; set; }
         public virtual tblVoucherStatu tblVoucherStatu { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblVoucherVerfication> tblVoucherVerfications { get; set; }
-        public virtual tblBusinessPartner tblBusinessPartner { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblSelfQC> tblSelfQCs { get; set; }
     }
 }

@@ -14,12 +14,6 @@ namespace RDCEL.DocUpload.DAL
     
     public partial class tblTimeLine
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public tblTimeLine()
-        {
-            this.tblTimelineStatusMappings = new HashSet<tblTimelineStatusMapping>();
-        }
-    
         public int TimeLineId { get; set; }
         public string OrderTimeline { get; set; }
         public Nullable<bool> IsActive { get; set; }
@@ -27,9 +21,5 @@ namespace RDCEL.DocUpload.DAL
         public Nullable<System.DateTime> CreatedDate { get; set; }
         public Nullable<int> ModifiedBy { get; set; }
         public Nullable<System.DateTime> ModifiedDate { get; set; }
-    
-        public virtual tblUser tblUser { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblTimelineStatusMapping> tblTimelineStatusMappings { get; set; }
     }
 }

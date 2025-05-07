@@ -92,15 +92,15 @@ namespace RDCEL.DocUpload.DAL
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblABBRedemption> tblABBRedemptions { get; set; }
         public virtual tblBusinessPartner tblBusinessPartner { get; set; }
-        public virtual tblBrand tblBrand { get; set; }
         public virtual tblProductCategory tblProductCategory { get; set; }
         public virtual tblProductType tblProductType { get; set; }
-        public virtual tblModelNumber tblModelNumber { get; set; }
         public virtual tblExchangeOrderStatu tblExchangeOrderStatu { get; set; }
+        public virtual tblExchangeOrderStatu tblExchangeOrderStatu1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblTransMasterABBPlanMaster> tblTransMasterABBPlanMasters { get; set; }
         public virtual tblCustomerDetail tblCustomerDetail { get; set; }
         public virtual tblBusinessUnit tblBusinessUnit { get; set; }
+        public virtual tblModelNumber tblModelNumber { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblCustomerFile> tblCustomerFiles { get; set; }
     }

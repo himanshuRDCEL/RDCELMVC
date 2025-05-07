@@ -17,15 +17,16 @@ namespace RDCEL.DocUpload.DAL
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public tblBrand()
         {
+            this.tblCategories = new HashSet<tblCategory>();
+            this.tblBrandSmartBuys = new HashSet<tblBrandSmartBuy>();
+            this.tblModelMappings = new HashSet<tblModelMapping>();
             this.tblModelNumbers = new HashSet<tblModelNumber>();
-            this.tblExchangeOrders = new HashSet<tblExchangeOrder>();
-            this.tblVoucherVerfications = new HashSet<tblVoucherVerfication>();
-            this.tblABBRegistrations = new HashSet<tblABBRegistration>();
             this.tblOrderBasedConfigs = new HashSet<tblOrderBasedConfig>();
             this.tblPriceMasterMappings = new HashSet<tblPriceMasterMapping>();
-            this.tblModelMappings = new HashSet<tblModelMapping>();
-            this.tblModelMappings1 = new HashSet<tblModelMapping>();
-            this.tblBrandSmartBuys = new HashSet<tblBrandSmartBuy>();
+            this.TblProdCatBrandMappings = new HashSet<TblProdCatBrandMapping>();
+            this.tblExchangeOrders = new HashSet<tblExchangeOrder>();
+            this.tblEcomVouchers = new HashSet<tblEcomVoucher>();
+            this.tblVoucherVerfications = new HashSet<tblVoucherVerfication>();
         }
     
         public int Id { get; set; }
@@ -39,23 +40,25 @@ namespace RDCEL.DocUpload.DAL
         public Nullable<int> BusinessUnitId { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblCategory> tblCategories { get; set; }
+        public virtual tblBusinessUnit tblBusinessUnit { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblBrandSmartBuy> tblBrandSmartBuys { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblModelMapping> tblModelMappings { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblModelNumber> tblModelNumbers { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblExchangeOrder> tblExchangeOrders { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblVoucherVerfication> tblVoucherVerfications { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblABBRegistration> tblABBRegistrations { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblOrderBasedConfig> tblOrderBasedConfigs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblPriceMasterMapping> tblPriceMasterMappings { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblModelMapping> tblModelMappings { get; set; }
+        public virtual ICollection<TblProdCatBrandMapping> TblProdCatBrandMappings { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblModelMapping> tblModelMappings1 { get; set; }
-        public virtual tblBusinessUnit tblBusinessUnit { get; set; }
+        public virtual ICollection<tblExchangeOrder> tblExchangeOrders { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblBrandSmartBuy> tblBrandSmartBuys { get; set; }
+        public virtual ICollection<tblEcomVoucher> tblEcomVouchers { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblVoucherVerfication> tblVoucherVerfications { get; set; }
     }
 }

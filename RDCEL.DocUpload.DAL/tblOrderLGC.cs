@@ -37,6 +37,7 @@ namespace RDCEL.DocUpload.DAL
         public Nullable<int> EVCPartnerId { get; set; }
     
         public virtual tblDriverDetail tblDriverDetail { get; set; }
+        public virtual tblEvcPartner tblEvcPartner { get; set; }
         public virtual tblEVCPODDetail tblEVCPODDetail { get; set; }
         public virtual tblEVCRegistration tblEVCRegistration { get; set; }
         public virtual tblLogistic tblLogistic { get; set; }

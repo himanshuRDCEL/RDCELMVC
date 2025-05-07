@@ -19,6 +19,8 @@ namespace RDCEL.DocUpload.DAL
         {
             this.tblAccessLists = new HashSet<tblAccessList>();
             this.tblAddresses = new HashSet<tblAddress>();
+            this.tblCategories = new HashSet<tblCategory>();
+            this.tblEcomVouchers = new HashSet<tblEcomVoucher>();
             this.tblRoles = new HashSet<tblRole>();
             this.tblRoleAccesses = new HashSet<tblRoleAccess>();
             this.tblUsers = new HashSet<tblUser>();
@@ -43,8 +45,13 @@ namespace RDCEL.DocUpload.DAL
         public virtual ICollection<tblAccessList> tblAccessLists { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblAddress> tblAddresses { get; set; }
+        public virtual tblBusinessUnit tblBusinessUnit { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblCategory> tblCategories { get; set; }
         public virtual tblUser tblUser { get; set; }
         public virtual tblUser tblUser1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblEcomVoucher> tblEcomVouchers { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblRole> tblRoles { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -53,6 +60,5 @@ namespace RDCEL.DocUpload.DAL
         public virtual ICollection<tblUser> tblUsers { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblUserRole> tblUserRoles { get; set; }
-        public virtual tblBusinessUnit tblBusinessUnit { get; set; }
     }
 }

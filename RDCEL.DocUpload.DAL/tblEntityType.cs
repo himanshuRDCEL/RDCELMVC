@@ -18,6 +18,7 @@ namespace RDCEL.DocUpload.DAL
         public tblEntityType()
         {
             this.tblEVCRegistrations = new HashSet<tblEVCRegistration>();
+            this.tblRefurbisherRegistrations = new HashSet<tblRefurbisherRegistration>();
         }
     
         public int EntityTypeId { get; set; }
@@ -33,5 +34,7 @@ namespace RDCEL.DocUpload.DAL
         public virtual tblUser tblUser1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblEVCRegistration> tblEVCRegistrations { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblRefurbisherRegistration> tblRefurbisherRegistrations { get; set; }
     }
 }

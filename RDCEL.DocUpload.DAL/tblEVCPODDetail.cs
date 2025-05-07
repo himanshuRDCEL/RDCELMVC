@@ -31,8 +31,8 @@ namespace RDCEL.DocUpload.DAL
         public Nullable<System.DateTime> CreatedDate { get; set; }
         public Nullable<int> ModifiedBy { get; set; }
         public Nullable<System.DateTime> ModifiedDate { get; set; }
-        public string InvoicePdfName { get; set; }
         public string DebitNotePdfName { get; set; }
+        public string InvoicePdfName { get; set; }
         public Nullable<int> InvSrNum { get; set; }
         public Nullable<System.DateTime> InvoiceDate { get; set; }
         public Nullable<decimal> InvoiceAmount { get; set; }
@@ -43,11 +43,12 @@ namespace RDCEL.DocUpload.DAL
         public string FinancialYear { get; set; }
         public Nullable<int> EVCPartnerId { get; set; }
     
+        public virtual tblEvcPartner tblEvcPartner { get; set; }
         public virtual tblUser tblUser { get; set; }
+        public virtual tblEVCRegistration tblEVCRegistration { get; set; }
         public virtual tblUser tblUser1 { get; set; }
+        public virtual tblOrderTran tblOrderTran { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblOrderLGC> tblOrderLGCs { get; set; }
-        public virtual tblEVCRegistration tblEVCRegistration { get; set; }
-        public virtual tblOrderTran tblOrderTran { get; set; }
     }
 }

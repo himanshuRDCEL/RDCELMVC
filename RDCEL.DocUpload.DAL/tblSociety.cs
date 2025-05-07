@@ -44,8 +44,8 @@ namespace RDCEL.DocUpload.DAL
         public Nullable<int> BusinessUnitId { get; set; }
     
         public virtual Login Login { get; set; }
+        public virtual tblBusinessUnit tblBusinessUnit { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblExchangeOrder> tblExchangeOrders { get; set; }
-        public virtual tblBusinessUnit tblBusinessUnit { get; set; }
     }
 }

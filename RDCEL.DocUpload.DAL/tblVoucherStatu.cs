@@ -17,19 +17,19 @@ namespace RDCEL.DocUpload.DAL
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public tblVoucherStatu()
         {
+            this.tblABBRedemptions = new HashSet<tblABBRedemption>();
             this.tblExchangeOrders = new HashSet<tblExchangeOrder>();
             this.tblVoucherVerfications = new HashSet<tblVoucherVerfication>();
-            this.tblABBRedemptions = new HashSet<tblABBRedemption>();
         }
     
         public int VoucherStatusId { get; set; }
         public string VoucherStatusName { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblABBRedemption> tblABBRedemptions { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblExchangeOrder> tblExchangeOrders { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblVoucherVerfication> tblVoucherVerfications { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblABBRedemption> tblABBRedemptions { get; set; }
     }
 }

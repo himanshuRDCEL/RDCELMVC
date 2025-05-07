@@ -17,87 +17,181 @@ namespace RDCEL.DocUpload.DAL
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public tblUser()
         {
+            this.Map_ServicePartnerCityState = new HashSet<Map_ServicePartnerCityState>();
+            this.Map_ServicePartnerCityState1 = new HashSet<Map_ServicePartnerCityState>();
+            this.MapLoginUserDevices = new HashSet<MapLoginUserDevice>();
+            this.MapLoginUserDevices1 = new HashSet<MapLoginUserDevice>();
+            this.MapLoginUserDevices2 = new HashSet<MapLoginUserDevice>();
+            this.MapLoginUserDevices3 = new HashSet<MapLoginUserDevice>();
+            this.MapLoginUserDevices4 = new HashSet<MapLoginUserDevice>();
+            this.PriceMasterNames = new HashSet<PriceMasterName>();
+            this.PriceMasterNames1 = new HashSet<PriceMasterName>();
+            this.tblABBRedemptions = new HashSet<tblABBRedemption>();
+            this.tblABBRedemptions1 = new HashSet<tblABBRedemption>();
             this.tblAccessLists = new HashSet<tblAccessList>();
             this.tblAccessLists1 = new HashSet<tblAccessList>();
             this.tblAddresses = new HashSet<tblAddress>();
             this.tblAddresses1 = new HashSet<tblAddress>();
             this.tblAddresses2 = new HashSet<tblAddress>();
+            this.tblAPICalls = new HashSet<tblAPICall>();
+            this.tblAPICalls1 = new HashSet<tblAPICall>();
+            this.tblBookingItems = new HashSet<tblBookingItem>();
+            this.tblBookingItems1 = new HashSet<tblBookingItem>();
+            this.TblBPPincodeMappings = new HashSet<TblBPPincodeMapping>();
+            this.TblBPPincodeMappings1 = new HashSet<TblBPPincodeMapping>();
+            this.TblBrandGroups = new HashSet<TblBrandGroup>();
+            this.TblBrandGroups1 = new HashSet<TblBrandGroup>();
+            this.tblBUBasedSweetnerValidations = new HashSet<tblBUBasedSweetnerValidation>();
+            this.tblBUBasedSweetnerValidations1 = new HashSet<tblBUBasedSweetnerValidation>();
+            this.tblBUConfigurations = new HashSet<tblBUConfiguration>();
+            this.tblBUConfigurations1 = new HashSet<tblBUConfiguration>();
+            this.tblBUConfigurationMappings = new HashSet<tblBUConfigurationMapping>();
+            this.tblBUConfigurationMappings1 = new HashSet<tblBUConfigurationMapping>();
+            this.tblBUProductCategoryMappings = new HashSet<tblBUProductCategoryMapping>();
+            this.tblBUProductCategoryMappings1 = new HashSet<tblBUProductCategoryMapping>();
+            this.tblBusinessCustomers = new HashSet<tblBusinessCustomer>();
+            this.tblBusinessCustomers1 = new HashSet<tblBusinessCustomer>();
+            this.tblBusinessTypeMappings = new HashSet<tblBusinessTypeMapping>();
+            this.tblBusinessTypeMappings1 = new HashSet<tblBusinessTypeMapping>();
+            this.tblBusinessTypeMappings2 = new HashSet<tblBusinessTypeMapping>();
+            this.tblBusinessTypeMappings3 = new HashSet<tblBusinessTypeMapping>();
+            this.tblBusinessTypeMappings4 = new HashSet<tblBusinessTypeMapping>();
+            this.tblBusinessTypeMappings5 = new HashSet<tblBusinessTypeMapping>();
+            this.tblBusinessTypeMappings6 = new HashSet<tblBusinessTypeMapping>();
+            this.tblBusinessTypeMappings7 = new HashSet<tblBusinessTypeMapping>();
+            this.tblCategories = new HashSet<tblCategory>();
+            this.tblCategories1 = new HashSet<tblCategory>();
             this.tblCompanies = new HashSet<tblCompany>();
             this.tblCompanies1 = new HashSet<tblCompany>();
+            this.tblCoupons = new HashSet<tblCoupon>();
+            this.tblCoupons1 = new HashSet<tblCoupon>();
+            this.tblCouponMasters = new HashSet<tblCouponMaster>();
+            this.tblCouponMasters1 = new HashSet<tblCouponMaster>();
+            this.tblCreditRequests = new HashSet<tblCreditRequest>();
+            this.tblCreditRequests1 = new HashSet<tblCreditRequest>();
+            this.tblCreditRequests2 = new HashSet<tblCreditRequest>();
+            this.tblCreditRequests3 = new HashSet<tblCreditRequest>();
+            this.tblCustomerCompanies = new HashSet<tblCustomerCompany>();
+            this.tblCustomerCompanies1 = new HashSet<tblCustomerCompany>();
+            this.tblCustomerFiles = new HashSet<tblCustomerFile>();
+            this.tblCustomerFiles1 = new HashSet<tblCustomerFile>();
             this.tblDriverDetails = new HashSet<tblDriverDetail>();
             this.tblDriverDetails1 = new HashSet<tblDriverDetail>();
+            this.tblDriverDetails2 = new HashSet<tblDriverDetail>();
+            this.tblDriverDetails3 = new HashSet<tblDriverDetail>();
+            this.tblDriverLists = new HashSet<tblDriverList>();
+            this.tblDriverLists1 = new HashSet<tblDriverList>();
+            this.tblDriverLists2 = new HashSet<tblDriverList>();
+            this.tblEcomVouchers = new HashSet<tblEcomVoucher>();
+            this.tblEcomVouchers1 = new HashSet<tblEcomVoucher>();
             this.tblEntityTypes = new HashSet<tblEntityType>();
             this.tblEntityTypes1 = new HashSet<tblEntityType>();
+            this.tblEVCDisputes = new HashSet<tblEVCDispute>();
+            this.tblEVCDisputes1 = new HashSet<tblEVCDispute>();
+            this.tblEvcPartners = new HashSet<tblEvcPartner>();
+            this.tblEvcPartners1 = new HashSet<tblEvcPartner>();
+            this.tblEvcPartnerPreferences = new HashSet<tblEvcPartnerPreference>();
+            this.tblEvcPartnerPreferences1 = new HashSet<tblEvcPartnerPreference>();
             this.tblEVCPODDetails = new HashSet<tblEVCPODDetail>();
             this.tblEVCPODDetails1 = new HashSet<tblEVCPODDetail>();
             this.tblEVCRegistrations = new HashSet<tblEVCRegistration>();
             this.tblEVCRegistrations1 = new HashSet<tblEVCRegistration>();
+            this.tblEVCWalletAdditions = new HashSet<tblEVCWalletAddition>();
+            this.tblEVCWalletAdditions1 = new HashSet<tblEVCWalletAddition>();
+            this.TblEVCWalletHistories = new HashSet<TblEVCWalletHistory>();
+            this.TblEVCWalletHistories1 = new HashSet<TblEVCWalletHistory>();
             this.tblExchangeABBStatusHistories = new HashSet<tblExchangeABBStatusHistory>();
             this.tblExchangeABBStatusHistories1 = new HashSet<tblExchangeABBStatusHistory>();
             this.tblExchangeOrders = new HashSet<tblExchangeOrder>();
             this.tblExchangeOrders1 = new HashSet<tblExchangeOrder>();
+            this.tblImageLabelMasters = new HashSet<tblImageLabelMaster>();
+            this.tblImageLabelMasters1 = new HashSet<tblImageLabelMaster>();
+            this.tblItems = new HashSet<tblItem>();
+            this.tblItems1 = new HashSet<tblItem>();
+            this.tblLogin_Mobile = new HashSet<tblLogin_Mobile>();
             this.tblLogistics = new HashSet<tblLogistic>();
             this.tblLogistics1 = new HashSet<tblLogistic>();
+            this.tblLogistics2 = new HashSet<tblLogistic>();
+            this.tblLogistics3 = new HashSet<tblLogistic>();
             this.tblOrderImageUploads = new HashSet<tblOrderImageUpload>();
             this.tblOrderImageUploads1 = new HashSet<tblOrderImageUpload>();
             this.tblOrderLGCs = new HashSet<tblOrderLGC>();
             this.tblOrderLGCs1 = new HashSet<tblOrderLGC>();
+            this.tblOrderQCs = new HashSet<tblOrderQC>();
+            this.tblOrderQCs1 = new HashSet<tblOrderQC>();
+            this.tblOrderQCRatings = new HashSet<tblOrderQCRating>();
+            this.tblOrderQCRatings1 = new HashSet<tblOrderQCRating>();
             this.tblOrderTrans = new HashSet<tblOrderTran>();
             this.tblOrderTrans1 = new HashSet<tblOrderTran>();
+            this.tblOrderTrans2 = new HashSet<tblOrderTran>();
+            this.tblOrderTrans3 = new HashSet<tblOrderTran>();
+            this.tblOrderTrans4 = new HashSet<tblOrderTran>();
+            this.tblPriceMasterMappings = new HashSet<tblPriceMasterMapping>();
+            this.tblPriceMasterMappings1 = new HashSet<tblPriceMasterMapping>();
+            this.tblPriceMasterNames = new HashSet<tblPriceMasterName>();
+            this.tblPriceMasterNames1 = new HashSet<tblPriceMasterName>();
+            this.TblPriceMasterQuestioners = new HashSet<TblPriceMasterQuestioner>();
+            this.TblPriceMasterQuestioners1 = new HashSet<TblPriceMasterQuestioner>();
+            this.TblProdCatBrandMappings = new HashSet<TblProdCatBrandMapping>();
+            this.TblProdCatBrandMappings1 = new HashSet<TblProdCatBrandMapping>();
+            this.TblProductTechnologies = new HashSet<TblProductTechnology>();
+            this.TblProductTechnologies1 = new HashSet<TblProductTechnology>();
+            this.tblPushNotificationMessageDetails = new HashSet<tblPushNotificationMessageDetail>();
+            this.tblPushNotificationMessageDetails1 = new HashSet<tblPushNotificationMessageDetail>();
+            this.tblPushNotificationSavedDetails = new HashSet<tblPushNotificationSavedDetail>();
+            this.tblPushNotificationSavedDetails1 = new HashSet<tblPushNotificationSavedDetail>();
+            this.tblQCRatingMasters = new HashSet<tblQCRatingMaster>();
+            this.tblQCRatingMasters1 = new HashSet<tblQCRatingMaster>();
+            this.tblQCRatingMasters2 = new HashSet<tblQCRatingMaster>();
+            this.tblQCRatingMasters3 = new HashSet<tblQCRatingMaster>();
+            this.TblQuestionerLOVs = new HashSet<TblQuestionerLOV>();
+            this.TblQuestionerLOVs1 = new HashSet<TblQuestionerLOV>();
+            this.TblQuestionerLOVMappings = new HashSet<TblQuestionerLOVMapping>();
+            this.TblQuestionerLOVMappings1 = new HashSet<TblQuestionerLOVMapping>();
+            this.tblQuestionsForSweetners = new HashSet<tblQuestionsForSweetner>();
+            this.tblQuestionsForSweetners1 = new HashSet<tblQuestionsForSweetner>();
+            this.tblRefurbisherRegistrations = new HashSet<tblRefurbisherRegistration>();
+            this.tblRefurbisherRegistrations1 = new HashSet<tblRefurbisherRegistration>();
             this.tblRoles = new HashSet<tblRole>();
             this.tblRoles1 = new HashSet<tblRole>();
             this.tblRoleAccesses = new HashSet<tblRoleAccess>();
             this.tblRoleAccesses1 = new HashSet<tblRoleAccess>();
-            this.tblTimeLines = new HashSet<tblTimeLine>();
+            this.tblSelfQCs = new HashSet<tblSelfQC>();
+            this.tblServicePartners = new HashSet<tblServicePartner>();
+            this.tblServicePartners1 = new HashSet<tblServicePartner>();
+            this.tblServicePartners2 = new HashSet<tblServicePartner>();
+            this.tblTempDatas = new HashSet<tblTempData>();
+            this.tblTempDatas1 = new HashSet<tblTempData>();
             this.tblTimelineStatusMappings = new HashSet<tblTimelineStatusMapping>();
+            this.tblTimelineStatusMappings1 = new HashSet<tblTimelineStatusMapping>();
+            this.tblTimelineStatusMappings2 = new HashSet<tblTimelineStatusMapping>();
+            this.tblTimelineStatusMappings3 = new HashSet<tblTimelineStatusMapping>();
+            this.tblUniversalPriceMasters = new HashSet<tblUniversalPriceMaster>();
+            this.tblUniversalPriceMasters1 = new HashSet<tblUniversalPriceMaster>();
+            this.tblUserMappings = new HashSet<tblUserMapping>();
+            this.tblUserMappings1 = new HashSet<tblUserMapping>();
+            this.tblUserMappings2 = new HashSet<tblUserMapping>();
+            this.tblVehicleLists = new HashSet<tblVehicleList>();
+            this.tblVehicleLists1 = new HashSet<tblVehicleList>();
+            this.UniversalPriceMasters = new HashSet<UniversalPriceMaster>();
+            this.UniversalPriceMasters1 = new HashSet<UniversalPriceMaster>();
             this.tblUser1 = new HashSet<tblUser>();
             this.tblUser11 = new HashSet<tblUser>();
             this.tblUserRoles = new HashSet<tblUserRole>();
             this.tblUserRoles1 = new HashSet<tblUserRole>();
             this.tblUserRoles2 = new HashSet<tblUserRole>();
+            this.TblVehicleIncentives = new HashSet<TblVehicleIncentive>();
+            this.TblVehicleIncentives1 = new HashSet<TblVehicleIncentive>();
+            this.TblVehicleJourneyTrackings = new HashSet<TblVehicleJourneyTracking>();
+            this.TblVehicleJourneyTrackings1 = new HashSet<TblVehicleJourneyTracking>();
+            this.TblVehicleJourneyTrackingDetails = new HashSet<TblVehicleJourneyTrackingDetail>();
+            this.TblVehicleJourneyTrackingDetails1 = new HashSet<TblVehicleJourneyTrackingDetail>();
             this.tblWalletTransactions = new HashSet<tblWalletTransaction>();
             this.tblWalletTransactions1 = new HashSet<tblWalletTransaction>();
-            this.tblEVCDisputes = new HashSet<tblEVCDispute>();
-            this.tblEVCDisputes1 = new HashSet<tblEVCDispute>();
-            this.tblTimelineStatusMappings1 = new HashSet<tblTimelineStatusMapping>();
-            this.tblImageLabelMasters = new HashSet<tblImageLabelMaster>();
-            this.tblImageLabelMasters1 = new HashSet<tblImageLabelMaster>();
-            this.tblServicePartners = new HashSet<tblServicePartner>();
-            this.tblServicePartners1 = new HashSet<tblServicePartner>();
-            this.tblServicePartners2 = new HashSet<tblServicePartner>();
-            this.tblDriverDetails2 = new HashSet<tblDriverDetail>();
-            this.tblOrderQCs = new HashSet<tblOrderQC>();
-            this.tblEVCWalletAdditions = new HashSet<tblEVCWalletAddition>();
-            this.tblEVCWalletAdditions1 = new HashSet<tblEVCWalletAddition>();
-            this.TblEVCWalletHistories = new HashSet<TblEVCWalletHistory>();
-            this.TblEVCWalletHistories1 = new HashSet<TblEVCWalletHistory>();
-            this.tblBUProductCategoryMappings = new HashSet<tblBUProductCategoryMapping>();
-            this.tblBUProductCategoryMappings1 = new HashSet<tblBUProductCategoryMapping>();
-            this.tblDriverDetails3 = new HashSet<tblDriverDetail>();
-            this.tblABBRedemptions = new HashSet<tblABBRedemption>();
-            this.tblABBRedemptions1 = new HashSet<tblABBRedemption>();
-            this.tblBUBasedSweetnerValidations = new HashSet<tblBUBasedSweetnerValidation>();
-            this.tblBUBasedSweetnerValidations1 = new HashSet<tblBUBasedSweetnerValidation>();
-            this.tblQuestionsForSweetners = new HashSet<tblQuestionsForSweetner>();
-            this.tblQuestionsForSweetners1 = new HashSet<tblQuestionsForSweetner>();
-            this.tblUniversalPriceMasters = new HashSet<tblUniversalPriceMaster>();
-            this.tblUniversalPriceMasters1 = new HashSet<tblUniversalPriceMaster>();
-            this.tblPriceMasterMappings = new HashSet<tblPriceMasterMapping>();
-            this.tblPriceMasterMappings1 = new HashSet<tblPriceMasterMapping>();
-            this.tblOrderTrans2 = new HashSet<tblOrderTran>();
-            this.tblSelfQCs = new HashSet<tblSelfQC>();
-            this.tblCustomerFiles = new HashSet<tblCustomerFile>();
-            this.tblCustomerFiles1 = new HashSet<tblCustomerFile>();
-            this.TblBPPincodeMappings = new HashSet<TblBPPincodeMapping>();
-            this.TblBPPincodeMappings1 = new HashSet<TblBPPincodeMapping>();
-            this.tblPriceMasterNames = new HashSet<tblPriceMasterName>();
-            this.tblPriceMasterNames1 = new HashSet<tblPriceMasterName>();
-            this.tblOrderTrans3 = new HashSet<tblOrderTran>();
-            this.tblOrderTrans11 = new HashSet<tblOrderTran>();
-            this.tblCoupons = new HashSet<tblCoupon>();
-            this.tblCoupons1 = new HashSet<tblCoupon>();
-            this.tblCouponMasters = new HashSet<tblCouponMaster>();
-            this.tblCouponMasters1 = new HashSet<tblCouponMaster>();
+            this.TimeSlotMasters = new HashSet<TimeSlotMaster>();
+            this.TimeSlotMasters1 = new HashSet<TimeSlotMaster>();
+            this.tblEcomPhoneSpecifics = new HashSet<tblEcomPhoneSpecific>();
+            this.tblEcomPhoneSpecifics1 = new HashSet<tblEcomPhoneSpecific>();
         }
     
         public int UserId { get; set; }
@@ -119,6 +213,28 @@ namespace RDCEL.DocUpload.DAL
         public Nullable<int> CompanyId { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Map_ServicePartnerCityState> Map_ServicePartnerCityState { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Map_ServicePartnerCityState> Map_ServicePartnerCityState1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<MapLoginUserDevice> MapLoginUserDevices { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<MapLoginUserDevice> MapLoginUserDevices1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<MapLoginUserDevice> MapLoginUserDevices2 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<MapLoginUserDevice> MapLoginUserDevices3 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<MapLoginUserDevice> MapLoginUserDevices4 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PriceMasterName> PriceMasterNames { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PriceMasterName> PriceMasterNames1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblABBRedemption> tblABBRedemptions { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblABBRedemption> tblABBRedemptions1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblAccessList> tblAccessLists { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblAccessList> tblAccessLists1 { get; set; }
@@ -129,18 +245,124 @@ namespace RDCEL.DocUpload.DAL
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblAddress> tblAddresses2 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblAPICall> tblAPICalls { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblAPICall> tblAPICalls1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblBookingItem> tblBookingItems { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblBookingItem> tblBookingItems1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TblBPPincodeMapping> TblBPPincodeMappings { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TblBPPincodeMapping> TblBPPincodeMappings1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TblBrandGroup> TblBrandGroups { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TblBrandGroup> TblBrandGroups1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblBUBasedSweetnerValidation> tblBUBasedSweetnerValidations { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblBUBasedSweetnerValidation> tblBUBasedSweetnerValidations1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblBUConfiguration> tblBUConfigurations { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblBUConfiguration> tblBUConfigurations1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblBUConfigurationMapping> tblBUConfigurationMappings { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblBUConfigurationMapping> tblBUConfigurationMappings1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblBUProductCategoryMapping> tblBUProductCategoryMappings { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblBUProductCategoryMapping> tblBUProductCategoryMappings1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblBusinessCustomer> tblBusinessCustomers { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblBusinessCustomer> tblBusinessCustomers1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblBusinessTypeMapping> tblBusinessTypeMappings { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblBusinessTypeMapping> tblBusinessTypeMappings1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblBusinessTypeMapping> tblBusinessTypeMappings2 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblBusinessTypeMapping> tblBusinessTypeMappings3 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblBusinessTypeMapping> tblBusinessTypeMappings4 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblBusinessTypeMapping> tblBusinessTypeMappings5 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblBusinessTypeMapping> tblBusinessTypeMappings6 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblBusinessTypeMapping> tblBusinessTypeMappings7 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblCategory> tblCategories { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblCategory> tblCategories1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblCompany> tblCompanies { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblCompany> tblCompanies1 { get; set; }
         public virtual tblCompany tblCompany { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblCoupon> tblCoupons { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblCoupon> tblCoupons1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblCouponMaster> tblCouponMasters { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblCouponMaster> tblCouponMasters1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblCreditRequest> tblCreditRequests { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblCreditRequest> tblCreditRequests1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblCreditRequest> tblCreditRequests2 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblCreditRequest> tblCreditRequests3 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblCustomerCompany> tblCustomerCompanies { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblCustomerCompany> tblCustomerCompanies1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblCustomerFile> tblCustomerFiles { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblCustomerFile> tblCustomerFiles1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblDriverDetail> tblDriverDetails { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblDriverDetail> tblDriverDetails1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblDriverDetail> tblDriverDetails2 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblDriverDetail> tblDriverDetails3 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblDriverList> tblDriverLists { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblDriverList> tblDriverLists1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblDriverList> tblDriverLists2 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblEcomVoucher> tblEcomVouchers { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblEcomVoucher> tblEcomVouchers1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblEntityType> tblEntityTypes { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblEntityType> tblEntityTypes1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblEVCDispute> tblEVCDisputes { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblEVCDispute> tblEVCDisputes1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblEvcPartner> tblEvcPartners { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblEvcPartner> tblEvcPartners1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblEvcPartnerPreference> tblEvcPartnerPreferences { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblEvcPartnerPreference> tblEvcPartnerPreferences1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblEVCPODDetail> tblEVCPODDetails { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -150,6 +372,14 @@ namespace RDCEL.DocUpload.DAL
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblEVCRegistration> tblEVCRegistrations1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblEVCWalletAddition> tblEVCWalletAdditions { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblEVCWalletAddition> tblEVCWalletAdditions1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TblEVCWalletHistory> TblEVCWalletHistories { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TblEVCWalletHistory> TblEVCWalletHistories1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblExchangeABBStatusHistory> tblExchangeABBStatusHistories { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblExchangeABBStatusHistory> tblExchangeABBStatusHistories1 { get; set; }
@@ -158,9 +388,23 @@ namespace RDCEL.DocUpload.DAL
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblExchangeOrder> tblExchangeOrders1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblImageLabelMaster> tblImageLabelMasters { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblImageLabelMaster> tblImageLabelMasters1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblItem> tblItems { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblItem> tblItems1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblLogin_Mobile> tblLogin_Mobile { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblLogistic> tblLogistics { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblLogistic> tblLogistics1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblLogistic> tblLogistics2 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblLogistic> tblLogistics3 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblOrderImageUpload> tblOrderImageUploads { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -170,9 +414,75 @@ namespace RDCEL.DocUpload.DAL
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblOrderLGC> tblOrderLGCs1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblOrderQC> tblOrderQCs { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblOrderQC> tblOrderQCs1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblOrderQCRating> tblOrderQCRatings { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblOrderQCRating> tblOrderQCRatings1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblOrderTran> tblOrderTrans { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblOrderTran> tblOrderTrans1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblOrderTran> tblOrderTrans2 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblOrderTran> tblOrderTrans3 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblOrderTran> tblOrderTrans4 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblPriceMasterMapping> tblPriceMasterMappings { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblPriceMasterMapping> tblPriceMasterMappings1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblPriceMasterName> tblPriceMasterNames { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblPriceMasterName> tblPriceMasterNames1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TblPriceMasterQuestioner> TblPriceMasterQuestioners { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TblPriceMasterQuestioner> TblPriceMasterQuestioners1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TblProdCatBrandMapping> TblProdCatBrandMappings { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TblProdCatBrandMapping> TblProdCatBrandMappings1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TblProductTechnology> TblProductTechnologies { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TblProductTechnology> TblProductTechnologies1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblPushNotificationMessageDetail> tblPushNotificationMessageDetails { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblPushNotificationMessageDetail> tblPushNotificationMessageDetails1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblPushNotificationSavedDetail> tblPushNotificationSavedDetails { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblPushNotificationSavedDetail> tblPushNotificationSavedDetails1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblQCRatingMaster> tblQCRatingMasters { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblQCRatingMaster> tblQCRatingMasters1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblQCRatingMaster> tblQCRatingMasters2 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblQCRatingMaster> tblQCRatingMasters3 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TblQuestionerLOV> TblQuestionerLOVs { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TblQuestionerLOV> TblQuestionerLOVs1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TblQuestionerLOVMapping> TblQuestionerLOVMappings { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TblQuestionerLOVMapping> TblQuestionerLOVMappings1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblQuestionsForSweetner> tblQuestionsForSweetners { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblQuestionsForSweetner> tblQuestionsForSweetners1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblRefurbisherRegistration> tblRefurbisherRegistrations { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblRefurbisherRegistration> tblRefurbisherRegistrations1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblRole> tblRoles { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -182,9 +492,43 @@ namespace RDCEL.DocUpload.DAL
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblRoleAccess> tblRoleAccesses1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblTimeLine> tblTimeLines { get; set; }
+        public virtual ICollection<tblSelfQC> tblSelfQCs { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblServicePartner> tblServicePartners { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblServicePartner> tblServicePartners1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblServicePartner> tblServicePartners2 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblTempData> tblTempDatas { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblTempData> tblTempDatas1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblTimelineStatusMapping> tblTimelineStatusMappings { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblTimelineStatusMapping> tblTimelineStatusMappings1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblTimelineStatusMapping> tblTimelineStatusMappings2 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblTimelineStatusMapping> tblTimelineStatusMappings3 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblUniversalPriceMaster> tblUniversalPriceMasters { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblUniversalPriceMaster> tblUniversalPriceMasters1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblUserMapping> tblUserMappings { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblUserMapping> tblUserMappings1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblUserMapping> tblUserMappings2 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblVehicleList> tblVehicleLists { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblVehicleList> tblVehicleLists1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<UniversalPriceMaster> UniversalPriceMasters { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<UniversalPriceMaster> UniversalPriceMasters1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblUser> tblUser1 { get; set; }
         public virtual tblUser tblUser2 { get; set; }
@@ -198,90 +542,28 @@ namespace RDCEL.DocUpload.DAL
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblUserRole> tblUserRoles2 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TblVehicleIncentive> TblVehicleIncentives { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TblVehicleIncentive> TblVehicleIncentives1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TblVehicleJourneyTracking> TblVehicleJourneyTrackings { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TblVehicleJourneyTracking> TblVehicleJourneyTrackings1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TblVehicleJourneyTrackingDetail> TblVehicleJourneyTrackingDetails { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TblVehicleJourneyTrackingDetail> TblVehicleJourneyTrackingDetails1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblWalletTransaction> tblWalletTransactions { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblWalletTransaction> tblWalletTransactions1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblEVCDispute> tblEVCDisputes { get; set; }
+        public virtual ICollection<TimeSlotMaster> TimeSlotMasters { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblEVCDispute> tblEVCDisputes1 { get; set; }
+        public virtual ICollection<TimeSlotMaster> TimeSlotMasters1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblTimelineStatusMapping> tblTimelineStatusMappings1 { get; set; }
+        public virtual ICollection<tblEcomPhoneSpecific> tblEcomPhoneSpecifics { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblImageLabelMaster> tblImageLabelMasters { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblImageLabelMaster> tblImageLabelMasters1 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblServicePartner> tblServicePartners { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblServicePartner> tblServicePartners1 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblServicePartner> tblServicePartners2 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblDriverDetail> tblDriverDetails2 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblOrderQC> tblOrderQCs { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblEVCWalletAddition> tblEVCWalletAdditions { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblEVCWalletAddition> tblEVCWalletAdditions1 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TblEVCWalletHistory> TblEVCWalletHistories { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TblEVCWalletHistory> TblEVCWalletHistories1 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblBUProductCategoryMapping> tblBUProductCategoryMappings { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblBUProductCategoryMapping> tblBUProductCategoryMappings1 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblDriverDetail> tblDriverDetails3 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblABBRedemption> tblABBRedemptions { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblABBRedemption> tblABBRedemptions1 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblBUBasedSweetnerValidation> tblBUBasedSweetnerValidations { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblBUBasedSweetnerValidation> tblBUBasedSweetnerValidations1 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblQuestionsForSweetner> tblQuestionsForSweetners { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblQuestionsForSweetner> tblQuestionsForSweetners1 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblUniversalPriceMaster> tblUniversalPriceMasters { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblUniversalPriceMaster> tblUniversalPriceMasters1 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblPriceMasterMapping> tblPriceMasterMappings { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblPriceMasterMapping> tblPriceMasterMappings1 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblOrderTran> tblOrderTrans2 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblSelfQC> tblSelfQCs { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblCustomerFile> tblCustomerFiles { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblCustomerFile> tblCustomerFiles1 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TblBPPincodeMapping> TblBPPincodeMappings { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TblBPPincodeMapping> TblBPPincodeMappings1 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblPriceMasterName> tblPriceMasterNames { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblPriceMasterName> tblPriceMasterNames1 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblOrderTran> tblOrderTrans3 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblOrderTran> tblOrderTrans11 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblCoupon> tblCoupons { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblCoupon> tblCoupons1 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblCouponMaster> tblCouponMasters { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblCouponMaster> tblCouponMasters1 { get; set; }
+        public virtual ICollection<tblEcomPhoneSpecific> tblEcomPhoneSpecifics1 { get; set; }
     }
 }

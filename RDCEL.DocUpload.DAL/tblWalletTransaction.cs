@@ -14,6 +14,12 @@ namespace RDCEL.DocUpload.DAL
     
     public partial class tblWalletTransaction
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public tblWalletTransaction()
+        {
+            this.tblCreditRequests = new HashSet<tblCreditRequest>();
+        }
+    
         public int WalletTransactionId { get; set; }
         public Nullable<int> EVCRegistrationId { get; set; }
         public string RegdNo { get; set; }
@@ -30,9 +36,9 @@ namespace RDCEL.DocUpload.DAL
         public Nullable<int> ModifiedBy { get; set; }
         public Nullable<System.DateTime> ModifiedDate { get; set; }
         public string ZohoAllocationId { get; set; }
+        public Nullable<System.DateTime> OrderofAssignDate { get; set; }
         public Nullable<int> OrderTransId { get; set; }
         public Nullable<bool> IsPrimeProductId { get; set; }
-        public Nullable<System.DateTime> OrderofAssignDate { get; set; }
         public Nullable<int> OldEVCId { get; set; }
         public Nullable<int> NewEVCId { get; set; }
         public Nullable<int> ReassignCount { get; set; }
@@ -47,10 +53,13 @@ namespace RDCEL.DocUpload.DAL
         public Nullable<int> LGCCost { get; set; }
         public Nullable<decimal> PrimeProductDiffAmt { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblCreditRequest> tblCreditRequests { get; set; }
+        public virtual tblEvcPartner tblEvcPartner { get; set; }
         public virtual tblEVCRegistration tblEVCRegistration { get; set; }
+        public virtual tblLoV tblLoV { get; set; }
         public virtual tblOrderTran tblOrderTran { get; set; }
         public virtual tblUser tblUser { get; set; }
         public virtual tblUser tblUser1 { get; set; }
-        public virtual tblLoV tblLoV { get; set; }
     }
 }

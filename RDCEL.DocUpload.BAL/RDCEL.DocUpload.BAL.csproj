@@ -114,10 +114,12 @@
     <Compile Include="ABBRegistration\ABBOrderManager.cs" />
     <Compile Include="BlowHornApiCall\BlowHornCall.cs" />
     <Compile Include="BlowHornSyncCall\BlowHornCreateShipmentCall.cs" />
+    <Compile Include="EcomVoucher\BrandManager.cs" />
     <Compile Include="Common\AES256encoding.cs" />
     <Compile Include="Common\NotificationManager.cs" />
     <Compile Include="Common\WhatsappNotificationManager.cs" />
     <Compile Include="CouponManager\CouponManager.cs" />
+    <Compile Include="EcomVoucher\EcomVoucherManager.cs" />
     <Compile Include="ERP\ERPManager.cs" />
     <Compile Include="ExchangePriceMaster\PriceMasterManager.cs" />
     <Compile Include="FeedBackManager\ManageFeedBack.cs" />

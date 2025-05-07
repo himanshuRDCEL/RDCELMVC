@@ -18,11 +18,11 @@ namespace RDCEL.DocUpload.DAL
         public tblCustomerDetail()
         {
             this.tblABBRedemptions = new HashSet<tblABBRedemption>();
+            this.tblABBRegistrations = new HashSet<tblABBRegistration>();
             this.tblFeedBacks = new HashSet<tblFeedBack>();
             this.tblHistories = new HashSet<tblHistory>();
             this.tblExchangeOrders = new HashSet<tblExchangeOrder>();
             this.tblVoucherVerfications = new HashSet<tblVoucherVerfication>();
-            this.tblABBRegistrations = new HashSet<tblABBRegistration>();
         }
     
         public int Id { get; set; }
@@ -48,15 +48,15 @@ namespace RDCEL.DocUpload.DAL
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblABBRedemption> tblABBRedemptions { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblABBRegistration> tblABBRegistrations { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblFeedBack> tblFeedBacks { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblHistory> tblHistories { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblExchangeOrder> tblExchangeOrders { get; set; }
+        public virtual tblOrderTran tblOrderTran { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblVoucherVerfication> tblVoucherVerfications { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblABBRegistration> tblABBRegistrations { get; set; }
-        public virtual tblOrderTran tblOrderTran { get; set; }
     }
 }

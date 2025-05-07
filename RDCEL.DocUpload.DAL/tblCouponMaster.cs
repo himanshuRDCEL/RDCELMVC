@@ -38,9 +38,9 @@ namespace RDCEL.DocUpload.DAL
     
         public virtual tblBusinessPartner tblBusinessPartner { get; set; }
         public virtual tblBusinessUnit tblBusinessUnit { get; set; }
-        public virtual tblUser tblUser { get; set; }
-        public virtual tblUser tblUser1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblCoupon> tblCoupons { get; set; }
+        public virtual tblUser tblUser { get; set; }
+        public virtual tblUser tblUser1 { get; set; }
     }
 }

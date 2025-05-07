@@ -12,6 +12,8 @@ namespace RDCEL.DocUpload.DAL
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class Digi2l_DBEntities : DbContext
     {
@@ -26,29 +28,61 @@ namespace RDCEL.DocUpload.DAL
         }
     
         public virtual DbSet<Login> Logins { get; set; }
+        public virtual DbSet<Map_ServicePartnerCityState> Map_ServicePartnerCityState { get; set; }
+        public virtual DbSet<MapLoginUserDevice> MapLoginUserDevices { get; set; }
+        public virtual DbSet<PriceMasterName> PriceMasterNames { get; set; }
         public virtual DbSet<tbl247Around> tbl247Around { get; set; }
         public virtual DbSet<tblABBPlanMaster> tblABBPlanMasters { get; set; }
+        public virtual DbSet<tblABBPriceMaster> tblABBPriceMasters { get; set; }
         public virtual DbSet<tblABBRedemption> tblABBRedemptions { get; set; }
+        public virtual DbSet<tblABBRegistration> tblABBRegistrations { get; set; }
         public virtual DbSet<tblAccessList> tblAccessLists { get; set; }
         public virtual DbSet<tblAddress> tblAddresses { get; set; }
+        public virtual DbSet<tblAPICall> tblAPICalls { get; set; }
+        public virtual DbSet<tblAreaLocality> tblAreaLocalities { get; set; }
         public virtual DbSet<tblBizlogTicket> tblBizlogTickets { get; set; }
         public virtual DbSet<tblBizlogTicketStatu> tblBizlogTicketStatus { get; set; }
         public virtual DbSet<tblBlowHornTicket> tblBlowHornTickets { get; set; }
+        public virtual DbSet<tblBookingItem> tblBookingItems { get; set; }
+        public virtual DbSet<TblBPPincodeMapping> TblBPPincodeMappings { get; set; }
         public virtual DbSet<tblBrand> tblBrands { get; set; }
+        public virtual DbSet<TblBrandGroup> TblBrandGroups { get; set; }
+        public virtual DbSet<tblBrandSmartBuy> tblBrandSmartBuys { get; set; }
+        public virtual DbSet<tblBUBasedSweetnerValidation> tblBUBasedSweetnerValidations { get; set; }
+        public virtual DbSet<tblBUConfiguration> tblBUConfigurations { get; set; }
+        public virtual DbSet<tblBUConfigurationMapping> tblBUConfigurationMappings { get; set; }
+        public virtual DbSet<tblBUProductCategoryMapping> tblBUProductCategoryMappings { get; set; }
+        public virtual DbSet<tblBusinessCustomer> tblBusinessCustomers { get; set; }
         public virtual DbSet<tblBusinessPartner> tblBusinessPartners { get; set; }
+        public virtual DbSet<tblBusinessType> tblBusinessTypes { get; set; }
+        public virtual DbSet<tblBusinessTypeMapping> tblBusinessTypeMappings { get; set; }
+        public virtual DbSet<tblBusinessUnit> tblBusinessUnits { get; set; }
+        public virtual DbSet<tblCategory> tblCategories { get; set; }
         public virtual DbSet<tblCity> tblCities { get; set; }
         public virtual DbSet<tblCompany> tblCompanies { get; set; }
         public virtual DbSet<tblConfiguration> tblConfigurations { get; set; }
+        public virtual DbSet<tblCoupon> tblCoupons { get; set; }
+        public virtual DbSet<tblCouponMaster> tblCouponMasters { get; set; }
+        public virtual DbSet<tblCreditRequest> tblCreditRequests { get; set; }
         public virtual DbSet<tblCurrentAuthtoken> tblCurrentAuthtokens { get; set; }
+        public virtual DbSet<tblCustomerCompany> tblCustomerCompanies { get; set; }
         public virtual DbSet<tblCustomerDetail> tblCustomerDetails { get; set; }
+        public virtual DbSet<tblCustomerFile> tblCustomerFiles { get; set; }
         public virtual DbSet<tblDriverDetail> tblDriverDetails { get; set; }
+        public virtual DbSet<tblDriverList> tblDriverLists { get; set; }
+        public virtual DbSet<tblEcomVoucher> tblEcomVouchers { get; set; }
         public virtual DbSet<tblEntityType> tblEntityTypes { get; set; }
         public virtual DbSet<tblErrorLog> tblErrorLogs { get; set; }
         public virtual DbSet<tblEVCApproved> tblEVCApproveds { get; set; }
+        public virtual DbSet<tblEVCDispute> tblEVCDisputes { get; set; }
+        public virtual DbSet<tblEvcPartner> tblEvcPartners { get; set; }
+        public virtual DbSet<tblEvcPartnerPreference> tblEvcPartnerPreferences { get; set; }
         public virtual DbSet<tblEVCPODDetail> tblEVCPODDetails { get; set; }
         public virtual DbSet<tblEvcPriceMaster> tblEvcPriceMasters { get; set; }
         public virtual DbSet<tblEVCPriceRangeMaster> tblEVCPriceRangeMasters { get; set; }
         public virtual DbSet<tblEVCRegistration> tblEVCRegistrations { get; set; }
+        public virtual DbSet<tblEVCWalletAddition> tblEVCWalletAdditions { get; set; }
+        public virtual DbSet<TblEVCWalletHistory> TblEVCWalletHistories { get; set; }
         public virtual DbSet<tblEVCWalletStatu> tblEVCWalletStatus { get; set; }
         public virtual DbSet<tblExchangeABBStatusHistory> tblExchangeABBStatusHistories { get; set; }
         public virtual DbSet<tblExchangeOrder> tblExchangeOrders { get; set; }
@@ -57,71 +91,824 @@ namespace RDCEL.DocUpload.DAL
         public virtual DbSet<tblFeedBackAnswer> tblFeedBackAnswers { get; set; }
         public virtual DbSet<tblFeedBackQuestion> tblFeedBackQuestions { get; set; }
         public virtual DbSet<tblHistory> tblHistories { get; set; }
+        public virtual DbSet<tblImageLabelMaster> tblImageLabelMasters { get; set; }
         public virtual DbSet<tblImage> tblImages { get; set; }
+        public virtual DbSet<tblItem> tblItems { get; set; }
+        public virtual DbSet<tblLogin_Mobile> tblLogin_Mobile { get; set; }
         public virtual DbSet<tblLogistic> tblLogistics { get; set; }
         public virtual DbSet<tblLoV> tblLoVs { get; set; }
         public virtual DbSet<tblMahindraLogistic> tblMahindraLogistics { get; set; }
         public virtual DbSet<tblMessageDetail> tblMessageDetails { get; set; }
+        public virtual DbSet<tblModelMapping> tblModelMappings { get; set; }
         public virtual DbSet<tblModelNumber> tblModelNumbers { get; set; }
+        public virtual DbSet<tblOrderBasedConfig> tblOrderBasedConfigs { get; set; }
         public virtual DbSet<tblOrderImageUpload> tblOrderImageUploads { get; set; }
         public virtual DbSet<tblOrderLGC> tblOrderLGCs { get; set; }
         public virtual DbSet<tblOrderPromoVoucher> tblOrderPromoVouchers { get; set; }
+        public virtual DbSet<tblOrderQC> tblOrderQCs { get; set; }
+        public virtual DbSet<tblOrderQCRating> tblOrderQCRatings { get; set; }
         public virtual DbSet<tblOrderTran> tblOrderTrans { get; set; }
+        public virtual DbSet<tblPaymentLeaser> tblPaymentLeasers { get; set; }
+        public virtual DbSet<tblPinCode> tblPinCodes { get; set; }
         public virtual DbSet<tblPincodeMasterDtoC> tblPincodeMasterDtoCs { get; set; }
         public virtual DbSet<tblPriceMaster> tblPriceMasters { get; set; }
+        public virtual DbSet<tblPriceMasterMapping> tblPriceMasterMappings { get; set; }
+        public virtual DbSet<tblPriceMasterName> tblPriceMasterNames { get; set; }
+        public virtual DbSet<TblPriceMasterQuestioner> TblPriceMasterQuestioners { get; set; }
+        public virtual DbSet<TblProdCatBrandMapping> TblProdCatBrandMappings { get; set; }
         public virtual DbSet<tblProductCategory> tblProductCategories { get; set; }
+        public virtual DbSet<tblProductConditionLabel> tblProductConditionLabels { get; set; }
         public virtual DbSet<tblProductQualityIndex> tblProductQualityIndexes { get; set; }
+        public virtual DbSet<TblProductTechnology> TblProductTechnologies { get; set; }
         public virtual DbSet<tblProductType> tblProductTypes { get; set; }
         public virtual DbSet<tblPromotionalVoucherMaster> tblPromotionalVoucherMasters { get; set; }
+        public virtual DbSet<tblPushNotificationMessageDetail> tblPushNotificationMessageDetails { get; set; }
+        public virtual DbSet<tblPushNotificationSavedDetail> tblPushNotificationSavedDetails { get; set; }
+        public virtual DbSet<tblQCRatingMaster> tblQCRatingMasters { get; set; }
+        public virtual DbSet<TblQuestionerLOV> TblQuestionerLOVs { get; set; }
+        public virtual DbSet<TblQuestionerLOVMapping> TblQuestionerLOVMappings { get; set; }
+        public virtual DbSet<tblQuestionsForSweetner> tblQuestionsForSweetners { get; set; }
+        public virtual DbSet<tblRefurbisherRegistration> tblRefurbisherRegistrations { get; set; }
         public virtual DbSet<tblRole> tblRoles { get; set; }
         public virtual DbSet<tblRoleAccess> tblRoleAccesses { get; set; }
         public virtual DbSet<tblSelfQC> tblSelfQCs { get; set; }
+        public virtual DbSet<tblServicePartner> tblServicePartners { get; set; }
         public virtual DbSet<tblSociety> tblSocieties { get; set; }
+        public virtual DbSet<tblSponsorCategoryMapping> tblSponsorCategoryMappings { get; set; }
         public virtual DbSet<tblState> tblStates { get; set; }
+        public virtual DbSet<tblTempData> tblTempDatas { get; set; }
         public virtual DbSet<tblTimeLine> tblTimeLines { get; set; }
         public virtual DbSet<tblTimelineStatusMapping> tblTimelineStatusMappings { get; set; }
+        public virtual DbSet<tblTransMasterABBPlanMaster> tblTransMasterABBPlanMasters { get; set; }
         public virtual DbSet<tblUnInstallationPriceMaster> tblUnInstallationPriceMasters { get; set; }
+        public virtual DbSet<tblUninstallationPrice> tblUninstallationPrices { get; set; }
+        public virtual DbSet<tblUniversalPriceMaster> tblUniversalPriceMasters { get; set; }
+        public virtual DbSet<tblUPIIdUpdatelog> tblUPIIdUpdatelogs { get; set; }
         public virtual DbSet<tblUser> tblUsers { get; set; }
+        public virtual DbSet<tblUserMapping> tblUserMappings { get; set; }
         public virtual DbSet<tblUserRole> tblUserRoles { get; set; }
         public virtual DbSet<tblVcareService> tblVcareServices { get; set; }
+        public virtual DbSet<TblVehicleIncentive> TblVehicleIncentives { get; set; }
+        public virtual DbSet<TblVehicleJourneyTracking> TblVehicleJourneyTrackings { get; set; }
+        public virtual DbSet<TblVehicleJourneyTrackingDetail> TblVehicleJourneyTrackingDetails { get; set; }
+        public virtual DbSet<tblVehicleList> tblVehicleLists { get; set; }
         public virtual DbSet<tblVoucherStatu> tblVoucherStatus { get; set; }
         public virtual DbSet<tblVoucherTermsAndCondition> tblVoucherTermsAndConditions { get; set; }
         public virtual DbSet<tblVoucherVerfication> tblVoucherVerfications { get; set; }
         public virtual DbSet<tblWalletTransaction> tblWalletTransactions { get; set; }
         public virtual DbSet<tblWhatsAppMessage> tblWhatsAppMessages { get; set; }
         public virtual DbSet<TimeSlotMaster> TimeSlotMasters { get; set; }
+        public virtual DbSet<UniversalPriceMaster> UniversalPriceMasters { get; set; }
+        public virtual DbSet<All_Abb_Temp_Tables_Data> All_Abb_Temp_Tables_Data { get; set; }
         public virtual DbSet<EVCAll_Call_AllocationsData> EVCAll_Call_AllocationsData { get; set; }
-        public virtual DbSet<ZohoExchangeData> ZohoExchangeDatas { get; set; }
-        public virtual DbSet<tblABBRegistration> tblABBRegistrations { get; set; }
-        public virtual DbSet<tblEVCDispute> tblEVCDisputes { get; set; }
-        public virtual DbSet<tblImageLabelMaster> tblImageLabelMasters { get; set; }
-        public virtual DbSet<tblServicePartner> tblServicePartners { get; set; }
-        public virtual DbSet<tblABBPriceMaster> tblABBPriceMasters { get; set; }
-        public virtual DbSet<tblBrandSmartBuy> tblBrandSmartBuys { get; set; }
-        public virtual DbSet<tblOrderQC> tblOrderQCs { get; set; }
-        public virtual DbSet<tblEVCWalletAddition> tblEVCWalletAdditions { get; set; }
-        public virtual DbSet<TblEVCWalletHistory> TblEVCWalletHistories { get; set; }
-        public virtual DbSet<tblBUProductCategoryMapping> tblBUProductCategoryMappings { get; set; }
-        public virtual DbSet<tblPaymentLeaser> tblPaymentLeasers { get; set; }
-        public virtual DbSet<tblTransMasterABBPlanMaster> tblTransMasterABBPlanMasters { get; set; }
-        public virtual DbSet<tblProductConditionLabel> tblProductConditionLabels { get; set; }
-        public virtual DbSet<tblAreaLocality> tblAreaLocalities { get; set; }
-        public virtual DbSet<tblBUBasedSweetnerValidation> tblBUBasedSweetnerValidations { get; set; }
-        public virtual DbSet<tblQuestionsForSweetner> tblQuestionsForSweetners { get; set; }
-        public virtual DbSet<tblOrderBasedConfig> tblOrderBasedConfigs { get; set; }
-        public virtual DbSet<tblUniversalPriceMaster> tblUniversalPriceMasters { get; set; }
-        public virtual DbSet<tblPriceMasterMapping> tblPriceMasterMappings { get; set; }
-        public virtual DbSet<tblModelMapping> tblModelMappings { get; set; }
-        public virtual DbSet<tblBusinessUnit> tblBusinessUnits { get; set; }
-        public virtual DbSet<tblCustomerFile> tblCustomerFiles { get; set; }
-        public virtual DbSet<tblBPBURedemptionMapping> tblBPBURedemptionMappings { get; set; }
-        public virtual DbSet<tblSponsorCategoryMapping> tblSponsorCategoryMappings { get; set; }
+        public virtual DbSet<PineLabsPriceMaster> PineLabsPriceMasters { get; set; }
         public virtual DbSet<tblBPBUAssociation> tblBPBUAssociations { get; set; }
-        public virtual DbSet<TblBPPincodeMapping> TblBPPincodeMappings { get; set; }
-        public virtual DbSet<tblPinCode> tblPinCodes { get; set; }
-        public virtual DbSet<tblPriceMasterName> tblPriceMasterNames { get; set; }
-        public virtual DbSet<tblUninstallationPrice> tblUninstallationPrices { get; set; }
-        public virtual DbSet<tblCoupon> tblCoupons { get; set; }
-        public virtual DbSet<tblCouponMaster> tblCouponMasters { get; set; }
+        public virtual DbSet<tblBPBURedemptionMapping> tblBPBURedemptionMappings { get; set; }
+        public virtual DbSet<tblQCRatingMasterMapping> tblQCRatingMasterMappings { get; set; }
+        public virtual DbSet<ZohoExchangeData> ZohoExchangeDatas { get; set; }
+        public virtual DbSet<View_ABB> View_ABB { get; set; }
+        public virtual DbSet<View_All_exchangeData_Address> View_All_exchangeData_Address { get; set; }
+        public virtual DbSet<View_AllABBRedemptionData> View_AllABBRedemptionData { get; set; }
+        public virtual DbSet<View_Allexchagedata_customer> View_Allexchagedata_customer { get; set; }
+        public virtual DbSet<View_AllExchangeData> View_AllExchangeData { get; set; }
+        public virtual DbSet<View_AllExchangeData_Daikin> View_AllExchangeData_Daikin { get; set; }
+        public virtual DbSet<View_AllExchangeData_Pickup> View_AllExchangeData_Pickup { get; set; }
+        public virtual DbSet<View_AllExchangeData2> View_AllExchangeData2 { get; set; }
+        public virtual DbSet<View_AllExchangeDatawithQC> View_AllExchangeDatawithQC { get; set; }
+        public virtual DbSet<View_BOSCHVoucher> View_BOSCHVoucher { get; set; }
+        public virtual DbSet<View_ExchangWithQC> View_ExchangWithQC { get; set; }
+        public virtual DbSet<tblEcomPhoneSpecific> tblEcomPhoneSpecifics { get; set; }
+    
+        public virtual ObjectResult<GetBusinessCustomerDashboard_Result> GetBusinessCustomerDashboard(Nullable<int> customerId)
+        {
+            var customerIdParameter = customerId.HasValue ?
+                new ObjectParameter("CustomerId", customerId) :
+                new ObjectParameter("CustomerId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetBusinessCustomerDashboard_Result>("GetBusinessCustomerDashboard", customerIdParameter);
+        }
+    
+        public virtual ObjectResult<GetCityByStateName_Result> GetCityByStateName(string state)
+        {
+            var stateParameter = state != null ?
+                new ObjectParameter("state", state) :
+                new ObjectParameter("state", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetCityByStateName_Result>("GetCityByStateName", stateParameter);
+        }
+    
+        public virtual ObjectResult<string> GetCityForMyGate(string pincode)
+        {
+            var pincodeParameter = pincode != null ?
+                new ObjectParameter("pincode", pincode) :
+                new ObjectParameter("pincode", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("GetCityForMyGate", pincodeParameter);
+        }
+    
+        public virtual ObjectResult<string> GetDaikinDailyReport()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("GetDaikinDailyReport");
+        }
+    
+        public virtual ObjectResult<string> GetPassowrdForDaikin()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("GetPassowrdForDaikin");
+        }
+    
+        public virtual ObjectResult<GetWalletSummaryByEVC_Result> GetWalletSummaryByEVC(Nullable<int> eVCID)
+        {
+            var eVCIDParameter = eVCID.HasValue ?
+                new ObjectParameter("EVCID", eVCID) :
+                new ObjectParameter("EVCID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetWalletSummaryByEVC_Result>("GetWalletSummaryByEVC", eVCIDParameter);
+        }
+    
+        public virtual ObjectResult<InsertNewBusinessUnitData_Result> InsertNewBusinessUnitData(string bUName, string bUDescription, string registrationNumber, string logoName, string email, Nullable<int> loginId)
+        {
+            var bUNameParameter = bUName != null ?
+                new ObjectParameter("BUName", bUName) :
+                new ObjectParameter("BUName", typeof(string));
+    
+            var bUDescriptionParameter = bUDescription != null ?
+                new ObjectParameter("BUDescription", bUDescription) :
+                new ObjectParameter("BUDescription", typeof(string));
+    
+            var registrationNumberParameter = registrationNumber != null ?
+                new ObjectParameter("RegistrationNumber", registrationNumber) :
+                new ObjectParameter("RegistrationNumber", typeof(string));
+    
+            var logoNameParameter = logoName != null ?
+                new ObjectParameter("LogoName", logoName) :
+                new ObjectParameter("LogoName", typeof(string));
+    
+            var emailParameter = email != null ?
+                new ObjectParameter("Email", email) :
+                new ObjectParameter("Email", typeof(string));
+    
+            var loginIdParameter = loginId.HasValue ?
+                new ObjectParameter("LoginId", loginId) :
+                new ObjectParameter("LoginId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<InsertNewBusinessUnitData_Result>("InsertNewBusinessUnitData", bUNameParameter, bUDescriptionParameter, registrationNumberParameter, logoNameParameter, emailParameter, loginIdParameter);
+        }
+    
+        public virtual ObjectResult<LoginByUsernamePassword_Result> LoginByUsernamePassword(string username, string password)
+        {
+            var usernameParameter = username != null ?
+                new ObjectParameter("username", username) :
+                new ObjectParameter("username", typeof(string));
+    
+            var passwordParameter = password != null ?
+                new ObjectParameter("password", password) :
+                new ObjectParameter("password", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<LoginByUsernamePassword_Result>("LoginByUsernamePassword", usernameParameter, passwordParameter);
+        }
+    
+        public virtual int MigrateABBPlanforCustomer()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("MigrateABBPlanforCustomer");
+        }
+    
+        public virtual ObjectResult<MODELBASEDNEWBPMAPPING_Result> MODELBASEDNEWBPMAPPING()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<MODELBASEDNEWBPMAPPING_Result>("MODELBASEDNEWBPMAPPING");
+        }
+    
+        public virtual int ScheduleExchangeOrdertoDB()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ScheduleExchangeOrdertoDB");
+        }
+    
+        public virtual int SchedulerABBtoDB()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SchedulerABBtoDB");
+        }
+    
+        public virtual int SchedulerEVCAllocationtoDB()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SchedulerEVCAllocationtoDB");
+        }
+    
+        public virtual ObjectResult<sp_AtteroWeaklyReport_Result> sp_AtteroWeaklyReport()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_AtteroWeaklyReport_Result>("sp_AtteroWeaklyReport");
+        }
+    
+        public virtual ObjectResult<sp_DeleteTestRecords_Result> sp_DeleteTestRecords()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_DeleteTestRecords_Result>("sp_DeleteTestRecords");
+        }
+    
+        public virtual ObjectResult<sp_GetABBPincodeListByBuid_Result> sp_GetABBPincodeListByBuid(Nullable<int> buid)
+        {
+            var buidParameter = buid.HasValue ?
+                new ObjectParameter("buid", buid) :
+                new ObjectParameter("buid", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_GetABBPincodeListByBuid_Result>("sp_GetABBPincodeListByBuid", buidParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> sp_GetABBPincodeListByBuidAndPincodeText(string pincode, Nullable<int> buid)
+        {
+            var pincodeParameter = pincode != null ?
+                new ObjectParameter("pincode", pincode) :
+                new ObjectParameter("pincode", typeof(string));
+    
+            var buidParameter = buid.HasValue ?
+                new ObjectParameter("buid", buid) :
+                new ObjectParameter("buid", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("sp_GetABBPincodeListByBuidAndPincodeText", pincodeParameter, buidParameter);
+        }
+    
+        public virtual ObjectResult<sp_GetAllStoreDataOfSingleDealer_Result> sp_GetAllStoreDataOfSingleDealer(string associatecode)
+        {
+            var associatecodeParameter = associatecode != null ?
+                new ObjectParameter("Associatecode", associatecode) :
+                new ObjectParameter("Associatecode", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_GetAllStoreDataOfSingleDealer_Result>("sp_GetAllStoreDataOfSingleDealer", associatecodeParameter);
+        }
+    
+        public virtual ObjectResult<string> sp_GetAreaLocalitybyAreaId(string areaLocalityId)
+        {
+            var areaLocalityIdParameter = areaLocalityId != null ?
+                new ObjectParameter("AreaLocalityId", areaLocalityId) :
+                new ObjectParameter("AreaLocalityId", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("sp_GetAreaLocalitybyAreaId", areaLocalityIdParameter);
+        }
+    
+        public virtual ObjectResult<sp_GetAreaLocalityListByPincode_Result> sp_GetAreaLocalityListByPincode(string pincode)
+        {
+            var pincodeParameter = pincode != null ?
+                new ObjectParameter("Pincode", pincode) :
+                new ObjectParameter("Pincode", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_GetAreaLocalityListByPincode_Result>("sp_GetAreaLocalityListByPincode", pincodeParameter);
+        }
+    
+        public virtual ObjectResult<sp_GetBPListbyPincode_Result> sp_GetBPListbyPincode(Nullable<int> city, Nullable<int> buid, string pincode)
+        {
+            var cityParameter = city.HasValue ?
+                new ObjectParameter("city", city) :
+                new ObjectParameter("city", typeof(int));
+    
+            var buidParameter = buid.HasValue ?
+                new ObjectParameter("buid", buid) :
+                new ObjectParameter("buid", typeof(int));
+    
+            var pincodeParameter = pincode != null ?
+                new ObjectParameter("pincode", pincode) :
+                new ObjectParameter("pincode", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_GetBPListbyPincode_Result>("sp_GetBPListbyPincode", cityParameter, buidParameter, pincodeParameter);
+        }
+    
+        public virtual ObjectResult<sp_GetBrabdList_Result> sp_GetBrabdList(Nullable<int> priceMasterNameId)
+        {
+            var priceMasterNameIdParameter = priceMasterNameId.HasValue ?
+                new ObjectParameter("PriceMasterNameId", priceMasterNameId) :
+                new ObjectParameter("PriceMasterNameId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_GetBrabdList_Result>("sp_GetBrabdList", priceMasterNameIdParameter);
+        }
+    
+        public virtual ObjectResult<sp_GetBrabdListForExchange_Result> sp_GetBrabdListForExchange()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_GetBrabdListForExchange_Result>("sp_GetBrabdListForExchange");
+        }
+    
+        public virtual ObjectResult<sp_GetBrabdListForExchangeByCategoryId_Result> sp_GetBrabdListForExchangeByCategoryId(Nullable<int> carId, string priceCode, Nullable<int> typeId)
+        {
+            var carIdParameter = carId.HasValue ?
+                new ObjectParameter("carId", carId) :
+                new ObjectParameter("carId", typeof(int));
+    
+            var priceCodeParameter = priceCode != null ?
+                new ObjectParameter("priceCode", priceCode) :
+                new ObjectParameter("priceCode", typeof(string));
+    
+            var typeIdParameter = typeId.HasValue ?
+                new ObjectParameter("typeId", typeId) :
+                new ObjectParameter("typeId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_GetBrabdListForExchangeByCategoryId_Result>("sp_GetBrabdListForExchangeByCategoryId", carIdParameter, priceCodeParameter, typeIdParameter);
+        }
+    
+        public virtual ObjectResult<sp_GetBrabdListForExchangeByCatId_Result> sp_GetBrabdListForExchangeByCatId(Nullable<int> carId, string priceCode, Nullable<int> typeId)
+        {
+            var carIdParameter = carId.HasValue ?
+                new ObjectParameter("carId", carId) :
+                new ObjectParameter("carId", typeof(int));
+    
+            var priceCodeParameter = priceCode != null ?
+                new ObjectParameter("priceCode", priceCode) :
+                new ObjectParameter("priceCode", typeof(string));
+    
+            var typeIdParameter = typeId.HasValue ?
+                new ObjectParameter("typeId", typeId) :
+                new ObjectParameter("typeId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_GetBrabdListForExchangeByCatId_Result>("sp_GetBrabdListForExchangeByCatId", carIdParameter, priceCodeParameter, typeIdParameter);
+        }
+    
+        public virtual ObjectResult<sp_GetBrandListAsperBusinessUnitId_Result> sp_GetBrandListAsperBusinessUnitId(Nullable<int> catid, Nullable<int> buid)
+        {
+            var catidParameter = catid.HasValue ?
+                new ObjectParameter("catid", catid) :
+                new ObjectParameter("catid", typeof(int));
+    
+            var buidParameter = buid.HasValue ?
+                new ObjectParameter("buid", buid) :
+                new ObjectParameter("buid", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_GetBrandListAsperBusinessUnitId_Result>("sp_GetBrandListAsperBusinessUnitId", catidParameter, buidParameter);
+        }
+    
+        public virtual ObjectResult<sp_GetBrandsByPriceMasterNameId_Result> sp_GetBrandsByPriceMasterNameId(Nullable<int> catid, Nullable<int> priceMasterNameId, Nullable<int> typeId)
+        {
+            var catidParameter = catid.HasValue ?
+                new ObjectParameter("catid", catid) :
+                new ObjectParameter("catid", typeof(int));
+    
+            var priceMasterNameIdParameter = priceMasterNameId.HasValue ?
+                new ObjectParameter("PriceMasterNameId", priceMasterNameId) :
+                new ObjectParameter("PriceMasterNameId", typeof(int));
+    
+            var typeIdParameter = typeId.HasValue ?
+                new ObjectParameter("typeId", typeId) :
+                new ObjectParameter("typeId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_GetBrandsByPriceMasterNameId_Result>("sp_GetBrandsByPriceMasterNameId", catidParameter, priceMasterNameIdParameter, typeIdParameter);
+        }
+    
+        public virtual ObjectResult<sp_GetCityList_Result> sp_GetCityList()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_GetCityList_Result>("sp_GetCityList");
+        }
+    
+        public virtual ObjectResult<sp_GetCityListForBU_Result> sp_GetCityListForBU(string state, Nullable<int> buid, string email)
+        {
+            var stateParameter = state != null ?
+                new ObjectParameter("state", state) :
+                new ObjectParameter("state", typeof(string));
+    
+            var buidParameter = buid.HasValue ?
+                new ObjectParameter("buid", buid) :
+                new ObjectParameter("buid", typeof(int));
+    
+            var emailParameter = email != null ?
+                new ObjectParameter("email", email) :
+                new ObjectParameter("email", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_GetCityListForBU_Result>("sp_GetCityListForBU", stateParameter, buidParameter, emailParameter);
+        }
+    
+        public virtual ObjectResult<sp_GetCityListforExchange_Result> sp_GetCityListforExchange(Nullable<int> buid)
+        {
+            var buidParameter = buid.HasValue ?
+                new ObjectParameter("buid", buid) :
+                new ObjectParameter("buid", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_GetCityListforExchange_Result>("sp_GetCityListforExchange", buidParameter);
+        }
+    
+        public virtual int sp_GetClientCredentials(string username, string password)
+        {
+            var usernameParameter = username != null ?
+                new ObjectParameter("username", username) :
+                new ObjectParameter("username", typeof(string));
+    
+            var passwordParameter = password != null ?
+                new ObjectParameter("password", password) :
+                new ObjectParameter("password", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_GetClientCredentials", usernameParameter, passwordParameter);
+        }
+    
+        public virtual ObjectResult<sp_GetExchangeOrderDCByVoucherCode_Result> sp_GetExchangeOrderDCByVoucherCode(string voucherCode, string custPhoneNumber)
+        {
+            var voucherCodeParameter = voucherCode != null ?
+                new ObjectParameter("VoucherCode", voucherCode) :
+                new ObjectParameter("VoucherCode", typeof(string));
+    
+            var custPhoneNumberParameter = custPhoneNumber != null ?
+                new ObjectParameter("CustPhoneNumber", custPhoneNumber) :
+                new ObjectParameter("CustPhoneNumber", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_GetExchangeOrderDCByVoucherCode_Result>("sp_GetExchangeOrderDCByVoucherCode", voucherCodeParameter, custPhoneNumberParameter);
+        }
+    
+        public virtual ObjectResult<sp_GetExchangePincodeListByBuid_Result> sp_GetExchangePincodeListByBuid(Nullable<int> buid)
+        {
+            var buidParameter = buid.HasValue ?
+                new ObjectParameter("buid", buid) :
+                new ObjectParameter("buid", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_GetExchangePincodeListByBuid_Result>("sp_GetExchangePincodeListByBuid", buidParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> sp_GetExchangePincodeListByBuidAndPincodeText(string pincode, Nullable<int> buid)
+        {
+            var pincodeParameter = pincode != null ?
+                new ObjectParameter("pincode", pincode) :
+                new ObjectParameter("pincode", typeof(string));
+    
+            var buidParameter = buid.HasValue ?
+                new ObjectParameter("buid", buid) :
+                new ObjectParameter("buid", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("sp_GetExchangePincodeListByBuidAndPincodeText", pincodeParameter, buidParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<bool>> sp_GetIsCouponsAvailable(Nullable<int> businessPartnerID)
+        {
+            var businessPartnerIDParameter = businessPartnerID.HasValue ?
+                new ObjectParameter("BusinessPartnerID", businessPartnerID) :
+                new ObjectParameter("BusinessPartnerID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<bool>>("sp_GetIsCouponsAvailable", businessPartnerIDParameter);
+        }
+    
+        public virtual ObjectResult<sp_GetListOfAllServicePartners_Result> sp_GetListOfAllServicePartners()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_GetListOfAllServicePartners_Result>("sp_GetListOfAllServicePartners");
+        }
+    
+        public virtual ObjectResult<sp_GetModalDetailsByBUandBp_Result> sp_GetModalDetailsByBUandBp(Nullable<int> buid, Nullable<int> bpid, Nullable<int> brandid, Nullable<int> catId, Nullable<int> typeId)
+        {
+            var buidParameter = buid.HasValue ?
+                new ObjectParameter("Buid", buid) :
+                new ObjectParameter("Buid", typeof(int));
+    
+            var bpidParameter = bpid.HasValue ?
+                new ObjectParameter("Bpid", bpid) :
+                new ObjectParameter("Bpid", typeof(int));
+    
+            var brandidParameter = brandid.HasValue ?
+                new ObjectParameter("Brandid", brandid) :
+                new ObjectParameter("Brandid", typeof(int));
+    
+            var catIdParameter = catId.HasValue ?
+                new ObjectParameter("catId", catId) :
+                new ObjectParameter("catId", typeof(int));
+    
+            var typeIdParameter = typeId.HasValue ?
+                new ObjectParameter("typeId", typeId) :
+                new ObjectParameter("typeId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_GetModalDetailsByBUandBp_Result>("sp_GetModalDetailsByBUandBp", buidParameter, bpidParameter, brandidParameter, catIdParameter, typeIdParameter);
+        }
+    
+        public virtual ObjectResult<sp_GetNotDeliveredOrderForBU_Result> sp_GetNotDeliveredOrderForBU(string companyName, string fromDate)
+        {
+            var companyNameParameter = companyName != null ?
+                new ObjectParameter("CompanyName", companyName) :
+                new ObjectParameter("CompanyName", typeof(string));
+    
+            var fromDateParameter = fromDate != null ?
+                new ObjectParameter("FromDate", fromDate) :
+                new ObjectParameter("FromDate", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_GetNotDeliveredOrderForBU_Result>("sp_GetNotDeliveredOrderForBU", companyNameParameter, fromDateParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> sp_GetOrderCountForAllStoresOfsingleAssociate(string associateCode)
+        {
+            var associateCodeParameter = associateCode != null ?
+                new ObjectParameter("AssociateCode", associateCode) :
+                new ObjectParameter("AssociateCode", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("sp_GetOrderCountForAllStoresOfsingleAssociate", associateCodeParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> sp_GetOrderStatusSummaryForAllBU()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("sp_GetOrderStatusSummaryForAllBU");
+        }
+    
+        public virtual ObjectResult<Nullable<int>> sp_GetOrderSummaryForBU(Nullable<int> buid, string companyName)
+        {
+            var buidParameter = buid.HasValue ?
+                new ObjectParameter("buid", buid) :
+                new ObjectParameter("buid", typeof(int));
+    
+            var companyNameParameter = companyName != null ?
+                new ObjectParameter("companyName", companyName) :
+                new ObjectParameter("companyName", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("sp_GetOrderSummaryForBU", buidParameter, companyNameParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> sp_GetOrderSummaryForBUWithDateRange(string startdate, string enddate, string companyName, Nullable<int> statusCode)
+        {
+            var startdateParameter = startdate != null ?
+                new ObjectParameter("startdate", startdate) :
+                new ObjectParameter("startdate", typeof(string));
+    
+            var enddateParameter = enddate != null ?
+                new ObjectParameter("enddate", enddate) :
+                new ObjectParameter("enddate", typeof(string));
+    
+            var companyNameParameter = companyName != null ?
+                new ObjectParameter("companyName", companyName) :
+                new ObjectParameter("companyName", typeof(string));
+    
+            var statusCodeParameter = statusCode.HasValue ?
+                new ObjectParameter("statusCode", statusCode) :
+                new ObjectParameter("statusCode", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("sp_GetOrderSummaryForBUWithDateRange", startdateParameter, enddateParameter, companyNameParameter, statusCodeParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> sp_GetPincodeByCityIdBUId(Nullable<int> cityId, Nullable<int> buid, string pintext)
+        {
+            var cityIdParameter = cityId.HasValue ?
+                new ObjectParameter("cityId", cityId) :
+                new ObjectParameter("cityId", typeof(int));
+    
+            var buidParameter = buid.HasValue ?
+                new ObjectParameter("buid", buid) :
+                new ObjectParameter("buid", typeof(int));
+    
+            var pintextParameter = pintext != null ?
+                new ObjectParameter("pintext", pintext) :
+                new ObjectParameter("pintext", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("sp_GetPincodeByCityIdBUId", cityIdParameter, buidParameter, pintextParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> sp_GetPincodeForABB()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("sp_GetPincodeForABB");
+        }
+    
+        public virtual ObjectResult<sp_getPincodeforPineLabs_Result> sp_getPincodeforPineLabs()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_getPincodeforPineLabs_Result>("sp_getPincodeforPineLabs");
+        }
+    
+        public virtual ObjectResult<sp_GetPincodeListForABBD2C_Result> sp_GetPincodeListForABBD2C()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_GetPincodeListForABBD2C_Result>("sp_GetPincodeListForABBD2C");
+        }
+    
+        public virtual ObjectResult<string> sp_GetPincodeListForBU(string state, string city, Nullable<int> buid)
+        {
+            var stateParameter = state != null ?
+                new ObjectParameter("state", state) :
+                new ObjectParameter("state", typeof(string));
+    
+            var cityParameter = city != null ?
+                new ObjectParameter("city", city) :
+                new ObjectParameter("city", typeof(string));
+    
+            var buidParameter = buid.HasValue ?
+                new ObjectParameter("buid", buid) :
+                new ObjectParameter("buid", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("sp_GetPincodeListForBU", stateParameter, cityParameter, buidParameter);
+        }
+    
+        public virtual ObjectResult<sp_GetPincodeListForMYG_Result> sp_GetPincodeListForMYG()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_GetPincodeListForMYG_Result>("sp_GetPincodeListForMYG");
+        }
+    
+        public virtual ObjectResult<sp_GetPineLabsWeaklyReport_Result> sp_GetPineLabsWeaklyReport()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_GetPineLabsWeaklyReport_Result>("sp_GetPineLabsWeaklyReport");
+        }
+    
+        public virtual ObjectResult<sp_GetPriceMasterMappingDetails_Result> sp_GetPriceMasterMappingDetails(Nullable<int> buid, Nullable<int> bpid)
+        {
+            var buidParameter = buid.HasValue ?
+                new ObjectParameter("buid", buid) :
+                new ObjectParameter("buid", typeof(int));
+    
+            var bpidParameter = bpid.HasValue ?
+                new ObjectParameter("bpid", bpid) :
+                new ObjectParameter("bpid", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_GetPriceMasterMappingDetails_Result>("sp_GetPriceMasterMappingDetails", buidParameter, bpidParameter);
+        }
+    
+        public virtual ObjectResult<sp_GetPriceMasterNameIdbyBU_Result> sp_GetPriceMasterNameIdbyBU(Nullable<int> buid)
+        {
+            var buidParameter = buid.HasValue ?
+                new ObjectParameter("buid", buid) :
+                new ObjectParameter("buid", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_GetPriceMasterNameIdbyBU_Result>("sp_GetPriceMasterNameIdbyBU", buidParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> sp_GetProductCategoryByBUId(Nullable<int> bUId)
+        {
+            var bUIdParameter = bUId.HasValue ?
+                new ObjectParameter("BUId", bUId) :
+                new ObjectParameter("BUId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("sp_GetProductCategoryByBUId", bUIdParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> sp_GetProductCategoryByPriceCode(string pricecode)
+        {
+            var pricecodeParameter = pricecode != null ?
+                new ObjectParameter("pricecode", pricecode) :
+                new ObjectParameter("pricecode", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("sp_GetProductCategoryByPriceCode", pricecodeParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> sp_GetProductCategoryByPriceMasterNameId(string priceMasterNameId)
+        {
+            var priceMasterNameIdParameter = priceMasterNameId != null ?
+                new ObjectParameter("PriceMasterNameId", priceMasterNameId) :
+                new ObjectParameter("PriceMasterNameId", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("sp_GetProductCategoryByPriceMasterNameId", priceMasterNameIdParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> sp_getProductCategoryForABB(Nullable<int> buid, Nullable<int> catid)
+        {
+            var buidParameter = buid.HasValue ?
+                new ObjectParameter("buid", buid) :
+                new ObjectParameter("buid", typeof(int));
+    
+            var catidParameter = catid.HasValue ?
+                new ObjectParameter("catid", catid) :
+                new ObjectParameter("catid", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("sp_getProductCategoryForABB", buidParameter, catidParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> sp_getProductCategoryListForNew(Nullable<int> buid)
+        {
+            var buidParameter = buid.HasValue ?
+                new ObjectParameter("buid", buid) :
+                new ObjectParameter("buid", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("sp_getProductCategoryListForNew", buidParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> sp_getProductCategoryListForNewABB(Nullable<int> buid)
+        {
+            var buidParameter = buid.HasValue ?
+                new ObjectParameter("buid", buid) :
+                new ObjectParameter("buid", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("sp_getProductCategoryListForNewABB", buidParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> sp_GetProductTypeByBUIdandCatId(Nullable<int> bUId, Nullable<int> catId)
+        {
+            var bUIdParameter = bUId.HasValue ?
+                new ObjectParameter("BUId", bUId) :
+                new ObjectParameter("BUId", typeof(int));
+    
+            var catIdParameter = catId.HasValue ?
+                new ObjectParameter("catId", catId) :
+                new ObjectParameter("catId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("sp_GetProductTypeByBUIdandCatId", bUIdParameter, catIdParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> sp_GetProductTypeByBUIdOnly(Nullable<int> bUId)
+        {
+            var bUIdParameter = bUId.HasValue ?
+                new ObjectParameter("BUId", bUId) :
+                new ObjectParameter("BUId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("sp_GetProductTypeByBUIdOnly", bUIdParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> sp_GetProductTypeByPriceCode(string pricecode, Nullable<int> catid)
+        {
+            var pricecodeParameter = pricecode != null ?
+                new ObjectParameter("pricecode", pricecode) :
+                new ObjectParameter("pricecode", typeof(string));
+    
+            var catidParameter = catid.HasValue ?
+                new ObjectParameter("catid", catid) :
+                new ObjectParameter("catid", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("sp_GetProductTypeByPriceCode", pricecodeParameter, catidParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> sp_GetProductTypeByPriceMasterNameId(Nullable<int> priceMasterNameId, Nullable<int> catid)
+        {
+            var priceMasterNameIdParameter = priceMasterNameId.HasValue ?
+                new ObjectParameter("PriceMasterNameId", priceMasterNameId) :
+                new ObjectParameter("PriceMasterNameId", typeof(int));
+    
+            var catidParameter = catid.HasValue ?
+                new ObjectParameter("catid", catid) :
+                new ObjectParameter("catid", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("sp_GetProductTypeByPriceMasterNameId", priceMasterNameIdParameter, catidParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> sp_GetProductTypeByPriceMasterNameIdOnly(Nullable<int> priceMasterNameId)
+        {
+            var priceMasterNameIdParameter = priceMasterNameId.HasValue ?
+                new ObjectParameter("PriceMasterNameId", priceMasterNameId) :
+                new ObjectParameter("PriceMasterNameId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("sp_GetProductTypeByPriceMasterNameIdOnly", priceMasterNameIdParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> sp_getProductTypeForABB(Nullable<int> buid, Nullable<int> catid)
+        {
+            var buidParameter = buid.HasValue ?
+                new ObjectParameter("buid", buid) :
+                new ObjectParameter("buid", typeof(int));
+    
+            var catidParameter = catid.HasValue ?
+                new ObjectParameter("catid", catid) :
+                new ObjectParameter("catid", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("sp_getProductTypeForABB", buidParameter, catidParameter);
+        }
+    
+        public virtual ObjectResult<sp_getStateAndCityByPincode_Result> sp_getStateAndCityByPincode(Nullable<int> pincode)
+        {
+            var pincodeParameter = pincode.HasValue ?
+                new ObjectParameter("pincode", pincode) :
+                new ObjectParameter("pincode", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_getStateAndCityByPincode_Result>("sp_getStateAndCityByPincode", pincodeParameter);
+        }
+    
+        public virtual ObjectResult<sp_GetStateByPincode_Result> sp_GetStateByPincode(Nullable<int> pincode)
+        {
+            var pincodeParameter = pincode.HasValue ?
+                new ObjectParameter("pincode", pincode) :
+                new ObjectParameter("pincode", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_GetStateByPincode_Result>("sp_GetStateByPincode", pincodeParameter);
+        }
+    
+        public virtual ObjectResult<sp_GetStateCityForABB_Result> sp_GetStateCityForABB(Nullable<int> pincode)
+        {
+            var pincodeParameter = pincode.HasValue ?
+                new ObjectParameter("pincode", pincode) :
+                new ObjectParameter("pincode", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_GetStateCityForABB_Result>("sp_GetStateCityForABB", pincodeParameter);
+        }
+    
+        public virtual ObjectResult<sp_GetStateForABB_Result> sp_GetStateForABB()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_GetStateForABB_Result>("sp_GetStateForABB");
+        }
+    
+        public virtual ObjectResult<sp_GetStateList_Result> sp_GetStateList()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_GetStateList_Result>("sp_GetStateList");
+        }
+    
+        public virtual ObjectResult<sp_InactiveTestRecords_Result> sp_InactiveTestRecords()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_InactiveTestRecords_Result>("sp_InactiveTestRecords");
+        }
+    
+        public virtual ObjectResult<SP_Pinelabs_DayEndReportData_Result> SP_Pinelabs_DayEndReportData(string voucherCode)
+        {
+            var voucherCodeParameter = voucherCode != null ?
+                new ObjectParameter("VoucherCode", voucherCode) :
+                new ObjectParameter("VoucherCode", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_Pinelabs_DayEndReportData_Result>("SP_Pinelabs_DayEndReportData", voucherCodeParameter);
+        }
+    
+        public virtual ObjectResult<sp_ValidateExchangeProductExists_Result> sp_ValidateExchangeProductExists(Nullable<int> newProductId, Nullable<int> oldProductTypeId, string customerEmail, string customerPhone)
+        {
+            var newProductIdParameter = newProductId.HasValue ?
+                new ObjectParameter("NewProductId", newProductId) :
+                new ObjectParameter("NewProductId", typeof(int));
+    
+            var oldProductTypeIdParameter = oldProductTypeId.HasValue ?
+                new ObjectParameter("OldProductTypeId", oldProductTypeId) :
+                new ObjectParameter("OldProductTypeId", typeof(int));
+    
+            var customerEmailParameter = customerEmail != null ?
+                new ObjectParameter("customerEmail", customerEmail) :
+                new ObjectParameter("customerEmail", typeof(string));
+    
+            var customerPhoneParameter = customerPhone != null ?
+                new ObjectParameter("customerPhone", customerPhone) :
+                new ObjectParameter("customerPhone", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_ValidateExchangeProductExists_Result>("sp_ValidateExchangeProductExists", newProductIdParameter, oldProductTypeIdParameter, customerEmailParameter, customerPhoneParameter);
+        }
+    
+        public virtual ObjectResult<SPDaikin_Scheduler_Result> SPDaikin_Scheduler()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SPDaikin_Scheduler_Result>("SPDaikin_Scheduler");
+        }
     }
 }

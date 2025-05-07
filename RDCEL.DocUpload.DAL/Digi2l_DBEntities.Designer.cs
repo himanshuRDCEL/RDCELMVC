@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'D:\Projects\Dotnet\RDCEL\Developments\src\himanshuRDCEL\RDCEL\RDCEL.DocUpload.DAL\Digi2l_DBEntities.edmx'. 
+﻿// T4 code generation is enabled for model 'D:\RD\Project\RDCEL\Dev\src\himanshuRDCEL\HimRDCELAPIMVC\RDCEL.DocUpload.DAL\Digi2l_DBEntities.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

@@ -62,7 +62,8 @@ namespace RDCEL.DocUpload.DAL
         public Nullable<decimal> SweetenerDigi2l { get; set; }
         public Nullable<decimal> Sweetener { get; set; }
     
-        public virtual tblUser tblUser { get; set; }
         public virtual tblOrderTran tblOrderTran { get; set; }
+        public virtual tblUser tblUser { get; set; }
+        public virtual tblUser tblUser1 { get; set; }
     }
 }

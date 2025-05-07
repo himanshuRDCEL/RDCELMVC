@@ -43,10 +43,10 @@ namespace RDCEL.DocUpload.DAL
         public Nullable<int> ModifiedBy { get; set; }
         public Nullable<System.DateTime> ModifiedDate { get; set; }
     
+        public virtual tblPriceMasterName tblPriceMasterName { get; set; }
         public virtual tblProductCategory tblProductCategory { get; set; }
         public virtual tblProductType tblProductType { get; set; }
         public virtual tblUser tblUser { get; set; }
         public virtual tblUser tblUser1 { get; set; }
-        public virtual tblPriceMasterName tblPriceMasterName { get; set; }
     }
 }

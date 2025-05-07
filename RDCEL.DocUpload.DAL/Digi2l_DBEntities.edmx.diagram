@@ -4,360 +4,587 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="30204bd630874eb4b671f10ba48aab43" Name="Diagram1" ZoomLevel="58">
-        <EntityTypeShape EntityType="Digi2l_DevModel.Login" Width="1.5" PointX="0.75" PointY="91.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="Digi2l_DevModel.tbl247Around" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Digi2l_DevModel.tblABBPlanMaster" Width="1.5" PointX="5.25" PointY="91.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="Digi2l_DevModel.tblABBRedemption" Width="1.5" PointX="12.75" PointY="104.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="Digi2l_DevModel.tblAccessList" Width="1.5" PointX="12.75" PointY="119" IsExpanded="true" />
-        <EntityTypeShape EntityType="Digi2l_DevModel.tblAddress" Width="1.5" PointX="12.75" PointY="125" IsExpanded="true" />
-        <EntityTypeShape EntityType="Digi2l_DevModel.tblBizlogTicket" Width="1.5" PointX="16.5" PointY="98.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="Digi2l_DevModel.tblBizlogTicketStatu" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Digi2l_DevModel.tblBlowHornTicket" Width="1.5" PointX="0.75" PointY="6.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Digi2l_DevModel.tblBrand" Width="1.5" PointX="5.25" PointY="108.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="Digi2l_DevModel.tblBusinessPartner" Width="1.5" PointX="5.25" PointY="115.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="Digi2l_DevModel.tblCity" Width="1.5" PointX="12.75" PointY="166.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="Digi2l_DevModel.tblCompany" Width="1.5" PointX="5.25" PointY="96.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="Digi2l_DevModel.tblConfiguration" Width="1.5" PointX="2.75" PointY="6.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Digi2l_DevModel.tblCurrentAuthtoken" Width="1.5" PointX="6.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Digi2l_DevModel.tblCustomerDetail" Width="1.5" PointX="10.5" PointY="92.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Digi2l_DevModel.tblDriverDetail" Width="1.5" PointX="9.75" PointY="125.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="Digi2l_DevModel.tblEntityType" Width="1.5" PointX="9.75" PointY="129.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="Digi2l_DevModel.tblErrorLog" Width="1.5" PointX="4.75" PointY="7.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Digi2l_DevModel.tblEVCApproved" Width="1.5" PointX="6.75" PointY="7.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Digi2l_DevModel.tblEVCPODDetail" Width="1.5" PointX="9.75" PointY="133.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="Digi2l_DevModel.tblEvcPriceMaster" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Digi2l_DevModel.tblEVCPriceRangeMaster" Width="1.5" PointX="8.75" PointY="5.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Digi2l_DevModel.tblEVCRegistration" Width="1.5" PointX="15" PointY="132.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="Digi2l_DevModel.tblEVCWalletStatu" Width="1.5" PointX="8.75" PointY="9.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Digi2l_DevModel.tblExchangeABBStatusHistory" Width="1.5" PointX="25" PointY="134.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="Digi2l_DevModel.tblExchangeOrder" Width="1.5" PointX="10.5" PointY="108.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="Digi2l_DevModel.tblExchangeOrderStatu" Width="1.5" PointX="9.75" PointY="142.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Digi2l_DevModel.tblFeedBack" Width="1.5" PointX="12.75" PointY="114" IsExpanded="true" />
-        <EntityTypeShape EntityType="Digi2l_DevModel.tblFeedBackAnswer" Width="1.5" PointX="10.5" PointY="80.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="Digi2l_DevModel.tblFeedBackQuestion" Width="1.5" PointX="8.25" PointY="80.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="Digi2l_DevModel.tblHistory" Width="1.5" PointX="18.75" PointY="114.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="Digi2l_DevModel.tblImage" Width="1.5" PointX="18.75" PointY="109.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="Digi2l_DevModel.tblLogistic" Width="1.5" PointX="22" PointY="141.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Digi2l_DevModel.tblLoV" Width="1.5" PointX="17.5" PointY="133.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="Digi2l_DevModel.tblMahindraLogistic" Width="1.5" PointX="10.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Digi2l_DevModel.tblMessageDetail" Width="1.5" PointX="2.75" PointY="10.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Digi2l_DevModel.tblModelNumber" Width="1.5" PointX="10.5" PointY="98.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="Digi2l_DevModel.tblOrderImageUpload" Width="1.5" PointX="9.75" PointY="146.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="Digi2l_DevModel.tblOrderLGC" Width="1.5" PointX="27.25" PointY="134.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="Digi2l_DevModel.tblOrderPromoVoucher" Width="1.5" PointX="10.75" PointY="9.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Digi2l_DevModel.tblOrderTran" Width="1.5" PointX="19.75" PointY="126" IsExpanded="true" />
-        <EntityTypeShape EntityType="Digi2l_DevModel.tblPincodeMasterDtoC" Width="1.5" PointX="12.75" PointY="9.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Digi2l_DevModel.tblPriceMaster" Width="1.5" PointX="11.25" PointY="84.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="Digi2l_DevModel.tblProductCategory" Width="1.5" PointX="3" PointY="81.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="Digi2l_DevModel.tblProductQualityIndex" Width="1.5" PointX="5.25" PointY="82.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="Digi2l_DevModel.tblProductType" Width="1.5" PointX="3" PointY="99.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="Digi2l_DevModel.tblPromotionalVoucherMaster" Width="1.5" PointX="4.75" PointY="13.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Digi2l_DevModel.tblRole" Width="1.5" PointX="15.75" PointY="119.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Digi2l_DevModel.tblRoleAccess" Width="1.5" PointX="18" PointY="120.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="Digi2l_DevModel.tblSelfQC" Width="1.5" PointX="12.75" PointY="141.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="Digi2l_DevModel.tblSociety" Width="1.5" PointX="8.25" PointY="84.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="Digi2l_DevModel.tblState" Width="1.5" PointX="10.5" PointY="166.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="Digi2l_DevModel.tblTimeLine" Width="1.5" PointX="9.75" PointY="162.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="Digi2l_DevModel.tblTimelineStatusMapping" Width="1.5" PointX="12" PointY="148.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="Digi2l_DevModel.tblUnInstallationPriceMaster" Width="1.5" PointX="12.75" PointY="13.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Digi2l_DevModel.tblUser" Width="1.5" PointX="7.5" PointY="135.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="Digi2l_DevModel.tblUserRole" Width="1.5" PointX="21" PointY="120.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="Digi2l_DevModel.tblVcareService" Width="1.5" PointX="14.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Digi2l_DevModel.tblVoucherStatu" Width="1.5" PointX="8.25" PointY="115.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="Digi2l_DevModel.tblVoucherTermsAndCondition" Width="1.5" PointX="5.25" PointY="169.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="Digi2l_DevModel.tblVoucherVerfication" Width="1.5" PointX="15.75" PointY="108.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Digi2l_DevModel.tblWalletTransaction" Width="1.5" PointX="25" PointY="140.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="Digi2l_DevModel.tblWhatsAppMessage" Width="1.5" PointX="14.75" PointY="7.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Digi2l_DevModel.TimeSlotMaster" Width="1.5" PointX="8.75" PointY="14.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Digi2l_DevModel.EVCAll_Call_AllocationsData" Width="1.5" PointX="14.75" PointY="11.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Digi2l_DevModel.ZohoExchangeData" Width="1.5" PointX="0.75" PointY="15.75" IsExpanded="true" />
-        <AssociationConnector Association="Digi2l_DevModel.FK_tblSociety_LoginId" ManuallyRouted="false" />
-        <AssociationConnector Association="Digi2l_DevModel.FK_tblABBPlanMaster_ProductCatId" ManuallyRouted="false" />
-        <AssociationConnector Association="Digi2l_DevModel.FK_tblABBPlanMaster_ProductTypeId" ManuallyRouted="false" />
-        <AssociationConnector Association="Digi2l_DevModel.FK_tblABBRedemption_tblCustomerDetails" ManuallyRouted="false" />
-        <AssociationConnector Association="Digi2l_DevModel.Fk_tblAccessList_CompanyId" ManuallyRouted="false" />
-        <AssociationConnector Association="Digi2l_DevModel.Fk_tblAccessList_CreatedBy" ManuallyRouted="false" />
-        <AssociationConnector Association="Digi2l_DevModel.Fk_tblAccessList_ModifiedBy" ManuallyRouted="false" />
-        <AssociationConnector Association="Digi2l_DevModel.Fk_tblAccessList_ParentAccessListId" ManuallyRouted="false" />
-        <AssociationConnector Association="Digi2l_DevModel.Fk_tblRoleAccess_AccessListId" ManuallyRouted="false" />
-        <AssociationConnector Association="Digi2l_DevModel.Fk_tblAddress_CompanyId" ManuallyRouted="false" />
-        <AssociationConnector Association="Digi2l_DevModel.Fk_tblAddress_CreatedBy" ManuallyRouted="false" />
-        <AssociationConnector Association="Digi2l_DevModel.Fk_tblAddress_ModifiedBy" ManuallyRouted="false" />
-        <AssociationConnector Association="Digi2l_DevModel.Fk_tblAddress_userId" ManuallyRouted="false" />
-        <AssociationConnector Association="Digi2l_DevModel.FK__tblImages__Bizlo__44FF419A" ManuallyRouted="false" />
-        <AssociationConnector Association="Digi2l_DevModel.FK__tblModelNo__Brand__2B0A656D" ManuallyRouted="false" />
-        <AssociationConnector Association="Digi2l_DevModel.FK__tblSponso__Brand__47DBAE45" ManuallyRouted="false" />
-        <AssociationConnector Association="Digi2l_DevModel.FK_tblVoucherVerficatio_NewBrandId" ManuallyRouted="false" />
-        <AssociationConnector Association="Digi2l_DevModel.FK_tblExchangeOrder_BusinessPartnerId" ManuallyRouted="false" />
-        <AssociationConnector Association="Digi2l_DevModel.FK_tblVoucherVerfication_BusinessPartnerId" ManuallyRouted="false" />
-        <AssociationConnector Association="Digi2l_DevModel.Fk_tblCity_StateId" ManuallyRouted="false" />
-        <AssociationConnector Association="Digi2l_DevModel.Fk_tblEVCRegistration_CityId" ManuallyRouted="false" />
-        <AssociationConnector Association="Digi2l_DevModel.Fk_tblCompany_CreatedBy" ManuallyRouted="false" />
-        <AssociationConnector Association="Digi2l_DevModel.Fk_tblCompany_ModifiedBy" ManuallyRouted="false" />
-        <AssociationConnector Association="Digi2l_DevModel.Fk_tblRole_CompanyId" ManuallyRouted="false" />
-        <AssociationConnector Association="Digi2l_DevModel.Fk_tblRoleAccess_CompanyId" ManuallyRouted="false" />
-        <AssociationConnector Association="Digi2l_DevModel.Fk_tblUser_CompanyId" ManuallyRouted="false" />
-        <AssociationConnector Association="Digi2l_DevModel.Fk_tblUserRole_CompanyId" ManuallyRouted="false" />
-        <AssociationConnector Association="Digi2l_DevModel.FK__tblFeedBa__Custo__2739D489" ManuallyRouted="false" />
-        <AssociationConnector Association="Digi2l_DevModel.FK__TblHistor__CustI__5C6CB6D7" ManuallyRouted="false" />
-        <AssociationConnector Association="Digi2l_DevModel.FK__tblSponso__Custo__48CFD27E" ManuallyRouted="false" />
-        <AssociationConnector Association="Digi2l_DevModel.FK_tblVoucherVerfication_CustomerId" ManuallyRouted="false" />
-        <AssociationConnector Association="Digi2l_DevModel.FK__tblDriver__Creat__02284B6B" ManuallyRouted="false" />
-        <AssociationConnector Association="Digi2l_DevModel.FK__tblDriver__Modif__031C6FA4" ManuallyRouted="false" />
-        <AssociationConnector Association="Digi2l_DevModel.FK__tblOrderL__Drive__05F8DC4F" ManuallyRouted="false" />
-        <AssociationConnector Association="Digi2l_DevModel.Fk_tblEntityType_CreatedBy" ManuallyRouted="false" />
-        <AssociationConnector Association="Digi2l_DevModel.Fk_tblEntityType_ModifiedBy" ManuallyRouted="false" />
-        <AssociationConnector Association="Digi2l_DevModel.Fk_tblEVCRegistration_EntityTypeId" ManuallyRouted="false" />
-        <AssociationConnector Association="Digi2l_DevModel.Fk_tblEVCPODDetails_CreatedBy" ManuallyRouted="false" />
-        <AssociationConnector Association="Digi2l_DevModel.Fk_tblEVCPODDetails_ModifiedBy" ManuallyRouted="false" />
-        <AssociationConnector Association="Digi2l_DevModel.Fk_tblOrderLGC_EVCPODId" ManuallyRouted="false" />
-        <AssociationConnector Association="Digi2l_DevModel.FK__tblOrderL__EVCRe__06ED0088" ManuallyRouted="false" />
-        <AssociationConnector Association="Digi2l_DevModel.Fk_tblEVCRegistration_CreatedBy" ManuallyRouted="false" />
-        <AssociationConnector Association="Digi2l_DevModel.Fk_tblEVCRegistration_ModifiedBy" ManuallyRouted="false" />
-        <AssociationConnector Association="Digi2l_DevModel.Fk_tblEVCRegistration_StateId" ManuallyRouted="false" />
-        <AssociationConnector Association="Digi2l_DevModel.Fk_tblWalletTransaction_EVCRegistrationId" ManuallyRouted="false" />
-        <AssociationConnector Association="Digi2l_DevModel.FK__tblExchan__Order__1FEDB87C" ManuallyRouted="false" />
-        <AssociationConnector Association="Digi2l_DevModel.FK_tblExchangeABBStatusHistory_CreatedBy" ManuallyRouted="false" />
-        <AssociationConnector Association="Digi2l_DevModel.Fk_tblExchangeABBStatusHistory_ModifiedBy" ManuallyRouted="false" />
-        <AssociationConnector Association="Digi2l_DevModel.FK_tblExchangeABBStatusHistory_tblExchangeOrderStatus" ManuallyRouted="false" />
-        <AssociationConnector Association="Digi2l_DevModel.FK__tblExchan__Statu__797309D9" ManuallyRouted="false" />
-        <AssociationConnector Association="Digi2l_DevModel.FK__tblExchan__Vouch__17F790F9" ManuallyRouted="false" />
-        <AssociationConnector Association="Digi2l_DevModel.FK__tblFeedBa__Excha__29221CFB" ManuallyRouted="false" />
-        <AssociationConnector Association="Digi2l_DevModel.FK__TblHistor__Excha__5B78929E" ManuallyRouted="false" />
-        <AssociationConnector Association="Digi2l_DevModel.FK__tblImages__Spons__45F365D3" ManuallyRouted="false" />
-        <AssociationConnector Association="Digi2l_DevModel.FK__tblSelfQC__Excha__68D28DBC" ManuallyRouted="false" />
-        <AssociationConnector Association="Digi2l_DevModel.FK__tblSponso__Produ__2057CCD0" ManuallyRouted="false" />
-        <AssociationConnector Association="Digi2l_DevModel.FK_ExchangeId" ManuallyRouted="false" />
-        <AssociationConnector Association="Digi2l_DevModel.Fk_tblExchangeOrder_CreatedBy" ManuallyRouted="false" />
-        <AssociationConnector Association="Digi2l_DevModel.Fk_tblExchangeOrder_ModifiedBy" ManuallyRouted="false" />
-        <AssociationConnector Association="Digi2l_DevModel.FK_tblExchangeOrder_SocietyId" ManuallyRouted="false" />
-        <AssociationConnector Association="Digi2l_DevModel.FK_tblVoucherVerfication_ExchangeOrderId" ManuallyRouted="false" />
-        <AssociationConnector Association="Digi2l_DevModel.FK__tblLogist__Statu__269AB60B" ManuallyRouted="false" />
-        <AssociationConnector Association="Digi2l_DevModel.FK__tblOrderT__Statu__37C5420D" ManuallyRouted="false" />
-        <AssociationConnector Association="Digi2l_DevModel.FK_tblTimelineStatusMapping_tblExchangeOrderStatus" ManuallyRouted="false" />
-        <AssociationConnector Association="Digi2l_DevModel.FK__tblFeedBa__Answe__2645B050" ManuallyRouted="false" />
-        <AssociationConnector Association="Digi2l_DevModel.FK__tblFeedBa__Quest__25518C17" ManuallyRouted="false" />
-        <AssociationConnector Association="Digi2l_DevModel.FK__tblFeedBa__Paren__282DF8C2" ManuallyRouted="false" />
-        <AssociationConnector Association="Digi2l_DevModel.FK__tblLogist__Order__20E1DCB5" ManuallyRouted="false" />
-        <AssociationConnector Association="Digi2l_DevModel.FK_LogisticId" ManuallyRouted="false" />
-        <AssociationConnector Association="Digi2l_DevModel.Fk_tblLogistics_CreatedBy" ManuallyRouted="false" />
-        <AssociationConnector Association="Digi2l_DevModel.Fk_tblLogistics_ModifiedBy" ManuallyRouted="false" />
-        <AssociationConnector Association="Digi2l_DevModel.FK_OrderType" ManuallyRouted="false" />
-        <AssociationConnector Association="Digi2l_DevModel.FK__tblModelNo__ProductCat__2B0A656D" ManuallyRouted="false" />
-        <AssociationConnector Association="Digi2l_DevModel.FK__tblModelNo__ProductType__2B0A656D" ManuallyRouted="false" />
-        <AssociationConnector Association="Digi2l_DevModel.FK_tblVoucherVerfication_ModelNumberId" ManuallyRouted="false" />
-        <AssociationConnector Association="Digi2l_DevModel.Fk_tblOrderImageUpload_CreatedBy" ManuallyRouted="false" />
-        <AssociationConnector Association="Digi2l_DevModel.Fk_tblOrderImageUpload_ModifiedBy" ManuallyRouted="false" />
-        <AssociationConnector Association="Digi2l_DevModel.FK__tblOrderL__Order__08D548FA" ManuallyRouted="false" />
-        <AssociationConnector Association="Digi2l_DevModel.Fk_tblOrderLGC_CreatedBy" ManuallyRouted="false" />
-        <AssociationConnector Association="Digi2l_DevModel.Fk_tblOrderLGC_ModifiedBy" ManuallyRouted="false" />
-        <AssociationConnector Association="Digi2l_DevModel.FK__tblWallet__Order__21D600EE" ManuallyRouted="false" />
-        <AssociationConnector Association="Digi2l_DevModel.FK_CreatedBy" ManuallyRouted="false" />
-        <AssociationConnector Association="Digi2l_DevModel.FK_ModifiedBy" ManuallyRouted="false" />
-        <AssociationConnector Association="Digi2l_DevModel.FK__tblProduc__Produ__1B9317B3" ManuallyRouted="false" />
-        <AssociationConnector Association="Digi2l_DevModel.FK__tblProduc__Produ__1C873BEC" ManuallyRouted="false" />
-        <AssociationConnector Association="Digi2l_DevModel.FK__tblProduc__Produ__2B0A656D" ManuallyRouted="false" />
-        <AssociationConnector Association="Digi2l_DevModel.FK_ProductQualityIndex_ProductCategoryId" ManuallyRouted="false" />
-        <AssociationConnector Association="Digi2l_DevModel.FK_tblABBReg_NewProductCategoryId" ManuallyRouted="false" />
-        <AssociationConnector Association="Digi2l_DevModel.FK_tblVoucherVerficatio_NewProductTypeId" ManuallyRouted="false" />
-        <AssociationConnector Association="Digi2l_DevModel.Fk_tblRole_CreatedBy" ManuallyRouted="false" />
-        <AssociationConnector Association="Digi2l_DevModel.Fk_tblRole_ModifiedBy" ManuallyRouted="false" />
-        <AssociationConnector Association="Digi2l_DevModel.Fk_tblRoleAccess_RoleId" ManuallyRouted="false" />
-        <AssociationConnector Association="Digi2l_DevModel.Fk_tblUserRole_RoleId" ManuallyRouted="false" />
-        <AssociationConnector Association="Digi2l_DevModel.Fk_tblRoleAccess_CreatedBy" ManuallyRouted="false" />
-        <AssociationConnector Association="Digi2l_DevModel.Fk_tblRoleAccess_ModifiedBy" ManuallyRouted="false" />
-        <AssociationConnector Association="Digi2l_DevModel.FK_tblTimeLine_tblUser" ManuallyRouted="false" />
-        <AssociationConnector Association="Digi2l_DevModel.FK_tblTimelineStatusMapping_tblTimeline" ManuallyRouted="false" />
-        <AssociationConnector Association="Digi2l_DevModel.FK_tblTimelineStatusMapping_tblUser" ManuallyRouted="false" />
-        <AssociationConnector Association="Digi2l_DevModel.Fk_tblUser_CreatedBy" ManuallyRouted="false" />
-        <AssociationConnector Association="Digi2l_DevModel.Fk_tblUser_ModifiedBy" ManuallyRouted="false" />
-        <AssociationConnector Association="Digi2l_DevModel.Fk_tblUserRole_CreatedBy" ManuallyRouted="false" />
-        <AssociationConnector Association="Digi2l_DevModel.Fk_tblUserRole_ModifiedBy" ManuallyRouted="false" />
-        <AssociationConnector Association="Digi2l_DevModel.Fk_tblUserRole_UserId" ManuallyRouted="false" />
-        <AssociationConnector Association="Digi2l_DevModel.Fk_tblWalletTransaction_CreatedBy" ManuallyRouted="false" />
-        <AssociationConnector Association="Digi2l_DevModel.Fk_tblWalletTransaction_ModifiedBy" ManuallyRouted="false" />
-        <AssociationConnector Association="Digi2l_DevModel.FK__tblVouche__Vouch__18EBB532" ManuallyRouted="false" />
-        <AssociationConnector Association="Digi2l_DevModel.Fk_tblEVCPODDetails_EVCId" />
-        <AssociationConnector Association="Digi2l_DevModel.Fk_tblEVCPODDetails_OrderTransId" />
-        <EntityTypeShape EntityType="Digi2l_DevModel.tblABBRegistration" Width="1.5" PointX="18.75" PointY="94.875" />
-        <AssociationConnector Association="Digi2l_DevModel.FK_tblABBRedemption_tblABBRegistration" />
-        <AssociationConnector Association="Digi2l_DevModel.FK__tblABBReg__BP__2B0A656D" />
-        <AssociationConnector Association="Digi2l_DevModel.FK__tblABBReg__Brand__2B0A656D" />
-        <AssociationConnector Association="Digi2l_DevModel.FK__tblABBReg__PC__2B0A656D" />
-        <AssociationConnector Association="Digi2l_DevModel.FK__tblABBReg__PT__2B0A656D" />
-        <AssociationConnector Association="Digi2l_DevModel.FK_tblABBRegistration_ModelNumberId" />
-        <AssociationConnector Association="Digi2l_DevModel.FK__tblABBReg__Statu__3E3D3572" />
-        <AssociationConnector Association="Digi2l_DevModel.FK_tblABBRedemption_tblABBRedemption" />
-        <EntityTypeShape EntityType="Digi2l_DevModel.tblEVCDispute" Width="1.5" PointX="22" PointY="126" />
-        <AssociationConnector Association="Digi2l_DevModel.FK_OrderTransId" />
-        <AssociationConnector Association="Digi2l_DevModel.Fk_tblEVCDispute_CreatedBy" />
-        <AssociationConnector Association="Digi2l_DevModel.Fk_tblEVCDispute_EVCRegistrationId" />
-        <AssociationConnector Association="Digi2l_DevModel.Fk_tblEVCDispute_ExchangeOrderId" />
-        <AssociationConnector Association="Digi2l_DevModel.Fk_tblEVCDispute_ModifiedBy" />
-        <AssociationConnector Association="Digi2l_DevModel.FK_tblTimelineStatusMapping_ModifiedBy" />
-        <EntityTypeShape EntityType="Digi2l_DevModel.tblImageLabelMaster" Width="1.5" PointX="15.75" PointY="124.875" />
-        <EntityTypeShape EntityType="Digi2l_DevModel.tblServicePartner" Width="1.5" PointX="9.75" PointY="151" />
-        <AssociationConnector Association="Digi2l_DevModel.FK__tblImageL__Produ__77DFC722" />
-        <AssociationConnector Association="Digi2l_DevModel.FK__tblImageL__Produ__78D3EB5B" />
-        <AssociationConnector Association="Digi2l_DevModel.Fk_tblImageLabelMaster_CreatedBy" />
-        <AssociationConnector Association="Digi2l_DevModel.Fk_tblImageLabelMaster_ModifiedBy" />
-        <AssociationConnector Association="Digi2l_DevModel.FK__tblLogist__Servi__39E294A9" />
-        <AssociationConnector Association="Digi2l_DevModel.FK__tblServic__UserI__75035A77" />
-        <AssociationConnector Association="Digi2l_DevModel.Fk_tblServicePartner_CreatedBy" />
-        <AssociationConnector Association="Digi2l_DevModel.Fk_tblServicePartner_ModifiedBy" />
-        <EntityTypeShape EntityType="Digi2l_DevModel.tblABBPriceMaster" Width="1.5" PointX="8.25" PointY="91.625" />
-        <AssociationConnector Association="Digi2l_DevModel.FK_tblABBPriceMaster_tblProductCategory" />
-        <AssociationConnector Association="Digi2l_DevModel.FK_tblABBPriceMaster_tblProductType" />
-        <EntityTypeShape EntityType="Digi2l_DevModel.tblBrandSmartBuy" Width="1.5" PointX="17.375" PointY="0.75" />
-        <AssociationConnector Association="Digi2l_DevModel.Fk_tblServicePartner_ServicePartnerCityId" />
-        <AssociationConnector Association="Digi2l_DevModel.FK__tblDriver__appro__379037E3" />
-        <AssociationConnector Association="Digi2l_DevModel.FK__tblLogist__drive__38845C1C" />
-        <AssociationConnector Association="Digi2l_DevModel.Fk_tblServicePartner_ServicePartnerStateId" />
-        <AssociationConnector Association="Digi2l_DevModel.FK_tblBrandSmartBuy_tblProductCategory" />
-        <EntityTypeShape EntityType="Digi2l_DevModel.tblOrderQC" Width="1.5" PointX="9.75" PointY="170.5" />
-        <AssociationConnector Association="Digi2l_DevModel.Fk_tblOrderQC_ModifiedBy" />
-        <EntityTypeShape EntityType="Digi2l_DevModel.tblEVCWalletAddition" Width="1.5" PointX="9.75" PointY="178.25" />
-        <EntityTypeShape EntityType="Digi2l_DevModel.TblEVCWalletHistory" Width="1.5" PointX="22" PointY="135.875" />
-        <AssociationConnector Association="Digi2l_DevModel.Fk_tblEVCWalletHistory_EVCRegistrationId" />
-        <AssociationConnector Association="Digi2l_DevModel.Fk_tblEVCWalletAddition_CreatedBy" />
-        <AssociationConnector Association="Digi2l_DevModel.Fk_tblEVCWalletAddition_ModifiedBy" />
-        <AssociationConnector Association="Digi2l_DevModel.FK__TblEVCWal__Order__1293BD5E" />
-        <AssociationConnector Association="Digi2l_DevModel.Fk_tblEVCWalletHistory_CreatedBy" />
-        <AssociationConnector Association="Digi2l_DevModel.Fk_tblEVCWalletHistory_ModifiedBy" />
-        <EntityTypeShape EntityType="Digi2l_DevModel.tblBUProductCategoryMapping" Width="1.5" PointX="21.75" PointY="106.875" />
-        <AssociationConnector Association="Digi2l_DevModel.FK__tblBUProd__Produ__59904A2C" />
-        <AssociationConnector Association="Digi2l_DevModel.Fk_tblBUProductCategoryMapping_CreatedBy" />
-        <AssociationConnector Association="Digi2l_DevModel.Fk_tblBUProductCategoryMapping_ModifiedBy" />
-        <AssociationConnector Association="Digi2l_DevModel.FK__tblOrderQ__Order__2759D01A" />
-        <AssociationConnector Association="Digi2l_DevModel.FK__tblExchan__NewPr__6B0FDBE9" />
-        <AssociationConnector Association="Digi2l_DevModel.FK__tblDriver__UserI__05C3D225" />
-        <EntityTypeShape EntityType="Digi2l_DevModel.tblPaymentLeaser" Width="1.5" PointX="5.375" PointY="17.75" />
-        <EntityTypeShape EntityType="Digi2l_DevModel.tblTransMasterABBPlanMaster" Width="1.5" PointX="21" PointY="97.125" />
-        <AssociationConnector Association="Digi2l_DevModel.FK_tblABBRedemption_tblExchangeOrderStatus" />
-        <AssociationConnector Association="Digi2l_DevModel.FK_tblABBRedemption_tblUser" />
-        <AssociationConnector Association="Digi2l_DevModel.FK_tblABBRedemption_tblUser1" />
-        <AssociationConnector Association="Digi2l_DevModel.FK__tblTransM__ABBRe__31A25463" />
-        <AssociationConnector Association="Digi2l_DevModel.FK_CustomerId" />
-        <EntityTypeShape EntityType="Digi2l_DevModel.tblProductConditionLabel" Width="1.5" PointX="5.25" PointY="103" />
-        <AssociationConnector Association="Digi2l_DevModel.FK_tblOrderTrans_ABBRedemptionId" />
-        <AssociationConnector Association="Digi2l_DevModel.Fk_tblDriverDetails_CityId" />
-        <EntityTypeShape EntityType="Digi2l_DevModel.tblAreaLocality" Width="1.5" PointX="17.375" PointY="10.75" />
-        <EntityTypeShape EntityType="Digi2l_DevModel.tblBUBasedSweetnerValidation" Width="1.5" PointX="12" PointY="136" />
-        <EntityTypeShape EntityType="Digi2l_DevModel.tblQuestionsForSweetner" Width="1.5" PointX="9.75" PointY="184" />
-        <AssociationConnector Association="Digi2l_DevModel.Fk_tblBUBasedSweetnerValidation_CreatedBy" />
-        <AssociationConnector Association="Digi2l_DevModel.Fk_tblBUBasedSweetnerValidation_ModifiedBy" />
-        <AssociationConnector Association="Digi2l_DevModel.Fk_tblBUBasedSweetnerValidation_QuestionId" />
-        <AssociationConnector Association="Digi2l_DevModel.Fk_tblBUProductCategoryMapping_OldProductCatId" />
-        <AssociationConnector Association="Digi2l_DevModel.Fk_tblBUProductCategoryMapping_ProductTypeId" />
-        <AssociationConnector Association="Digi2l_DevModel.Fk_tblQuestionsForSweetner_CreatedBy" />
-        <AssociationConnector Association="Digi2l_DevModel.Fk_tblQuestionsForSweetner_ModifiedBy" />
-        <AssociationConnector Association="Digi2l_DevModel.FK_VoucherStatus" />
-        <AssociationConnector Association="Digi2l_DevModel.FK_RedemptionId" />
-        <AssociationConnector Association="Digi2l_DevModel.FK_BusinessPartnerId" />
-        <AssociationConnector Association="Digi2l_DevModel.FK__tblBusine__cityI__67C95AEA" />
-        <EntityTypeShape EntityType="Digi2l_DevModel.tblOrderBasedConfig" Width="1.5" PointX="26" PointY="116.375" />
-        <EntityTypeShape EntityType="Digi2l_DevModel.tblUniversalPriceMaster" Width="1.5" PointX="24.75" PointY="103.875" />
-        <AssociationConnector Association="Digi2l_DevModel.FK__tblOrderB__Brand__21F5FC7F" />
-        <AssociationConnector Association="Digi2l_DevModel.FK__tblModelN__Busin__1D314762" />
-        <AssociationConnector Association="Digi2l_DevModel.FK__tblOrderB__Busin__2101D846" />
-        <AssociationConnector Association="Digi2l_DevModel.FK__tblProduc__Busin__1B48FEF0" />
-        <AssociationConnector Association="Digi2l_DevModel.FK__tblUniver__Produ__1590259A" />
-        <AssociationConnector Association="Digi2l_DevModel.FK__tblUniver__Produ__168449D3" />
-        <AssociationConnector Association="Digi2l_DevModel.FK__tblUniver__Creat__12B3B8EF" />
-        <AssociationConnector Association="Digi2l_DevModel.FK__tblUniver__Modif__13A7DD28" />
-        <AssociationConnector Association="Digi2l_DevModel.FK__tblExchan__Drive__3D9E16F4" />
-        <AssociationConnector Association="Digi2l_DevModel.FK__tblExchan__Servi__3CA9F2BB" />
-        <EntityTypeShape EntityType="Digi2l_DevModel.tblPriceMasterMapping" Width="1.5" PointX="26" PointY="147.875" />
-        <AssociationConnector Association="Digi2l_DevModel.FK__tblPriceM__Brand__24D2692A" />
-        <AssociationConnector Association="Digi2l_DevModel.FK__tblPriceM__Busin__26BAB19C" />
-        <AssociationConnector Association="Digi2l_DevModel.FK__tblPriceM__Creat__27AED5D5" />
-        <AssociationConnector Association="Digi2l_DevModel.FK__tblPriceM__Modif__28A2FA0E" />
-        <EntityTypeShape EntityType="Digi2l_DevModel.tblModelMapping" Width="1.5" PointX="30" PointY="111.25" />
-        <AssociationConnector Association="Digi2l_DevModel.FK__tblModelM__Brand__5A3A55A2" />
-        <AssociationConnector Association="Digi2l_DevModel.FK__tblModelM__Brand__5EFF0ABF" />
-        <AssociationConnector Association="Digi2l_DevModel.FK__tblModelM__Busin__5C229E14" />
-        <AssociationConnector Association="Digi2l_DevModel.FK__tblModelM__Busin__60E75331" />
-        <AssociationConnector Association="Digi2l_DevModel.FK__tblModelM__Model__5D16C24D" />
-        <AssociationConnector Association="Digi2l_DevModel.FK__tblModelM__Model__61DB776A" />
-        <AssociationConnector Association="Digi2l_DevModel.FK__tblOrderT__SelfQ__74EE4BDE" />
-        <AssociationConnector Association="Digi2l_DevModel.FK__tblSelfQC__UserI__73FA27A5" />
-        <EntityTypeShape EntityType="Digi2l_DevModel.tblBusinessUnit" Width="1.5" PointX="27.75" PointY="100.125" />
-        <AssociationConnector Association="Digi2l_DevModel.FK_tblBusinessUnit_LoginId" />
-        <AssociationConnector Association="Digi2l_DevModel.FK_tblABBPlanMaster_tblBusinessUnit" />
-        <AssociationConnector Association="Digi2l_DevModel.FK_tblABBPriceMaster_tblBusinessUnit" />
-        <AssociationConnector Association="Digi2l_DevModel.FK_tblABBRegistration_BusinessUnitId" />
-        <AssociationConnector Association="Digi2l_DevModel.FK__tblBrand__Busine__5D60DB10" />
-        <AssociationConnector Association="Digi2l_DevModel.FK__tblBrandSmartBuy_tblBusinessUnit" />
-        <AssociationConnector Association="Digi2l_DevModel.Fk_tblBUBasedSweetnerValidation_BusinessUnitId" />
-        <AssociationConnector Association="Digi2l_DevModel.FK__tblBUProd__Busin__589C25F3" />
-        <AssociationConnector Association="Digi2l_DevModel.FK_tblBusinessPartner_BusinessUnitId" />
-        <AssociationConnector Association="Digi2l_DevModel.BusinessUnitId" />
-        <AssociationConnector Association="Digi2l_DevModel.FK__tblExchan__Busin__1C3D2329" />
-        <AssociationConnector Association="Digi2l_DevModel.FK__tblModelM__Busin__5FF32EF8" />
-        <AssociationConnector Association="Digi2l_DevModel.FK__tblModelN__Busin__5C6CB6D7" />
-        <AssociationConnector Association="Digi2l_DevModel.FK__tblOrderB__Busin__4EC8A2F6" />
-        <AssociationConnector Association="Digi2l_DevModel.FK__tblPriceM__Busin__25C68D63" />
-        <AssociationConnector Association="Digi2l_DevModel.FK__tblProduc__Busin__57C7FD4B" />
-        <AssociationConnector Association="Digi2l_DevModel.FK__tblTransM__Busin__30AE302A" />
-        <AssociationConnector Association="Digi2l_DevModel.FK__tblVouche__Busin__3D7E1B63" />
-        <AssociationConnector Association="Digi2l_DevModel.Fk_tblBusinessUnit_GSTType" />
-        <AssociationConnector Association="Digi2l_DevModel.Fk_tblBusinessUnit_MarginType" />
-        <AssociationConnector Association="Digi2l_DevModel.FK_tblSociety_BusinessUnitId" />
-        <AssociationConnector Association="Digi2l_DevModel.FK__tblBrandS__Brand__1A1FD08D" />
-        <EntityTypeShape EntityType="Digi2l_DevModel.tblCustomerFile" Width="1.5" PointX="25" PointY="122.125" />
-        <AssociationConnector Association="Digi2l_DevModel.Fk_tblCustomerFiles_ABBRegistrationId" />
-        <AssociationConnector Association="Digi2l_DevModel.Fk_tblCustomerFiles_CreatedBy" />
-        <AssociationConnector Association="Digi2l_DevModel.Fk_tblCustomerFiles_ModifiedBy" />
-        <AssociationConnector Association="Digi2l_DevModel.Fk_tblCustomerFiles_OrderTransId" />
-        <EntityTypeShape EntityType="Digi2l_DevModel.tblBPBURedemptionMapping" Width="1.5" PointX="33" PointY="113" />
-        <AssociationConnector Association="Digi2l_DevModel.FK_tblBPBURedemptionMapping_tblBusinessPartner" />
-        <AssociationConnector Association="Digi2l_DevModel.FK_tblBPBURedemptionMapping_tblBusinessUnit" />
-        <EntityTypeShape EntityType="Digi2l_DevModel.tblSponsorCategoryMapping" Width="1.5" PointX="30" PointY="97.5" />
-        <AssociationConnector Association="Digi2l_DevModel.FK_tblSponsorCategoryMapping_tblBusinessUnit" />
-        <AssociationConnector Association="Digi2l_DevModel.FK_tblSponsorCategoryMapping_tblProductCategory" />
-        <EntityTypeShape EntityType="Digi2l_DevModel.tblBPBUAssociation" Width="1.5" PointX="30" PointY="117.125" />
-        <AssociationConnector Association="Digi2l_DevModel.FK_tblBPBUAssociation_tblBusinessPartner" />
-        <AssociationConnector Association="Digi2l_DevModel.FK_tblBPBUAssociation_tblBusinessUnit" />
-        <AssociationConnector Association="Digi2l_DevModel.Fk_tblEVCRegistration_GSTTypeId" />
-        <AssociationConnector Association="Digi2l_DevModel.Fk_tblWalletTransaction_GSTTypeId" />
-        <EntityTypeShape EntityType="Digi2l_DevModel.TblBPPincodeMapping" Width="1.5" PointX="30" PointY="83.75" />
-        <AssociationConnector Association="Digi2l_DevModel.Fk_TblBPPincodeMapping_BusinessPartnerId" />
-        <AssociationConnector Association="Digi2l_DevModel.Fk_TblBPPincodeMapping_BusinessUnitId" />
-        <AssociationConnector Association="Digi2l_DevModel.Fk_TblBPPincodeMapping_CreatedBy" />
-        <AssociationConnector Association="Digi2l_DevModel.Fk_TblBPPincodeMapping_ModifiedBy" />
-        <EntityTypeShape EntityType="Digi2l_DevModel.tblPinCode" Width="1.5" PointX="27.75" PointY="83.5" />
-        <EntityTypeShape EntityType="Digi2l_DevModel.tblPriceMasterName" Width="1.5" PointX="9.75" PointY="188" />
-        <AssociationConnector Association="Digi2l_DevModel.FK__Login__PriceMast__09B45E9A" />
-        <AssociationConnector Association="Digi2l_DevModel.Fk_TblBPPincodeMapping_PincodeId" />
-        <AssociationConnector Association="Digi2l_DevModel.FK__tblPinCod__CityI__031C6FA4" />
-        <AssociationConnector Association="Digi2l_DevModel.FK__tblExchan__Price__2D32A501" />
-        <AssociationConnector Association="Digi2l_DevModel.FK__tblPriceM__Price__29971E47" />
-        <AssociationConnector Association="Digi2l_DevModel.FK__tblPriceM__Creat__1960B67E" />
-        <AssociationConnector Association="Digi2l_DevModel.FK__tblPriceM__Modif__1A54DAB7" />
-        <AssociationConnector Association="Digi2l_DevModel.FK__tblUniver__Price__2E5BD364" />
-        <AssociationConnector Association="Digi2l_DevModel.FK__tblOrderT__Assig__36870511" />
-        <AssociationConnector Association="Digi2l_DevModel.FK__tblOrderT__Assig__377B294A" />
-        <EntityTypeShape EntityType="Digi2l_DevModel.tblUninstallationPrice" Width="1.5" PointX="30" PointY="103.625" />
-        <AssociationConnector Association="Digi2l_DevModel.FK_tblUnistallationPrices_tblBusinessPartner" />
-        <AssociationConnector Association="Digi2l_DevModel.FK_tblUnistallationPrices_tblBusinessUnit" />
-        <AssociationConnector Association="Digi2l_DevModel.FK_tblUnistallationPrices_tblProductCategory" />
-        <AssociationConnector Association="Digi2l_DevModel.FK_tblUnistallationPrices_tblProductType" />
-        <AssociationConnector Association="Digi2l_DevModel.FK_AbbRedemptionId1" />
-        <AssociationConnector Association="Digi2l_DevModel.FK_tblProductConditionLabel_tblProductCategory" />
-        <EntityTypeShape EntityType="Digi2l_DevModel.tblCoupon" Width="1.5" PointX="29" PointY="142.5" />
-        <AssociationConnector Association="Digi2l_DevModel.FK_tblCoupons_CreatedBy" />
-        <AssociationConnector Association="Digi2l_DevModel.FK_tblCoupons_ModifiedBy" />
-        <AssociationConnector Association="Digi2l_DevModel.FK_tblCoupons_OrderTransId" />
-        <AssociationConnector Association="Digi2l_DevModel.FK_tblExchangeOrder_CouponId" />
-        <AssociationConnector Association="Digi2l_DevModel.Fk_tblCustomerDetails_OrderTransId" />
-        <EntityTypeShape EntityType="Digi2l_DevModel.tblCouponMaster" Width="1.5" PointX="30" PointY="125.5" />
-        <AssociationConnector Association="Digi2l_DevModel.FK_tblCouponMaster_BusinessPartnerId" />
-        <AssociationConnector Association="Digi2l_DevModel.FK_tblCouponMaster_BusinessUnitId" />
-        <AssociationConnector Association="Digi2l_DevModel.FK_tblCouponMaster_CreatedBy" />
-        <AssociationConnector Association="Digi2l_DevModel.FK_tblCouponMaster_ModifiedBy" />
-        <AssociationConnector Association="Digi2l_DevModel.FK_tblCoupons_CouponMasterId" />
-        </Diagram>
+      <Diagram DiagramId="c65ac39f17cd41c19fbd7a1d67111806" Name="Diagram1" ZoomLevel="75" >
+        <EntityTypeShape EntityType="Digi2L_ProdModel.Login" Width="1.5" PointX="12" PointY="290.375" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.Map_ServicePartnerCityState" Width="1.5" PointX="12.75" PointY="200.125" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.MapLoginUserDevice" Width="1.5" PointX="9.75" PointY="310.75" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.PriceMasterName" Width="1.5" PointX="9.75" PointY="289.375" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.tbl247Around" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.tblABBPlanMaster" Width="1.5" PointX="8.25" PointY="241" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.tblABBPriceMaster" Width="1.5" PointX="14.25" PointY="229" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.tblABBRedemption" Width="1.5" PointX="18.75" PointY="206.625" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.tblABBRegistration" Width="1.5" PointX="16.5" PointY="230.375" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.tblAccessList" Width="1.5" PointX="18.75" PointY="200.25" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.tblAddress" Width="1.5" PointX="9.75" PointY="203.25" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.tblAPICall" Width="1.5" PointX="9.75" PointY="275.625" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.tblAreaLocality" Width="1.5" PointX="2.75" PointY="0.75" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.tblBizlogTicket" Width="1.5" PointX="28.5" PointY="251.75" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.tblBizlogTicketStatu" Width="1.5" PointX="4.75" PointY="0.75" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.tblBlowHornTicket" Width="1.5" PointX="2.75" PointY="4.75" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.tblBookingItem" Width="1.5" PointX="15" PointY="217.625" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.TblBPPincodeMapping" Width="1.5" PointX="13.5" PointY="236.5" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.tblBrand" Width="1.5" PointX="5.25" PointY="375.25" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.TblBrandGroup" Width="1.5" PointX="9.75" PointY="186.625" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.tblBrandSmartBuy" Width="1.5" PointX="7.5" PointY="302.625" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.tblBUBasedSweetnerValidation" Width="1.5" PointX="8.25" PointY="236.5" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.tblBUConfiguration" Width="1.5" PointX="9.75" PointY="160.625" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.tblBUConfigurationMapping" Width="1.5" PointX="8.25" PointY="231.625" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.tblBUProductCategoryMapping" Width="1.5" PointX="5.25" PointY="230.125" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.tblBusinessCustomer" Width="1.5" PointX="9.75" PointY="252.375" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.tblBusinessPartner" Width="1.5" PointX="11.25" PointY="231" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.tblBusinessType" Width="1.5" PointX="13.5" PointY="182" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.tblBusinessTypeMapping" Width="1.5" PointX="15.75" PointY="193.125" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.tblBusinessUnit" Width="1.5" PointX="3" PointY="229" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.tblCategory" Width="1.5" PointX="10.5" PointY="306" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.tblCity" Width="1.5" PointX="9" PointY="315.625" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.tblCompany" Width="1.5" PointX="5.25" PointY="235.5" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.tblConfiguration" Width="1.5" PointX="31.25" PointY="186" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.tblCoupon" Width="1.5" PointX="31.25" PointY="190.125" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.tblCouponMaster" Width="1.5" PointX="13.5" PointY="209.5" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.tblCreditRequest" Width="1.5" PointX="35.75" PointY="194.375" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.tblCurrentAuthtoken" Width="1.5" PointX="4.75" PointY="4.75" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.tblCustomerCompany" Width="1.5" PointX="18" PointY="221.625" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.tblCustomerDetail" Width="1.5" PointX="26.25" PointY="281.125" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.tblCustomerFile" Width="1.5" PointX="26.25" PointY="212.875" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.tblDriverDetail" Width="1.5" PointX="15.75" PointY="199" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.tblDriverList" Width="1.5" PointX="20" PointY="192.375" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.tblEcomVoucher" Width="1.5" PointX="7.5" PointY="307.375" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.tblEntityType" Width="1.5" PointX="9.75" PointY="248.375" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.tblErrorLog" Width="1.5" PointX="6.75" PointY="0.75" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.tblEVCApproved" Width="1.5" PointX="6.75" PointY="3.75" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.tblEVCDispute" Width="1.5" PointX="30.75" PointY="225.5" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.tblEvcPartner" Width="1.5" PointX="25.25" PointY="198" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.tblEvcPartnerPreference" Width="1.5" PointX="33.5" PointY="191.5" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.tblEVCPODDetail" Width="1.5" PointX="33.5" PointY="196.125" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.tblEvcPriceMaster" Width="1.5" PointX="8.75" PointY="0.75" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.tblEVCPriceRangeMaster" Width="1.5" PointX="8.75" PointY="5.75" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.tblEVCRegistration" Width="1.5" PointX="21" PointY="215.625" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.tblEVCWalletAddition" Width="1.5" PointX="9.75" PointY="197.25" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.TblEVCWalletHistory" Width="1.5" PointX="33.5" PointY="203.75" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.tblEVCWalletStatu" Width="1.5" PointX="4.75" PointY="9.75" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.tblExchangeABBStatusHistory" Width="1.5" PointX="28.25" PointY="188.5" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.tblExchangeOrder" Width="1.5" PointX="28.5" PointY="261.75" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.tblExchangeOrderStatu" Width="1.5" PointX="14.25" PointY="223.875" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.tblFeedBack" Width="1.5" PointX="28.5" PointY="282.125" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.tblFeedBackAnswer" Width="1.5" PointX="26.25" PointY="276.625" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.tblFeedBackQuestion" Width="1.5" PointX="24" PointY="276.75" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.tblHistory" Width="1.5" PointX="31.5" PointY="282.375" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.tblImageLabelMaster" Width="1.5" PointX="9.75" PointY="191" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.tblImage" Width="1.5" PointX="30.75" PointY="269.75" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.tblItem" Width="1.5" PointX="12.75" PointY="194.125" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.tblLogin_Mobile" Width="1.5" PointX="9.75" PointY="168.75" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.tblLogistic" Width="1.5" PointX="28.25" PointY="194.875" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.tblLoV" Width="1.5" PointX="0.75" PointY="236.375" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.tblMahindraLogistic" Width="1.5" PointX="6.75" PointY="9.75" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.tblMessageDetail" Width="1.5" PointX="8.75" PointY="9.75" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.tblModelMapping" Width="1.5" PointX="16.5" PointY="305.5" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.tblModelNumber" Width="1.5" PointX="13.5" PointY="295.125" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.tblOrderBasedConfig" Width="1.5" PointX="13.5" PointY="302.75" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.tblOrderImageUpload" Width="1.5" PointX="9.75" PointY="172.625" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.tblOrderLGC" Width="1.5" PointX="35.75" PointY="200" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.tblOrderPromoVoucher" Width="1.5" PointX="10.75" PointY="0.75" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.tblOrderQC" Width="1.5" PointX="31.25" PointY="196" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.tblOrderQCRating" Width="1.5" PointX="26.25" PointY="238.125" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.tblOrderTran" Width="1.5" PointX="24" PointY="206.125" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.tblPaymentLeaser" Width="1.5" PointX="10.75" PointY="5.75" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.tblPinCode" Width="1.5" PointX="11.25" PointY="280.125" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.tblPincodeMasterDtoC" Width="1.5" PointX="12.75" PointY="0.75" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.tblPriceMaster" Width="1.5" PointX="17.25" PointY="257.875" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.tblPriceMasterMapping" Width="1.5" PointX="16.5" PointY="299.25" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.tblPriceMasterName" Width="1.5" PointX="9.75" PointY="164.5" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.TblPriceMasterQuestioner" Width="1.5" PointX="21" PointY="206.625" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.TblProdCatBrandMapping" Width="1.5" PointX="7.5" PointY="375.75" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.tblProductCategory" Width="1.5" PointX="12" PointY="260.875" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.tblProductConditionLabel" Width="1.5" PointX="21.5" PointY="236.375" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.tblProductQualityIndex" Width="1.5" PointX="14.25" PointY="271.125" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.TblProductTechnology" Width="1.5" PointX="14.75" PointY="188.25" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.tblProductType" Width="1.5" PointX="12" PointY="252.875" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.tblPromotionalVoucherMaster" Width="1.5" PointX="12.75" PointY="4.75" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.tblPushNotificationMessageDetail" Width="1.5" PointX="9.75" PointY="226.5" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.tblPushNotificationSavedDetail" Width="1.5" PointX="9.75" PointY="297.375" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.tblQCRatingMaster" Width="1.5" PointX="14" PointY="246.125" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.TblQuestionerLOV" Width="1.5" PointX="9.75" PointY="301.25" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.TblQuestionerLOVMapping" Width="1.5" PointX="19" PointY="246.75" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.tblQuestionsForSweetner" Width="1.5" PointX="9.75" PointY="285.5" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.tblRefurbisherRegistration" Width="1.5" PointX="12" PointY="215.5" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.tblRole" Width="1.5" PointX="9.75" PointY="215.875" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.tblRoleAccess" Width="1.5" PointX="21" PointY="201.5" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.tblSelfQC" Width="1.5" PointX="23" PointY="196" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.tblServicePartner" Width="1.5" PointX="17.75" PointY="182.25" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.tblSociety" Width="1.5" PointX="14.25" PointY="258.375" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.tblSponsorCategoryMapping" Width="1.5" PointX="5.25" PointY="242.625" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.tblState" Width="1.5" PointX="6.75" PointY="316.375" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.tblTempData" Width="1.5" PointX="30.25" PointY="208" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.tblTimeLine" Width="1.5" PointX="12.75" PointY="8.75" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.tblTimelineStatusMapping" Width="1.5" PointX="9.75" PointY="265.5" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.tblTransMasterABBPlanMaster" Width="1.5" PointX="18.75" PointY="236.375" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.tblUnInstallationPriceMaster" Width="1.5" PointX="12.75" PointY="12.75" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.tblUninstallationPrice" Width="1.5" PointX="19.5" PointY="241.375" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.tblUniversalPriceMaster" Width="1.5" PointX="12" PointY="185.75" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.tblUPIIdUpdatelog" Width="1.5" PointX="0.75" PointY="13.75" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.tblUser" Width="1.5" PointX="7.5" PointY="176.25" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.tblUserMapping" Width="1.5" PointX="16.5" PointY="213.125" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.tblUserRole" Width="1.5" PointX="26" PointY="192.875" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.tblVcareService" Width="1.5" PointX="2.75" PointY="13.75" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.TblVehicleIncentive" Width="1.5" PointX="9.75" PointY="209.5" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.TblVehicleJourneyTracking" Width="1.5" PointX="20" PointY="187.125" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.TblVehicleJourneyTrackingDetail" Width="1.5" PointX="27.5" PointY="202.875" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.tblVehicleList" Width="1.5" PointX="23" PointY="189.625" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.tblVoucherStatu" Width="1.5" PointX="16.5" PointY="210.25" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.tblVoucherTermsAndCondition" Width="1.5" PointX="5.25" PointY="338.25" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.tblVoucherVerfication" Width="1.5" PointX="21" PointY="289.625" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.tblWalletTransaction" Width="1.5" PointX="32.5" PointY="210" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.tblWhatsAppMessage" Width="1.5" PointX="8.75" PointY="13.75" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.TimeSlotMaster" Width="1.5" PointX="9.75" PointY="293.5" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.UniversalPriceMaster" Width="1.5" PointX="22" PointY="241.875" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.All_Abb_Temp_Tables_Data" Width="1.5" PointX="14.75" PointY="0.75" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.EVCAll_Call_AllocationsData" Width="1.5" PointX="14.75" PointY="11.75" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.PineLabsPriceMaster" Width="1.5" PointX="10.75" PointY="15.75" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.tblBPBUAssociation" Width="1.5" PointX="19.5" PointY="231.75" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.tblBPBURedemptionMapping" Width="1.5" PointX="13.5" PointY="241.875" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.tblQCRatingMasterMapping" Width="1.5" PointX="24" PointY="217.75" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.ZohoExchangeData" Width="1.5" PointX="16.75" PointY="0.75" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.View_ABB" Width="1.5" PointX="12.75" PointY="17.75" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.View_All_exchangeData_Address" Width="1.5" PointX="18.75" PointY="0.75" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.View_AllABBRedemptionData" Width="1.5" PointX="4.75" PointY="18.75" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.View_Allexchagedata_customer" Width="1.5" PointX="6.75" PointY="18.75" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.View_AllExchangeData" Width="1.5" PointX="18.75" PointY="15.75" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.View_AllExchangeData_Daikin" Width="1.5" PointX="20.75" PointY="0.75" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.View_AllExchangeData_Pickup" Width="1.5" PointX="0.75" PointY="20.75" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.View_AllExchangeData2" Width="1.5" PointX="20.75" PointY="14.75" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.View_AllExchangeDatawithQC" Width="1.5" PointX="22.75" PointY="0.75" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.View_BOSCHVoucher" Width="1.5" PointX="22.75" PointY="15.75" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.View_ExchangWithQC" Width="1.5" PointX="8.75" PointY="23.75" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__Login__PriceMast__673F4B05" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK_tblBusinessUnit_LoginId" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK_tblSociety_LoginId" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__Map_Servi__CityI__093F5D4E" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__Map_Servi__Creat__0B27A5C0" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__Map_Servi__Modif__0C1BC9F9" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__Map_Servi__Pinco__084B3915" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__Map_Servi__Servi__075714DC" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__Map_Servi__State__0A338187" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__MapLoginU__Creat__59E54FE7" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__MapLoginU__Modif__5AD97420" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__MapLoginU__UserI__75035A77" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__MapLoginU__UserI__77DFC722" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__MapLoginU__UserI__79C80F94" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__PriceMast__Creat__43F60EC8" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__PriceMast__Modif__44EA3301" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__Universal__Price__4F67C174" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK_tblABBPlanMaster_ProductCatId" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK_tblABBPlanMaster_ProductTypeId" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK_tblABBPlanMaster_tblBusinessUnit" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK_tblABBPriceMaster_tblBusinessUnit" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK_tblABBPriceMaster_tblProductCategory" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK_tblABBPriceMaster_tblProductType" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK_AbbRedemptionId" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK_BusinessPartnerId" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK_RedemptionId" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK_tblABBRedemption_tblABBRedemption" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK_tblABBRedemption_tblABBRegistration" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK_tblABBRedemption_tblCustomerDetails" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK_tblABBRedemption_tblExchangeOrderStatus" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK_tblABBRedemption_tblUser" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK_tblABBRedemption_tblUser1" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK_tblOrderTrans_ABBRedemptionId" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK_VoucherStatus" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblABBReg__BP__2B0A656D" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblABBReg__PC__2B0A656D" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblABBReg__PT__2B0A656D" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblABBReg__Statu__58D1301D" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblABBReg__Statu__59C55456" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblTransM__ABBRe__1758727B" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK_CustomerId" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK_tblABBRegistration_BusinessUnitId" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK_tblABBRegistration_ModelNumberId" />
+        <AssociationConnector Association="Digi2L_ProdModel.Fk_tblCustomerFiles_ABBRegistrationId" />
+        <AssociationConnector Association="Digi2L_ProdModel.Fk_tblAccessList_CompanyId" />
+        <AssociationConnector Association="Digi2L_ProdModel.Fk_tblAccessList_CreatedBy" />
+        <AssociationConnector Association="Digi2L_ProdModel.Fk_tblAccessList_ModifiedBy" />
+        <AssociationConnector Association="Digi2L_ProdModel.Fk_tblAccessList_ParentAccessListId" />
+        <AssociationConnector Association="Digi2L_ProdModel.Fk_tblRoleAccess_AccessListId" />
+        <AssociationConnector Association="Digi2L_ProdModel.Fk_tblAddress_CompanyId" />
+        <AssociationConnector Association="Digi2L_ProdModel.Fk_tblAddress_CreatedBy" />
+        <AssociationConnector Association="Digi2L_ProdModel.Fk_tblAddress_ModifiedBy" />
+        <AssociationConnector Association="Digi2L_ProdModel.Fk_tblAddress_userId" />
+        <AssociationConnector Association="Digi2L_ProdModel.Fk_tblAPICalls_CreatedBy" />
+        <AssociationConnector Association="Digi2L_ProdModel.Fk_tblAPICalls_ModifiedBy" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblImages__Bizlo__44FF419A" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblBookin__Creat__4E298478" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblBookin__Custo__4D35603F" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblBookin__ItemI__4C413C06" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblBookin__Modif__4F1DA8B1" />
+        <AssociationConnector Association="Digi2L_ProdModel.Fk_TblBPPincodeMapping_BusinessPartnerId" />
+        <AssociationConnector Association="Digi2L_ProdModel.Fk_TblBPPincodeMapping_BusinessUnitId" />
+        <AssociationConnector Association="Digi2L_ProdModel.Fk_TblBPPincodeMapping_CreatedBy" />
+        <AssociationConnector Association="Digi2L_ProdModel.Fk_TblBPPincodeMapping_ModifiedBy" />
+        <AssociationConnector Association="Digi2L_ProdModel.Fk_TblBPPincodeMapping_PincodeId" />
+        <AssociationConnector Association="Digi2L_ProdModel.BrandId" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblBrand__Busine__6442E2C9" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblBrandS__Brand__4668671F" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblModelM__Brand__2818EA29" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblModelNo__Brand__2B0A656D" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblOrderB__Brand__2354350C" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblPriceM__Brand__53F76C67" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__TblProdCa__Brand__25918339" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblSponso__Brand__47DBAE45" />
+        <AssociationConnector Association="Digi2L_ProdModel.Fk_tblEcomVoucher_BrandId" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK_tblVoucherVerficatio_NewBrandId" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__TblBrandG__Creat__20CCCE1C" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__TblBrandG__Modif__21C0F255" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__TblBrandG__Produ__1FD8A9E3" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__TblProdCa__Brand__2779CBAB" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblBrandSmartBuy_tblBusinessUnit" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK_tblBrandSmartBuy_tblProductCategory" />
+        <AssociationConnector Association="Digi2L_ProdModel.Fk_tblBUBasedSweetnerValidation_BusinessUnitId" />
+        <AssociationConnector Association="Digi2L_ProdModel.Fk_tblBUBasedSweetnerValidation_CreatedBy" />
+        <AssociationConnector Association="Digi2L_ProdModel.Fk_tblBUBasedSweetnerValidation_ModifiedBy" />
+        <AssociationConnector Association="Digi2L_ProdModel.Fk_tblBUBasedSweetnerValidation_QuestionId" />
+        <AssociationConnector Association="Digi2L_ProdModel.Fk_tblBUConfiguration_CreatedBy" />
+        <AssociationConnector Association="Digi2L_ProdModel.Fk_tblBUConfiguration_ModifiedBy" />
+        <AssociationConnector Association="Digi2L_ProdModel.Fk_tblBUConfigurationMapping_ConfigId" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK_tblBUConfigurationMapping_BusinessUnitId" />
+        <AssociationConnector Association="Digi2L_ProdModel.Fk_tblBUConfigurationMapping_CreatedBy" />
+        <AssociationConnector Association="Digi2L_ProdModel.Fk_tblBUConfigurationMapping_ModifiedBy" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblBUProd__Busin__671F4F74" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblBUProd__Produ__681373AD" />
+        <AssociationConnector Association="Digi2L_ProdModel.Fk_tblBUProductCategoryMapping_CreatedBy" />
+        <AssociationConnector Association="Digi2L_ProdModel.Fk_tblBUProductCategoryMapping_ModifiedBy" />
+        <AssociationConnector Association="Digi2L_ProdModel.Fk_tblBUProductCategoryMapping_OldProductCatId" />
+        <AssociationConnector Association="Digi2L_ProdModel.Fk_tblBUProductCategoryMapping_ProductTypeId" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblBusine__Creat__06A2E7C5" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblBusine__Modif__07970BFE" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblCustom__Busin__0A7378A9" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblBusine__cityI__65570293" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblModelM__Busin__2A01329B" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblModelN__Busin__03DB89B3" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblOrderB__Busin__253C7D7E" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblPriceM__Busin__55DFB4D9" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblProduc__Busin__01F34141" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblUserMa__Busin__6304A5CD" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK_tblBPBUAssociation_tblBusinessPartner" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK_tblBPBURedemptionMapping_tblBusinessPartner" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK_tblBusinessPartner_BusinessUnitId" />
+        <AssociationConnector Association="Digi2L_ProdModel.Fk_tblCouponMaster_BusinessPartnerId" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK_tblExchangeOrder_BusinessPartnerId" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK_tblUnistallationPrices_tblBusinessPartner" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK_tblVoucherVerfication_BusinessPartnerId" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblBusine__Busin__7D197D8B" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblItem__ItemTyp__5E5FEC41" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblBusine__Creat__73901351" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblBusine__Creat__766C7FFC" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblBusine__Creat__7854C86E" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblBusine__Creat__7A3D10E0" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblBusine__Modif__7484378A" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblBusine__Modif__7760A435" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblBusine__Modif__7948ECA7" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblBusine__Modif__7B313519" />
+        <AssociationConnector Association="Digi2L_ProdModel.BusinessUnitId" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblExchan__Busin__02E7657A" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblModelM__Busin__290D0E62" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblModelN__Busin__29E1370A" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblOrderB__Busin__24485945" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__TblPriceM__Busin__1D4655FB" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblPriceM__Busin__54EB90A0" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblProduc__Busin__3C89F72A" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblTransM__Busin__16644E42" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblUserMa__Busin__63F8CA06" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblVouche__Busin__589C25F3" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK_tblBPBUAssociation_tblBusinessUnit" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK_tblBPBURedemptionMapping_tblBusinessUnit" />
+        <AssociationConnector Association="Digi2L_ProdModel.Fk_tblBusinessUnit_GSTType" />
+        <AssociationConnector Association="Digi2L_ProdModel.Fk_tblBusinessUnit_MarginType" />
+        <AssociationConnector Association="Digi2L_ProdModel.Fk_tblCouponMaster_BusinessUnitId" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK_tblSociety_BusinessUnitId" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK_tblSponsorCategoryMapping_tblBusinessUnit" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK_tblUnistallationPrices_tblBusinessUnit" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK_TblVehicleIncentive_BusinessUnitId" />
+        <AssociationConnector Association="Digi2L_ProdModel.CompanyId" />
+        <AssociationConnector Association="Digi2L_ProdModel.Fk_tblCategory_CreatedBy" />
+        <AssociationConnector Association="Digi2L_ProdModel.Fk_tblCategory_ModifiedBy" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblCustom__CityI__0B679CE2" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblDriver__CityI__450A2E92" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblEvcPar__CityI__6EAB62A3" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblPinCod__CityI__3CF40B7E" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblVehicl__CityI__4AC307E8" />
+        <AssociationConnector Association="Digi2L_ProdModel.Fk_tblCity_StateId" />
+        <AssociationConnector Association="Digi2L_ProdModel.Fk_tblDriverDetails_CityId" />
+        <AssociationConnector Association="Digi2L_ProdModel.Fk_tblEVCRegistration_CityId" />
+        <AssociationConnector Association="Digi2L_ProdModel.Fk_tblRefurbisherRegistration_CityId" />
+        <AssociationConnector Association="Digi2L_ProdModel.Fk_tblServicePartner_ServicePartnerCityId" />
+        <AssociationConnector Association="Digi2L_ProdModel.Fk_tblCompany_CreatedBy" />
+        <AssociationConnector Association="Digi2L_ProdModel.Fk_tblCompany_ModifiedBy" />
+        <AssociationConnector Association="Digi2L_ProdModel.Fk_tblEcomVoucher_CompanyId" />
+        <AssociationConnector Association="Digi2L_ProdModel.Fk_tblRole_CompanyId" />
+        <AssociationConnector Association="Digi2L_ProdModel.Fk_tblRoleAccess_CompanyId" />
+        <AssociationConnector Association="Digi2L_ProdModel.Fk_tblUser_CompanyId" />
+        <AssociationConnector Association="Digi2L_ProdModel.Fk_tblUserRole_CompanyId" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblEvcPar__Produ__764C846B" />
+        <AssociationConnector Association="Digi2L_ProdModel.Fk_tblCoupon_CouponMasterId" />
+        <AssociationConnector Association="Digi2L_ProdModel.Fk_tblCoupon_CreatedBy" />
+        <AssociationConnector Association="Digi2L_ProdModel.Fk_tblCoupon_ModifiedBy" />
+        <AssociationConnector Association="Digi2L_ProdModel.Fk_tblCoupon_OrderTransId" />
+        <AssociationConnector Association="Digi2L_ProdModel.Fk_tblCouponMaster_CreatedBy" />
+        <AssociationConnector Association="Digi2L_ProdModel.Fk_tblCouponMaster_ModifiedBy" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblCredit__Creat__40457975" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblCredit__Credi__3E5D3103" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblCredit__Credi__3F51553C" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblCredit__Modif__41399DAE" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblCredit__Walle__3D690CCA" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblCustom__Creat__0C5BC11B" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblCustom__Modif__0D4FE554" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblCustom__State__0E44098D" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblFeedBa__Custo__13F1F5EB" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblHistor__CustI__17C286CF" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblSponso__Custo__48CFD27E" />
+        <AssociationConnector Association="Digi2L_ProdModel.Fk_tblCustomerDetails_OrderTransId" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK_tblVoucherVerfication_CustomerId" />
+        <AssociationConnector Association="Digi2L_ProdModel.Fk_tblCustomerFiles_CreatedBy" />
+        <AssociationConnector Association="Digi2L_ProdModel.Fk_tblCustomerFiles_ModifiedBy" />
+        <AssociationConnector Association="Digi2L_ProdModel.Fk_tblCustomerFiles_OrderTransId" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblDriver__appro__6EC0713C" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblDriver__Creat__278EDA44" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblDriver__Drive__0F382DC6" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblDriver__DriverId" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblDriver__Modif__2882FE7D" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblDriver__UserI__75F77EB0" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblDriver__Vehic__11207638" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblDriver__VehicleId" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblExchan__Drive__10416098" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblLogist__drive__214BF109" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblOrderL__Drive__297722B6" />
+        <AssociationConnector Association="Digi2L_ProdModel.Fk_tblDriverDetails_ServicePartnerId" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK_TblVehicleJourneyTracking_DriverId" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK_TblVehicleJourneyTrackingDetails_DriverId" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblDriver__Creat__45FE52CB" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblDriver__Modif__46F27704" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblDriver__Servi__47E69B3D" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblDriver__UserI__44160A59" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK_tblDriverList_DriverId" />
+        <AssociationConnector Association="Digi2L_ProdModel.Fk_tblEcomVoucher_CreatedBy" />
+        <AssociationConnector Association="Digi2L_ProdModel.Fk_tblEcomVoucher_ModifiedBy" />
+        <AssociationConnector Association="Digi2L_ProdModel.Fk_tblEntityType_CreatedBy" />
+        <AssociationConnector Association="Digi2L_ProdModel.Fk_tblEntityType_ModifiedBy" />
+        <AssociationConnector Association="Digi2L_ProdModel.Fk_tblEVCRegistration_EntityTypeId" />
+        <AssociationConnector Association="Digi2L_ProdModel.Fk_tblRefurbisherRegistration_EntityTypeId" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK_OrderTransId" />
+        <AssociationConnector Association="Digi2L_ProdModel.Fk_tblEVCDispute_CreatedBy" />
+        <AssociationConnector Association="Digi2L_ProdModel.Fk_tblEVCDispute_EVCRegistrationId" />
+        <AssociationConnector Association="Digi2L_ProdModel.Fk_tblEVCDispute_ExchangeOrderId" />
+        <AssociationConnector Association="Digi2L_ProdModel.Fk_tblEVCDispute_ModifiedBy" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblEvcPar__Creat__7093AB15" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblEvcPar__EVCPa__74643BF9" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblEvcPar__EVCRe__6DB73E6A" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblEvcPar__Modif__7187CF4E" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblEvcPar__State__6F9F86DC" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__TblEVCWal__EVCPa__7A1D154F" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblOrderL__EVCPa__7B113988" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__TblVehicl__EVCPa__7C055DC1" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblWallet__EVCPa__7928F116" />
+        <AssociationConnector Association="Digi2L_ProdModel.Fk_tblEVCPODDetails_EVCPartnerId" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblEvcPar__Creat__7740A8A4" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblEvcPar__Modif__7834CCDD" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblEvcPar__Produ__75586032" />
+        <AssociationConnector Association="Digi2L_ProdModel.Fk_tblEVCPODDetails_CreatedBy" />
+        <AssociationConnector Association="Digi2L_ProdModel.Fk_tblEVCPODDetails_EVCId" />
+        <AssociationConnector Association="Digi2L_ProdModel.Fk_tblEVCPODDetails_ModifiedBy" />
+        <AssociationConnector Association="Digi2L_ProdModel.Fk_tblEVCPODDetails_OrderTransId" />
+        <AssociationConnector Association="Digi2L_ProdModel.Fk_tblOrderLGC_EVCPODId" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblOrderL__EVCRe__308E3499" />
+        <AssociationConnector Association="Digi2L_ProdModel.Fk_tblEVCRegistration_CreatedBy" />
+        <AssociationConnector Association="Digi2L_ProdModel.Fk_tblEVCRegistration_GSTTypeId" />
+        <AssociationConnector Association="Digi2L_ProdModel.Fk_tblEVCRegistration_ModifiedBy" />
+        <AssociationConnector Association="Digi2L_ProdModel.Fk_tblEVCRegistration_StateId" />
+        <AssociationConnector Association="Digi2L_ProdModel.Fk_tblEVCWalletHistory_EVCRegistrationId" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK_TblVehicleJourneyTrackingDetails_EVCId" />
+        <AssociationConnector Association="Digi2L_ProdModel.Fk_tblWalletTransaction_EVCRegistrationId" />
+        <AssociationConnector Association="Digi2L_ProdModel.Fk_tblEVCWalletAddition_CreatedBy" />
+        <AssociationConnector Association="Digi2L_ProdModel.Fk_tblEVCWalletAddition_ModifiedBy" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__TblEVCWal__Order__02C769E9" />
+        <AssociationConnector Association="Digi2L_ProdModel.Fk_tblEVCWalletHistory_CreatedBy" />
+        <AssociationConnector Association="Digi2L_ProdModel.Fk_tblEVCWalletHistory_ModifiedBy" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblExchan__Creat__0697FACD" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblExchan__Order__078C1F06" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblExchan__Servi__0F4D3C5F" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblExchan__Statu__0880433F" />
+        <AssociationConnector Association="Digi2L_ProdModel.Fk_tblExchangeABBStatusHistory_ModifiedBy" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblExchan__Produ__46136164" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblExchan__Statu__0A688BB1" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblExchan__Vouch__0B5CAFEA" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblFeedBa__Excha__14E61A24" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblHistor__Excha__18B6AB08" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblImages__Spons__45F365D3" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblSelfQC__Excha__4959E263" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblSponso__Produ__2057CCD0" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK_ExchangeId" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK_PriceMasterId" />
+        <AssociationConnector Association="Digi2L_ProdModel.Fk_tblExchangeOrder_CreatedBy" />
+        <AssociationConnector Association="Digi2L_ProdModel.Fk_tblExchangeOrder_ModifiedBy" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK_tblExchangeOrder_SocietyId" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK_tblVoucherVerfication_ExchangeOrderId" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblLogist__Statu__251C81ED" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblLogist__Statu__2610A626" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblOrderT__Statu__382F5661" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK_StatusId" />
+        <AssociationConnector Association="Digi2L_ProdModel.Fk_tblTempData_StatusId" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK_TblVehicleJourneyTrackingDetails_StatusId" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblFeedBa__Answe__12FDD1B2" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblFeedBa__Quest__15DA3E5D" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblFeedBa__Paren__16CE6296" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblImageL__Produ__19AACF41" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblImageL__Produ__1A9EF37A" />
+        <AssociationConnector Association="Digi2L_ProdModel.Fk_tblImageLabelMaster_CreatedBy" />
+        <AssociationConnector Association="Digi2L_ProdModel.Fk_tblImageLabelMaster_ModifiedBy" />
+        <AssociationConnector Association="Digi2L_ProdModel.Fk_tblTempData_ImageLabelid" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblItem__Created__32816A03" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblItem__Modifie__33758E3C" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK_tblLogin_Mobile_tblUser" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblLogist__Creat__2057CCD0" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblLogist__Modif__22401542" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblLogist__Order__2334397B" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblLogist__Servi__24285DB4" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK_LogisticId" />
+        <AssociationConnector Association="Digi2L_ProdModel.Fk_tblLogistics_CreatedBy" />
+        <AssociationConnector Association="Digi2L_ProdModel.Fk_tblLogistics_ModifiedBy" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK_OrderType" />
+        <AssociationConnector Association="Digi2L_ProdModel.Fk_tblTempData_LoVId" />
+        <AssociationConnector Association="Digi2L_ProdModel.Fk_tblWalletTransaction_GSTTypeId" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblModelM__Model__2AF556D4" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblModelNo__ProductCat__2B0A656D" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblModelNo__ProductType__2B0A656D" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK_tblVoucherVerfication_ModelNumberId" />
+        <AssociationConnector Association="Digi2L_ProdModel.Fk_tblOrderImageUpload_CreatedBy" />
+        <AssociationConnector Association="Digi2L_ProdModel.Fk_tblOrderImageUpload_ModifiedBy" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblOrderL__Order__318258D2" />
+        <AssociationConnector Association="Digi2L_ProdModel.Fk_tblOrderLGC_CreatedBy" />
+        <AssociationConnector Association="Digi2L_ProdModel.Fk_tblOrderLGC_ModifiedBy" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblOrderQ__Order__2C88998B" />
+        <AssociationConnector Association="Digi2L_ProdModel.Fk_tblOrderQC_CreatedBy" />
+        <AssociationConnector Association="Digi2L_ProdModel.Fk_tblOrderQC_ModifiedBy" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblOrderQ__Creat__29AC2CE0" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblOrderQ__Modif__2AA05119" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblOrderQ__Order__2B947552" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblOrderQ__Produ__0AF29B96" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblOrderQ__QCQue__0BE6BFCF" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblOrderQ__Quest__0CDAE408" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblOrderT__Assig__35C7EB02" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblOrderT__Assig__36BC0F3B" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblOrderT__SelfQ__6ADAD1BF" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblWallet__Order__61316BF4" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK_CreatedBy" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK_ModifiedBy" />
+        <AssociationConnector Association="Digi2L_ProdModel.Fk_tblTempData_OrderTransId" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK_TblVehicleJourneyTrackingDetails_OrderTransId" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblProduc__Produ__1B9317B3" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblProduc__Produ__1C873BEC" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblPriceM__Creat__56D3D912" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblPriceM__Modif__57C7FD4B" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblPriceM__Price__58BC2184" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblPriceM__Creat__4979DDF4" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblPriceM__Modif__4A6E022D" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblUniver__Price__4F32B74A" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__TblPriceM__Creat__1F2E9E6D" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__TblPriceM__Modif__2022C2A6" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__TblPriceM__Produ__1C5231C2" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__TblPriceM__Produ__1E3A7A34" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK_ProductCatId" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__TblProdCa__Creat__286DEFE4" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__TblProdCa__Modif__2962141D" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__TblProdCa__Produ__2685A772" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__TblProduc__Produ__12C8C788" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblProduc__Produ__2B0A656D" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblUniver__Produ__5026DB83" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__Universal__Produ__505BE5AD" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK_ProductQualityIndex_ProductCategoryId" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK_tblABBReg_NewProductCategoryId" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK_tblProductConditionLabel_tblProductCategory" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK_tblQCRatingMasterMapping_tblProductCategory" />
+        <AssociationConnector Association="Digi2L_ProdModel.Fk_TblQuestionerLOVMapping_ProductCatId" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK_tblSponsorCategoryMapping_tblProductCategory" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK_tblUnistallationPrices_tblProductCategory" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK_TblVehicleIncentive_ProductCategoryId" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__TblProduc__Creat__13BCEBC1" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__TblProduc__Modif__14B10FFA" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK_tblQCRatingMasterMapping_TblProductTechnology" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblUniver__Produ__511AFFBC" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__Universal__Produ__515009E6" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK_tblQCRatingMasterMapping_tblProductType" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK_tblUnistallationPrices_tblProductType" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK_TblVehicleIncentive_ProductTypeId" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK_tblVoucherVerficatio_NewProductTypeId" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblPushNo__Modif__5BCD9859" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK_tblPushNotificationMessageDetails_CreatedBy" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblPushNo__Modif__5CC1BC92" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK_tblPushNotificationSavedDetails_CreatedBy" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblQCRati__Creat__24E777C3" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblQCRati__Creat__27C3E46E" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblQCRati__Modif__25DB9BFC" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblQCRati__Modif__28B808A7" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblQCRati__Quest__26CFC035" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK_tblQCRatingMasterMapping_tblQCRatingMaster" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__TblQuesti__Creat__22FF2F51" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__TblQuesti__Modif__23F3538A" />
+        <AssociationConnector Association="Digi2L_ProdModel.Fk_TblQuestionerLOVMapping_QuestionerLOVId" />
+        <AssociationConnector Association="Digi2L_ProdModel.Fk_TblQuestionerLOVMapping_CreatedBy" />
+        <AssociationConnector Association="Digi2L_ProdModel.Fk_TblQuestionerLOVMapping_ModifiedBy" />
+        <AssociationConnector Association="Digi2L_ProdModel.Fk_tblQuestionsForSweetner_CreatedBy" />
+        <AssociationConnector Association="Digi2L_ProdModel.Fk_tblQuestionsForSweetner_ModifiedBy" />
+        <AssociationConnector Association="Digi2L_ProdModel.Fk_tblRefurbisherRegistration_CreatedBy" />
+        <AssociationConnector Association="Digi2L_ProdModel.Fk_tblRefurbisherRegistration_ModifiedBy" />
+        <AssociationConnector Association="Digi2L_ProdModel.Fk_tblRefurbisherRegistration_StateId" />
+        <AssociationConnector Association="Digi2L_ProdModel.Fk_tblRole_CreatedBy" />
+        <AssociationConnector Association="Digi2L_ProdModel.Fk_tblRole_ModifiedBy" />
+        <AssociationConnector Association="Digi2L_ProdModel.Fk_tblRoleAccess_RoleId" />
+        <AssociationConnector Association="Digi2L_ProdModel.Fk_tblUserRole_RoleId" />
+        <AssociationConnector Association="Digi2L_ProdModel.Fk_tblRoleAccess_CreatedBy" />
+        <AssociationConnector Association="Digi2L_ProdModel.Fk_tblRoleAccess_ModifiedBy" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblSelfQC__UserI__69E6AD86" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblServic__UserI__4A4E069C" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblVehicl__Servi__4D9F7493" />
+        <AssociationConnector Association="Digi2L_ProdModel.Fk_tblServicePartner_CreatedBy" />
+        <AssociationConnector Association="Digi2L_ProdModel.Fk_tblServicePartner_ModifiedBy" />
+        <AssociationConnector Association="Digi2L_ProdModel.Fk_tblServicePartner_ServicePartnerStateId" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK_TblVehicleJourneyTracking_ServicePartnerID" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK_TblVehicleJourneyTrackingDetails_ServicePartnerID" />
+        <AssociationConnector Association="Digi2L_ProdModel.Fk_tblTempData_CreatedBy" />
+        <AssociationConnector Association="Digi2L_ProdModel.Fk_tblTempData_ModifiedBy" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblTimeli__Creat__1308BEAA" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblTimeli__Modif__14F1071C" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblTimelineStatusMapping__CreatedBy" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblTimelineStatusMapping__ModifiedBy" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblUniver__Creat__4D4A6ED8" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblUniver__Modif__4E3E9311" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblUserMa__Creat__64ECEE3F" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblUserMa__Modif__65E11278" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblUserMa__UserI__62108194" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblVehicl__Creat__4BB72C21" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblVehicl__Modif__4CAB505A" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__Universal__Creat__52442E1F" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__Universal__Modif__53385258" />
+        <AssociationConnector Association="Digi2L_ProdModel.Fk_tblUser_CreatedBy" />
+        <AssociationConnector Association="Digi2L_ProdModel.Fk_tblUser_ModifiedBy" />
+        <AssociationConnector Association="Digi2L_ProdModel.Fk_tblUserRole_CreatedBy" />
+        <AssociationConnector Association="Digi2L_ProdModel.Fk_tblUserRole_ModifiedBy" />
+        <AssociationConnector Association="Digi2L_ProdModel.Fk_tblUserRole_UserId" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK_TblVehicleIncentive_CreatedBy" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK_TblVehicleIncentive_ModifiedBy" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK_TblVehicleJourneyTracking_CreatedBy" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK_TblVehicleJourneyTracking_ModifiedBy" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK_TblVehicleJourneyTrackingDetails_CreatedBy" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK_TblVehicleJourneyTrackingDetails_ModifiedBy" />
+        <AssociationConnector Association="Digi2L_ProdModel.Fk_tblWalletTransaction_CreatedBy" />
+        <AssociationConnector Association="Digi2L_ProdModel.Fk_tblWalletTransaction_ModifiedBy" />
+        <AssociationConnector Association="Digi2L_ProdModel.Fk_TimeSlotMaster_CreatedBy" />
+        <AssociationConnector Association="Digi2L_ProdModel.Fk_TimeSlotMaster_ModifiedBy" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK_TblVehicleJourneyTrackingDetails_TrackingId" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK_tblVehicleList_VehicleId" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblVouche__Vouch__59904A2C" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.tblEcomPhoneSpecific" Width="1.5" PointX="16.75" PointY="250" />
+        <AssociationConnector Association="Digi2L_ProdModel.Fk_tblEcomPhoneSpecific_CreatedBy" />
+        <AssociationConnector Association="Digi2L_ProdModel.Fk_tblEcomPhoneSpecific_EcomVoucherId" />
+        <AssociationConnector Association="Digi2L_ProdModel.Fk_tblEcomPhoneSpecific_ModifiedBy" />
+      </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

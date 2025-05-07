@@ -14,6 +14,12 @@ namespace RDCEL.DocUpload.DAL
     
     public partial class tblImageLabelMaster
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public tblImageLabelMaster()
+        {
+            this.tblTempDatas = new HashSet<tblTempData>();
+        }
+    
         public int ImageLabelid { get; set; }
         public string ProductName { get; set; }
         public string ProductImageLabel { get; set; }
@@ -28,13 +34,12 @@ namespace RDCEL.DocUpload.DAL
         public Nullable<int> ProductTypeId { get; set; }
         public string ImagePlaceHolder { get; set; }
         public Nullable<bool> IsMediaTypeVideo { get; set; }
-        public Nullable<bool> IsActiveSelfQC { get; set; }
-        public Nullable<bool> IsSerialNumLabel { get; set; }
-        public Nullable<bool> IsActiveNewProduct { get; set; }
     
         public virtual tblProductCategory tblProductCategory { get; set; }
         public virtual tblProductType tblProductType { get; set; }
         public virtual tblUser tblUser { get; set; }
         public virtual tblUser tblUser1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblTempData> tblTempDatas { get; set; }
     }
 }

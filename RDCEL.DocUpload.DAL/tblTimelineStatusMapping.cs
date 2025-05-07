@@ -24,9 +24,9 @@ namespace RDCEL.DocUpload.DAL
         public Nullable<int> ModifiedBy { get; set; }
         public Nullable<System.DateTime> ModifiedDate { get; set; }
     
-        public virtual tblExchangeOrderStatu tblExchangeOrderStatu { get; set; }
-        public virtual tblTimeLine tblTimeLine { get; set; }
         public virtual tblUser tblUser { get; set; }
         public virtual tblUser tblUser1 { get; set; }
+        public virtual tblUser tblUser2 { get; set; }
+        public virtual tblUser tblUser3 { get; set; }
     }
 }

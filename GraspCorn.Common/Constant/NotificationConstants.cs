@@ -11,7 +11,7 @@ namespace GraspCorn.Common.Constant
 
         public const string SMS_ABB_OTP = "Dear Customer - OTP for registration for the UTC Assured Buyback Program is [OTP] by TUTC";
 
-        public const string SMS_Exchange_OTP = "Dear Customer - OTP for registration for the UTC Exchange Program is [OTP] by UTC Digital Technologies.";
+        public const string SMS_Exchange_OTP = "Dear Customer - OTP for [BrandName] voucher verification is [OTP] by Team ROCKINGDEALS.";
         public const string SMS_Exchange_DeliveryConfirm = "Dear Customer, Is your new product delivered? Can we schedule the pick-up of your Old Appliance? Please click on the link below to confirm [Link]. By UTC Digital Technologies.";
         public const string SMS_Exchange_Order_Confirm = "Dear Customer, We are in receipt of your Exchange order through Reliance Digital / My Jio store with Ref No.[REGDNO] and shall contact you soon. By UTC Digital Technologies.";
 
@@ -50,6 +50,7 @@ namespace GraspCorn.Common.Constant
         public const string Test_Template = "customer_registration";
        //public const string Send_Voucher_Code_Template = "instant_voucher_";
         public const string Send_Voucher_Code_Template = "Send_Voucher_Code_Template";
+        public const string send_voucher_generationcashe = "send_voucher_generationcashe";
         public const string Send_sms_for_deffred = "sms_selfqc_deffered";
         public const string send_sms_order_alliance = "order_confirmation_smart_sell_self_qc";
         public const string send_order_recived_confirmation = "sms_order_recive_confirmation_new_self_qc";

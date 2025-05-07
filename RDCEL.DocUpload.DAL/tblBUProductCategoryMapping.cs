@@ -27,11 +27,11 @@ namespace RDCEL.DocUpload.DAL
         public Nullable<int> ProductTypeId { get; set; }
         public Nullable<int> OldProductCatId { get; set; }
     
+        public virtual tblBusinessUnit tblBusinessUnit { get; set; }
         public virtual tblProductCategory tblProductCategory { get; set; }
         public virtual tblUser tblUser { get; set; }
         public virtual tblUser tblUser1 { get; set; }
         public virtual tblProductCategory tblProductCategory1 { get; set; }
         public virtual tblProductType tblProductType { get; set; }
-        public virtual tblBusinessUnit tblBusinessUnit { get; set; }
     }
 }

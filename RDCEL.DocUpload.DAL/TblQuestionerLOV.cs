@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace UTC_Bridge.DocUpload.DAL
+namespace RDCEL.DocUpload.DAL
 {
     using System;
     using System.Collections.Generic;
@@ -19,6 +19,7 @@ namespace UTC_Bridge.DocUpload.DAL
         {
             this.tblOrderQCRatings = new HashSet<tblOrderQCRating>();
             this.tblQCRatingMasters = new HashSet<tblQCRatingMaster>();
+            this.TblQuestionerLOVMappings = new HashSet<TblQuestionerLOVMapping>();
         }
     
         public int QuestionerLOVId { get; set; }
@@ -37,5 +38,7 @@ namespace UTC_Bridge.DocUpload.DAL
         public virtual ICollection<tblQCRatingMaster> tblQCRatingMasters { get; set; }
         public virtual tblUser tblUser { get; set; }
         public virtual tblUser tblUser1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TblQuestionerLOVMapping> TblQuestionerLOVMappings { get; set; }
     }
 }

@@ -17,8 +17,14 @@ namespace RDCEL.DocUpload.DAL
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public tblServicePartner()
         {
-            this.tblLogistics = new HashSet<tblLogistic>();
+            this.Map_ServicePartnerCityState = new HashSet<Map_ServicePartnerCityState>();
+            this.tblDriverDetails = new HashSet<tblDriverDetail>();
+            this.tblDriverLists = new HashSet<tblDriverList>();
             this.tblExchangeABBStatusHistories = new HashSet<tblExchangeABBStatusHistory>();
+            this.tblLogistics = new HashSet<tblLogistic>();
+            this.tblVehicleLists = new HashSet<tblVehicleList>();
+            this.TblVehicleJourneyTrackings = new HashSet<TblVehicleJourneyTracking>();
+            this.TblVehicleJourneyTrackingDetails = new HashSet<TblVehicleJourneyTrackingDetail>();
         }
     
         public int ServicePartnerId { get; set; }
@@ -58,13 +64,25 @@ namespace RDCEL.DocUpload.DAL
         public string ServicePartnerBusinessName { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblLogistic> tblLogistics { get; set; }
-        public virtual tblUser tblUser { get; set; }
-        public virtual tblUser tblUser1 { get; set; }
-        public virtual tblUser tblUser2 { get; set; }
+        public virtual ICollection<Map_ServicePartnerCityState> Map_ServicePartnerCityState { get; set; }
         public virtual tblCity tblCity { get; set; }
-        public virtual tblState tblState { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblDriverDetail> tblDriverDetails { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblDriverList> tblDriverLists { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblExchangeABBStatusHistory> tblExchangeABBStatusHistories { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblLogistic> tblLogistics { get; set; }
+        public virtual tblUser tblUser { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblVehicleList> tblVehicleLists { get; set; }
+        public virtual tblUser tblUser1 { get; set; }
+        public virtual tblUser tblUser2 { get; set; }
+        public virtual tblState tblState { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TblVehicleJourneyTracking> TblVehicleJourneyTrackings { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TblVehicleJourneyTrackingDetail> TblVehicleJourneyTrackingDetails { get; set; }
     }
 }

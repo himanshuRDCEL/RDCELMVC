@@ -17,17 +17,20 @@ namespace RDCEL.DocUpload.DAL
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public tblOrderTran()
         {
+            this.tblCoupons = new HashSet<tblCoupon>();
+            this.tblCustomerDetails = new HashSet<tblCustomerDetail>();
+            this.tblCustomerFiles = new HashSet<tblCustomerFile>();
+            this.tblEVCDisputes = new HashSet<tblEVCDispute>();
+            this.tblEVCPODDetails = new HashSet<tblEVCPODDetail>();
+            this.TblEVCWalletHistories = new HashSet<TblEVCWalletHistory>();
             this.tblExchangeABBStatusHistories = new HashSet<tblExchangeABBStatusHistory>();
             this.tblLogistics = new HashSet<tblLogistic>();
             this.tblOrderLGCs = new HashSet<tblOrderLGC>();
-            this.tblWalletTransactions = new HashSet<tblWalletTransaction>();
-            this.tblEVCPODDetails = new HashSet<tblEVCPODDetail>();
-            this.tblEVCDisputes = new HashSet<tblEVCDispute>();
-            this.TblEVCWalletHistories = new HashSet<TblEVCWalletHistory>();
             this.tblOrderQCs = new HashSet<tblOrderQC>();
-            this.tblCustomerFiles = new HashSet<tblCustomerFile>();
-            this.tblCoupons = new HashSet<tblCoupon>();
-            this.tblCustomerDetails = new HashSet<tblCustomerDetail>();
+            this.tblOrderQCRatings = new HashSet<tblOrderQCRating>();
+            this.tblWalletTransactions = new HashSet<tblWalletTransaction>();
+            this.tblTempDatas = new HashSet<tblTempData>();
+            this.TblVehicleJourneyTrackingDetails = new HashSet<TblVehicleJourneyTrackingDetail>();
         }
     
         public int OrderTransId { get; set; }
@@ -56,6 +59,19 @@ namespace RDCEL.DocUpload.DAL
         public Nullable<bool> IsUnInstallationPricePaid { get; set; }
         public string PDVerificatonCode { get; set; }
     
+        public virtual tblABBRedemption tblABBRedemption { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblCoupon> tblCoupons { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblCustomerDetail> tblCustomerDetails { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblCustomerFile> tblCustomerFiles { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblEVCDispute> tblEVCDisputes { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblEVCPODDetail> tblEVCPODDetails { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TblEVCWalletHistory> TblEVCWalletHistories { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblExchangeABBStatusHistory> tblExchangeABBStatusHistories { get; set; }
         public virtual tblExchangeOrder tblExchangeOrder { get; set; }
@@ -66,26 +82,19 @@ namespace RDCEL.DocUpload.DAL
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblOrderLGC> tblOrderLGCs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblWalletTransaction> tblWalletTransactions { get; set; }
+        public virtual ICollection<tblOrderQC> tblOrderQCs { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblOrderQCRating> tblOrderQCRatings { get; set; }
         public virtual tblUser tblUser { get; set; }
         public virtual tblUser tblUser1 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblEVCPODDetail> tblEVCPODDetails { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblEVCDispute> tblEVCDisputes { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TblEVCWalletHistory> TblEVCWalletHistories { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblOrderQC> tblOrderQCs { get; set; }
-        public virtual tblABBRedemption tblABBRedemption { get; set; }
         public virtual tblUser tblUser2 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblCustomerFile> tblCustomerFiles { get; set; }
+        public virtual ICollection<tblWalletTransaction> tblWalletTransactions { get; set; }
         public virtual tblUser tblUser3 { get; set; }
-        public virtual tblUser tblUser11 { get; set; }
+        public virtual tblUser tblUser4 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblCoupon> tblCoupons { get; set; }
+        public virtual ICollection<tblTempData> tblTempDatas { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblCustomerDetail> tblCustomerDetails { get; set; }
+        public virtual ICollection<TblVehicleJourneyTrackingDetail> TblVehicleJourneyTrackingDetails { get; set; }
     }
 }

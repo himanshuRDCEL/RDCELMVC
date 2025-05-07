@@ -14,12 +14,6 @@ namespace RDCEL.DocUpload.DAL
     
     public partial class tblCoupon
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public tblCoupon()
-        {
-            this.tblExchangeOrders = new HashSet<tblExchangeOrder>();
-        }
-    
         public int CouponId { get; set; }
         public Nullable<int> CouponMasterId { get; set; }
         public string CouponL1 { get; set; }
@@ -35,11 +29,9 @@ namespace RDCEL.DocUpload.DAL
         public Nullable<int> ModifiedBy { get; set; }
         public Nullable<System.DateTime> ModifiedDate { get; set; }
     
+        public virtual tblCouponMaster tblCouponMaster { get; set; }
         public virtual tblUser tblUser { get; set; }
         public virtual tblUser tblUser1 { get; set; }
         public virtual tblOrderTran tblOrderTran { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblExchangeOrder> tblExchangeOrders { get; set; }
-        public virtual tblCouponMaster tblCouponMaster { get; set; }
     }
 }

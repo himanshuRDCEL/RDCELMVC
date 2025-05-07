@@ -17,6 +17,7 @@ namespace RDCEL.DocUpload.DAL
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public tblPinCode()
         {
+            this.Map_ServicePartnerCityState = new HashSet<Map_ServicePartnerCityState>();
             this.TblBPPincodeMappings = new HashSet<TblBPPincodeMapping>();
         }
     
@@ -32,10 +33,12 @@ namespace RDCEL.DocUpload.DAL
         public Nullable<int> ModifiedBy { get; set; }
         public Nullable<System.DateTime> ModifiedDate { get; set; }
         public Nullable<bool> IsABB { get; set; }
-        public Nullable<bool> isExchange { get; set; }
+        public Nullable<bool> IsExchange { get; set; }
         public Nullable<int> CityId { get; set; }
         public string AreaLocality { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Map_ServicePartnerCityState> Map_ServicePartnerCityState { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TblBPPincodeMapping> TblBPPincodeMappings { get; set; }
         public virtual tblCity tblCity { get; set; }

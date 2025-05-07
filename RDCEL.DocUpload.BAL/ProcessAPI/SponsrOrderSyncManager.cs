@@ -710,7 +710,7 @@ namespace RDCEL.DocUpload.BAL.ProcessAPI
                             voucherverificationvm.data.payload.consumer_ref_id = exchangeOrder.CustomerDetailsId > 0 ? exchangeOrder.CustomerDetailsId.ToString() : string.Empty;
                             voucherverificationvm.data.payload.issuer_ref_id = businessUnit.BusinessUnitId.ToString();
                             voucherverificationvm.data.payload.abrand_ref_id = businessUnit.BusinessUnitId.ToString();
-                            voucherverificationvm.data.payload.merchant_ref_id = "UTCDIGITAL";
+                            voucherverificationvm.data.payload.merchant_ref_id = "RDCEL";
 
                             bool isVoucherProccessed = false;
                             IRestResponse response = BillCloudServiceCall.Rest_InvokeZohoInvoiceServiceForPlainText(ConfigurationManager.AppSettings["VoucherProcess"].ToString(), Method.POST, voucherverificationvm);
@@ -777,7 +777,96 @@ namespace RDCEL.DocUpload.BAL.ProcessAPI
             return sucessObj;
         }
 
+        #region sa
 
+        public bool UpdateVoucherstatusToRedeemeds(string RegNo)
+        {
+            ProductManager productOrderInfo = new ProductManager();
+            SponserManager sponserManager = new SponserManager();
+            OrderStatusDetailsDataContract orderStatusDetailsDC = null;
+            orderStatusDetailsDC = new OrderStatusDetailsDataContract();
+            ExchangeOrderRepository sponserRepository = new ExchangeOrderRepository();
+            ExchangeOrderRepository _exchangeOrderRepository = new ExchangeOrderRepository();
+            VoucherVerificationRepository _voucherVerificationRepository = new VoucherVerificationRepository();
+            BusinessUnitRepository _businessUnitRepository = new BusinessUnitRepository();
+            BusinessPartnerRepository _businessPartnerRepository = new BusinessPartnerRepository();
+            VoucherVerificationResponseViewModel sucessObj = null;
+            VoucherStatusRepository _voucherStatusRepository = new VoucherStatusRepository();
+            SponserManager _sponserManager = new SponserManager();
+            string result = "_R";
+            string voucherStatusName = null;
+            bool isVoucherProccessed = false;
+
+            try
+            {
+                if (RegNo != null)
+                {
+                    #region Code to update the Bill Cloud API  (Voucher Reedeemed)
+                    tblExchangeOrder exchangeOrder = _exchangeOrderRepository.GetSingle(x => x.RegdNo == RegNo);
+                    if (exchangeOrder != null)
+                    {
+                        tblVoucherVerfication voucherVerfication = _voucherVerificationRepository.GetSingle(x => x.ExchangeOrderId == exchangeOrder.Id);
+                        if (voucherVerfication != null && voucherVerfication.BusinessPartnerId != null)
+                        {
+                            tblBusinessPartner businessPartner = _businessPartnerRepository.GetSingle(x => x.BusinessPartnerId == voucherVerfication.BusinessPartnerId);
+                            tblBusinessUnit businessUnit = _businessUnitRepository.GetSingle(x => x.BusinessUnitId == businessPartner.BusinessUnitId);
+
+                            bool response = true;
+                            if (businessUnit!=null)
+                            {
+                                Logging logging = new Logging();
+                                //if (response.StatusCode == HttpStatusCode.OK)
+                                //{
+                                //    sucessObj = JsonConvert.DeserializeObject<VoucherVerificationResponseViewModel>(response.Content);
+                                //    if (sucessObj != null && sucessObj.data != null && sucessObj.data.status.ToLower().Equals("success"))
+                                //    //{
+                                isVoucherProccessed = true;
+                                //  }
+                                //else
+                                //{
+                                //    logging.WriteErrorToDB("SponsrOrderSyncManager", "UpdateVoucherstatusToRedeemed", exchangeOrder.SponsorOrderNumber, null);
+                                //}
+                            }
+                            else
+                            {
+                                logging.WriteErrorToDB("SponsrOrderSyncManager", "UpdateVoucherstatusToRedeemed", exchangeOrder.SponsorOrderNumber, null);
+                            }
+                            // }
+                            if (isVoucherProccessed)
+                            {
+                                voucherStatusName = "Redeemed";
+                                tblVoucherStatu tblVoucherStatu = _voucherStatusRepository.GetSingle(x => x.VoucherStatusName == voucherStatusName);
+                                //voucherVerfication = new tblVoucherVerfication();
+                                //_voucherVerificationRepository = new VoucherVerificationRepository();
+                                voucherVerfication.IsVoucherused = true;
+                                voucherVerfication.VoucherStatusId = tblVoucherStatu.VoucherStatusId;
+                                _voucherVerificationRepository.Update(voucherVerfication);
+                                _voucherVerificationRepository.SaveChanges();
+                                if (exchangeOrder != null)
+                                {
+                                    exchangeOrder.IsVoucherused = true;
+                                    exchangeOrder.VoucherStatusId = tblVoucherStatu.VoucherStatusId;
+                                    _exchangeOrderRepository.Update(exchangeOrder);
+                                    _exchangeOrderRepository.SaveChanges();
+                                }
+                            }
+                            #endregion
+
+                        }
+                    }
+
+                }
+                return isVoucherProccessed;
+            }
+            catch (Exception ex)
+            {
+                LibLogging.WriteErrorToDB("SponserOrderSync", "ProcessGetOrderStatusInfos", ex);
+            }
+
+            return isVoucherProccessed;
+        }
+
+        #endregion
         public VoucherVerificationResponseViewModel UpdateVoucherstatusToRedeemedTemp(string RegNo)
         {
             ProductManager productOrderInfo = new ProductManager();
@@ -1238,7 +1327,7 @@ namespace RDCEL.DocUpload.BAL.ProcessAPI
                                 _notificationManager.SendNotificationSMS(redemptionDataDC.PhoneNumber, message, null);
                             }
 
-                            jetmessage.From = new MailJetFrom() { Email = "customercare@rdcel.com", Name = "UTC - Customer  Care" };
+                            jetmessage.From = new MailJetFrom() { Email = "hp@rdcel.com", Name = "Rocking Deals - Customer  Care" };
                             jetmessage.To = new List<MailjetTo>();
                             jetmessage.To.Add(new MailjetTo() { Email = redemptionDataDC.Email.Trim(), Name = redemptionDataDC.FirstName });
                             jetmessage.Subject = businessUnit.Name + ": ABBRedemption Voucher Detail";
@@ -1266,7 +1355,7 @@ namespace RDCEL.DocUpload.BAL.ProcessAPI
                                  .Replace("[VLink]", "( " + voucherUrl + " )").Replace("[STORENAME]", businessUnit.Name);
                                 _notificationManager.SendNotificationSMS(redemptionDataDC.PhoneNumber, message, null);
                             }
-                            jetmessage.From = new MailJetFrom() { Email = "customercare@rdcel.com", Name = "UTC - Customer  Care" };
+                            jetmessage.From = new MailJetFrom() { Email = "hp@rdcel.com", Name = "Rocking Deals - Customer  Care" };
                             jetmessage.To = new List<MailjetTo>();
                             jetmessage.To.Add(new MailjetTo() { Email = redemptionDataDC.Email.Trim(), Name = redemptionDataDC.FirstName });
                             jetmessage.Subject = businessUnit.Name + ": Redemption Voucher Detail";

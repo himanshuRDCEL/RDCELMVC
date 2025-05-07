@@ -17,10 +17,11 @@ namespace RDCEL.DocUpload.DAL
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public tblLoV()
         {
-            this.tblOrderTrans = new HashSet<tblOrderTran>();
             this.tblBusinessUnits = new HashSet<tblBusinessUnit>();
             this.tblBusinessUnits1 = new HashSet<tblBusinessUnit>();
             this.tblEVCRegistrations = new HashSet<tblEVCRegistration>();
+            this.tblOrderTrans = new HashSet<tblOrderTran>();
+            this.tblTempDatas = new HashSet<tblTempData>();
             this.tblWalletTransactions = new HashSet<tblWalletTransaction>();
         }
     
@@ -35,13 +36,15 @@ namespace RDCEL.DocUpload.DAL
         public Nullable<System.DateTime> ModifiedDate { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblOrderTran> tblOrderTrans { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblBusinessUnit> tblBusinessUnits { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblBusinessUnit> tblBusinessUnits1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblEVCRegistration> tblEVCRegistrations { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblOrderTran> tblOrderTrans { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblTempData> tblTempDatas { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblWalletTransaction> tblWalletTransactions { get; set; }
     }

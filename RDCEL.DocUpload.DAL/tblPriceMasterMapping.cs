@@ -24,14 +24,14 @@ namespace RDCEL.DocUpload.DAL
         public Nullable<System.DateTime> CreatedDate { get; set; }
         public Nullable<int> ModifiedBy { get; set; }
         public Nullable<System.DateTime> ModifiedDate { get; set; }
-        public Nullable<System.DateTime> Startdate { get; set; }
-        public Nullable<System.DateTime> Enddate { get; set; }
+        public Nullable<System.DateTime> StartDate { get; set; }
+        public Nullable<System.DateTime> EndDate { get; set; }
     
         public virtual tblBrand tblBrand { get; set; }
         public virtual tblBusinessPartner tblBusinessPartner { get; set; }
+        public virtual tblBusinessUnit tblBusinessUnit { get; set; }
         public virtual tblUser tblUser { get; set; }
         public virtual tblUser tblUser1 { get; set; }
-        public virtual tblBusinessUnit tblBusinessUnit { get; set; }
         public virtual tblPriceMasterName tblPriceMasterName { get; set; }
     }
 }

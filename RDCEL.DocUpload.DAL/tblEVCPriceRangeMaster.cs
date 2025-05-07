@@ -17,7 +17,7 @@ namespace RDCEL.DocUpload.DAL
         public int EVCPriceRangeMasterId { get; set; }
         public Nullable<int> Price_Start_Range { get; set; }
         public Nullable<int> Price_End_Range { get; set; }
-        public Nullable<int> EVC_Applicable_Percentage { get; set; }
+        public Nullable<decimal> EVC_Applicable_Percentage { get; set; }
         public Nullable<bool> IsActive { get; set; }
         public Nullable<int> CreatedBy { get; set; }
         public Nullable<System.DateTime> CreatedDate { get; set; }
