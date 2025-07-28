@@ -584,6 +584,18 @@
         <AssociationConnector Association="Digi2L_ProdModel.Fk_tblEcomPhoneSpecific_CreatedBy" />
         <AssociationConnector Association="Digi2L_ProdModel.Fk_tblEcomPhoneSpecific_EcomVoucherId" />
         <AssociationConnector Association="Digi2L_ProdModel.Fk_tblEcomPhoneSpecific_ModifiedBy" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.tblCatBrandSweetener" Width="1.5" PointX="19.25" PointY="298.5" />
+        <EntityTypeShape EntityType="Digi2L_ProdModel.tblCatBrandSweetenerMapping" Width="1.5" PointX="21.5" PointY="302.625" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblCatBra__Brand__6D6D25A7" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblCatBrandSweetener__Brand__2B0A656D" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblCatBra__Busin__65CC03DF" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblCatBra__Busin__6F556E19" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblCatBra__Busin__66C02818" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblCatBra__Busin__6E6149E0" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblCatBra__CatBr__70499252" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblCatBra__CatBr__713DB68B" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblCatBrandSweetener__ProductCat__2B0A656D" />
+        <AssociationConnector Association="Digi2L_ProdModel.FK__tblCatBrandSweetener__ProductType__2B0A656D" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

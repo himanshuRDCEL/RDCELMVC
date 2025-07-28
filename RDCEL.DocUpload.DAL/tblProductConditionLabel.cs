@@ -26,6 +26,7 @@ namespace RDCEL.DocUpload.DAL
         public Nullable<int> BusinessPartnerId { get; set; }
         public Nullable<bool> IsSweetenerApplicable { get; set; }
         public Nullable<int> ProductCatId { get; set; }
+        public Nullable<bool> IsOldProductBaseSweetener { get; set; }
     
         public virtual tblBusinessPartner tblBusinessPartner { get; set; }
         public virtual tblBusinessUnit tblBusinessUnit { get; set; }

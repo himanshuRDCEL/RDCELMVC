@@ -18,6 +18,8 @@ namespace RDCEL.DocUpload.BAL.SweetenerManager
         BusinessPartnerRepository _businessPartnerRepository;
         ModelNumberRepository _modalnumberRepository;
         ModalMappingRepository _modalMappingRepository;
+        CatBrandSweetenerMappingRepository _catBrandSweetenerMappingRepository;
+        CatBrandSweetenerRepository _catBrandSweetenerRepository;
         #endregion
 
         #region sweetener common method
@@ -25,11 +27,20 @@ namespace RDCEL.DocUpload.BAL.SweetenerManager
         {
             logging = new Logging();
             SweetenerDataContract sweetenerDC = new SweetenerDataContract();
+            OldSweetenerDataContract oldsweetenerDC = new OldSweetenerDataContract();
             try
             {
                 if (details.IsSweetenerModalBased == true)
                 {
                     sweetenerDC = GetModalBasedSweetener(details);
+                }
+                if (details.IsOldProductBaseSweetener == true)
+                {
+                    oldsweetenerDC = GetOldProductBasedSweetener(details);
+                    if (oldsweetenerDC != null)
+                    {
+                        sweetenerDC.OldSweetenerDC = oldsweetenerDC;
+                    }
                 }
                 else
                 {
@@ -138,5 +149,69 @@ namespace RDCEL.DocUpload.BAL.SweetenerManager
             return sweetenerDC;
         }
         #endregion
+
+
+
+        #region Old Product based sweetener method
+        public OldSweetenerDataContract GetOldProductBasedSweetener(GetSweetenerDetailsDataContract details)
+        {
+            logging = new Logging();
+            OldSweetenerDataContract sweetenerDC = new OldSweetenerDataContract();
+            tblCatBrandSweetenerMapping modalmappingObj = new tblCatBrandSweetenerMapping();
+            tblCatBrandSweetener modelnumberObj = new tblCatBrandSweetener();
+            _catBrandSweetenerMappingRepository = new CatBrandSweetenerMappingRepository();
+            _catBrandSweetenerRepository = new CatBrandSweetenerRepository();
+            _businessPartnerRepository = new BusinessPartnerRepository();
+            try
+            {
+                if (details.BrandId > 0)
+                {
+                    //code to check if selected brand is absolute modal and not default
+                    modalmappingObj = _catBrandSweetenerMappingRepository.GetSingle(x => x.BrandId == details.BrandId && x.IsActive == true  && x.BusinessUnitId == details.BusinessUnitId && x.BusinessPartnerId == details.BusinessPartnerId);
+                    if (modalmappingObj != null)
+                    {
+                        sweetenerDC.OldSweetenerBu = modalmappingObj.SweetenerBu != null ? modalmappingObj.SweetenerBu : 0;
+                        sweetenerDC.OldSweetenerBP = modalmappingObj.SweetenerBP != null ? modalmappingObj.SweetenerBP : 0;
+                        sweetenerDC.OldSweetenerOwn = modalmappingObj.SweetenerOwn != null ? modalmappingObj.SweetenerOwn : 0;
+                        sweetenerDC.OldSweetenerTotal = sweetenerDC.OldSweetenerOwn + sweetenerDC.OldSweetenerBu + sweetenerDC.OldSweetenerBP;
+                    }
+                    else
+                    {
+                        sweetenerDC.ErrorMessage = "No modelfound for this order in mapping table";
+                    }
+                }
+               
+                else
+                {
+                    modelnumberObj = _catBrandSweetenerRepository.GetSingle(x => x.IsActive == true && x.IsDefaultProduct == true && x.ProductCategoryId == details.OlProdCatId && x.ProductTypeId == details.OldProdTypeId && x.BusinessUnitId == details.BusinessUnitId);
+                    if (modelnumberObj != null)
+                    {
+                        modalmappingObj = _catBrandSweetenerMappingRepository.GetSingle(x => x.IsActive == true && x.IsDefault == true && x.BusinessUnitId == details.BusinessUnitId && x.BusinessPartnerId == details.BusinessPartnerId);
+                        if (modalmappingObj != null)
+                        {
+                            sweetenerDC.OldSweetenerBu = modalmappingObj.SweetenerBu != null ? modalmappingObj.SweetenerBu : 0;
+                            sweetenerDC.OldSweetenerBP = modalmappingObj.SweetenerBP != null ? modalmappingObj.SweetenerBP : 0;
+                            sweetenerDC.OldSweetenerOwn = modalmappingObj.SweetenerOwn != null ? modalmappingObj.SweetenerOwn : 0;
+                            sweetenerDC.OldSweetenerTotal = sweetenerDC.OldSweetenerOwn + sweetenerDC.OldSweetenerBu + sweetenerDC.OldSweetenerBP;
+                        }
+                        else
+                        {
+                            sweetenerDC.ErrorMessage = "No sweetener for this order in mapping table";
+                        }
+                    }
+                    else
+                    {
+                        sweetenerDC.ErrorMessage = "No sweetener for this order in master table";
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                LibLogging.WriteErrorToDB("ManageSweetener", "GetOldProductBasedSweetener", ex);
+            }
+            return sweetenerDC;
+        }
+        #endregion
+
     }
 }

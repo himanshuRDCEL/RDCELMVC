@@ -27,6 +27,8 @@ namespace RDCEL.DocUpload.DAL
             this.tblExchangeOrders = new HashSet<tblExchangeOrder>();
             this.tblEcomVouchers = new HashSet<tblEcomVoucher>();
             this.tblVoucherVerfications = new HashSet<tblVoucherVerfication>();
+            this.tblCatBrandSweetenerMappings = new HashSet<tblCatBrandSweetenerMapping>();
+            this.tblCatBrandSweeteners = new HashSet<tblCatBrandSweetener>();
         }
     
         public int Id { get; set; }
@@ -60,5 +62,9 @@ namespace RDCEL.DocUpload.DAL
         public virtual ICollection<tblEcomVoucher> tblEcomVouchers { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblVoucherVerfication> tblVoucherVerfications { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblCatBrandSweetenerMapping> tblCatBrandSweetenerMappings { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblCatBrandSweetener> tblCatBrandSweeteners { get; set; }
     }
 }

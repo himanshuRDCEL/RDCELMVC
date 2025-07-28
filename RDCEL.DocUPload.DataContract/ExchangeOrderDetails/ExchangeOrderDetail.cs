@@ -79,6 +79,8 @@ namespace RDCEL.DocUpload.DataContract.ExchangeOrderDetails
         public string priceCode { get; set; }
         public bool IsSweetnerModelBased { get; set; }
         public bool IsSweetnerBasedonModal { get; set; }
+
+        public bool IsOldProductBaseSweetener { get; set; }
         public bool IsQualityRequiredOnUI { get; set; }
         public bool IsNewProductDetailsRequired { get; set; }
         public bool IsBuMultiBrand { get; set; }

@@ -9,6 +9,7 @@
     @Html.HiddenFor(m => m.BusinessPartnerId, new { id = "hdnBusinessPartnerId" })
     @Html.HiddenFor(m => m.ExchangePrice, new { id = "hdnExchangePriceString" })
     @Html.HiddenFor(m => m.IsSweetnerModelBased, new { id = "hdnIssweetnerModelBased" })
+    @Html.HiddenFor(m => m.IsOldProductBaseSweetener, new { id = "hdnIsOldProductBaseSweetener" })
     @Html.HiddenFor(m => m.FormatName, new { id = "hdnFormatName" })
     @Html.HiddenFor(m => m.IsOrc, new { id = "hdnOrc" })
     @Html.HiddenFor(m => m.IsD2C, new { id = "hdnD2C" })
@@ -626,7 +627,7 @@
     });
 
     $("#ddlBrand").change(function () {
-        /*debugger;*/
+        debugger;
         ShowProductPrice();
     });
 
@@ -676,7 +677,7 @@
     });
 
     function ShowProductPrice() {
-
+        debugger;
         var productCatId = $("#ddlProdGroup").val();
         var productSubCatId =$("#ddlProdType").val();
         var brandId = $("#ddlBrand").val();
@@ -694,6 +695,7 @@
         var newsubcatid =  $("#ddlProdTypeNew").val();
         var modelno = $("#ddlModelNo").val();
         var IsSweetnerModelBased = $("#hdnIssweetnerModelBased").val();
+        var IsOldProductBaseSweetener = $("#hdnIsOldProductBaseSweetener").val();
         var IsModelNumberRequired = $("#hdnIsModelNumberRequired").val();
         var IsValidationBasedSweetner = "@Model.IsValidationBasedSweetner";
         var newBrandId = $("#ddlBrandNew").val();
@@ -724,12 +726,15 @@
             else if (newcatid > 0 && newsubcatid > 0 && modelno > 0 && (IsSweetnerModelBased == true || IsSweetnerModelBased == "True" || IsSweetnerModelBased == "true") && (IsModelNumberRequired == true || IsModelNumberRequired == "true" || IsModelNumberRequired == "True")) {
                 flag = true;
             }
+            //else if (productSubCatId > 0 && productCatId > 0 && brandId > 0 && (IsOldProductBaseSweetener == true || IsOldProductBaseSweetener == "True" || IsOldProductBaseSweetener == "true") && (IsOldProductBaseSweetener == true || IsOldProductBaseSweetener == "true" || IsOldProductBaseSweetener == "True")) {
+            //    flag = true;
+            //}
             if (flag) {
                 $.ajax({
 
                 type: "GET",
                 url: "@Url.Action("GetPriceOnBasisofNewPriceMaster", "Exchange")",
-                    data: { productCatId: productCatId, productSubCatId: productSubCatId, brandId: brandId, conditionId: conditionId, buid: buiId, newcatid: newcatid, newsubcatid: newsubcatid, modelno: modelno, IsSweetnerModelBased: IsSweetnerModelBased, formatType: formatType, IsValidationBasedSweetner: IsValidationBasedSweetner, newBrandId: newBrandId, priceNameId: priceNameId, bpid: bpid },
+                    data: { productCatId: productCatId, productSubCatId: productSubCatId, brandId: brandId, conditionId: conditionId, buid: buiId, newcatid: newcatid, newsubcatid: newsubcatid, modelno: modelno, IsSweetnerModelBased: IsSweetnerModelBased, IsOldProductBaseSweetener: IsOldProductBaseSweetener , formatType: formatType, IsValidationBasedSweetner: IsValidationBasedSweetner, newBrandId: newBrandId, priceNameId: priceNameId, bpid: bpid},
                     success: function (data) {
                         if (data) {
                             if (data.ExchangePrice != null) {

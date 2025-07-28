@@ -49,6 +49,7 @@ using RDCEL.DocUpload.DataContract.DaikinModel;
 using RDCEL.DocUpload.BAL.SweetenerManager;
 using System.Runtime.Remoting.Contexts;
 using static RDCEL.DocUpload.BAL.Common.WhatsappNotificationManager;
+using System.Web.UI.WebControls;
 
 namespace RDCEL.DocUpload.BAL.SponsorsApiCall
 {
@@ -1317,7 +1318,7 @@ namespace RDCEL.DocUpload.BAL.SponsorsApiCall
     whatsappObj.notification.@params.VoucherLink      // Download URL
 };
 
-     // Send WhatsApp message
+                                        // Send WhatsApp message
                                         HttpResponseDetails response = whatsappNotificationManager.SendWhatsAppMessageAsync(
                                  whatsappObj.notification.templateId,
                                                             whatsappObj.userDetails.number,
@@ -1365,6 +1366,18 @@ namespace RDCEL.DocUpload.BAL.SponsorsApiCall
                                 }
                                 else if (exchangeOrderDC.IsDifferedSettlement == false && exchangeOrderDC.IsVoucher == true && exchangeOrderDC.VoucherType == Convert.ToInt32(VoucherTypeEnum.Discount))
                                 {
+
+                                    tblBusinessUnit tblBusinessUnit = _businessUnitRepository.GetSingle(x => x.BusinessUnitId == exchangeOrderDC.BusinessUnitId && x.IsActive == true && x.IsVoucherAfterQC == true);
+                                    if (tblBusinessUnit != null)
+                                    {
+                                        bool flags = GenerateQCLInkBeforeSendVoucher(exchangeOrderDC);
+                                        if (flags == true)
+                                        {
+                                            exchangeOrderDC.IsVoucherAfterQC = true;
+                                           
+                                        }
+                                    }
+                                     else   { 
                                     #region For other Store
                                     voucherName = "Generated";
                                     tblVoucherStatu voucherStatu = _voucherStatusRepository.GetSingle(x => x.VoucherStatusName == voucherName);
@@ -1388,10 +1401,10 @@ namespace RDCEL.DocUpload.BAL.SponsorsApiCall
                                     // Assign values
                                     whatsappObj.userDetails.number = exchangeOrderDC.PhoneNumber;
                                     whatsappObj.notification.templateId = NotificationConstants.Send_Voucher_Code_Template;
-                                    whatsappObj.notification.@params.voucherAmount =exchangeOrderObj.ExchangePrice.ToString();
+                                    whatsappObj.notification.@params.voucherAmount = exchangeOrderObj.ExchangePrice.ToString();
                                     whatsappObj.notification.@params.VoucherExpiry = Convert.ToDateTime(exchangeOrderObj.VoucherCodeExpDate).ToString("dd/MM/yyyy");
                                     whatsappObj.notification.@params.voucherCode = exchangeOrderObj.VoucherCode.ToString();
-                                    whatsappObj.notification.@params.BrandName =businessUnit.Name.ToString();
+                                    whatsappObj.notification.@params.BrandName = businessUnit.Name.ToString();
                                     whatsappObj.notification.@params.VoucherLink =
 ConfigurationManager.AppSettings["BaseURL"].ToString() + "Home/V/" + exchangeOrderObj.Id;
 
@@ -1471,6 +1484,7 @@ ConfigurationManager.AppSettings["BaseURL"].ToString() + "Home/V/" + exchangeOrd
                                     BillCloudServiceCall.MailJetSendMailService(mailJet);
                                     #endregion
                                     #endregion
+                                }
                                 }
                             }
                         }
@@ -6528,6 +6542,109 @@ ConfigurationManager.AppSettings["BaseURL"].ToString() + "Home/V/" + exchangeOrd
             return productsPricesList;
         }
 
+        #endregion
+
+
+        #region sa
+        public bool GenerateQCLInkBeforeSendVoucher(ExchangeOrderDataContract exchangeOrderDataContract)
+        {
+            bool flag = false;
+            string BrandName = string.Empty;
+            string ProductCategory = string.Empty;
+            string ProductType = string.Empty;
+            string ResponseCode = string.Empty;
+            WhatasappResponse whatssappresponseDC = null;
+            string responseforWhatasapp = string.Empty;
+            _whatsAppMessageRepository = new WhatsappMessageRepository();
+            string ERPBaseURL = ConfigurationManager.AppSettings["ERPBaseURL"].ToString();
+        string selfQC = ConfigurationManager.AppSettings["SelfQCUrl"].ToString();
+        string SelfQCLink = ERPBaseURL + "" + selfQC + "" + exchangeOrderDataContract.RegdNo;
+            tblProductType productType = _productTypeRepository.GetSingle(x => x.Id == exchangeOrderDataContract.ProductTypeId);
+            if (productType != null)
+            {
+                tblProductCategory productCategory = _productCategoryRepository.GetSingle(x => x.Id == productType.ProductCatId);
+                if (productCategory != null)
+                {
+                    tblBrand brandobj = _brandRepository.GetSingle(x => x.Id == exchangeOrderDataContract.BrandId);
+                    if (brandobj != null)
+                    {
+                        BrandName = brandobj.Name;
+                        ProductCategory = productCategory.Description;
+                        ProductType = productType.Description;
+                        OrderConfirmationTemplateExchange whatsappObjforOrderConfirmation = new OrderConfirmationTemplateExchange();
+                        whatsappObjforOrderConfirmation.userDetails = new UserDetails();
+                        whatsappObjforOrderConfirmation.notification = new OrderConfiirmationNotification();
+                        WhatsappNotificationManager whatsappNotificationManager = new WhatsappNotificationManager();
+                        whatsappObjforOrderConfirmation.notification.@params = new SendWhatssappForExcahangeConfirmation();
+                        whatsappObjforOrderConfirmation.notification.@params.CustName = exchangeOrderDataContract.FirstName + " " + exchangeOrderDataContract.LastName;
+                        whatsappObjforOrderConfirmation.notification.@params.Link = SelfQCLink;
+                        whatsappObjforOrderConfirmation.notification.@params.ProductBrand = BrandName;
+                        whatsappObjforOrderConfirmation.notification.@params.ProdCategory = ProductCategory;
+                        whatsappObjforOrderConfirmation.notification.@params.ProdType = ProductType;
+                        whatsappObjforOrderConfirmation.notification.@params.RegdNO = exchangeOrderDataContract.RegdNo.ToString();
+
+
+                        whatsappObjforOrderConfirmation.userDetails.number = exchangeOrderDataContract.PhoneNumber;
+                        whatsappObjforOrderConfirmation.notification.templateId = NotificationConstants.orderConfirmationForExchange;
+                        whatsappObjforOrderConfirmation.notification.@params.CustName = exchangeOrderDataContract.FirstName + " " + exchangeOrderDataContract.LastName; ;
+                        whatsappObjforOrderConfirmation.notification.@params.RegdNO = exchangeOrderDataContract.RegdNo.ToString();
+                        whatsappObjforOrderConfirmation.notification.@params.ProdCategory = ProductCategory;
+
+                        whatsappObjforOrderConfirmation.notification.@params.CustName = exchangeOrderDataContract.FirstName + " " + exchangeOrderDataContract.LastName;
+                        whatsappObjforOrderConfirmation.notification.@params.Number = exchangeOrderDataContract.PhoneNumber;
+                        whatsappObjforOrderConfirmation.notification.@params.Email = exchangeOrderDataContract.Email;
+                        whatsappObjforOrderConfirmation.notification.@params.Link = SelfQCLink;
+
+                        List<string> templateParams = new List<string>
+                                   {
+                                       whatsappObjforOrderConfirmation.notification.@params.CustName, whatsappObjforOrderConfirmation.notification.@params.RegdNO,     whatsappObjforOrderConfirmation.notification.@params.ProdCategory,  
+                                       whatsappObjforOrderConfirmation.notification.@params.ProdType, 
+                                       whatsappObjforOrderConfirmation.notification.@params.CustName,
+                                       whatsappObjforOrderConfirmation.notification.@params.Number,
+                                       whatsappObjforOrderConfirmation.notification.@params.Email,
+                                       whatsappObjforOrderConfirmation.notification.@params.Link,
+                                   };
+                        HttpResponseDetails response = whatsappNotificationManager.SendWhatsAppMessageAsync(
+                                            whatsappObjforOrderConfirmation.notification.templateId,
+                                            whatsappObjforOrderConfirmation.userDetails.number,
+                                            templateParams
+                                        ).GetAwaiter().GetResult();
+
+                        ResponseCode = response.Response.StatusCode.ToString();
+                        string WhatssAppStatusEnum = ExchangeOrderManager.GetEnumDescription(WhatssAppEnum.AiSuccessCode);
+                        if (ResponseCode == WhatssAppStatusEnum)
+                        {
+                            responseforWhatasapp = response.Content;
+                            if (responseforWhatasapp != null)
+                            {
+                                whatssappresponseDC = JsonConvert.DeserializeObject<WhatasappResponse>(responseforWhatasapp);
+                                tblWhatsAppMessage whatsapObj = new tblWhatsAppMessage();
+                                whatsapObj.TemplateName = NotificationConstants.ABBRedemptionSelfQC;
+                                whatsapObj.IsActive = true;
+                                whatsapObj.PhoneNumber = exchangeOrderDataContract.PhoneNumber;
+                                whatsapObj.SendDate = DateTime.Now;
+                                whatsapObj.msgId = whatssappresponseDC.msgId;
+                                _whatsAppMessageRepository.Add(whatsapObj);
+                                _whatsAppMessageRepository.SaveChanges();
+                                flag = true;
+                            }
+                            else
+                            {
+                                string ExchOrderObj = JsonConvert.SerializeObject(exchangeOrderDataContract);
+                                logging.WriteAPIRequestToDB("WhatsappNotificationManager", "Rest_InvokeWhatsappserviceCall", exchangeOrderDataContract.SponsorOrderNumber, ExchOrderObj);
+                            }
+                        }
+                        else
+                        {
+                            string ExchOrderObj = JsonConvert.SerializeObject(exchangeOrderDataContract);
+                            logging.WriteAPIRequestToDB("WhatsappNotificationManager", "Rest_InvokeWhatsappserviceCall", exchangeOrderDataContract.SponsorOrderNumber, ExchOrderObj);
+                        }
+                    }
+                }
+            }
+
+            return flag;
+                       }
         #endregion
     }
 }

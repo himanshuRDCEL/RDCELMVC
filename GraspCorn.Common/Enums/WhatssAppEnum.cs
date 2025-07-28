@@ -10,6 +10,8 @@ namespace GraspCorn.Common.Enums
     public enum WhatssAppEnum
     {
         [Description("Accepted")]
-        SuccessCode = 200,
+        SuccessCode = 200,  
+        [Description("OK")]
+        AiSuccessCode = 200,
     }
 }

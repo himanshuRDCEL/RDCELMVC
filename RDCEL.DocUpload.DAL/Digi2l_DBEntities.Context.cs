@@ -178,6 +178,8 @@ namespace RDCEL.DocUpload.DAL
         public virtual DbSet<View_BOSCHVoucher> View_BOSCHVoucher { get; set; }
         public virtual DbSet<View_ExchangWithQC> View_ExchangWithQC { get; set; }
         public virtual DbSet<tblEcomPhoneSpecific> tblEcomPhoneSpecifics { get; set; }
+        public virtual DbSet<tblCatBrandSweetener> tblCatBrandSweeteners { get; set; }
+        public virtual DbSet<tblCatBrandSweetenerMapping> tblCatBrandSweetenerMappings { get; set; }
     
         public virtual ObjectResult<GetBusinessCustomerDashboard_Result> GetBusinessCustomerDashboard(Nullable<int> customerId)
         {

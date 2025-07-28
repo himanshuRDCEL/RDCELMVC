@@ -45,6 +45,8 @@ namespace RDCEL.DocUpload.DAL
             this.tblSponsorCategoryMappings = new HashSet<tblSponsorCategoryMapping>();
             this.tblUninstallationPrices = new HashSet<tblUninstallationPrice>();
             this.TblVehicleIncentives = new HashSet<TblVehicleIncentive>();
+            this.tblCatBrandSweeteners = new HashSet<tblCatBrandSweetener>();
+            this.tblCatBrandSweetenerMappings = new HashSet<tblCatBrandSweetenerMapping>();
         }
     
         public int BusinessUnitId { get; set; }
@@ -108,6 +110,7 @@ namespace RDCEL.DocUpload.DAL
         public Nullable<bool> IsBUCatIdOn { get; set; }
         public Nullable<bool> IsProductSerialNumberRequired { get; set; }
         public Nullable<bool> IsSFIDRequired { get; set; }
+        public Nullable<bool> IsVoucherAfterQC { get; set; }
     
         public virtual Login Login { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -168,5 +171,9 @@ namespace RDCEL.DocUpload.DAL
         public virtual ICollection<tblUninstallationPrice> tblUninstallationPrices { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TblVehicleIncentive> TblVehicleIncentives { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblCatBrandSweetener> tblCatBrandSweeteners { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblCatBrandSweetenerMapping> tblCatBrandSweetenerMappings { get; set; }
     }
 }

@@ -12,22 +12,25 @@ namespace RDCEL.DocUpload.DAL
     using System;
     using System.Collections.Generic;
     
-    public partial class tblOrderBasedConfig
+    public partial class tblCatBrandSweetenerMapping
     {
         public int Id { get; set; }
-        public int BusinessUnitId { get; set; }
+        public int CatBrandSweetenerId { get; set; }
+        public Nullable<int> BusinessUnitId { get; set; }
         public Nullable<int> BusinessPartnerId { get; set; }
         public Nullable<int> BrandId { get; set; }
-        public Nullable<bool> IsBPMultiBrand { get; set; }
-        public Nullable<bool> IsValidationBasedSweetener { get; set; }
-        public Nullable<bool> IsSweetenerModalBased { get; set; }
+        public Nullable<decimal> SweetenerBu { get; set; }
+        public Nullable<decimal> SweetenerBP { get; set; }
+        public Nullable<decimal> SweetenerOwn { get; set; }
         public Nullable<bool> IsActive { get; set; }
         public Nullable<int> CreatedBy { get; set; }
         public Nullable<System.DateTime> CreatedDate { get; set; }
-        public Nullable<bool> IsOldProductBaseSweetener { get; set; }
+        public Nullable<bool> IsDefault { get; set; }
     
         public virtual tblBrand tblBrand { get; set; }
         public virtual tblBusinessPartner tblBusinessPartner { get; set; }
         public virtual tblBusinessUnit tblBusinessUnit { get; set; }
+        public virtual tblCatBrandSweetener tblCatBrandSweetener { get; set; }
+        public virtual tblCatBrandSweetener tblCatBrandSweetener1 { get; set; }
     }
 }

@@ -32,6 +32,7 @@ namespace RDCEL.DocUpload.DAL
             this.tblUninstallationPrices = new HashSet<tblUninstallationPrice>();
             this.TblVehicleIncentives = new HashSet<TblVehicleIncentive>();
             this.tblVoucherVerfications = new HashSet<tblVoucherVerfication>();
+            this.tblCatBrandSweeteners = new HashSet<tblCatBrandSweetener>();
         }
     
         public int Id { get; set; }
@@ -83,5 +84,7 @@ namespace RDCEL.DocUpload.DAL
         public virtual ICollection<TblVehicleIncentive> TblVehicleIncentives { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblVoucherVerfication> tblVoucherVerfications { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblCatBrandSweetener> tblCatBrandSweeteners { get; set; }
     }
 }

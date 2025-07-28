@@ -903,6 +903,50 @@ warning 6002: The table/view 'Digi2L_Prod.dbo.tblBPBURedemptionMapping' does not
           <Property Name="IsBUCatIdOn" Type="bit" />
           <Property Name="IsProductSerialNumberRequired" Type="bit" />
           <Property Name="IsSFIDRequired" Type="bit" />
+          <Property Name="IsVoucherAfterQC" Type="bit" />
+        </EntityType>
+        <EntityType Name="tblCatBrandSweetener">
+          <Key>
+            <PropertyRef Name="CatBrandSweetenerId" />
+          </Key>
+          <Property Name="CatBrandSweetenerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ModelName" Type="nvarchar" MaxLength="255" />
+          <Property Name="Description" Type="nvarchar" MaxLength="255" />
+          <Property Name="Code" Type="nvarchar" MaxLength="255" />
+          <Property Name="BrandId" Type="int" />
+          <Property Name="ProductCategoryId" Type="int" />
+          <Property Name="ProductTypeId" Type="int" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="CreatedBy" Type="int" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ModifiedBy" Type="int" />
+          <Property Name="ModifiedDate" Type="datetime" />
+          <Property Name="SweetnerForDTD" Type="decimal" Precision="15" Scale="2" />
+          <Property Name="SweetnerForDTC" Type="decimal" Precision="15" Scale="2" />
+          <Property Name="IsDefaultProduct" Type="bit" />
+          <Property Name="BusinessUnitId" Type="int" />
+          <Property Name="SweetenerBU" Type="decimal" Precision="15" Scale="2" />
+          <Property Name="SweetenerBP" Type="decimal" Precision="15" Scale="2" />
+          <Property Name="SweetenerOwn" Type="decimal" Precision="15" Scale="2" />
+          <Property Name="BusinessPartnerId" Type="int" />
+          <Property Name="IsExchange" Type="bit" />
+        </EntityType>
+        <EntityType Name="tblCatBrandSweetenerMapping">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CatBrandSweetenerId" Type="int" Nullable="false" />
+          <Property Name="BusinessUnitId" Type="int" />
+          <Property Name="BusinessPartnerId" Type="int" />
+          <Property Name="BrandId" Type="int" />
+          <Property Name="SweetenerBu" Type="decimal" Precision="15" Scale="2" />
+          <Property Name="SweetenerBP" Type="decimal" Precision="15" Scale="2" />
+          <Property Name="SweetenerOwn" Type="decimal" Precision="15" Scale="2" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="CreatedBy" Type="int" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="IsDefault" Type="bit" />
         </EntityType>
         <EntityType Name="tblCategory">
           <Key>
@@ -1864,6 +1908,7 @@ warning 6002: The table/view 'Digi2L_Prod.dbo.tblBPBURedemptionMapping' does not
           <Property Name="IsActive" Type="bit" />
           <Property Name="CreatedBy" Type="int" />
           <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="IsOldProductBaseSweetener" Type="bit" />
         </EntityType>
         <EntityType Name="tblOrderImageUpload">
           <Key>
@@ -2226,6 +2271,7 @@ warning 6002: The table/view 'Digi2L_Prod.dbo.tblBPBURedemptionMapping' does not
           <Property Name="BusinessPartnerId" Type="int" />
           <Property Name="IsSweetenerApplicable" Type="bit" />
           <Property Name="ProductCatId" Type="int" />
+          <Property Name="IsOldProductBaseSweetener" Type="bit" />
         </EntityType>
         <EntityType Name="tblProductQualityIndex">
           <Key>
@@ -4541,6 +4587,126 @@ warning 6002: The table/view 'Digi2L_Prod.dbo.View_ExchangWithQC' does not have 
             </Principal>
             <Dependent Role="tblBusinessTypeMapping">
               <PropertyRef Name="ModifiedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblCatBra__Brand__6D6D25A7">
+          <End Role="tblBrand" Type="Self.tblBrand" Multiplicity="0..1" />
+          <End Role="tblCatBrandSweetenerMapping" Type="Self.tblCatBrandSweetenerMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblBrand">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblCatBrandSweetenerMapping">
+              <PropertyRef Name="BrandId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblCatBra__Busin__65CC03DF">
+          <End Role="tblBusinessPartner" Type="Self.tblBusinessPartner" Multiplicity="0..1" />
+          <End Role="tblCatBrandSweetener" Type="Self.tblCatBrandSweetener" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblBusinessPartner">
+              <PropertyRef Name="BusinessPartnerId" />
+            </Principal>
+            <Dependent Role="tblCatBrandSweetener">
+              <PropertyRef Name="BusinessPartnerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblCatBra__Busin__66C02818">
+          <End Role="tblBusinessUnit" Type="Self.tblBusinessUnit" Multiplicity="0..1" />
+          <End Role="tblCatBrandSweetener" Type="Self.tblCatBrandSweetener" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblBusinessUnit">
+              <PropertyRef Name="BusinessUnitId" />
+            </Principal>
+            <Dependent Role="tblCatBrandSweetener">
+              <PropertyRef Name="BusinessUnitId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblCatBra__Busin__6E6149E0">
+          <End Role="tblBusinessUnit" Type="Self.tblBusinessUnit" Multiplicity="0..1" />
+          <End Role="tblCatBrandSweetenerMapping" Type="Self.tblCatBrandSweetenerMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblBusinessUnit">
+              <PropertyRef Name="BusinessUnitId" />
+            </Principal>
+            <Dependent Role="tblCatBrandSweetenerMapping">
+              <PropertyRef Name="BusinessUnitId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblCatBra__Busin__6F556E19">
+          <End Role="tblBusinessPartner" Type="Self.tblBusinessPartner" Multiplicity="0..1" />
+          <End Role="tblCatBrandSweetenerMapping" Type="Self.tblCatBrandSweetenerMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblBusinessPartner">
+              <PropertyRef Name="BusinessPartnerId" />
+            </Principal>
+            <Dependent Role="tblCatBrandSweetenerMapping">
+              <PropertyRef Name="BusinessPartnerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblCatBra__CatBr__70499252">
+          <End Role="tblCatBrandSweetener" Type="Self.tblCatBrandSweetener" Multiplicity="1" />
+          <End Role="tblCatBrandSweetenerMapping" Type="Self.tblCatBrandSweetenerMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCatBrandSweetener">
+              <PropertyRef Name="CatBrandSweetenerId" />
+            </Principal>
+            <Dependent Role="tblCatBrandSweetenerMapping">
+              <PropertyRef Name="CatBrandSweetenerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblCatBra__CatBr__713DB68B">
+          <End Role="tblCatBrandSweetener" Type="Self.tblCatBrandSweetener" Multiplicity="1" />
+          <End Role="tblCatBrandSweetenerMapping" Type="Self.tblCatBrandSweetenerMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCatBrandSweetener">
+              <PropertyRef Name="CatBrandSweetenerId" />
+            </Principal>
+            <Dependent Role="tblCatBrandSweetenerMapping">
+              <PropertyRef Name="CatBrandSweetenerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblCatBrandSweetener__Brand__2B0A656D">
+          <End Role="tblBrand" Type="Self.tblBrand" Multiplicity="0..1" />
+          <End Role="tblCatBrandSweetener" Type="Self.tblCatBrandSweetener" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblBrand">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblCatBrandSweetener">
+              <PropertyRef Name="BrandId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblCatBrandSweetener__ProductCat__2B0A656D">
+          <End Role="tblProductCategory" Type="Self.tblProductCategory" Multiplicity="0..1" />
+          <End Role="tblCatBrandSweetener" Type="Self.tblCatBrandSweetener" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblProductCategory">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblCatBrandSweetener">
+              <PropertyRef Name="ProductCategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblCatBrandSweetener__ProductType__2B0A656D">
+          <End Role="tblProductType" Type="Self.tblProductType" Multiplicity="0..1" />
+          <End Role="tblCatBrandSweetener" Type="Self.tblCatBrandSweetener" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblProductType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblCatBrandSweetener">
+              <PropertyRef Name="ProductTypeId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -9374,6 +9540,8 @@ warning 6002: The table/view 'Digi2L_Prod.dbo.View_ExchangWithQC' does not have 
           <EntitySet Name="tblBusinessType" EntityType="Self.tblBusinessType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblBusinessTypeMapping" EntityType="Self.tblBusinessTypeMapping" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblBusinessUnit" EntityType="Self.tblBusinessUnit" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblCatBrandSweetener" EntityType="Self.tblCatBrandSweetener" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblCatBrandSweetenerMapping" EntityType="Self.tblCatBrandSweetenerMapping" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblCategory" EntityType="Self.tblCategory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblCity" EntityType="Self.tblCity" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblCompany" EntityType="Self.tblCompany" Schema="dbo" store:Type="Tables" />
@@ -10695,6 +10863,46 @@ warning 6002: The table/view 'Digi2L_Prod.dbo.View_ExchangWithQC' does not have 
           <AssociationSet Name="FK__tblBusine__Modif__7B313519" Association="Self.FK__tblBusine__Modif__7B313519">
             <End Role="tblUser" EntitySet="tblUser" />
             <End Role="tblBusinessTypeMapping" EntitySet="tblBusinessTypeMapping" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblCatBra__Brand__6D6D25A7" Association="Self.FK__tblCatBra__Brand__6D6D25A7">
+            <End Role="tblBrand" EntitySet="tblBrand" />
+            <End Role="tblCatBrandSweetenerMapping" EntitySet="tblCatBrandSweetenerMapping" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblCatBra__Busin__65CC03DF" Association="Self.FK__tblCatBra__Busin__65CC03DF">
+            <End Role="tblBusinessPartner" EntitySet="tblBusinessPartner" />
+            <End Role="tblCatBrandSweetener" EntitySet="tblCatBrandSweetener" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblCatBra__Busin__66C02818" Association="Self.FK__tblCatBra__Busin__66C02818">
+            <End Role="tblBusinessUnit" EntitySet="tblBusinessUnit" />
+            <End Role="tblCatBrandSweetener" EntitySet="tblCatBrandSweetener" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblCatBra__Busin__6E6149E0" Association="Self.FK__tblCatBra__Busin__6E6149E0">
+            <End Role="tblBusinessUnit" EntitySet="tblBusinessUnit" />
+            <End Role="tblCatBrandSweetenerMapping" EntitySet="tblCatBrandSweetenerMapping" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblCatBra__Busin__6F556E19" Association="Self.FK__tblCatBra__Busin__6F556E19">
+            <End Role="tblBusinessPartner" EntitySet="tblBusinessPartner" />
+            <End Role="tblCatBrandSweetenerMapping" EntitySet="tblCatBrandSweetenerMapping" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblCatBra__CatBr__70499252" Association="Self.FK__tblCatBra__CatBr__70499252">
+            <End Role="tblCatBrandSweetener" EntitySet="tblCatBrandSweetener" />
+            <End Role="tblCatBrandSweetenerMapping" EntitySet="tblCatBrandSweetenerMapping" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblCatBra__CatBr__713DB68B" Association="Self.FK__tblCatBra__CatBr__713DB68B">
+            <End Role="tblCatBrandSweetener" EntitySet="tblCatBrandSweetener" />
+            <End Role="tblCatBrandSweetenerMapping" EntitySet="tblCatBrandSweetenerMapping" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblCatBrandSweetener__Brand__2B0A656D" Association="Self.FK__tblCatBrandSweetener__Brand__2B0A656D">
+            <End Role="tblBrand" EntitySet="tblBrand" />
+            <End Role="tblCatBrandSweetener" EntitySet="tblCatBrandSweetener" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblCatBrandSweetener__ProductCat__2B0A656D" Association="Self.FK__tblCatBrandSweetener__ProductCat__2B0A656D">
+            <End Role="tblProductCategory" EntitySet="tblProductCategory" />
+            <End Role="tblCatBrandSweetener" EntitySet="tblCatBrandSweetener" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblCatBrandSweetener__ProductType__2B0A656D" Association="Self.FK__tblCatBrandSweetener__ProductType__2B0A656D">
+            <End Role="tblProductType" EntitySet="tblProductType" />
+            <End Role="tblCatBrandSweetener" EntitySet="tblCatBrandSweetener" />
           </AssociationSet>
           <AssociationSet Name="FK__tblCredit__Creat__40457975" Association="Self.FK__tblCredit__Creat__40457975">
             <End Role="tblUser" EntitySet="tblUser" />
@@ -14308,6 +14516,48 @@ warning 6002: The table/view 'Digi2L_Prod.dbo.View_ExchangWithQC' does not have 
             <End Role="tblUser" EntitySet="tblUsers" />
             <End Role="tblEcomPhoneSpecific" EntitySet="tblEcomPhoneSpecifics" />
           </AssociationSet>
+          <EntitySet Name="tblCatBrandSweeteners" EntityType="Digi2L_ProdModel.tblCatBrandSweetener" />
+          <EntitySet Name="tblCatBrandSweetenerMappings" EntityType="Digi2L_ProdModel.tblCatBrandSweetenerMapping" />
+          <AssociationSet Name="FK__tblCatBra__Brand__6D6D25A7" Association="Digi2L_ProdModel.FK__tblCatBra__Brand__6D6D25A7">
+            <End Role="tblBrand" EntitySet="tblBrands" />
+            <End Role="tblCatBrandSweetenerMapping" EntitySet="tblCatBrandSweetenerMappings" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblCatBrandSweetener__Brand__2B0A656D" Association="Digi2L_ProdModel.FK__tblCatBrandSweetener__Brand__2B0A656D">
+            <End Role="tblBrand" EntitySet="tblBrands" />
+            <End Role="tblCatBrandSweetener" EntitySet="tblCatBrandSweeteners" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblCatBra__Busin__65CC03DF" Association="Digi2L_ProdModel.FK__tblCatBra__Busin__65CC03DF">
+            <End Role="tblBusinessPartner" EntitySet="tblBusinessPartners" />
+            <End Role="tblCatBrandSweetener" EntitySet="tblCatBrandSweeteners" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblCatBra__Busin__6F556E19" Association="Digi2L_ProdModel.FK__tblCatBra__Busin__6F556E19">
+            <End Role="tblBusinessPartner" EntitySet="tblBusinessPartners" />
+            <End Role="tblCatBrandSweetenerMapping" EntitySet="tblCatBrandSweetenerMappings" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblCatBra__Busin__66C02818" Association="Digi2L_ProdModel.FK__tblCatBra__Busin__66C02818">
+            <End Role="tblBusinessUnit" EntitySet="tblBusinessUnits" />
+            <End Role="tblCatBrandSweetener" EntitySet="tblCatBrandSweeteners" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblCatBra__Busin__6E6149E0" Association="Digi2L_ProdModel.FK__tblCatBra__Busin__6E6149E0">
+            <End Role="tblBusinessUnit" EntitySet="tblBusinessUnits" />
+            <End Role="tblCatBrandSweetenerMapping" EntitySet="tblCatBrandSweetenerMappings" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblCatBra__CatBr__70499252" Association="Digi2L_ProdModel.FK__tblCatBra__CatBr__70499252">
+            <End Role="tblCatBrandSweetener" EntitySet="tblCatBrandSweeteners" />
+            <End Role="tblCatBrandSweetenerMapping" EntitySet="tblCatBrandSweetenerMappings" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblCatBra__CatBr__713DB68B" Association="Digi2L_ProdModel.FK__tblCatBra__CatBr__713DB68B">
+            <End Role="tblCatBrandSweetener" EntitySet="tblCatBrandSweeteners" />
+            <End Role="tblCatBrandSweetenerMapping" EntitySet="tblCatBrandSweetenerMappings" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblCatBrandSweetener__ProductCat__2B0A656D" Association="Digi2L_ProdModel.FK__tblCatBrandSweetener__ProductCat__2B0A656D">
+            <End Role="tblProductCategory" EntitySet="tblProductCategories" />
+            <End Role="tblCatBrandSweetener" EntitySet="tblCatBrandSweeteners" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblCatBrandSweetener__ProductType__2B0A656D" Association="Digi2L_ProdModel.FK__tblCatBrandSweetener__ProductType__2B0A656D">
+            <End Role="tblProductType" EntitySet="tblProductTypes" />
+            <End Role="tblCatBrandSweetener" EntitySet="tblCatBrandSweeteners" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Login">
           <Key>
@@ -14845,6 +15095,8 @@ warning 6002: The table/view 'Digi2L_Prod.dbo.View_ExchangWithQC' does not have 
           <NavigationProperty Name="tblExchangeOrders" Relationship="Digi2L_ProdModel.FK__tblSponso__Brand__47DBAE45" FromRole="tblBrand" ToRole="tblExchangeOrder" />
           <NavigationProperty Name="tblEcomVouchers" Relationship="Digi2L_ProdModel.Fk_tblEcomVoucher_BrandId" FromRole="tblBrand" ToRole="tblEcomVoucher" />
           <NavigationProperty Name="tblVoucherVerfications" Relationship="Digi2L_ProdModel.FK_tblVoucherVerficatio_NewBrandId" FromRole="tblBrand" ToRole="tblVoucherVerfication" />
+          <NavigationProperty Name="tblCatBrandSweetenerMappings" Relationship="Digi2L_ProdModel.FK__tblCatBra__Brand__6D6D25A7" FromRole="tblBrand" ToRole="tblCatBrandSweetenerMapping" />
+          <NavigationProperty Name="tblCatBrandSweeteners" Relationship="Digi2L_ProdModel.FK__tblCatBrandSweetener__Brand__2B0A656D" FromRole="tblBrand" ToRole="tblCatBrandSweetener" />
         </EntityType>
         <EntityType Name="TblBrandGroup">
           <Key>
@@ -15070,6 +15322,8 @@ warning 6002: The table/view 'Digi2L_Prod.dbo.View_ExchangWithQC' does not have 
           <NavigationProperty Name="tblExchangeOrders" Relationship="Digi2L_ProdModel.FK_tblExchangeOrder_BusinessPartnerId" FromRole="tblBusinessPartner" ToRole="tblExchangeOrder" />
           <NavigationProperty Name="tblUninstallationPrices" Relationship="Digi2L_ProdModel.FK_tblUnistallationPrices_tblBusinessPartner" FromRole="tblBusinessPartner" ToRole="tblUninstallationPrice" />
           <NavigationProperty Name="tblVoucherVerfications" Relationship="Digi2L_ProdModel.FK_tblVoucherVerfication_BusinessPartnerId" FromRole="tblBusinessPartner" ToRole="tblVoucherVerfication" />
+          <NavigationProperty Name="tblCatBrandSweeteners" Relationship="Digi2L_ProdModel.FK__tblCatBra__Busin__65CC03DF" FromRole="tblBusinessPartner" ToRole="tblCatBrandSweetener" />
+          <NavigationProperty Name="tblCatBrandSweetenerMappings" Relationship="Digi2L_ProdModel.FK__tblCatBra__Busin__6F556E19" FromRole="tblBusinessPartner" ToRole="tblCatBrandSweetenerMapping" />
         </EntityType>
         <EntityType Name="tblBusinessType">
           <Key>
@@ -15202,6 +15456,9 @@ warning 6002: The table/view 'Digi2L_Prod.dbo.View_ExchangWithQC' does not have 
           <NavigationProperty Name="tblSponsorCategoryMappings" Relationship="Digi2L_ProdModel.FK_tblSponsorCategoryMapping_tblBusinessUnit" FromRole="tblBusinessUnit" ToRole="tblSponsorCategoryMapping" />
           <NavigationProperty Name="tblUninstallationPrices" Relationship="Digi2L_ProdModel.FK_tblUnistallationPrices_tblBusinessUnit" FromRole="tblBusinessUnit" ToRole="tblUninstallationPrice" />
           <NavigationProperty Name="TblVehicleIncentives" Relationship="Digi2L_ProdModel.FK_TblVehicleIncentive_BusinessUnitId" FromRole="tblBusinessUnit" ToRole="TblVehicleIncentive" />
+          <NavigationProperty Name="tblCatBrandSweeteners" Relationship="Digi2L_ProdModel.FK__tblCatBra__Busin__66C02818" FromRole="tblBusinessUnit" ToRole="tblCatBrandSweetener" />
+          <NavigationProperty Name="tblCatBrandSweetenerMappings" Relationship="Digi2L_ProdModel.FK__tblCatBra__Busin__6E6149E0" FromRole="tblBusinessUnit" ToRole="tblCatBrandSweetenerMapping" />
+          <Property Name="IsVoucherAfterQC" Type="Boolean" />
         </EntityType>
         <EntityType Name="tblCategory">
           <Key>
@@ -16375,6 +16632,7 @@ warning 6002: The table/view 'Digi2L_Prod.dbo.View_ExchangWithQC' does not have 
           <NavigationProperty Name="tblBrand" Relationship="Digi2L_ProdModel.FK__tblOrderB__Brand__2354350C" FromRole="tblOrderBasedConfig" ToRole="tblBrand" />
           <NavigationProperty Name="tblBusinessPartner" Relationship="Digi2L_ProdModel.FK__tblOrderB__Busin__253C7D7E" FromRole="tblOrderBasedConfig" ToRole="tblBusinessPartner" />
           <NavigationProperty Name="tblBusinessUnit" Relationship="Digi2L_ProdModel.FK__tblOrderB__Busin__24485945" FromRole="tblOrderBasedConfig" ToRole="tblBusinessUnit" />
+          <Property Name="IsOldProductBaseSweetener" Type="Boolean" />
         </EntityType>
         <EntityType Name="tblOrderImageUpload">
           <Key>
@@ -16815,6 +17073,7 @@ warning 6002: The table/view 'Digi2L_Prod.dbo.View_ExchangWithQC' does not have 
           <NavigationProperty Name="tblSponsorCategoryMappings" Relationship="Digi2L_ProdModel.FK_tblSponsorCategoryMapping_tblProductCategory" FromRole="tblProductCategory" ToRole="tblSponsorCategoryMapping" />
           <NavigationProperty Name="tblUninstallationPrices" Relationship="Digi2L_ProdModel.FK_tblUnistallationPrices_tblProductCategory" FromRole="tblProductCategory" ToRole="tblUninstallationPrice" />
           <NavigationProperty Name="TblVehicleIncentives" Relationship="Digi2L_ProdModel.FK_TblVehicleIncentive_ProductCategoryId" FromRole="tblProductCategory" ToRole="TblVehicleIncentive" />
+          <NavigationProperty Name="tblCatBrandSweeteners" Relationship="Digi2L_ProdModel.FK__tblCatBrandSweetener__ProductCat__2B0A656D" FromRole="tblProductCategory" ToRole="tblCatBrandSweetener" />
         </EntityType>
         <EntityType Name="tblProductConditionLabel">
           <Key>
@@ -16835,6 +17094,7 @@ warning 6002: The table/view 'Digi2L_Prod.dbo.View_ExchangWithQC' does not have 
           <NavigationProperty Name="tblBusinessPartner" Relationship="Digi2L_ProdModel.FK__tblProduc__Busin__01F34141" FromRole="tblProductConditionLabel" ToRole="tblBusinessPartner" />
           <NavigationProperty Name="tblBusinessUnit" Relationship="Digi2L_ProdModel.FK__tblProduc__Busin__3C89F72A" FromRole="tblProductConditionLabel" ToRole="tblBusinessUnit" />
           <NavigationProperty Name="tblProductCategory" Relationship="Digi2L_ProdModel.FK_tblProductConditionLabel_tblProductCategory" FromRole="tblProductConditionLabel" ToRole="tblProductCategory" />
+          <Property Name="IsOldProductBaseSweetener" Type="Boolean" />
         </EntityType>
         <EntityType Name="tblProductQualityIndex">
           <Key>
@@ -16913,6 +17173,7 @@ warning 6002: The table/view 'Digi2L_Prod.dbo.View_ExchangWithQC' does not have 
           <NavigationProperty Name="tblUninstallationPrices" Relationship="Digi2L_ProdModel.FK_tblUnistallationPrices_tblProductType" FromRole="tblProductType" ToRole="tblUninstallationPrice" />
           <NavigationProperty Name="TblVehicleIncentives" Relationship="Digi2L_ProdModel.FK_TblVehicleIncentive_ProductTypeId" FromRole="tblProductType" ToRole="TblVehicleIncentive" />
           <NavigationProperty Name="tblVoucherVerfications" Relationship="Digi2L_ProdModel.FK_tblVoucherVerficatio_NewProductTypeId" FromRole="tblProductType" ToRole="tblVoucherVerfication" />
+          <NavigationProperty Name="tblCatBrandSweeteners" Relationship="Digi2L_ProdModel.FK__tblCatBrandSweetener__ProductType__2B0A656D" FromRole="tblProductType" ToRole="tblCatBrandSweetener" />
         </EntityType>
         <EntityType Name="tblPromotionalVoucherMaster">
           <Key>
@@ -24876,6 +25137,181 @@ warning 6002: The table/view 'Digi2L_Prod.dbo.View_ExchangWithQC' does not have 
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="tblCatBrandSweetener">
+          <Key>
+            <PropertyRef Name="CatBrandSweetenerId" />
+          </Key>
+          <Property Name="CatBrandSweetenerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ModelName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Code" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="BrandId" Type="Int32" />
+          <Property Name="ProductCategoryId" Type="Int32" />
+          <Property Name="ProductTypeId" Type="Int32" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int32" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="SweetnerForDTD" Type="Decimal" Precision="15" Scale="2" />
+          <Property Name="SweetnerForDTC" Type="Decimal" Precision="15" Scale="2" />
+          <Property Name="IsDefaultProduct" Type="Boolean" />
+          <Property Name="BusinessUnitId" Type="Int32" />
+          <Property Name="SweetenerBU" Type="Decimal" Precision="15" Scale="2" />
+          <Property Name="SweetenerBP" Type="Decimal" Precision="15" Scale="2" />
+          <Property Name="SweetenerOwn" Type="Decimal" Precision="15" Scale="2" />
+          <Property Name="BusinessPartnerId" Type="Int32" />
+          <Property Name="IsExchange" Type="Boolean" />
+          <NavigationProperty Name="tblBrand" Relationship="Digi2L_ProdModel.FK__tblCatBrandSweetener__Brand__2B0A656D" FromRole="tblCatBrandSweetener" ToRole="tblBrand" />
+          <NavigationProperty Name="tblBusinessPartner" Relationship="Digi2L_ProdModel.FK__tblCatBra__Busin__65CC03DF" FromRole="tblCatBrandSweetener" ToRole="tblBusinessPartner" />
+          <NavigationProperty Name="tblBusinessUnit" Relationship="Digi2L_ProdModel.FK__tblCatBra__Busin__66C02818" FromRole="tblCatBrandSweetener" ToRole="tblBusinessUnit" />
+          <NavigationProperty Name="tblCatBrandSweetenerMappings" Relationship="Digi2L_ProdModel.FK__tblCatBra__CatBr__70499252" FromRole="tblCatBrandSweetener" ToRole="tblCatBrandSweetenerMapping" />
+          <NavigationProperty Name="tblCatBrandSweetenerMappings1" Relationship="Digi2L_ProdModel.FK__tblCatBra__CatBr__713DB68B" FromRole="tblCatBrandSweetener" ToRole="tblCatBrandSweetenerMapping" />
+          <NavigationProperty Name="tblProductCategory" Relationship="Digi2L_ProdModel.FK__tblCatBrandSweetener__ProductCat__2B0A656D" FromRole="tblCatBrandSweetener" ToRole="tblProductCategory" />
+          <NavigationProperty Name="tblProductType" Relationship="Digi2L_ProdModel.FK__tblCatBrandSweetener__ProductType__2B0A656D" FromRole="tblCatBrandSweetener" ToRole="tblProductType" />
+        </EntityType>
+        <EntityType Name="tblCatBrandSweetenerMapping">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CatBrandSweetenerId" Type="Int32" Nullable="false" />
+          <Property Name="BusinessUnitId" Type="Int32" />
+          <Property Name="BusinessPartnerId" Type="Int32" />
+          <Property Name="BrandId" Type="Int32" />
+          <Property Name="SweetenerBu" Type="Decimal" Precision="15" Scale="2" />
+          <Property Name="SweetenerBP" Type="Decimal" Precision="15" Scale="2" />
+          <Property Name="SweetenerOwn" Type="Decimal" Precision="15" Scale="2" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="IsDefault" Type="Boolean" />
+          <NavigationProperty Name="tblBrand" Relationship="Digi2L_ProdModel.FK__tblCatBra__Brand__6D6D25A7" FromRole="tblCatBrandSweetenerMapping" ToRole="tblBrand" />
+          <NavigationProperty Name="tblBusinessPartner" Relationship="Digi2L_ProdModel.FK__tblCatBra__Busin__6F556E19" FromRole="tblCatBrandSweetenerMapping" ToRole="tblBusinessPartner" />
+          <NavigationProperty Name="tblBusinessUnit" Relationship="Digi2L_ProdModel.FK__tblCatBra__Busin__6E6149E0" FromRole="tblCatBrandSweetenerMapping" ToRole="tblBusinessUnit" />
+          <NavigationProperty Name="tblCatBrandSweetener" Relationship="Digi2L_ProdModel.FK__tblCatBra__CatBr__70499252" FromRole="tblCatBrandSweetenerMapping" ToRole="tblCatBrandSweetener" />
+          <NavigationProperty Name="tblCatBrandSweetener1" Relationship="Digi2L_ProdModel.FK__tblCatBra__CatBr__713DB68B" FromRole="tblCatBrandSweetenerMapping" ToRole="tblCatBrandSweetener" />
+        </EntityType>
+        <Association Name="FK__tblCatBra__Brand__6D6D25A7">
+          <End Type="Digi2L_ProdModel.tblBrand" Role="tblBrand" Multiplicity="0..1" />
+          <End Type="Digi2L_ProdModel.tblCatBrandSweetenerMapping" Role="tblCatBrandSweetenerMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblBrand">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblCatBrandSweetenerMapping">
+              <PropertyRef Name="BrandId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblCatBrandSweetener__Brand__2B0A656D">
+          <End Type="Digi2L_ProdModel.tblBrand" Role="tblBrand" Multiplicity="0..1" />
+          <End Type="Digi2L_ProdModel.tblCatBrandSweetener" Role="tblCatBrandSweetener" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblBrand">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblCatBrandSweetener">
+              <PropertyRef Name="BrandId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblCatBra__Busin__65CC03DF">
+          <End Type="Digi2L_ProdModel.tblBusinessPartner" Role="tblBusinessPartner" Multiplicity="0..1" />
+          <End Type="Digi2L_ProdModel.tblCatBrandSweetener" Role="tblCatBrandSweetener" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblBusinessPartner">
+              <PropertyRef Name="BusinessPartnerId" />
+            </Principal>
+            <Dependent Role="tblCatBrandSweetener">
+              <PropertyRef Name="BusinessPartnerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblCatBra__Busin__6F556E19">
+          <End Type="Digi2L_ProdModel.tblBusinessPartner" Role="tblBusinessPartner" Multiplicity="0..1" />
+          <End Type="Digi2L_ProdModel.tblCatBrandSweetenerMapping" Role="tblCatBrandSweetenerMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblBusinessPartner">
+              <PropertyRef Name="BusinessPartnerId" />
+            </Principal>
+            <Dependent Role="tblCatBrandSweetenerMapping">
+              <PropertyRef Name="BusinessPartnerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblCatBra__Busin__66C02818">
+          <End Type="Digi2L_ProdModel.tblBusinessUnit" Role="tblBusinessUnit" Multiplicity="0..1" />
+          <End Type="Digi2L_ProdModel.tblCatBrandSweetener" Role="tblCatBrandSweetener" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblBusinessUnit">
+              <PropertyRef Name="BusinessUnitId" />
+            </Principal>
+            <Dependent Role="tblCatBrandSweetener">
+              <PropertyRef Name="BusinessUnitId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblCatBra__Busin__6E6149E0">
+          <End Type="Digi2L_ProdModel.tblBusinessUnit" Role="tblBusinessUnit" Multiplicity="0..1" />
+          <End Type="Digi2L_ProdModel.tblCatBrandSweetenerMapping" Role="tblCatBrandSweetenerMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblBusinessUnit">
+              <PropertyRef Name="BusinessUnitId" />
+            </Principal>
+            <Dependent Role="tblCatBrandSweetenerMapping">
+              <PropertyRef Name="BusinessUnitId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblCatBra__CatBr__70499252">
+          <End Type="Digi2L_ProdModel.tblCatBrandSweetener" Role="tblCatBrandSweetener" Multiplicity="1" />
+          <End Type="Digi2L_ProdModel.tblCatBrandSweetenerMapping" Role="tblCatBrandSweetenerMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCatBrandSweetener">
+              <PropertyRef Name="CatBrandSweetenerId" />
+            </Principal>
+            <Dependent Role="tblCatBrandSweetenerMapping">
+              <PropertyRef Name="CatBrandSweetenerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblCatBra__CatBr__713DB68B">
+          <End Type="Digi2L_ProdModel.tblCatBrandSweetener" Role="tblCatBrandSweetener" Multiplicity="1" />
+          <End Type="Digi2L_ProdModel.tblCatBrandSweetenerMapping" Role="tblCatBrandSweetenerMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCatBrandSweetener">
+              <PropertyRef Name="CatBrandSweetenerId" />
+            </Principal>
+            <Dependent Role="tblCatBrandSweetenerMapping">
+              <PropertyRef Name="CatBrandSweetenerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblCatBrandSweetener__ProductCat__2B0A656D">
+          <End Type="Digi2L_ProdModel.tblProductCategory" Role="tblProductCategory" Multiplicity="0..1" />
+          <End Type="Digi2L_ProdModel.tblCatBrandSweetener" Role="tblCatBrandSweetener" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblProductCategory">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblCatBrandSweetener">
+              <PropertyRef Name="ProductCategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblCatBrandSweetener__ProductType__2B0A656D">
+          <End Type="Digi2L_ProdModel.tblProductType" Role="tblProductType" Multiplicity="0..1" />
+          <End Type="Digi2L_ProdModel.tblCatBrandSweetener" Role="tblCatBrandSweetener" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblProductType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblCatBrandSweetener">
+              <PropertyRef Name="ProductTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -25575,6 +26011,7 @@ warning 6002: The table/view 'Digi2L_Prod.dbo.View_ExchangWithQC' does not have 
           <EntitySetMapping Name="tblBusinessUnits">
             <EntityTypeMapping TypeName="Digi2L_ProdModel.tblBusinessUnit">
               <MappingFragment StoreEntitySet="tblBusinessUnit">
+                <ScalarProperty Name="IsVoucherAfterQC" ColumnName="IsVoucherAfterQC" />
                 <ScalarProperty Name="IsSFIDRequired" ColumnName="IsSFIDRequired" />
                 <ScalarProperty Name="IsProductSerialNumberRequired" ColumnName="IsProductSerialNumberRequired" />
                 <ScalarProperty Name="IsBUCatIdOn" ColumnName="IsBUCatIdOn" />
@@ -26616,6 +27053,7 @@ warning 6002: The table/view 'Digi2L_Prod.dbo.View_ExchangWithQC' does not have 
           <EntitySetMapping Name="tblOrderBasedConfigs">
             <EntityTypeMapping TypeName="Digi2L_ProdModel.tblOrderBasedConfig">
               <MappingFragment StoreEntitySet="tblOrderBasedConfig">
+                <ScalarProperty Name="IsOldProductBaseSweetener" ColumnName="IsOldProductBaseSweetener" />
                 <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
                 <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
@@ -26992,6 +27430,7 @@ warning 6002: The table/view 'Digi2L_Prod.dbo.View_ExchangWithQC' does not have 
           <EntitySetMapping Name="tblProductConditionLabels">
             <EntityTypeMapping TypeName="Digi2L_ProdModel.tblProductConditionLabel">
               <MappingFragment StoreEntitySet="tblProductConditionLabel">
+                <ScalarProperty Name="IsOldProductBaseSweetener" ColumnName="IsOldProductBaseSweetener" />
                 <ScalarProperty Name="ProductCatId" ColumnName="ProductCatId" />
                 <ScalarProperty Name="IsSweetenerApplicable" ColumnName="IsSweetenerApplicable" />
                 <ScalarProperty Name="BusinessPartnerId" ColumnName="BusinessPartnerId" />
@@ -29756,6 +30195,51 @@ warning 6002: The table/view 'Digi2L_Prod.dbo.View_ExchangWithQC' does not have 
                 <ScalarProperty Name="Phoneno" ColumnName="Phoneno" />
                 <ScalarProperty Name="VoucherCode" ColumnName="VoucherCode" />
                 <ScalarProperty Name="EcomPhoneSpecificId" ColumnName="EcomPhoneSpecificId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblCatBrandSweeteners">
+            <EntityTypeMapping TypeName="Digi2L_ProdModel.tblCatBrandSweetener">
+              <MappingFragment StoreEntitySet="tblCatBrandSweetener">
+                <ScalarProperty Name="IsExchange" ColumnName="IsExchange" />
+                <ScalarProperty Name="BusinessPartnerId" ColumnName="BusinessPartnerId" />
+                <ScalarProperty Name="SweetenerOwn" ColumnName="SweetenerOwn" />
+                <ScalarProperty Name="SweetenerBP" ColumnName="SweetenerBP" />
+                <ScalarProperty Name="SweetenerBU" ColumnName="SweetenerBU" />
+                <ScalarProperty Name="BusinessUnitId" ColumnName="BusinessUnitId" />
+                <ScalarProperty Name="IsDefaultProduct" ColumnName="IsDefaultProduct" />
+                <ScalarProperty Name="SweetnerForDTC" ColumnName="SweetnerForDTC" />
+                <ScalarProperty Name="SweetnerForDTD" ColumnName="SweetnerForDTD" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="ProductTypeId" ColumnName="ProductTypeId" />
+                <ScalarProperty Name="ProductCategoryId" ColumnName="ProductCategoryId" />
+                <ScalarProperty Name="BrandId" ColumnName="BrandId" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ModelName" ColumnName="ModelName" />
+                <ScalarProperty Name="CatBrandSweetenerId" ColumnName="CatBrandSweetenerId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblCatBrandSweetenerMappings">
+            <EntityTypeMapping TypeName="Digi2L_ProdModel.tblCatBrandSweetenerMapping">
+              <MappingFragment StoreEntitySet="tblCatBrandSweetenerMapping">
+                <ScalarProperty Name="IsDefault" ColumnName="IsDefault" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="SweetenerOwn" ColumnName="SweetenerOwn" />
+                <ScalarProperty Name="SweetenerBP" ColumnName="SweetenerBP" />
+                <ScalarProperty Name="SweetenerBu" ColumnName="SweetenerBu" />
+                <ScalarProperty Name="BrandId" ColumnName="BrandId" />
+                <ScalarProperty Name="BusinessPartnerId" ColumnName="BusinessPartnerId" />
+                <ScalarProperty Name="BusinessUnitId" ColumnName="BusinessUnitId" />
+                <ScalarProperty Name="CatBrandSweetenerId" ColumnName="CatBrandSweetenerId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

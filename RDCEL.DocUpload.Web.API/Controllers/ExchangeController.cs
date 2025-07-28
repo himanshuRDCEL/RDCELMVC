@@ -362,6 +362,7 @@ namespace RDCEL.DocUpload.Web.API.Controllers
             ProductOrderResponseDataContract productOrderResponseDC = null;
             _exchangeOrderRepository = new ExchangeOrderRepository();
             _businessPartnerRepository = new BusinessPartnerRepository();
+            _businessUnitRepository = new BusinessUnitRepository();
             _exchangeOrderManager = new ExchangeOrderManager();
             tblExchangeOrder SponserObj = null;
             string message = string.Empty;
@@ -373,6 +374,16 @@ namespace RDCEL.DocUpload.Web.API.Controllers
                 else
                     exchangeDataContract.SponsorOrderNumber = exchangeDataContract.SponsorOrderNumber.Trim() + exchangeDataContract.RegdNo;
                 string sponsorOrderNo = exchangeDataContract.SponsorOrderNumber;
+
+
+                tblBusinessUnit tblBusinessUnit = _businessUnitRepository.GetSingle(x => x.BusinessUnitId == exchangeDataContract.BusinessUnitId && x.IsActive == true && x.IsVoucherAfterQC == true);
+                {
+                    bool flag = _exchangeOrderManager.GenerateQCLInkBeforeSendVoucher(exchangeDataContract);
+                    if(flag== true)
+                    {
+
+                    }
+                }
 
                 if (String.IsNullOrEmpty(sponsorOrderNo) == false)
                 {
@@ -392,7 +403,7 @@ namespace RDCEL.DocUpload.Web.API.Controllers
                         productOrderResponseDC = _exchangeOrderManager.ManageExchangeOrder(exchangeDataContract);
 
                         if (productOrderResponseDC != null)
-                            message = "Thankyou. Your Exchange details have been received at UTC. Our quality check team will connect you soon.";
+                            message = "Thankyou. Your Exchange details have been received at RockingDeals. Our quality check team will connect you soon.";
                         else
                             message = "Order not Created";
                     }
@@ -777,6 +788,10 @@ namespace RDCEL.DocUpload.Web.API.Controllers
                                 if (exchangeDataContract.FormatName.Equals("Home"))
                                 {
                                     message = "Your Exchange details have been received at rockingdeals.Our product registration referance no. " + exchangeDataContract.RegdNo + ". Our quality check team will connect with you soon.";
+                                }
+                                if (exchangeDataContract.IsVoucherAfterQC==true)
+                                {
+                                    message = "Please check your registration number.A SELEQC link would have been sent to you.Once you complete the process through that link, the customer's voucher will be sent to their registered WhatsApp number or email..";
                                 }
                                 else
                                 {
@@ -2393,6 +2408,7 @@ namespace RDCEL.DocUpload.Web.API.Controllers
                                 productDetails.IsValidationBasedSweetner = Convert.ToBoolean(orderBasedConfig.IsValidationBasedSweetener != null ? orderBasedConfig.IsValidationBasedSweetener : false);
                                 productDetails.IsSweetnerModelBased = Convert.ToBoolean(orderBasedConfig.IsSweetenerModalBased != null ? orderBasedConfig.IsSweetenerModalBased : false);
                                 productDetails.IsSweetnerBasedonModal = Convert.ToBoolean(orderBasedConfig.IsSweetenerModalBased != null ? orderBasedConfig.IsSweetenerModalBased : false);
+                                productDetails.IsOldProductBaseSweetener = Convert.ToBoolean(orderBasedConfig.IsOldProductBaseSweetener != null ? orderBasedConfig.IsOldProductBaseSweetener : false);
 
                                 //Check is product MultiBrand or not and configure new brand according to data
 
@@ -2656,11 +2672,11 @@ namespace RDCEL.DocUpload.Web.API.Controllers
             { 
                 if (productDetails != null && productDetails.BusinessPartnerId > 0)
                 {
-                    return RedirectToAction("ExchReg", "Exchange", new { OldBrandId = productDetails.BrandId, BUId = productDetails.BusinessUnitId, ExchangePrice = productDetails.ExchangePrice, OldProductCategoryId = productDetails.OldProductCatId, oldProductypeId = productDetails.OldTypeId, NewBrandId = productDetails.NewBrandId, NewCategoryId = productDetails.NewProductCategoryId, NewTypeId = productDetails.NewProductTypeId, ProductAge = productDetails.ProductAge, IsSweetnerModelBased = productDetails.IsSweetnerModelBased, QualityCheckValue = productDetails.QualityCheck, FormatName = productDetails.FormatName, BusinessPartnerId = productDetails.BusinessPartnerId, IsD2C = productDetails.IsD2C, IsVoucher = productDetails.IsVoucher, VoucherType = productDetails.VoucherType, IsDeffered = productDetails.IsDeffered, ProductModelIdNew = productDetails.ProductModelIdNew, priceMasterNameID = productDetails.priceMasterNameID, SweetenerBu = productDetails.SweetenerBu, SweetenerBP = productDetails.SweetenerBP, SweetenerDigi2L = productDetails.SweetenerDigi2L, SweetenerTotal = productDetails.SweetenerTotal, ModelNumberId = productDetails.ModelNumberId, BasePrice = productDetails.BasePrice, IsValidationBasedSweetner = productDetails.IsValidationBasedSweetner, IsCouponAplied= productDetails.IsCouponAplied, CouponId= productDetails.CouponId, UsedCouponCode = productDetails.UsedCouponCode, CouponValue = productDetails.CouponValue });
+                    return RedirectToAction("ExchReg", "Exchange", new { OldBrandId = productDetails.BrandId, BUId = productDetails.BusinessUnitId, ExchangePrice = productDetails.ExchangePrice, OldProductCategoryId = productDetails.OldProductCatId, oldProductypeId = productDetails.OldTypeId, NewBrandId = productDetails.NewBrandId, NewCategoryId = productDetails.NewProductCategoryId, NewTypeId = productDetails.NewProductTypeId, ProductAge = productDetails.ProductAge, IsSweetnerModelBased = productDetails.IsSweetnerModelBased, QualityCheckValue = productDetails.QualityCheck, FormatName = productDetails.FormatName, BusinessPartnerId = productDetails.BusinessPartnerId, IsD2C = productDetails.IsD2C, IsVoucher = productDetails.IsVoucher, VoucherType = productDetails.VoucherType, IsDeffered = productDetails.IsDeffered, ProductModelIdNew = productDetails.ProductModelIdNew, priceMasterNameID = productDetails.priceMasterNameID, SweetenerBu = productDetails.SweetenerBu, SweetenerBP = productDetails.SweetenerBP, SweetenerDigi2L = productDetails.SweetenerDigi2L, SweetenerTotal = productDetails.SweetenerTotal, ModelNumberId = productDetails.ModelNumberId, BasePrice = productDetails.BasePrice, IsValidationBasedSweetner = productDetails.IsValidationBasedSweetner, IsCouponAplied= productDetails.IsCouponAplied, CouponId= productDetails.CouponId, UsedCouponCode = productDetails.UsedCouponCode, CouponValue = productDetails.CouponValue , IsOldProductBaseSweetener = productDetails.IsOldProductBaseSweetener });
                 }
                 else
                 {
-                    return RedirectToAction("SelectLocation", "Exchange", new { BrandId = productDetails.BrandId, BusinessUnitId = productDetails.BusinessUnitId, ExchangePrice = productDetails.ExchangePrice, OldProductCatId = productDetails.OldProductCatId, OldTypeId = productDetails.OldTypeId, NewBrandId = productDetails.NewBrandId, NewProductCategoryId = productDetails.NewProductCategoryId, NewProductTypeId = productDetails.NewProductTypeId, ProductAge = productDetails.ProductAge, IsSweetnerModelBased = productDetails.IsSweetnerModelBased, QualityCheck = productDetails.QualityCheck, FormatName = productDetails.FormatName, BusinessPartnerId = productDetails.BusinessPartnerId, ProductModelIdNew = productDetails.ProductModelIdNew, IsCouponAplied = productDetails.IsCouponAplied, CouponId = productDetails.CouponId, UsedCouponCode= productDetails.UsedCouponCode, CouponValue = productDetails.CouponValue });
+                    return RedirectToAction("SelectLocation", "Exchange", new { BrandId = productDetails.BrandId, BusinessUnitId = productDetails.BusinessUnitId, ExchangePrice = productDetails.ExchangePrice, OldProductCatId = productDetails.OldProductCatId, OldTypeId = productDetails.OldTypeId, NewBrandId = productDetails.NewBrandId, NewProductCategoryId = productDetails.NewProductCategoryId, NewProductTypeId = productDetails.NewProductTypeId, ProductAge = productDetails.ProductAge, IsSweetnerModelBased = productDetails.IsSweetnerModelBased, QualityCheck = productDetails.QualityCheck, FormatName = productDetails.FormatName, BusinessPartnerId = productDetails.BusinessPartnerId, ProductModelIdNew = productDetails.ProductModelIdNew, IsCouponAplied = productDetails.IsCouponAplied, CouponId = productDetails.CouponId, UsedCouponCode= productDetails.UsedCouponCode, CouponValue = productDetails.CouponValue, IsOldProductBaseSweetener=productDetails.IsOldProductBaseSweetener });
                 }
             }
             catch (Exception ex)
@@ -3495,7 +3511,7 @@ namespace RDCEL.DocUpload.Web.API.Controllers
 
         #region get product price with sweetner
         [HttpGet]
-        public JsonResult GetPriceOnBasisofNewPriceMaster(int productCatId, int productSubCatId, int brandId, int conditionId, int buid, bool IsSweetnerModelBased, int newcatid = 0, int newsubcatid = 0, int modelno = 0, string formatType = "", bool IsValidationBasedSweetner = false, int newBrandId = 0, int priceNameId = 0, int bpid = 0)
+        public JsonResult GetPriceOnBasisofNewPriceMaster(int productCatId, int productSubCatId, int brandId, int conditionId, int buid, bool IsSweetnerModelBased, bool IsOldProductBaseSweetener , int newcatid = 0, int newsubcatid = 0, int modelno = 0, string formatType = "", bool IsValidationBasedSweetner = false, int newBrandId = 0, int priceNameId = 0, int bpid = 0 )
         {
             _masterManager = new BAL.SponsorsApiCall.MasterManager();
             _productConditionLabelRepository = new ProductConditionLabelRepository();
@@ -3503,6 +3519,7 @@ namespace RDCEL.DocUpload.Web.API.Controllers
             //decimal Convertprice = 0;
             ManageSweetener manageSweetener = new ManageSweetener();
             SweetenerDataContract sweetenerDataContract = new SweetenerDataContract();
+            sweetenerDataContract.OldSweetenerDC = new OldSweetenerDataContract();
             GetSweetenerDetailsDataContract getSweetenerDetailsDataContract = new GetSweetenerDetailsDataContract();
             BAL.ExchangePriceMaster.PriceMasterManager priceMasterManager = new BAL.ExchangePriceMaster.PriceMasterManager();
             try
@@ -3552,20 +3569,26 @@ namespace RDCEL.DocUpload.Web.API.Controllers
                         getSweetenerDetailsDataContract.BusinessPartnerId = bpid;
                         getSweetenerDetailsDataContract.NewProdCatId = newcatid;
                         getSweetenerDetailsDataContract.NewProdTypeId = newsubcatid;
+                        getSweetenerDetailsDataContract.NewProdTypeId = newsubcatid;
+                        getSweetenerDetailsDataContract.OlProdCatId = productCatId;
+                        getSweetenerDetailsDataContract.OldProdTypeId = productSubCatId;
                         getSweetenerDetailsDataContract.BrandId = brandId;
                         getSweetenerDetailsDataContract.ModalId = modelno;
                         getSweetenerDetailsDataContract.IsSweetenerModalBased = IsSweetnerModelBased;
+                        getSweetenerDetailsDataContract.IsOldProductBaseSweetener = IsOldProductBaseSweetener;
 
-                        if (tblProductConditionLabel.IsSweetenerApplicable == true)
+                        if (tblProductConditionLabel.IsSweetenerApplicable == true || tblProductConditionLabel.IsOldProductBaseSweetener==true)
                         {
                             sweetenerDataContract = manageSweetener.GetSweetenerAmtExchange(getSweetenerDetailsDataContract);
                         }
+                        
                         else
                         {
                             sweetenerDataContract.SweetenerBu = 0;
                             sweetenerDataContract.SweetenerBP = 0;
                             sweetenerDataContract.SweetenerDigi2L = 0;
                             sweetenerDataContract.SweetenerTotal = 0;
+                            sweetenerDataContract.OldSweetenerDC.OldSweetenerTotal = 0;
                         }
 
                     }
@@ -3575,6 +3598,7 @@ namespace RDCEL.DocUpload.Web.API.Controllers
                         sweetenerDataContract.SweetenerBP = 0;
                         sweetenerDataContract.SweetenerDigi2L = 0;
                         sweetenerDataContract.SweetenerTotal = 0;
+                        sweetenerDataContract.OldSweetenerDC.OldSweetenerTotal = 0;
                     }
                 }
                 else
@@ -3583,6 +3607,7 @@ namespace RDCEL.DocUpload.Web.API.Controllers
                     sweetenerDataContract.SweetenerBP = 0;
                     sweetenerDataContract.SweetenerDigi2L = 0;
                     sweetenerDataContract.SweetenerTotal = 0;
+                    sweetenerDataContract.OldSweetenerDC.OldSweetenerBP = 0;
                 }
 
                 #endregion
@@ -3595,14 +3620,19 @@ namespace RDCEL.DocUpload.Web.API.Controllers
                 }
                 else
                 {
-                    if (sweetenerDataContract.SweetenerTotal > 0)
+                    if (sweetenerDataContract.SweetenerTotal > 0 || sweetenerDataContract.OldSweetenerDC.OldSweetenerTotal > 0)
                     {
                         sweetenerDataContract.BaseValue = universalPriceMasterDataContract.BaseValue;
-                        sweetenerDataContract.ExchangePrice = universalPriceMasterDataContract.BaseValue + sweetenerDataContract.SweetenerTotal;
-                        sweetenerDataContract.SweetenerTotal = sweetenerDataContract.SweetenerTotal != null ? sweetenerDataContract.SweetenerTotal : 0;
+                        
+                        sweetenerDataContract.SweetenerTotal = sweetenerDataContract.SweetenerTotal != null ? sweetenerDataContract.SweetenerTotal : 0; sweetenerDataContract.OldSweetenerDC.OldSweetenerTotal = sweetenerDataContract.OldSweetenerDC.OldSweetenerTotal != null ? sweetenerDataContract.OldSweetenerDC.OldSweetenerTotal : 0;
                         sweetenerDataContract.SweetenerBP = sweetenerDataContract.SweetenerBP != null ? sweetenerDataContract.SweetenerBP : 0;
                         sweetenerDataContract.SweetenerBu = sweetenerDataContract.SweetenerBu != null ? sweetenerDataContract.SweetenerBu : 0;
                         sweetenerDataContract.SweetenerDigi2L = sweetenerDataContract.SweetenerDigi2L != null ? sweetenerDataContract.SweetenerDigi2L : 0;
+                         sweetenerDataContract.OldSweetenerDC.OldSweetenerBP = sweetenerDataContract.OldSweetenerDC.OldSweetenerBP != null ? sweetenerDataContract.OldSweetenerDC.OldSweetenerBP : 0;
+                        sweetenerDataContract.OldSweetenerDC.OldSweetenerBu = sweetenerDataContract.OldSweetenerDC.OldSweetenerBu != null ? sweetenerDataContract.OldSweetenerDC.OldSweetenerBu : 0;
+                        sweetenerDataContract.OldSweetenerDC.OldSweetenerOwn = sweetenerDataContract.OldSweetenerDC.OldSweetenerOwn != null ? sweetenerDataContract.OldSweetenerDC.OldSweetenerOwn : 0;
+
+                        sweetenerDataContract.ExchangePrice = universalPriceMasterDataContract.BaseValue + sweetenerDataContract.SweetenerTotal + sweetenerDataContract.OldSweetenerDC.OldSweetenerTotal;
                     }
                     else if (universalPriceMasterDataContract != null && universalPriceMasterDataContract.BaseValue > 0)
                     {
@@ -3612,6 +3642,7 @@ namespace RDCEL.DocUpload.Web.API.Controllers
                         sweetenerDataContract.SweetenerBP = 0;
                         sweetenerDataContract.SweetenerBu = 0;
                         sweetenerDataContract.SweetenerDigi2L = 0;
+                        sweetenerDataContract.OldSweetenerDC.OldSweetenerBP = 0;
                     }
                     else
                     {
@@ -3620,6 +3651,7 @@ namespace RDCEL.DocUpload.Web.API.Controllers
                         sweetenerDataContract.SweetenerBP = 0;
                         sweetenerDataContract.SweetenerBu = 0;
                         sweetenerDataContract.SweetenerDigi2L = 0;
+                        sweetenerDataContract.OldSweetenerDC.OldSweetenerBP = 0;
                     }
 
                 }

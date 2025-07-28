@@ -267,6 +267,8 @@ namespace RDCEL.DocUpload.DataContract.SponsorModel
         public int? CouponId { get; set; }
         public string UsedCouponCode { get; set; }
         public decimal? CouponValue { get; set; }
+        public bool IsVoucherAfterQC { get; set; }
+
     }
     public class GenerateVoucherCode
     {
@@ -400,6 +402,7 @@ namespace RDCEL.DocUpload.DataContract.SponsorModel
         public decimal? SweetenerDigi2l { get; set; }
         public decimal? BasePrice { get; set; }
         public int priceMasterNameID { get; set; }
+
     }
 
     public class ProductOrderResponseDataContract

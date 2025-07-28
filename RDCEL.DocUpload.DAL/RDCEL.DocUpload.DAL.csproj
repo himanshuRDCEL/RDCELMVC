@@ -151,6 +151,8 @@
     <Compile Include="Repository\BPPincodeMappingRepository.cs" />
     <Compile Include="Repository\BPBUAssociationRepository.cs" />
     <Compile Include="Repository\BUProductCategoryMappingRepository.cs" />
+    <Compile Include="Repository\CatBrandSweetenerMappingRepository.cs" />
+    <Compile Include="Repository\CatBrandSweetenerRepository.cs" />
     <Compile Include="Repository\CategoryRepository.cs" />
     <Compile Include="Repository\CompanyRepository.cs" />
     <Compile Include="Repository\CouponMasterRepository.cs" />
@@ -411,6 +413,12 @@
       <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="tblBusinessUnit.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblCatBrandSweetener.cs">
+      <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblCatBrandSweetenerMapping.cs">
       <DependentUpon>Digi2l_DBEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="tblCategory.cs">
